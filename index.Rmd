@@ -1,0 +1,30 @@
+--- 
+title: "Some notes on Statistics and Data Analytics"
+author: "Desmond Ong"
+date: "Draft Dated: `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    lib_dir: assets
+    split_by: section
+    config:
+      toolbar:
+        position: static
+      toc:
+        before: |
+          <li><a href="./">My Statistics Notes</a></li>
+        after: |
+          <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+  bookdown::pdf_book:
+    keep_tex: yes
+documentclass: book
+bibliography: [stats-references.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: desmond-ong/stats-notes
+description: "A collection of statistics notes useful for data analytics."
+---
+
+# Preface {-}
+
+ABCDEF
