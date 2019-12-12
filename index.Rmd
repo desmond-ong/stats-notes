@@ -6,7 +6,7 @@ site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
     lib_dir: assets
-    split_by: section
+    split_by: chapter
     config:
       toolbar:
         position: static
@@ -27,4 +27,19 @@ description: "A collection of statistics notes useful for data analytics."
 
 # Preface {-}
 
-ABCDEF
+This is a collection of notes on statistics and data analytics that I am compiling, primarily to supplement a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), which is a statistics course in R targeted at first-year undergraduate students and aspiring data scientists / researchers. 
+
+
+I hope to cover quite broadly several important and broadly useful statistical concepts (e.g. regression, simulations), as well as discuss issues like data visualization best practices. If I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
+
+
+As some background, I am trained as a cognitive psychologist, with a little bit of training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences.
+
+
+This is a work in progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/.
+
+
+
+## Outline of notes {-}
+
+XYZ

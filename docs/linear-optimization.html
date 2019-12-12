@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="simulations.html"/>
-<link rel="next" href="summary.html"/>
+<link rel="next" href="integer-valued-optimization.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 </head>
 
@@ -67,7 +129,9 @@
 <li><a href="./">My Statistics Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#outline-of-notes"><i class="fa fa-check"></i>Outline of notes</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> Descriptive Statistics</a></li>
@@ -76,8 +140,30 @@
 <li class="chapter" data-level="5" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>5</b> Regression</a></li>
 <li class="chapter" data-level="6" data-path="data-mining.html"><a href="data-mining.html"><i class="fa fa-check"></i><b>6</b> Data Mining</a></li>
 <li class="chapter" data-level="7" data-path="simulations.html"><a href="simulations.html"><i class="fa fa-check"></i><b>7</b> Simulations</a></li>
-<li class="chapter" data-level="8" data-path="linear-optimization.html"><a href="linear-optimization.html"><i class="fa fa-check"></i><b>8</b> Linear Optimization</a></li>
-<li class="chapter" data-level="9" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>9</b> Summary</a></li>
+<li class="chapter" data-level="8" data-path="linear-optimization.html"><a href="linear-optimization.html"><i class="fa fa-check"></i><b>8</b> Linear Optimization</a><ul>
+<li class="chapter" data-level="8.1" data-path="linear-optimization.html"><a href="linear-optimization.html#what-is-linear-optimization"><i class="fa fa-check"></i><b>8.1</b> What is Linear Optimization</a></li>
+<li class="chapter" data-level="8.2" data-path="linear-optimization.html"><a href="linear-optimization.html#objective-functions-decision-variables"><i class="fa fa-check"></i><b>8.2</b> Objective Functions &amp; Decision Variables</a><ul>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#jean-the-farmer-objective-function"><i class="fa fa-check"></i>Jean the Farmer: Objective Function</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="linear-optimization.html"><a href="linear-optimization.html#constraints"><i class="fa fa-check"></i><b>8.3</b> Constraints</a><ul>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#jean-the-farmer-constraints"><i class="fa fa-check"></i>Jean the Farmer: Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="linear-optimization.html"><a href="linear-optimization.html#solving-the-optimization-model"><i class="fa fa-check"></i><b>8.4</b> Solving the Optimization Model</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="linear-optimization.html"><a href="linear-optimization.html#writing-out-the-optimization-model"><i class="fa fa-check"></i><b>8.4.1</b> Writing out the Optimization model</a></li>
+<li class="chapter" data-level="8.4.2" data-path="linear-optimization.html"><a href="linear-optimization.html#solving-an-optimization-problem-graphically"><i class="fa fa-check"></i><b>8.4.2</b> Solving an optimization problem graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="linear-optimization.html"><a href="linear-optimization.html#using-r-to-solve"><i class="fa fa-check"></i><b>8.5</b> Using R to solve</a></li>
+<li class="chapter" data-level="8.6" data-path="linear-optimization.html"><a href="linear-optimization.html#sensitivity-analysis"><i class="fa fa-check"></i><b>8.6</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#varying-objective-function-coefficients"><i class="fa fa-check"></i>Varying objective function coefficients</a></li>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#varying-constraint-values-shadow-prices"><i class="fa fa-check"></i>Varying Constraint Values (Shadow Prices)</a></li>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
+<li class="chapter" data-level="" data-path="linear-optimization.html"><a href="linear-optimization.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="linear-optimization.html"><a href="linear-optimization.html#summary"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+<li class="chapter" data-level="8.8" data-path="linear-optimization.html"><a href="linear-optimization.html#exercises"><i class="fa fa-check"></i><b>8.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="integer-valued-optimization.html"><a href="integer-valued-optimization.html"><i class="fa fa-check"></i><b>9</b> Integer-valued Optimization</a></li>
+<li class="chapter" data-level="10" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>10</b> Summary</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -101,8 +187,471 @@
             <section class="normal" id="section-">
 <div id="linear-optimization" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Linear Optimization</h1>
-<p>Linear Optimization</p>
+<p>In this chapter we will switch gears slightly to start talking about <strong>Prescriptive Analytics</strong>: that is, how to use analytics to make better decisions using data.</p>
+<p>We’ll be discussing how to define certain problems as simple linear optimization problems: optimizing a given <em>objective function</em>, subject to certain linear <em>constraints</em>. We’ll cover how to use graphs to visualise and gain more intuition as to how to solve this problem. And finally, we will cover how to use R to solve the problem, as well as do additional <em>sensitivity analyses</em>.</p>
+<p>The learning objectives for this chapter are:</p>
+<ul>
+<li><p>Given an optimisation problem statement, students should be able to properly identify an objective function and relevant constraints.</p></li>
+<li><p>Students should be familiar with linear optimisation concepts like the feasible region and finding optimal solutions as corner points of the feasible region.</p></li>
+<li><p>Students should be able to solve simple linear optimisation problems.</p></li>
+<li><p>Students should be comfortable in interpreting the results of the optimisation and of sensitivity analyses, and preparing a recommendation memo with justifications.</p></li>
+<li><p>Students should understand how and when integer constraints apply to optimisation problems.</p></li>
+<li><p>Students should know how to use Linear-Program Relaxation (LP Relaxation) to gain insight into integer-constrained problems.</p></li>
+<li><p>Students should understand how to solve integer-constrained optimisation problems.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Load the libraries we&#39;ll use in this chapter</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggplot2) <span class="co"># for plotting</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(lpSolve) <span class="co"># for solving linear optimization problems (&#39;linear programming&#39;)</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(latex2exp) <span class="co"># for enabling LaTeX math expressions in plots</span></a></code></pre></div>
+<div id="what-is-linear-optimization" class="section level2">
+<h2><span class="header-section-number">8.1</span> What is Linear Optimization</h2>
+<p>Optimisation is used in every aspect of business: from operations, to finance, to HR, to marketing. Let’s imagine that you run a little bakery, and you have to decide how many of each type of product to make.
+You can, of course, decide your product line by saying “I like making cupcakes”, or “People really like my croissants”. But if you really want to optimize your sales and scale up product, you would have to do your own research and consider a range of factors, such as:</p>
+<ul>
+<li>what are the demand for each type of product,</li>
+<li>what are the costs (in terms of time and materials) associated with each type of product</li>
+</ul>
+<p>For example, from your “market research”, you may discover that mille-crepes are the rage now (in 2019) but they’re really effortful to make compared to normal cupcakes. So is it worth it to start branching out into this new product?</p>
+<p>When companies have factories that make thousands (or more) of products a day, one really has to use <em>data</em> to optimize the product mix. Note that this optimization isn’t about making the manufacturing processes faster or cheaper (that’s also a type of optimisation). Here we are interested in how <em>much</em> we need to produce.</p>
+<p>Some common use cases for linear optimization are:</p>
+<ul>
+<li>Product Mix: Deciding how much of each product to produce and sell.</li>
+<li>Product Line Planning: Deciding how much of each product to produce now vs later (e.g. targeting holiday sales season, using forecasts of supply/demand)</li>
+<li>Choosing an Investment Portfolio: we might be interested in choosing a mix of investment options that in this case might maximise our return, or perhaps minimise our risk exposure, subject to certain constraints.</li>
+<li>Optimising labor allocation: How best to schedule employees’ work shifts?</li>
+<li>Optimising transportation and supply chain: How to route deliveries to minimize wait time? How to get materials from suppliers to warehouse to distributors—very important especially for perishable goods.
+<ul>
+<li>And many of us in today’s world use on-demand gig apps for transportation, food delivery, and so forth. These apps require lots of optimisation, and employ very complicated techniques, so the linear optimization techniques in this chapter will provide but a glimpse of this.</li>
+</ul></li>
+</ul>
+<p>Here are the basic steps in Linear Optimization, which we’ll go over in the next few Sections.</p>
+<ol style="list-style-type: decimal">
+<li>Identify the Objective Function &amp; Decision Variables</li>
+<li>Identify the Constraints</li>
+<li>Write down the Optimization model</li>
+<li>Either:
+<ol style="list-style-type: lower-alpha">
+<li>Solve graphically and/or manually</li>
+<li>Use R to solve</li>
+</ol></li>
+<li>Conduct Sensitivity Analysis</li>
+<li>Interpret results and make recommendations.</li>
+</ol>
+</div>
+<div id="objective-functions-decision-variables" class="section level2">
+<h2><span class="header-section-number">8.2</span> Objective Functions &amp; Decision Variables</h2>
+<p>Your goal (or objective) in linear optimisation is to optimise an objective function. This will be in the form of maximising or minimising some quantity of interest, by choosing the values of <span class="math inline">\(X\)</span>, our Decision Variables.</p>
+<p>Decision variables (<span class="math inline">\(X\)</span>) are the variables that you get to pick. How many croissants to make? How many stocks of company A should I hold?</p>
+<p>In the objective function, we choose <span class="math inline">\(X\)</span> to maximize or minimize some quantity of interest. Some common examples are to choose <span class="math inline">\(X\)</span> to:</p>
+<ul>
+<li>maximise profits.</li>
+<li>minimise costs / time spent</li>
+<li>minimise risk exposure</li>
+</ul>
+<p>Where profits, costs, time spent, risk, etc, are given by some model of the world, that you as an analyst have come up with.</p>
+<p>I should note that we have already seen similar “optimization” in earlier chapters. For example, in Ordinary Least Squares Regression, we want to choose our regression coefficients (<span class="math inline">\(b_0\)</span>, <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>…) to minimise the sum of squared errors. Or, we may want to choose model hyper parameters that maximises our model’s accuracy (e.g., on the Validation Set)</p>
+<p>Here, the difference is that we often formulate the objective function in terms of a real-world quantity (i.e., relevant to a business context) that we want to maximise or minimise, by choosing our X’s.</p>
+<div id="jean-the-farmer-objective-function" class="section level3 unnumbered">
+<h3>Jean the Farmer: Objective Function</h3>
+<p>Let’s get introduced to Farmer Jean, who runs a small farm in a little <a href="https://www.stardewvalley.net/">valley</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, who will be with us throughout this chapter.</p>
+<pre><code>Farmer Jean has two types of crops, Parsnips and Kale. 
+Parsnips cost $0.20 per plot to grow, and sell for $0.35 per plot.
+Kale cost $0.70 per plot to grow, and sell for $1.10 per plot.
 
+She has 200 plots of land, and a $100 budget. 
+How many of each crop should she plant to maximise her profits?</code></pre>
+<p>Here, the decision variables are quite straightforward. We are just choosing how many plots of parsnips and plots of kale to grow. Let’s call them <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively.</p>
+<pre><code>Define:
+  X_1 = number of plots of parsnips grown
+  X_2 = number of plots of kale grown</code></pre>
+<p>The objective function is just maximising profits, which is the selling price - cost price, multiplied by how many of each crop she grows. So Profits <span class="math inline">\(= (0.35 - 0.20) X_1 + (1.10 - 0.70) X_2 = 0.15X_1 + 0.40X_2\)</span></p>
+<pre><code>Objective function: Maximize Profits = 0.15 X_1 + 0.40 X_2</code></pre>
+</div>
+</div>
+<div id="constraints" class="section level2">
+<h2><span class="header-section-number">8.3</span> Constraints</h2>
+<p>In Farmer Jean’s case, obviously if we just wanted to maximise profits, we should just grow more and more of the profit maximising plant. But this is often not possible because of limited constraints. For example, you may not have unlimited budget, or unlimited time, or you may also need to fulfil certain criteria as part of your contract with your distributor.</p>
+<p>Formally, we represent these constraints as <strong>mathematical inequalities</strong> or equations. The inequalities can be <em>less than</em>, <em>greater than</em>, or <em>strictly equal</em>.
+On the left hand side we put a function of our decision variables, and on the right hand side we put the value of the constraint.</p>
+<p>So for example, if you have to “deliver within budget”, this means that your total cost of your decisions must be less than/equal to your budget.
+If you have to “deliver at least 50 units of product”, this means that number of product produced must be greater than or equal to 50.
+You may have to allocate working shifts to give exactly 40 hours of work per staff. So basically these constraints can be greater or less than or equal to some number.</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Examples</th>
+<th>Translates to:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deliver within Budget</td>
+<td>Total Cost <span class="math inline">\(\leq\)</span> Budget</td>
+</tr>
+<tr class="even">
+<td>Deliver at least 50 units of product</td>
+<td>Product <span class="math inline">\(\geq\)</span> 50</td>
+</tr>
+<tr class="odd">
+<td>Allocation must contain exactly 40 hours of work</td>
+<td>Working Hours <span class="math inline">\(=\)</span> 40</td>
+</tr>
+<tr class="even">
+<td>Implicit: Products, hours of work must be non-negative</td>
+<td>Product <span class="math inline">\(\geq\)</span> 0 <br> Hours <span class="math inline">\(\geq\)</span> 0</td>
+</tr>
+</tbody>
+</table>
+<p>We also often have constraint called non-negativity constraints. For many of these decision variables that have real world meaning, they often cannot be negative. So we often specify that each of the decision variables must be greater than or equal to 0. These are <em>important</em> to specify explicitly, and in fact R assumes this.</p>
+<div id="jean-the-farmer-constraints" class="section level3 unnumbered">
+<h3>Jean the Farmer: Constraints</h3>
+<p>Coming back to Farmer Jean, she has two types of constraints. First, she doesn’t have unlimited budget, with which she needs to pay the cost of growing each crop. So we can write this as the cost of producing parsnips times the amount of parsnips (<span class="math inline">\(0.20X_1\)</span>), and the cost of producing kale times the amount of kale (<span class="math inline">\(0.70X_2\)</span>), the sum of these two must be less than equal to 100.</p>
+<p>The second constraint she has is that she only has 200 plots of land. So the total amount of crops she grows has to fit into these plots. So <span class="math inline">\(X_1\)</span> + <span class="math inline">\(X_2\)</span> must be less than or equal to 200.</p>
+<p>And finally we have the non-negativity constraints.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Constraints</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="even">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="odd">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="solving-the-optimization-model" class="section level2">
+<h2><span class="header-section-number">8.4</span> Solving the Optimization Model</h2>
+<div id="writing-out-the-optimization-model" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> Writing out the Optimization model</h3>
+<p>Before we start, it is good practice to formally write down the optimisation model that you want to solve.</p>
+<p>This summarises all the information in the problem into one system of equations to solve. So for the Farming Example, we have:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision Variables: <br> <span class="math inline">\(X_1\)</span> = number of plots of parsnips grown <br> <span class="math inline">\(X_2\)</span> = number of plots of kale grown</th>
+<th>Maximize Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>subject to</em>:</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="odd">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="even">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Any solution that satisfies all the constraints is a <em>feasible</em> solution. In optimization, we want to find the best / optimal feasible solution.</p>
+</div>
+<div id="solving-an-optimization-problem-graphically" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Solving an optimization problem graphically</h3>
+<p>Let us understand this problem in more detail, by graphing our constraints as regions on an <span class="math inline">\(X_1\)</span>-<span class="math inline">\(X_2\)</span> graph, with <span class="math inline">\(X_1\)</span> on the horizontal axis and <span class="math inline">\(X_2\)</span> on the vertical axis.</p>
+<p>Below we’ve plotted the two constraints:</p>
+<ul>
+<li><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span>, on the left, in magenta</li>
+<li><span class="math inline">\(X_1 + X_2 \leq 200\)</span>, on the right, in orange</li>
+</ul>
+<p><img src="images/optim/optim-plot-1.png" width="800"></p>
+<pre><code>**Finish this part**
+How do I get these graphs!</code></pre>
+<pre><code>Q: What do the non-negativity constraint regions look like?</code></pre>
+<div id="feasible-regions" class="section level4 unnumbered">
+<h4>Feasible Regions</h4>
+<p>The Feasible Region is the intersection of all the constraint regions.</p>
+<p><img src="images/optim/optim-plot-2.png" width="500"></p>
+<ul>
+<li>A feasible solution is an allocation of decision variables (like <span class="math inline">\(X_1\)</span> = 10, <span class="math inline">\(X_2\)</span> = 10), that satisfies all the constraints.</li>
+<li>Every feasible solution will lie in the feasible region.</li>
+<li>If there is no feasible region, then there is no feasible solution, and we say that the problem is infeasible. In other words, there is no way to solve this problem while satisfying all the constraints.</li>
+</ul>
+</div>
+<div id="corner-points" class="section level4 unnumbered">
+<h4>Corner Points</h4>
+<p>While any point in the feasible region is a possible solution, it turns out that the optimal solution, if it exists, lies at a “corner” of the feasible region. Indeed, there are mathematical theorems proving this.</p>
+<p><img src="images/optim/optim-plot-3.png" width="500"></p>
+<p>Why? Imagine that you have a solution in the center of the feasible region, not near a boundary.
+From here, you can still increase or decrease <span class="math inline">\(X_1\)</span>; or you can increase or decrease <span class="math inline">\(X_2\)</span>. These changes would either increase or decrease your profit (“better” or “worse”).
+So the best (and worst) solutions are when you cannot increase or decrease your decision variables any more!</p>
+<p>Let’s check our profits at each of the corner points. For three of them it’s simple; we just set X1 and X2 to 0 (Bottom-Left), or we set X1 to 0 (Top-Left), or we set X2 to 0 (Bottom-Right).</p>
+<p><span class="math display">\[\begin{align}
+\text{Bottom-Left }:&amp; \; X_1 = 0 ; \;\;\;\; X_2 = 0 ; \;\;\;\; \text{Profit} = 0 \quad [\textbf{Worst}] \\
+\text{Top-Left }:&amp; \; X_1 = 0 ; \;\;\;\; X_2 = 142 ; \; \text{Profit} = 56.8 \\
+\text{Bottom-Right }:&amp; \; X_1 = 200 ; \; X_2 = 0 ; \;\;\;\; \text{Profit} = 30 \\
+\end{align}\]</span></p>
+<pre><code>Note, the WORST solution is also at a corner point. 
+Can you reason out why?
+In this case, the bottom-left point happens to be the worst!</code></pre>
+<p>At the fourth corner point (the top-right point), this point satisfies both the inequalities exactly. So they become equalities, which we can solve as a pair of simultaneous equations:</p>
+<p><span class="math display">\[\begin{align}
+X_1 + X_2 &amp;= 200 \quad (1) \\
+0.20X_1 + 0.70X_2 &amp;= 100 \quad (2) \\
+(1) \implies X_2 &amp;= 200 - X_1 \\
+\text{sub into } (2): 0.20X_1 + 0.70 (200 - X_1) &amp;= 100 \\
+(0.20 - 0.70) X_1 &amp;= 100 - 140 \\
+X_1 &amp;= 80 \\
+\implies X_2 &amp;= 120
+\end{align}\]</span></p>
+<p>Hence, the solution is <span class="math inline">\(X_1 = 80\)</span>, <span class="math inline">\(X_2 = 120\)</span>, which gives us a profit of <span class="math inline">\(0.15X_1 + 0.40X_2 = 60\)</span>.</p>
+<p>This happens to be the maximum profit, so (80,120) gives us the optimal solution with a maximum profit of $60.</p>
+</div>
+<div id="level-sets" class="section level4 unnumbered">
+<h4>Level Sets</h4>
+<p><img src="images/optim/optim-plot-4.png" width="500"></p>
+<p>An alternative way to visualise this solution is to draw the level set of the objective function (i.e., profits).</p>
+<p>The level set is the set of all the points that give the same profit. We indicate the direction in which we are optimising (i.e., direction of increasing profit), and we “shift” the level set as we increase profit.</p>
+<p>The optimal solution is the last point before the level set leaves the feasible region as we optimise profits.
+(If the level set is parallel to a constraint line, we could also get a set of optimal solutions)</p>
+</div>
+<div id="solution-types" class="section level4 unnumbered">
+<h4>Solution Types</h4>
+<p>There are 4 possible types of solutions:</p>
+<ol style="list-style-type: decimal">
+<li><p>There exists a unique optimal solution.</p></li>
+<li><p>There exists multiple optimal solutions. <br>
+Graphically, this occurs when the set of optimal solutions (i.e., the level set of the optimal solution) is parallel to / lies along a constraint. Thus, every point along that constraint will give an optimal solution.</p></li>
+<li><p>The solution is unbounded <br> <img src="images/optim/optim-plot-ns-1.png" width="100"></p></li>
+<li><p>There exists no feasible solutions <br> <img src="images/optim/optim-plot-ns-2.png" width="200"></p></li>
+</ol>
+</div>
+<div id="finding-corner-points-in-higher-dimensions" class="section level4 unnumbered">
+<h4>Finding corner points in higher dimensions</h4>
+<p>So we’ve seen that the optimal solution must lie on a corner point. This is true even if we have more than two variables and we cannot plot this on a 2D graph. A ten decision-variable problem will have a feasible region be a region in a ten dimensional space, also called a 10-dimensional polytope. The solution will lie on a corner, or vertex, of this polytope.</p>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Simplex-method-3-dimensions.png/480px-Simplex-method-3-dimensions.png" width=200> <br> <small>Image of a high-dimensional polytope and a path that Simplex Algorithm might take, from <a href="https://en.wikipedia.org/wiki/Simplex_algorithm">Wikipedia</a></small>
+</center>
+<p>One algorithm to solve these optimization problems is called the Simplex Algorithm, which systematically checks through these corner vertices to find the optimal one.</p>
+<ul>
+<li>The algorithm starts at a vertex (perhaps chosen randomly or through some initialization)</li>
+<li>It will then move along an edge (“side of polytope”) to another vertex only if the objective function value along that edge is increasing.</li>
+<li>It repeats this until it reaches a maximum, i.e., no such edges are found.</li>
+<li>The algorithm terminates at the optimal solution, or reports that none are found (infeasible, or unbounded).</li>
+</ul>
+<p>For this chapter, we do not cover <em>how</em> the Simplex algorithm works, but we just discuss the high-level intuition behind it. We will let <em>R</em> implement this algorithm and solve more difficult optimization problems for us.</p>
+</div>
+</div>
+</div>
+<div id="using-r-to-solve" class="section level2">
+<h2><span class="header-section-number">8.5</span> Using R to solve</h2>
+<p>The most difficult part about using R to solve a linear optimization problem is to translate the optimization problem into code. Let’s reproduce the table with all the necessary information for the example of Farmer Jean:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision Variables: <br> <span class="math inline">\(X_1\)</span> = number of plots of parsnips grown <br> <span class="math inline">\(X_2\)</span> = number of plots of kale grown</th>
+<th>Maximize Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>subject to</em>:</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="odd">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="even">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#decision variables values</span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">lp.solution<span class="op">$</span>solution</a></code></pre></div>
+<pre><code>## [1]  80 120</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># objective fn value</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">lp.solution</a></code></pre></div>
+<pre><code>## Success: the objective function is 60</code></pre>
+<p>Thus, the optimal solution is <span class="math inline">\(X_1\)</span> = 80, <span class="math inline">\(X_2\)</span> = 120, and the optimal profit is 60, which is what we found manually above.</p>
+</div>
+<div id="sensitivity-analysis" class="section level2">
+<h2><span class="header-section-number">8.6</span> Sensitivity Analysis</h2>
+<p>When we get an optimal solution to a linear optimisation problem, oftentimes we may want to ask: what if we change the objective by a little, or what if we change the constraints by a little, what would happen? i.e., how sensitive is the solution to changes in the problem?</p>
+<p>Sensitivity analysis allows us to ask this question systematically. Here we shall cover two types of sensitivity analyses – varying objective function coefficients, and varying constraint values.</p>
+<div id="varying-objective-function-coefficients" class="section level3 unnumbered">
+<h3>Varying objective function coefficients</h3>
+<p>Recall our farming example: our optimal solution is <span class="math inline">\(X_1\)</span> = 80, <span class="math inline">\(X_2\)</span> = 120,
+and our objective function is:
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
+<p>What if Farmer Jean’s customer decides to reduce the amount they are willing to pay for Kale (<span class="math inline">\(X_2\)</span>) to $1.00 (reducing Jean’s profits from 0.40 to 0.30 per unit of <span class="math inline">\(X_2\)</span>).
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.30} X_2 \]</span></p>
+<p>Will that change our optimal solution?</p>
+<p>Turns out, no, it doesn’t. (Try running the code again to verify that the optimal solution is still (80,120)!)</p>
+<p><img src="images/optim/optim-plot-sa-1.png" width="400"></p>
+<p>But now if the price that Farmer Jean can sell Parsnips (<span class="math inline">\(X_1\)</span>) drops from 0.35 to 0.30, i.e., reducing her profits per unit-parsnips from 0.15 to 0.10,</p>
+<p><span class="math display">\[ \text{Profit} = \color{red}{0.10} X_1 + 0.40 X_2 \]</span>
+Then the optimal solution actually changes (to <span class="math inline">\(X_1\)</span> = 0, <span class="math inline">\(X_2\)</span> = 142)! Basically, Parsnips are now not profitable, and Jean should plant plant all Kale.</p>
+<p><img src="images/optim/optim-plot-sa-2.png" width="400"></p>
+<p>Graphically the optimal solution now moves from the blue vertex to the green vertex. The optimal solution is to produce as much Kale as she can afford.</p>
+<p>Indeed in the first case, reducing the price of <span class="math inline">\(X_2\)</span> by 10 cents did not change the solution, but in the second case, reducing the price of <span class="math inline">\(X_1\)</span> by 5 cents did! So this solution is sensitive to some changes but not others.</p>
+<div id="varying-objective-function-coefficients-in-r" class="section level4 unnumbered">
+<h4>Varying objective function coefficients in R</h4>
+<p>R’s <code>lpSolve::lp()</code> function helps you to calculate the <em>range</em> of coefficient values for which the given solution is still optimal. So again, recall that the original objective function is:
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
+<p>We use <code>lp.solution$sens.coef.from</code> and <code>lp.solution$sens.coef.to</code> to get the range of coefficients.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># sensitivity analysis on coefficients</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">lp.solution<span class="op">$</span>sens.coef.from </a></code></pre></div>
+<pre><code>## [1] 0.1142857 0.1500000</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">lp.solution<span class="op">$</span>sens.coef.to</a></code></pre></div>
+<pre><code>## [1] 0.400 0.525</code></pre>
+<p>The way you read this is that “from” is the lower bound of the coefficients (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively), while “to” gives the upper bound of the coefficients.</p>
+<ul>
+<li>This means that as long as the coefficient on <span class="math inline">\(X_1\)</span> lies between [0.1143, 0.400],
+this solution is still optimal.</li>
+<li>Or if the coefficient on <span class="math inline">\(X_2\)</span> lies between [0.150, 0.525], this solution is still optimal.</li>
+</ul>
+<p>If the coefficients shift outside these ranges, then the solution will move to a different vertex. (How will they move?)</p>
+<p>Note that all of these sensitivity calculations assume you only adjust one coefficient at a time. This means that if you decide to reduce <span class="math inline">\(X_1\)</span> to 0.12 and increase <span class="math inline">\(X_2\)</span> to 0.50, the optimal solution might change. These ranges assume that you only change that one coefficient while holding the rest constant. If you want to change two or more coefficients, you should re-run the model.</p>
+<p>Now let’s think through and try to predict what happens when these coefficients go out of these bounds. We just saw that if the coefficient on <span class="math inline">\(X_1\)</span> goes to 0.10, which is less than 0.1143, then the solution moves to: produce no <span class="math inline">\(X_1\)</span> and produce maximum <span class="math inline">\(X_2\)</span>.</p>
+<p>What if the coefficient on <span class="math inline">\(X_1\)</span> goes above 0.400? What do you think will happen? Increasing the profit of <span class="math inline">\(X_1\)</span> beyond this range should mean that it has become more profitable to produce <span class="math inline">\(X_1\)</span>, and we know that the solution must lie on a vertex, so we move down the edge of the feasible region to the solution on the horizontal axis, <span class="math inline">\(X_1 = 200, X_2 = 0\)</span>.</p>
+<p>Similarly, we can think about what will happen when the coefficient on <span class="math inline">\(X_2\)</span> drops below 0.15: it becomes not profitable to produce Kale, so we’ll also get the point <span class="math inline">\(X_1 = 200, X_2 = 0\)</span>.
+But when the coefficient on <span class="math inline">\(X_2\)</span> rises above 0.525, then it becomes much more profitable to produce Kale, so we’ll come to the solution <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>.</p>
+</div>
+</div>
+<div id="varying-constraint-values-shadow-prices" class="section level3 unnumbered">
+<h3>Varying Constraint Values (Shadow Prices)</h3>
+<p>The next type of sensitivity analysis we shall look at is what happens when we vary the constraint values.</p>
+<p>We’ll introduce a new term called <em>shadow prices</em>.
+The <em>Shadow Price</em> of a constraint is the change in the objective function value per unit-increase in the right-hand-side value of that constraint (holding all else equal). Let’s break this down.</p>
+<p>In the Farming example, we have two constraints.</p>
+<p><img src="images/optim/optim-plot-sp-1.png" width="400"></p>
+<p>Let’s consider the first constraint. What if we increased the RHS of the first constraint from 100 to 101?</p>
+<p><span class="math display">\[0.20X_1 + 0.70X_2 \leq 100 \quad \rightarrow \quad 0.20X_1 + 0.70X_2 \leq \color{green}{101}\]</span></p>
+<p><img src="images/optim/optim-plot-sp-2.png" width="400"></p>
+<p>The feasible region was pushed outwards a little, by adding this green segment. Doing this will move the optimal vertex up and to the left.</p>
+<p>The new solution is (<span class="math inline">\(X_1\)</span> = 78, <span class="math inline">\(X_2\)</span> = 122), which gives a profit of $60.50 – an increase of $0.50</p>
+<p>Thus, increasing the budgetary constraint by 1 unit (100 to 101) increases the profit by $0.50 (from $60 to $60.50). Hence, (by definition), <strong>the Shadow Price of the first constraint is $0.50</strong>.</p>
+<p>What this means is that if Farmer Jean increased her operating budget from $100 to $101, then she can increase her profits by $0.50. That’s a pretty good return-on-investment! (Note that the optimal solution also changes, but here the shadow price indicates the effect of changing the constraint value on the <strong>PROFIT</strong>).</p>
+<p>Next, let’s consider the second constraint. What if we increased the RHS of the second constraint from 200 to 201?</p>
+<p><span class="math display">\[X_1 + X_2 \leq 200 \quad \rightarrow \quad X_1 + X_2 \leq \color{cyan}{201}\]</span></p>
+<p><img src="images/optim/optim-plot-sp-3.png" width="400"></p>
+<p>The feasible region was pushed out a little, by adding this cyan segment, which moved the optimal vertex down and to the right.</p>
+<p>The new solution is (<span class="math inline">\(X_1\)</span> = 81.4, <span class="math inline">\(X_2\)</span> = 119.6), which gives a profit of $60.05 – an increase by $0.05</p>
+<p>Thus, increasing the space constraint by 1 unit (200 to 201) increases the profit by $0.05 (from $60 to $60.05).
+The Shadow Price of the space constraint is $0.05.</p>
+<p>What this means is that if Farmer Jean increased her land plot size from 200 to 201, then she can increase her profits by $0.05. That’s not as high as the budgetary constraints, so this translates to a good recommendation: if Jean wants to increase her profit, she gets more bang of the buck if she gets more operating budget than land space.</p>
+<div id="varying-constraint-values-in-r" class="section level4 unnumbered">
+<h4>Varying Constraint Values in R</h4>
+<p>Shadow prices are also known as <code>duals</code> in other fields (e.g. computer science), so we use <code>lp.solution$duals</code> to get them.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Shadow prices</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">lp.solution<span class="op">$</span>duals</a></code></pre></div>
+<pre><code>## [1] 0.50 0.05 0.00 0.00</code></pre>
+<p>Notice that there are four values here. The first two are the two constraints we put in, in the order they were specified in the constraints matrix (so <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span> then <span class="math inline">\(X_1 + X_2 \leq 200\)</span>).
+So we can see, as per our calculations above, that the shadow price of the first constraint is $0.50, and that of the second constraint is $0.05.</p>
+<p>The last two are the shadow prices of the non-negativity constraints <span class="math inline">\(X_1 \geq 0\)</span>, and <span class="math inline">\(X_2 \geq 0\)</span>. This means that the change in the optimal profit, if we were to increase the right hand side values from 0 to 1, are both 0. Note that in some fields, the shadow prices of the non-negativity constraints have a special name, <em>reduced costs</em>. But the interpretation is the same.</p>
+<p>Why would we have a shadow price of zero for these non-negativity constraints? In this particular case, in the optimal solution we are already producing non-zero quantities of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>. Thus, increasing the right-hand-side value (i.e., forcing us to produce at least 1 <span class="math inline">\(X_1\)</span> or at least 1 <span class="math inline">\(X_2\)</span>) will not change our optimal solution. The shadow prices are zero.</p>
+</div>
+</div>
+<div id="binding-vs-non-binding-constraints" class="section level3 unnumbered">
+<h3>Binding vs non-binding constraints</h3>
+<p>In general, constraints can either be <em>binding</em> or <em>non-binding</em> for the optimal solution. Constraints that are binding ‘restrict’ the optimal solution; so in the Parsnips/Kale example, both the Budget and Space constraints are binding; if we increase the right-hand-side of the constraints, we can do better and increase our profit. Hence, they have non-zero shadow prices.</p>
+<p>Conversely, non-binding constraints do not restrict or bind the optimal solution. Thus, even if we change the right-hand-side value of the constraint by 1, we will not affect the optimal solution. Thus, <strong>shadow prices are zero for non-binding constraints</strong>.</p>
+<p>In certain cases, we might even have <em>negative</em> shadow prices. Let’s consider a modified objective function in the same Parsnip-Kale example, where the profit of Kale is increased to 0.53.
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.53} X_2 \]</span>
+We saw from our earlier sensitivity analysis that this will change the optimal solution to: <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>. Let’s check this by re-running this modified linear optimization problem, saving it as <code>lp.solution2</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co">#decision variables values</span></a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">lp.solution2<span class="op">$</span>solution</a></code></pre></div>
+<pre><code>## [1]   0.0000 142.8571</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># objective fn value</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">lp.solution2</a></code></pre></div>
+<pre><code>## Success: the objective function is 75.71429</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Shadow prices</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">lp.solution2<span class="op">$</span>duals</a></code></pre></div>
+<pre><code>## [1]  0.757142857  0.000000000 -0.001428571  0.000000000</code></pre>
+<p>As we expected, the solution is <span class="math inline">\(X_1 = 0, X_2 = 142\)</span> (rounded down). Now, if we look at the shadow prices, we notice that the shadow price of the first constraint: <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span>, is +0.75, so increasing the budget by $1 will increase profits by $0.75. The shadow price of the second constraint, <span class="math inline">\(X_1 + X_2 \leq 200\)</span>, in this case, is 0. We can also see that because the total amount of land used <span class="math inline">\(X_1 + X_2 = 0 + 142 = 142\)</span> is much less than the available budget, this constraint now becomes non-binding at this solution, and hence the shadow price of this constraint is zero. Getting access to more land will not help improve profits.</p>
+<p>But wait, the third shadow price returned by <code>lp.solution2$duals</code> is negative! What does that mean? This shadow price corresponds to the non-negativity constraint <span class="math inline">\(X_1 \geq 0\)</span>. Going by the definition of the shadow price, this means that increasing the value of the right hand side of this constraint, to <span class="math inline">\(X_1 \geq \color{red}{1}\)</span> will reduce the optimum profit by -$0.0014. This is because if this constraint were to be changed, then now we are forced to produce at least 1 unit of <span class="math inline">\(X_1\)</span>, which is now less profitable, and hence total profit should go down.</p>
+<p>Finally, note that this also implies that <span class="math inline">\(X_1 \geq 0\)</span> is a binding constraint, because changing the value of this constraint will affect the optimal solution. So binding constraints can have either positive, or negative, shadow prices.</p>
+</div>
+<div id="summarizing-sensitivity-analyses" class="section level3 unnumbered">
+<h3>Summarizing sensitivity analyses</h3>
+<p>Solving an optimization problem is straight-forward once you have the objective function and the constraints. Getting the optimal solution is not the end of it. As a top-notch business analyst, we can add more value to the business decision by doing and interpreting sensitivity analyses.</p>
+<ol style="list-style-type: lower-roman">
+<li>We can examine the range of coefficients over which this solution is valid, and make recommendations. For example, we saw earlier than if the profit of Kale goes above 0.53 or profit per Parsnip goes below 0.11, then it makes more sense to switch to producing as much Kale as possible.
+<ul>
+<li>For example, you could provide the following recommendation to Farmer Jean: “If the profit per unit-Kale goes above $0.53 or if the profit per unit-Parsnips goes below $0.11, then please switch your whole production to Kale.”</li>
+</ul></li>
+<li>Secondly, we can examine and interpret shadow prices:
+<ul>
+<li>For example, to Farmer Jean: “If you get one additional plot of land, you can make $0.05 more profit. But if you get $1 more of budget to buy crops, you can increase your profit by $0.50 (by changing your planting allocation to …)”</li>
+</ul></li>
+</ol>
+<p>More broadly, as analysts we could run “what-if” analyses to study the impact of getting more resources, of changing our prices, and of many other possible business decisions. These type of analyses require much more experience, but are potentially much more valuable to making better business decisions.</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">8.7</span> Summary</h2>
+<p>In this chapter, we covered the basics of formulating and solving simple linear optimisation problems, which help us “prescribe” the best business choices to make.</p>
+<p>If you can formulate your real-world problem as a linear optimisation problem, then there are very efficient solvers and algorithms that can solve the problem, and to help you gain further insight into your problem (e.g., via sensitivity analyses).</p>
+<p>In the models we’ve covered this chapter, we’ve assumed that all the decision variables are continuous, real-valued numbers.</p>
+<p>In the next chapter, we will discuss linear optimisation problems where some of the decision variables have to be integers, as well as when some of the decision variables are binary yes/no decisions.</p>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">8.8</span> Exercises</h2>
+<pre><code>to be completed</code></pre>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Sprites and the costs/profits of Parsnips and Kale are borrowed from Stardew Valley, and this example is an optimization problem that could actually arise in the game.<a href="linear-optimization.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -110,7 +659,7 @@
         </div>
       </div>
 <a href="simulations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="integer-valued-optimization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -163,6 +712,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
