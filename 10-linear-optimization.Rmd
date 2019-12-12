@@ -28,7 +28,6 @@ The learning objectives for this chapter are:
 # Load the libraries we'll use in this chapter
 library(ggplot2) # for plotting
 library(lpSolve) # for solving linear optimization problems ('linear programming')
-library(latex2exp) # for enabling LaTeX math expressions in plots
 ```
 
 
@@ -198,6 +197,8 @@ Below we've plotted the two constraints:
 - $X_1 + X_2 \leq 200$, on the right, in orange
 
 ```{r optim-constraint-plot-1, echo=FALSE, eval=FALSE, fig.height=2, fig.width=2}
+# Decided to put a screenshot instead of trying to generate this plot...
+library(latex2exp) # for enabling LaTeX math expressions in plots
 ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) + 
   xlab(TeX("X_1")) + ylab(TeX("X_2")) +
   scale_x_continuous(limits=c(0,510), breaks=c(0,500)) +
@@ -624,7 +625,7 @@ In the models we've covered this chapter, we've assumed that all the decision va
 In the next chapter, we will discuss linear optimisation problems where some of the decision variables have to be integers, as well as when some of the decision variables are binary yes/no decisions.
 
 
-## Exercises
+## [NOT DONE] Exercises
 
 ```
 to be completed
