@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>12.4 Solving the Optimization Model | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="12.4 Solving the Optimization Model | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="12.4 Solving the Optimization Model | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="constraints.html"/>
+<link rel="next" href="using-r-to-solve-linear-optimization.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="solving-the-optimization-model" class="section level2">
+<h2><span class="header-section-number">12.4</span> Solving the Optimization Model</h2>
+<div id="writing-out-the-optimization-model" class="section level3">
+<h3><span class="header-section-number">12.4.1</span> Writing out the Optimization model</h3>
+<p>Before we start, it is good practice to formally write down the optimisation model that you want to solve.</p>
+<p>This summarises all the information in the problem into one system of equations to solve. So for the Farming Example, we have:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision Variables: <br> <span class="math inline">\(X_1\)</span> = number of plots of parsnips grown <br> <span class="math inline">\(X_2\)</span> = number of plots of kale grown</th>
+<th>Maximize Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>subject to</em>:</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="odd">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="even">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Any solution that satisfies all the constraints is a <em>feasible</em> solution. In optimization, we want to find the best / optimal feasible solution.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
+<div id="solving-an-optimization-problem-graphically" class="section level3">
+<h3><span class="header-section-number">12.4.2</span> Solving an optimization problem graphically</h3>
+<p>Let us understand this problem in more detail, by graphing our constraints as regions on an <span class="math inline">\(X_1\)</span>-<span class="math inline">\(X_2\)</span> graph, with <span class="math inline">\(X_1\)</span> on the horizontal axis and <span class="math inline">\(X_2\)</span> on the vertical axis.</p>
+<p>Below we’ve plotted the two constraints:</p>
+<ul>
+<li><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span>, on the left, in magenta</li>
+<li><span class="math inline">\(X_1 + X_2 \leq 200\)</span>, on the right, in orange</li>
+</ul>
+<p><img src="images/optim/optim-plot-1.png" width="800"></p>
+<p>Since these are linear constraints, we can easily plot them by defining two points for each line, and then connecting them. For example, in the left graph, we need to plot: <span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span>. The first point that will be handy is where it crosses the vertical axis; in this case, <span class="math inline">\(X_1 = 0\)</span>, and so we can solve <span class="math inline">\(X_2 \leq (100/0.70)\)</span>, or <span class="math inline">\(X_2 \leq 142\)</span> (rounding down). The second point is where it crosses the horizontal axis. Now, <span class="math inline">\(X_2 = 0\)</span>, and so <span class="math inline">\(X_1 \leq (100/0.20)\)</span> or <span class="math inline">\(X_1 \leq 500\)</span>.</p>
+<p>Thus, we can connect the point <span class="math inline">\(X_1=0, X_2=142\)</span> on the vertical axis, with <span class="math inline">\(X_1=500, X_2=0\)</span> on the horizontal axis with a straight line. Then we just read the constraint direction and reason that it should include the area down and to the left of this line!</p>
+<p>Make sure you understand the right graph as well, and understand how to reproduce it!</p>
+<pre><code>Question: What do the non-negativity constraint regions look like?</code></pre>
+<div id="feasible-regions" class="section level4 unnumbered">
+<h4>Feasible Regions</h4>
+<p>The <strong>Feasible Region</strong> is the intersection of all the constraint regions. So let’s plot those two regions above on the same plot.</p>
+<p><img src="images/optim/optim-plot-2.png" width="500"></p>
+<p>A <strong>feasible solution</strong> is an allocation of decision variables (like <span class="math inline">\(X_1\)</span> = 10, <span class="math inline">\(X_2\)</span> = 10), that satisfies all the constraints.</p>
+<p>It also follows, that <strong>every feasible solution will lie in the feasible region</strong>. That means that every point within the feasible region (shaded in green above) could be a solution to this problem.</p>
+<p>If there is no feasible region, then there is no feasible solution, and we say that the problem is <em>infeasible</em>. In other words, there is no way to solve this problem while satisfying all the constraints.</p>
+</div>
+<div id="corner-points" class="section level4 unnumbered">
+<h4>Corner Points</h4>
+<p>While any point in the feasible region is a possible solution, it turns out that the optimal solution, if it exists, lies at a “corner” of the feasible region. Indeed, there are mathematical theorems proving this.</p>
+<p>In the plot below we’ve indicated the four corner points for this problem:</p>
+<p><img src="images/optim/optim-plot-3.png" width="500"></p>
+<p>Why must an optimal solution lie at a corner? Imagine that you have a solution in the center of the feasible region, not near a boundary.
+From here, you can still increase or decrease <span class="math inline">\(X_1\)</span>; or you can increase or decrease <span class="math inline">\(X_2\)</span>. These changes would either increase or decrease your profit (“better” or “worse”).</p>
+<p>So the best (and worst) solutions are when you cannot increase or decrease your decision variables any more!</p>
+<p>Let’s check our profits at each of the corner points. For three of them it’s simple; we just set X1 and X2 to 0 (Bottom-Left), or we set X1 to 0 (Top-Left), or we set X2 to 0 (Bottom-Right).</p>
+<p><span class="math display">\[\begin{align}
+\text{Bottom-Left }:&amp; \; X_1 = 0 ; \;\;\;\; X_2 = 0 ; \;\;\;\; \text{Profit} = 0 \quad [\textbf{Worst}] \\
+\text{Top-Left }:&amp; \; X_1 = 0 ; \;\;\;\; X_2 = 142 ; \; \text{Profit} = 56.8 \\
+\text{Bottom-Right }:&amp; \; X_1 = 200 ; \; X_2 = 0 ; \;\;\;\; \text{Profit} = 30 \\
+\end{align}\]</span></p>
+<pre><code>Note, the WORST solution is also at a corner point. 
+Can you reason out why?
+In this case, the bottom-left point happens to be the worst!</code></pre>
+<p>At the fourth corner point (the top-right point), this point satisfies both the inequalities exactly. So they become equalities, which we can solve as a pair of simultaneous equations:</p>
+<p><span class="math display">\[\begin{align}
+X_1 + X_2 &amp;= 200 \quad (1) \\
+0.20X_1 + 0.70X_2 &amp;= 100 \quad (2) \\
+(1) \implies X_2 &amp;= 200 - X_1 \\
+\text{sub into } (2): 0.20X_1 + 0.70 (200 - X_1) &amp;= 100 \\
+(0.20 - 0.70) X_1 &amp;= 100 - 140 \\
+X_1 &amp;= 80 \\
+\implies X_2 &amp;= 120
+\end{align}\]</span></p>
+<p>Hence, the solution is <span class="math inline">\(X_1 = 80\)</span>, <span class="math inline">\(X_2 = 120\)</span>, which gives us a profit of <span class="math inline">\(0.15X_1 + 0.40X_2 = 60\)</span>.</p>
+<p>This happens to be the maximum profit, so (80,120) gives us the optimal solution with a maximum profit of $60.</p>
+</div>
+<div id="level-sets" class="section level4 unnumbered">
+<h4>Level Sets</h4>
+<p><img src="images/optim/optim-plot-4.png" width="500"></p>
+<p>An alternative way to visualise this solution is to draw the level set of the objective function (i.e., profits).</p>
+<p>The level set is the set of all the points that give the same profit. We indicate the direction in which we are optimising (i.e., direction of increasing profit), and we “shift” the level set as we increase profit.</p>
+<p>The optimal solution is the last point before the level set leaves the feasible region as we optimise profits.
+(If the level set is parallel to a constraint line, we could also get a set of optimal solutions)</p>
+</div>
+<div id="solution-types" class="section level4 unnumbered">
+<h4>Solution Types</h4>
+<p>There are 4 possible types of solutions:</p>
+<ol style="list-style-type: decimal">
+<li><p>There exists a unique optimal solution.</p></li>
+<li><p>There exists multiple optimal solutions. <br>
+Graphically, this occurs when the set of optimal solutions (i.e., the level set of the optimal solution) is parallel to / lies along a constraint. Thus, every point along that constraint will give an optimal solution.</p></li>
+<li><p>The solution is unbounded <br> <img src="images/optim/optim-plot-ns-1.png" width="100"></p></li>
+<li><p>There exists no feasible solutions <br> <img src="images/optim/optim-plot-ns-2.png" width="200"></p></li>
+</ol>
+</div>
+<div id="finding-corner-points-in-higher-dimensions" class="section level4 unnumbered">
+<h4>Finding corner points in higher dimensions</h4>
+<p>So we’ve seen that the optimal solution must lie on a corner point. This is true even if we have more than two variables and we cannot plot this on a 2D graph. A ten decision-variable problem will have a feasible region be a region in a ten dimensional space, also called a 10-dimensional polytope. The solution will lie on a corner, or vertex, of this polytope.</p>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Simplex-method-3-dimensions.png/480px-Simplex-method-3-dimensions.png" width=200> <br> <small>Image of a high-dimensional polytope and a path that Simplex Algorithm might take, from <a href="https://en.wikipedia.org/wiki/Simplex_algorithm">Wikipedia</a></small>
+</center>
+<p>One algorithm to solve these optimization problems is called the Simplex Algorithm, which systematically checks through these corner vertices to find the optimal one.</p>
+<ul>
+<li>The algorithm starts at a vertex (perhaps chosen randomly or through some initialization)</li>
+<li>It will then move along an edge (“side of polytope”) to another vertex only if the objective function value along that edge is increasing.</li>
+<li>It repeats this until it reaches a maximum, i.e., no such edges are found.</li>
+<li>The algorithm terminates at the optimal solution, or reports that none are found (infeasible, or unbounded).</li>
+</ul>
+<p>For this chapter, we do not cover <em>how</em> the Simplex algorithm works, but we just discuss the high-level intuition behind it. We will let <em>R</em> implement this algorithm and solve more difficult optimization problems for us.</p>
+</div>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="constraints.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-r-to-solve-linear-optimization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>5.4 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.4 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.4 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="running-a-regression.html"/>
+<link rel="next" href="not-done-interpreting-the-output-of-a-regression-model.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="ordinary-least-squares-regression" class="section level2">
+<h2><span class="header-section-number">5.4</span> Ordinary Least Squares Regression</h2>
+<p>Let’s take a quick peek behind what the model is doing, and we’ll discuss the formulation of <strong>Ordinary Least Squares</strong> regression.</p>
+<p>Let’s assume that the “true” model is such that <span class="math inline">\(Y\)</span> is <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>*<span class="math inline">\(X\)</span> plus some “errors”, which could be due to other, unmeasured factors, or maybe just random noise.</p>
+<p><span class="math display">\[ \text{``True&quot; model: } Y = b_0 + b_1 X + \epsilon \]</span></p>
+<p>Within a linear regression, we are making the assumption that the errors are Normally distributed around zero with some variance. (So <span class="math inline">\(\epsilon \sim \mathscr{N}(0, \sigma)\)</span>).</p>
+<p>Since we don’t know the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, we can only choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>; using this we can compute the prediction of our model, <span class="math inline">\(\hat{Y}\)</span>. We want our <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to be as close to the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, which will also make our predictions <span class="math inline">\(\hat{Y}\)</span> as close to the actual <span class="math inline">\(Y\)</span>.</p>
+<p>To do this, we define the Residual or <strong>Residual Error</strong> of our model. For the <span class="math inline">\(i\)</span>-th data point, the residual is the difference between the actual <span class="math inline">\(Y_i\)</span> and our model predicted, <span class="math inline">\(\hat{Y_i}\)</span>.</p>
+<p><span class="math display">\[ \text{Residual Error: } e_i = Y_i - \hat{Y_i} \]</span></p>
+<p>Here’s an illustration. Let’s say I start off just by drawing a green line through the origin with some upward slope.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-ols1-1.png" width="336" /></p>
+<p>Here, the red lines illustrate the residual error; the difference between the actual value and our prediction. And to make our model better, we want to minimise the red bars.
+Some red bars are lower, some are higher, so let’s pivot the slope upwards.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-ols2-1.png" width="336" /></p>
+<p>Now, we have this yellow line. It looks better, overall the bars are smaller. Now we note that all the red bars are below, so instead of pivoting, let’s move the whole line down.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-ols3-1.png" width="336" /></p>
+<p>And finally we get the blue line here, which is the best solution to minimising the red bars. We want to minimise the residuals. How is this done?</p>
+<div id="ordinary-least-squares-derivation" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Ordinary Least Squares Derivation</h3>
+<p>The residuals can be positive or negative, so if we simply add the residuals up we might be cancelling out some of them. So instead of minimising the sum of the residuals, we usually choose to square the residuals and minimise the sum of squares of the residuals. (Mathematically it becomes easier to work with the square than the absolute value).</p>
+<p>So here, we have the Ordinary Least Squares Regression, where the goal is to choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to minimise the sum of squares of the residuals <span class="math inline">\(\sum_{i} e_i^2 = \sum_i \left( Y_i - \hat{Y_i} \right)^2\)</span>.</p>
+<p>We can do this by taking the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>, and setting them both to 0. First, we define the following variables to simplify notation:</p>
+<p><span class="math display">\[\begin{align}
+\text{Define } \bar{Y} &amp;\equiv \frac{1}{n}\sum_i^n Y_i \\
+\text{Define } \bar{X} &amp;\equiv \frac{1}{n}\sum_i^n X_i \\
+\text{Define } Z &amp;\equiv \sum_i \left( Y_i - \hat{Y_i} \right)^2 \\
+&amp;= \left( Y_i - \hat{b_0} - \hat{b_1} X \right)^2 \\
+\end{align}\]</span></p>
+<p>Then we take the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span>, solve for this <span class="math inline">\(\hat{b_0}\)</span>, then substitute it into the partial deriative with respect to <span class="math inline">\(\hat{b_1}\)</span>:
+<span class="math display">\[\begin{align}
+\text{Partial deriative w.r.t. } \hat{b_0} : \; \; 
+\frac{\partial Z}{\partial \hat{b_0}} &amp;= \sum_i^n -2 \left(Y_i - \hat{b_0} - \hat{b_1}X_i \right) \\
+\text{Setting the derivative to 0 and solving, we have: } \; \;
+\hat{b_0} &amp;= \frac{1}{n}\sum_i^n Y_i - \frac{1}{n}\sum_i^n\hat{b_1}X_i \\
+\implies \hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
+\text{Partial deriative w.r.t. } \hat{b_1} : \; \;\frac{\partial Z}{\partial \hat{b_1}} &amp;= \sum_i^n  -2X_i \left( Y_i - \hat{b_0} - \hat{b_1}X_i \right) 
+\end{align}\]</span>
+<span class="math display">\[\begin{align}
+\text{Setting the derivative to 0 and substituting $\hat{b_1}$, we have: } &amp; \\
+\sum_i^n X_i Y_i - \sum_i^n (\bar{Y}-\hat{b_1}\bar{X})X_i - \sum_i^n\hat{b_1}X_i^2 &amp;= 0 \\
+\sum_i^n X_i Y_i - \bar{Y} \sum_i^n X_i + \hat{b_1} \left(\bar{X} \sum_i^n X_i - \sum_i^n X_i^2 \right) &amp;= 0 \\
+\hat{b_1} &amp;= \frac{\sum_i^n X_i Y_i - \bar{Y}\sum_i^n X_i }{ \sum_i^n X_i^2 - \bar{X} \sum_i^n X_i } \\ &amp;= \frac{\sum_i^n X_i Y_i - n\bar{X}\bar{Y}}{ \sum_i^n X_i^2 - n\bar{X}^2} \\
+\text{simplifying: } \; \; \hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 }
+\end{align}\]</span></p>
+<p>And we end up with the final OLS solution:</p>
+<p><span class="math display">\[\begin{align}
+\hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
+\hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 } = \frac{Cov(X,Y)}{Var(X)}
+\end{align}\]</span></p>
+<p>The good news is that <span class="math inline">\(R\)</span> already does this for you. Let’s check this solution with the <code>lm()</code> model we fit on the previous page!</p>
+<p>Let’s do <span class="math inline">\(\hat{b_1}\)</span> first: in R, we can calculate the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and divide that by the variance of <span class="math inline">\(X\)</span>, and save that into b1-hat: for this dataset we get 2.10.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">b1hat =<span class="st"> </span><span class="kw">cov</span>(df1<span class="op">$</span>x, df1<span class="op">$</span>y) <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(df1<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">b1hat</a></code></pre></div>
+<pre><code>## [1] 2.103757</code></pre>
+<p>Following the equation for <span class="math inline">\(\hat{b_0}\)</span>, we can take the mean of <span class="math inline">\(Y\)</span>, and subtract <span class="math inline">\(\hat{b_1}\)</span> times the mean of <span class="math inline">\(X\)</span>, and we get -2.26.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">b0hat =<span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>y) <span class="op">-</span><span class="st"> </span>b1hat <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">b0hat</a></code></pre></div>
+<pre><code>## [1] -2.261167</code></pre>
+<p>Finally let’s go back to our regression output table, which we can summon using <code>summary(...)$coeff</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, df1)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co"># verifying the OLS solution</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
+<pre><code>##              Estimate Std. Error   t value    Pr(&gt;|t|)
+## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
+## x            2.103757 0.07804321 26.956313 6.44250e-10</code></pre>
+<p>We can see that the Estimate of the Intercept, i.e., <span class="math inline">\(\hat{b_0}\)</span>, is -2.26, and the Estimate of the Coefficient on <span class="math inline">\(X\)</span>, i.e., <span class="math inline">\(\hat{b_1}\)</span>, is 2.10. They agree exactly! Excellent. So our <code>lm()</code> is really doing OLS regression.</p>
+<p>Again, since <span class="math inline">\(R\)</span> does all the calculations for you, it’s not necessary to know how to derive the OLS solutions (especially with more than 1 <span class="math inline">\(X\)</span>), but it is handy to know the intuition behind it, especially when we get to more complicated regression.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="running-a-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="not-done-interpreting-the-output-of-a-regression-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>5.9 Categorical Independent Variables | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.9 Categorical Independent Variables | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.9 Categorical Independent Variables | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="standardized-coefficients.html"/>
+<link rel="next" href="todo-discuss-transformations.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,225 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="categorical-independent-variables" class="section level2">
+<h2><span class="header-section-number">5.9</span> Categorical Independent Variables</h2>
+<p>So far we have been dealing with continuous independent variables (<span class="math inline">\(X\)</span>), (e.g. Expenditure, Years, Age, Numbers, …). In this section, we consider categorical independent variables (e.g., Gender, Ethnicity, MaritalStatus, Color-Of-Search-Button, …).</p>
+<p>Let’s consider an example modelling how Umbrella Sales depend upon Weather.</p>
+<p><span class="math display">\[\text{UmbrellaSales} = b_0 + b_1 \text{Weather}\]</span></p>
+<p>These categorical variables take on one of a small set of fixed values. Let’s assume in this simple world that weather is only Sunny or Rainy.</p>
+<div id="dummy-coding" class="section level3">
+<h3><span class="header-section-number">5.9.1</span> Dummy Coding</h3>
+<p>Dummy Coding (the default method in R) is a method by which we create and use dummy variables in our regression model<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>In this example, we can define a variable: <code>Rainy</code> that is 1 if <code>Weather==Rainy</code>, and 0 if <code>Weather==Sunny</code>.</p>
+<p><code>Rainy</code> is called a <strong>dummy variable</strong> (sometimes called an indicator variable)</p>
+<p>We can replace <code>Weather</code> with the dummy variable <code>Rainy</code>:</p>
+<p><span class="math display">\[\text{UmbrellaSales} = b_0 + b_1 \text{Weather} \; \rightarrow \; \color{brown}{\text{UmbrellaSales} = b_0 + b_1 \text{Rainy}}\]</span></p>
+<p>Thus, this breaks down into two equations (technically, a piecewise equation):</p>
+<ul>
+<li>If Sunny, <span class="math inline">\(\text{UmbrellaSales} = b_0 + b_1(0) = b_0\)</span></li>
+<li>If Rainy, <span class="math inline">\(\text{UmbrellaSales} = b_0 + b_1(1) = b_0 + b_1\)</span></li>
+</ul>
+<p>Now we can interpret the value of these coefficients.
+Looking at the first equation, we can see that <span class="math inline">\(b_0\)</span> is simply the average umbrella sales when it is sunny. And similarly, from the second equation, we see that <span class="math inline">\(b_0\)</span> <strong>PLUS</strong> <span class="math inline">\(b_1\)</span> is the average umbrella sales when it is rainy.</p>
+<p>This means that <span class="math inline">\(b_1\)</span> is the <strong>difference</strong> between these equations: It is the average difference in umbrella sales when it is rainy, compared to when it is sunny.</p>
+<p>The following table summarizes these interpretations:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Intepretation:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(b_0\)</span>)</td>
+<td>Average Umbrella sales when it is Sunny</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\(b_0+b_1\)</span>)</td>
+<td>Average Umbrella sales when it is Rainy</td>
+</tr>
+<tr class="odd">
+<td>(<span class="math inline">\(b_1\)</span>)</td>
+<td>Average difference in Umbrella sales when it is Rainy, <strong>compared to</strong> when it is Sunny <br> (Sales when Rainy - Sales when Sunny)</td>
+</tr>
+</tbody>
+</table>
+<pre><code>Q: Would you predict $b_1$ to be greater than 0 or less than 0?</code></pre>
 </div>
+<div id="dummy-coding-with-3-levels" class="section level3">
+<h3><span class="header-section-number">5.9.2</span> Dummy Coding with 3 levels</h3>
+<p>Let’s now consider a more complicated world in which <code>Weather</code> can take one of three values: Sunny, Rainy, or Cloudy.</p>
+<p>Then we can define two dummy variables, <code>Rainy</code> and <code>Cloudy</code>,</p>
+<ul>
+<li><code>Rainy</code> = 1 if weather is rainy, 0 otherwise</li>
+<li><code>Cloudy</code> = 1 if weather is cloudy, 0 otherwise</li>
+</ul>
+<p>We say that Sunny is the <strong>Reference Group</strong> for the categorical variable <code>Weather</code>.</p>
+<p><span class="math display">\[\text{UmbrellaSales} = b_0 + b_1 \text{Rainy} + b_2\text{Cloudy}\]</span></p>
+<p>This breaks down into three equations:</p>
+<ul>
+<li>If Sunny, <span class="math inline">\(\text{UmbrellaSales} = b_0 + b_1(0) + b_2(0) = b_0\)</span></li>
+<li>If Rainy, <span class="math inline">\(\text{UmbrellaSales} = b_0 + b_1(1) + b_2(0) = b_0 + b_1\)</span></li>
+<li>If Cloudy, <span class="math inline">\(\text{UmbrellaSales} = b_0 + b_1(0) + b_2(1) = b_0 + b_2\)</span></li>
+</ul>
+<p>Just like above, we can interpret the meaning of the coefficients in the following table:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Intepretation:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(b_0\)</span>)</td>
+<td>Average Umbrella sales when it is Sunny</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\(b_0+b_1\)</span>)</td>
+<td>Average Umbrella sales when it is Rainy</td>
+</tr>
+<tr class="odd">
+<td>(<span class="math inline">\(b_1\)</span>)</td>
+<td>Average difference in Umbrella sales when it is Rainy, <strong>compared to</strong> when it is Sunny <br> (Sales when Rainy - Sales when Sunny)</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\(b_0+b_2\)</span>)</td>
+<td>Average Umbrella sales when it is Cloudy</td>
+</tr>
+<tr class="odd">
+<td>(<span class="math inline">\(b_2\)</span>)</td>
+<td>Average difference in Umbrella sales when it is Cloudy, <strong>compared to</strong> when it is Sunny <br> (Sales when Cloudy - Sales when Sunny)</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, in general, a categorical variable with <span class="math inline">\(n\)</span> levels will have <span class="math inline">\((n-1)\)</span> dummy variables. And the general interpretation of these <span class="math inline">\(i\)</span> dummy variables are:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Intepretation:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(b_0\)</span>)</td>
+<td>Average Value of Y for the reference group.</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\(b_i\)</span>)</td>
+<td>Average Difference in Y for Dummy Group i compared to the reference group.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="the-reference-group" class="section level3">
+<h3><span class="header-section-number">5.9.3</span> The Reference Group</h3>
+<p>Now, when we do dummy coding, one of the groups will automatically be the reference group. The choice of reference group is not fixed. And choosing your reference group well (depending on your goals) will make your analyses more convenient and interpretable.</p>
+<p>For example, for the Umbrella Sales example (Sunny, Rainy, Cloudy), I think “Sunny” is a good reference group. Why?</p>
+<p>Or let’s say I want to see how well people react to the color of the button on my webpage. So I run an experiment with the following four buttons<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>:</p>
+<ul>
+<li><span style="color:blue">Current Button</span></li>
+<li><span style="color:green">Button A</span></li>
+<li><span style="color:magenta">Button B</span></li>
+<li><span style="color:brown">Button C</span></li>
+</ul>
+<p>Which should I choose to be my reference group? I think that “Current Button” should be the reference group, since that is the status quo and I am interesting in how changing the buttons would affect click-through, relative to my current button.</p>
+<pre><code>The good news: R handles dummy coding for you using factors.
+You do not need to create your own dummy variables. Just run:
+lm(sales ~ weather, df)
+and if weather is a factor with n levels,
+R will default to creating n-1 dummy variables 
 
 
+The bad news: R does not know your hypotheses, so it uses a heuristic for 
+choosing the reference group.
+If you do not specify, R defaults to ranking the groups by alphabetical order.
 
+Thus, in the weather example, it would choose &quot;Cloudy&quot;, 
+and in the button example, &quot;Button A&quot; as the reference group.
 
+If your variable (df$var) is a factor, you can check by using
+levels(df$var). 
+The first level will be the reference group.
 
+Use relevel(df$var, &quot;desiredReferenceLevel&quot;) to adjust the reference group.
 
-
-
-
-
+(if df$var is a character string, levels() will return NULL,
+but if you put it into a lm(), R will treat it as categorical variable,
+with the alphabetically smallest string as the reference group)</code></pre>
+</div>
+<div id="interpreting-categorical-and-continuous-independent-variables" class="section level3">
+<h3><span class="header-section-number">5.9.4</span> Interpreting categorical and continuous independent variables</h3>
+<p>Whenever we have categorical independent variables in a model, interpreting the coefficients has to be done with respect to the reference group, even for other continuous independent variables.</p>
+<p>Let’s add a continuous variable to our 3-weather model.</p>
+<ul>
+<li><code>UmbrellaSales</code> is a continuous variable measured in $.</li>
+<li><code>Rainy</code> and <code>Cloudy</code> are dummy variables (“Sunny” is the reference group)</li>
+<li><code>ExpenditureOnAdvertising</code> is also a continuous variable measured in $.</li>
+</ul>
+<p>Let’s say we fit the following model and obtain the following coefficients:</p>
+<p><span class="math display">\[\text{UmbrellaSales} = 10 + 50 \text{Rainy} + 20 \text{Cloudy} + 2.5\text{ExpenditureOnAdvertising}\]</span></p>
+<p>Here’s how we interpret each of these coefficients:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Intepretation:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>10</td>
+<td>Average umbrella sales when it is sunny and $0 spent on advertising.</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>Average umbrella sales when it is rainy compared to sunny <em>and</em> $0 spent on advertising.</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>Average umbrella sales when it is cloudy compared to sunny <em>and</em> $0 spent on advertising.</td>
+</tr>
+<tr class="even">
+<td>2.5</td>
+<td>When it is sunny, every dollar spent on advertising increases sales by $2.50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>Aside from dummy coding (R’s default), there are other coding schemes which can be used to test more specific hypothesis, e.g. effect coding, difference coding, etc. But here we shall focus on Dummy Coding.<a href="categorical-independent-variables.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>This may seem frivolous, but Google actually ran a lot of these tests back in the day, with different shades of blue/green/red to settle on their current “Google colors”.<a href="categorical-independent-variables.html#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="standardized-coefficients.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="todo-discuss-transformations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>5.3 Running a regression | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.3 Running a regression | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.3 Running a regression | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="basics-of-linear-regression.html"/>
+<link rel="next" href="ordinary-least-squares-regression.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="running-a-regression" class="section level2">
+<h2><span class="header-section-number">5.3</span> Running a regression</h2>
+<p>The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables.</p>
+<p>The second step is to structure your data.
+For most Linear Regression (at least for the examples in this Chapter), we almost always want <code>wide</code>-form data, discussed in the earlier Chapter on data handling, where you have each row of the data frame be one observation, and you have one column for <span class="math inline">\(Y\)</span> and one column for <span class="math inline">\(X\)</span>. (In later Chapters we shall see when we may need <code>long</code>-form data for other types of regression.)</p>
+<pre><code>[todo:] example of wide form?</code></pre>
+<p>The third step is to visualize your data, discussed also in the earlier Chapter on Data Visualization. For regression analyses, visualization of your data allows you to see whether there may be linear trends or non-linear trends (or no trends).</p>
+<p><img src="06-a-regression_files/figure-html/lmi-plot2a-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-2.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-3.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-4.png" width="336" /></p>
+<p>Linear models assume that there exists a linear trend (or perhaps no trend) between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. If you have a non-linear trend, like the quadratic and exponential ones shown here, you may want to think about transforming some of your variables to see if you can get a linear trend before running the linear model.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-plot2b-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2b-2.png" width="336" /></p>
+<p>Plotting can also help with troubleshooting. For example, you’ll be able to immediately see if you accidentally have a factor instead of a numeric variable, or if you have possible outliers (like the graph on the left) or possibly missing data (like the graph on the right).</p>
+<p>Finally, we’re ready to run the model. And in fact, it’s one line of code. <code>lm</code> for linear model, and then you provide an “equation”, <code>y~x</code>, which is R syntax for “Y depends upon X”. And then finally put</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># running a Linear Model</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y<span class="op">~</span>x, df1)</a></code></pre></div>
+<blockquote>
+<p><span style="color:blue; font-size:150%">TIP!</span>
+Best analysis practice: If you store all your Y and X variables in your data frame as wide form data, you can just write <code>lm(y~x, df1)</code>, which is very neat.
+<br> It’s not as clean to write <code>lm(df1$y~df1$x)</code>, and I discourage this.</p>
+</blockquote>
+<p>Then, we can just call <code>summary()</code> on our lm object, in order to view the output of the model.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># examining the output</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = df1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0781 -0.5736  0.1260  0.3071  1.5452 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.26117    0.46171  -4.897 0.000851 ***
+## x            2.10376    0.07804  26.956 6.44e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8185 on 9 degrees of freedom
+## Multiple R-squared:  0.9878, Adjusted R-squared:  0.9864 
+## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10</code></pre>
+<p>There’s a lot of information here, which we will break down in the next few sections, after a short digression to discuss Ordinary Least Squares regression.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="basics-of-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ordinary-least-squares-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

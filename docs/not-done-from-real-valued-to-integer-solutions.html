@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>13.2 [NOT DONE] From real-valued to integer solutions | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="13.2 [NOT DONE] From real-valued to integer solutions | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="13.2 [NOT DONE] From real-valued to integer solutions | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="integer-valued-decision-variables.html"/>
+<link rel="next" href="logical-constraints.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="not-done-from-real-valued-to-integer-solutions" class="section level2">
+<h2><span class="header-section-number">13.2</span> [NOT DONE] From real-valued to integer solutions</h2>
+<pre><code>    [ need to rework examples from lecture to illustrate this more ]</code></pre>
+<p>Feasible solutions are now integer-valued solutions that lie within the feasible region bounded by the other constraints</p>
+<ul>
+<li>Can we just round off the real-valued answer?</li>
+<li><p>No. In this case, rounded-answer is not feasible</p></li>
+<li>Can we just round down the answer or round off to the nearest feasible answer?</li>
+<li><p>Maybe. But the nearest feasible answer is not guaranteed to be optimal!</p></li>
+</ul>
+<p>We’ve seen that the optimal integer solution may not necessarily be near the optimal real-valued solution.</p>
+<p>But that doesn’t mean the real-valued solution is useless. In fact, the most common way to solve the integer optimisation problem is to FIRST solve the problem without the integer constraints.</p>
+<p>Solving the optimisation without the integer constraints is called Linear Program [LP] Relaxation, because you “relax” the integer constraints.</p>
+<p>If you solve the LP relaxation, and the solution happens to be integer valued, then you are lucky, and that solution is also the optimal solution to the integer problem.</p>
+<ul>
+<li>think back to the example of Farmer Jean. In that case the solution was an integer number of plots of crops, (80, 120)</li>
+</ul>
+<p>But this will not often be the case that the solution to the LP relaxation will be integer-valued. Then, programs use the real-valued solution as a starting point to systematically search for the optimal integer solution (e.g. “branch and bound” algorithm used by <code>lpSolve</code>).</p>
 </div>
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="integer-valued-decision-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logical-constraints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

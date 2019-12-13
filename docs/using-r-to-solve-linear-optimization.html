@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>12.5 Using R to solve Linear Optimization | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="12.5 Using R to solve Linear Optimization | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="12.5 Using R to solve Linear Optimization | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="solving-the-optimization-model.html"/>
+<link rel="next" href="sensitivity-analysis.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="using-r-to-solve-linear-optimization" class="section level2">
+<h2><span class="header-section-number">12.5</span> Using R to solve Linear Optimization</h2>
+<p>The most difficult part about using R to solve a linear optimization problem is to translate the optimization problem into code. Let’s reproduce the table with all the necessary information for the example of Farmer Jean:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Decision Variables: <br> <span class="math inline">\(X_1\)</span> = number of plots of parsnips grown <br> <span class="math inline">\(X_2\)</span> = number of plots of kale grown</th>
+<th>Maximize Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>subject to</em>:</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="odd">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="even">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here’s how you translate it into code. First, we define the objective function parameters, which are just the coefficients of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> in the object function: Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a></code></pre></div>
+<p>Next, we define the constraints, which are broken up into 3 variables: the constraints matrix, the constraint directions, and the constraint values (or constraint RHS for right-hand-side).</p>
+<p><span class="math display">\[0.20X_1 + 0.70 X_2 \leq 100\]</span>
+<span class="math display">\[X_1 + X_2 \leq 200\]</span></p>
+<p>The constraint matrix is simply concatenating all the coefficients here into a matrix. For simplicity, using the convention below, we just read off the matrix from top to bottom, then within each line, from left to right. So we have: (0.20, 0.70, 1, 1). When I construct the matrix, you have to specify the number of columns (<code>ncol</code>) which is simply the number of decision variables we have; in this case it’s 2.</p>
+<p>The constraint directions are just a vector that corresponds to each constraint (<span class="math inline">\(\leq\)</span>, <span class="math inline">\(\leq\)</span>), and the constraint right-hand-side values are just (100, 200)</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a></code></pre></div>
+<p>The important thing to note is to get the order of all the constraints correct. In particular, if you have certain constraints that do not include ALL of the decision variables, to include <code>0</code>s whenever appropriate.</p>
+<blockquote>
+<p><span style="color:blue; font-size:150%">TIP!</span>
+For example, if you have an additional constraint that you can only produce a maximum of 500 <span class="math inline">\(X_1\)</span>, this constraint translates to: <span class="math inline">\(X_1 \leq 500\)</span>
+<br><br> but to be even more helpful to yourself, write it out as:
+<span class="math display">\[ 1 X_1 + 0 X_2 \leq 500 \]</span>
+This will help you remember to put … 1,0 … into the relevant row of the constraints matrix when you are reading the matrix off from your table.</p>
+</blockquote>
+<p>Finally, we put all of these into a call to the <code>lp</code> function within the <code>lpSolve</code> package. We specify <code>max</code> for maximizing the objective function, pass in the rest of the parameters we just defined, and finally we also ask it to <code>compute.sens=TRUE</code>: we need this for the sensitivity analysis in the next section.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Putting it all together, and looking at the solution (<code>lp.solution$solution</code>) and objective function value (<code>lp.solution$objval</code>)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb29-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb29-10" data-line-number="10"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">lp.solution</a></code></pre></div>
+<pre><code>## Success: the objective function is 60</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># optimal solution (decision variables values)</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">lp.solution<span class="op">$</span>solution</a></code></pre></div>
+<pre><code>## [1]  80 120</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">And the optimal objective function value is:&quot;</span>, lp.solution<span class="op">$</span>objval)</a></code></pre></div>
+<pre><code>## The optimal solution is: 80 120 
+## And the optimal objective function value is: 60</code></pre>
+<p>Thus, the optimal solution is <span class="math inline">\(X_1\)</span> = 80, <span class="math inline">\(X_2\)</span> = 120, and the optimal profit is 60, which is what we found manually in the previous section.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="solving-the-optimization-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sensitivity-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

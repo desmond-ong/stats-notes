@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>12.2 Objective Functions &amp; Decision Variables | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="12.2 Objective Functions &amp; Decision Variables | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="12.2 Objective Functions &amp; Decision Variables | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="what-is-linear-optimization.html"/>
+<link rel="next" href="constraints.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="objective-functions-decision-variables" class="section level2">
+<h2><span class="header-section-number">12.2</span> Objective Functions &amp; Decision Variables</h2>
+<p>Your goal (or objective) in linear optimisation is to optimise an objective function. This will be in the form of maximising or minimising some quantity of interest, by choosing the values of <span class="math inline">\(X\)</span>, our Decision Variables.</p>
+<p>Decision variables (<span class="math inline">\(X\)</span>) are the variables that you get to pick. How many croissants to make? How many stocks of company A should I hold?</p>
+<p>In the objective function, we choose <span class="math inline">\(X\)</span> to maximize or minimize some quantity of interest. Some common examples are to choose <span class="math inline">\(X\)</span> to:</p>
+<ul>
+<li>maximise profits.</li>
+<li>minimise costs / time spent</li>
+<li>minimise risk exposure</li>
+</ul>
+<p>Where profits, costs, time spent, risk, etc, are given by some model of the world, that you as an analyst have come up with.</p>
+<p>I should note that we have already seen similar “optimization” in earlier chapters. For example, in Ordinary Least Squares Regression, we want to choose our regression coefficients (<span class="math inline">\(b_0\)</span>, <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span>…) to minimise the sum of squared errors. Or, we may want to choose model hyper parameters that maximises our model’s accuracy (e.g., on the Validation Set)</p>
+<p>Here, the difference is that we often formulate the objective function in terms of a real-world quantity (i.e., relevant to a business context) that we want to maximise or minimise, by choosing our X’s.</p>
+<div id="jean-the-farmer-objective-function" class="section level3 unnumbered">
+<h3>Jean the Farmer: Objective Function</h3>
+<p>Let’s get introduced to Farmer Jean, who runs a small farm in a little <a href="https://www.stardewvalley.net/">valley</a><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, who will be with us throughout this chapter.</p>
+<pre><code>Farmer Jean has two types of crops, Parsnips and Kale. 
+Parsnips cost $0.20 per plot to grow, and sell for $0.35 per plot.
+Kale cost $0.70 per plot to grow, and sell for $1.10 per plot.
 
+She has 200 plots of land, and a $100 budget. 
+How many of each crop should she plant to maximise her profits?</code></pre>
+<p>Here, the decision variables are quite straightforward. We are just choosing how many plots of parsnips and plots of kale to grow. Let’s call them <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively.</p>
+<pre><code>Define:
+  X_1 = number of plots of parsnips grown
+  X_2 = number of plots of kale grown</code></pre>
+<p>The objective function is just maximising profits, which is the selling price - cost price, multiplied by how many of each crop she grows. So Profits <span class="math inline">\(= (0.35 - 0.20) X_1 + (1.10 - 0.70) X_2 = 0.15X_1 + 0.40X_2\)</span></p>
+<pre><code>Objective function: Maximize Profits = 0.15 X_1 + 0.40 X_2</code></pre>
 </div>
-
-
-
-
-
-
-
-
-
-
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>Sprites and the costs/profits of Parsnips and Kale are borrowed from Stardew Valley, and this example is an optimization problem that could actually arise in the game.<a href="objective-functions-decision-variables.html#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="what-is-linear-optimization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="constraints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="optimization-i-linear-optimization.html"/>
+<link rel="next" href="objective-functions-decision-variables.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="what-is-linear-optimization" class="section level2">
+<h2><span class="header-section-number">12.1</span> What is Linear Optimization</h2>
+<p>Optimisation is used in every aspect of business: from operations, to finance, to HR, to marketing. Let’s imagine that you run a little bakery, and you have to decide how many of each type of product to make.
+You can, of course, decide your product line by saying “I like making cupcakes”, or “People really like my croissants”. But if you really want to optimize your sales and scale up product, you would have to do your own research and consider a range of factors, such as:</p>
+<ul>
+<li>what are the demand for each type of product,</li>
+<li>what are the costs (in terms of time and materials) associated with each type of product</li>
+</ul>
+<p>For example, from your “market research”, you may discover that mille-crepes are the rage now (in 2019) but they’re really effortful to make compared to normal cupcakes. So is it worth it to start branching out into this new product?</p>
+<p>When companies have factories that make thousands (or more) of products a day, one really has to use <em>data</em> to optimize the product mix. Note that this optimization isn’t about making the manufacturing processes faster or cheaper (that’s also a type of optimisation). Here we are interested in how <em>much</em> we need to produce.</p>
+<p>Some common use cases for linear optimization are:</p>
+<ul>
+<li>Product Mix: Deciding how much of each product to produce and sell.</li>
+<li>Product Line Planning: Deciding how much of each product to produce now vs later (e.g. targeting holiday sales season, using forecasts of supply/demand)</li>
+<li>Choosing an Investment Portfolio: we might be interested in choosing a mix of investment options that in this case might maximise our return, or perhaps minimise our risk exposure, subject to certain constraints.</li>
+<li>Optimising labor allocation: How best to schedule employees’ work shifts?</li>
+<li>Optimising transportation and supply chain: How to route deliveries to minimize wait time? How to get materials from suppliers to warehouse to distributors—very important especially for perishable goods.
+<ul>
+<li>And many of us in today’s world use on-demand gig apps for transportation, food delivery, and so forth. These apps require lots of optimisation, and employ very complicated techniques, so the linear optimization techniques in this chapter will provide but a glimpse of this.</li>
+</ul></li>
+</ul>
+<p>Here are the basic steps in Linear Optimization, which we’ll go over in the next few Sections.</p>
+<ol style="list-style-type: decimal">
+<li>Identify the Objective Function &amp; Decision Variables</li>
+<li>Identify the Constraints</li>
+<li>Write down the Optimization model</li>
+<li>Either:
+<ol style="list-style-type: lower-alpha">
+<li>Solve graphically and/or manually</li>
+<li>Use R to solve</li>
+</ol></li>
+<li>Conduct Sensitivity Analysis</li>
+<li>Interpret results and make recommendations.</li>
+</ol>
 </div>
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="optimization-i-linear-optimization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="objective-functions-decision-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>5.2 Basics of Linear Regression | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.2 Basics of Linear Regression | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.2 Basics of Linear Regression | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="not-done-yet-introduction-to-the-linear-model.html"/>
+<link rel="next" href="running-a-regression.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="basics-of-linear-regression" class="section level2">
+<h2><span class="header-section-number">5.2</span> Basics of Linear Regression</h2>
+<p>Linear Regression really boils down to this simple equation.</p>
+<p><span class="math display">\[ Y = b_0 + b_1 X \]</span></p>
+<p>We want to predict <span class="math inline">\(Y\)</span>, our outcome variable or <strong>dependent variable (DV)</strong>, using <span class="math inline">\(X\)</span>, which can have several names, like <strong>independent variable (IV)</strong>, predictor or regressor.</p>
+<p><span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> are <em>parameters</em> that we have to estimate in the model: <span class="math inline">\(b_0\)</span> is the Constant or <em>Intercept</em> term, and <span class="math inline">\(b_1\)</span> is generally called a regression coefficient, or the slope.</p>
+<p>Below, we have a simple graphical illustration. Let’s say I have a dataset of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> values, and I plot a scatterplot of <span class="math inline">\(Y\)</span> on the vertical axis and <span class="math inline">\(X\)</span> on the horizontal. It’s convention that the dependent variable is always on the vertical axis.</p>
+<p>On the right I’ve also drawn the “best-fit” line to the data. Graphically, <span class="math inline">\(b_0\)</span> is where the line crosses the vertical axis (i.e., when <span class="math inline">\(X\)</span> is 0), and <span class="math inline">\(b_1\)</span> is the slope of the line. Some readers may have learnt this in high school, where the slope of the line is the “rise” over the “run”, so how many units of “Y” do we increase (‘rise’) as we increase “X”.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" /></p>
+<p>And that’s the basic idea. Our linear model is one way of trying to explain <span class="math inline">\(Y\)</span> using <span class="math inline">\(X\)</span>, which is by multiplying <span class="math inline">\(X\)</span> by the regression coefficient <span class="math inline">\(b_1\)</span> and adding a constant <span class="math inline">\(b_0\)</span>. It’s so simple, yet, it is a very powerful and widely used tool, and we shall see more over the rest of this chapter and the next few chapters.</p>
+<p>Our dependent variable <span class="math inline">\(Y\)</span> is always the quantity that we are interested in and that we are trying to predict. Our independent variables <span class="math inline">\(X\)</span> are variables that we use to predict <span class="math inline">\(Y\)</span>.</p>
+<p>Here are some examples:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dependent Variable <br> Y</th>
+<th>Independent Variable <br> X</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Income</td>
+<td>Years of Education</td>
+</tr>
+<tr class="even">
+<td>Quartly Revenue</td>
+<td>Expenditure on Marketing</td>
+</tr>
+<tr class="odd">
+<td>Quantity of Products Sold</td>
+<td>Month of Year</td>
+</tr>
+<tr class="even">
+<td>Click-through rate</td>
+<td>Colour of advertisement <br>(Note that this is an experiment!)</td>
+</tr>
+</tbody>
+</table>
+<p>Perhaps we are interested in predicting an individual’s income based on their years of education. Or for a company, we might want to predict Quarterly Revenue using the amount we spent on Marketing, or predict sales at in different months of the year.</p>
+<p>We can also use regression to model the results of experiments. For example, we might be interested in whether changing the colour of an advertisement will affect how effective it is, measured by how many people click on the advertisement (called the click-through rate, measuring how many people click on our ad). So we may show some of our participants the ad in blue, some in green, etc, and then see how that affects our click-through rate. So linear modelling can and is frequently used to model experiments as well.</p>
+<p>Independent Variables can be <strong>continuous</strong> (e.g., Years; Expenditure), or they can also be <strong>discrete</strong>/<strong>categorical</strong> (e.g., Month, Colour, Ethnicity). And we shall see examples of both in this chapter</p>
+<p>Similarly, Dependent Variables can either be <strong>continuous</strong> or <strong>categorical</strong>. In this Chapter we shall only cover continuous DVs, and we shall learn about categorical DVs in the next Chapter on Logistic Regression.</p>
 </div>
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="not-done-yet-introduction-to-the-linear-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="running-a-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

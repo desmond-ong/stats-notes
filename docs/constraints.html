@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Some notes on Statistics and Data Analytics</title>
+  <title>12.3 Constraints | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="12.3 Constraints | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="12.3 Constraints | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-book-summary.html"/>
-
+<link rel="prev" href="objective-functions-decision-variables.html"/>
+<link rel="next" href="solving-the-optimization-model.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -218,27 +218,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
+<div id="constraints" class="section level2">
+<h2><span class="header-section-number">12.3</span> Constraints</h2>
+<p>In Farmer Jean’s case, obviously if we just wanted to maximise profits, we should just grow more and more of the profit maximising plant. But this is often not possible because of limited constraints. For example, you may not have unlimited budget, or unlimited time, or you may also need to fulfil certain criteria as part of your contract with your distributor.</p>
+<p>Formally, we represent these constraints as <strong>mathematical inequalities</strong> or equations. The inequalities can be <em>less than</em>, <em>greater than</em>, or <em>strictly equal</em>.
+On the left hand side we put a function of our decision variables, and on the right hand side we put the value of the constraint.</p>
+<p>So for example, if you have to “deliver within budget”, this means that your total cost of your decisions must be less than/equal to your budget.
+If you have to “deliver at least 50 units of product”, this means that number of product produced must be greater than or equal to 50.
+You may have to allocate working shifts to give exactly 40 hours of work per staff. So basically these constraints can be greater or less than or equal to some number.</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Examples</th>
+<th>Translates to:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Deliver within Budget</td>
+<td>Total Cost <span class="math inline">\(\leq\)</span> Budget</td>
+</tr>
+<tr class="even">
+<td>Deliver at least 50 units of product</td>
+<td>Product <span class="math inline">\(\geq\)</span> 50</td>
+</tr>
+<tr class="odd">
+<td>Allocation must contain exactly 40 hours of work</td>
+<td>Working Hours <span class="math inline">\(=\)</span> 40</td>
+</tr>
+<tr class="even">
+<td>Implicit: Products, hours of work must be non-negative</td>
+<td>Product <span class="math inline">\(\geq\)</span> 0 <br> Hours <span class="math inline">\(\geq\)</span> 0</td>
+</tr>
+</tbody>
+</table>
+<p>We also often have constraint called non-negativity constraints. For many of these decision variables that have real world meaning, they often cannot be negative. So we often specify that each of the decision variables must be greater than or equal to 0. These are <em>important</em> to specify explicitly, and in fact R assumes this.</p>
+<div id="jean-the-farmer-constraints" class="section level3 unnumbered">
+<h3>Jean the Farmer: Constraints</h3>
+<p>Coming back to Farmer Jean, she has two types of constraints. First, she doesn’t have unlimited budget, with which she needs to pay the cost of growing each crop. So we can write this as the cost of producing parsnips times the amount of parsnips (<span class="math inline">\(0.20X_1\)</span>), and the cost of producing kale times the amount of kale (<span class="math inline">\(0.70X_2\)</span>), the sum of these two must be less than equal to 100.</p>
+<p>The second constraint she has is that she only has 200 plots of land. So the total amount of crops she grows has to fit into these plots. So <span class="math inline">\(X_1\)</span> + <span class="math inline">\(X_2\)</span> must be less than or equal to 200.</p>
+<p>And finally we have the non-negativity constraints.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Constraints</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Budget Constraints</td>
+<td><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span></td>
+</tr>
+<tr class="even">
+<td>Space Constraints</td>
+<td><span class="math inline">\(X_1 + X_2 \leq 200\)</span></td>
+</tr>
+<tr class="odd">
+<td>Non-negativity</td>
+<td><span class="math inline">\(X_1 \geq 0\)</span> <br> <span class="math inline">\(X_2 \geq 0\)</span></td>
+</tr>
+</tbody>
+</table>
 </div>
-
-
-
-
-
-
-
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-book-summary.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="objective-functions-decision-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solving-the-optimization-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

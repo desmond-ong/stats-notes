@@ -1,4 +1,4 @@
-# Linear Optimization
+# Optimization I: Linear Optimization
 
 In this chapter we will switch gears slightly to start talking about **Prescriptive Analytics**: that is, how to use analytics to make better decisions using data. 
 
@@ -7,24 +7,24 @@ We'll be discussing how to define certain problems as simple linear optimization
 
 The learning objectives for this chapter are:
 
-- Given an optimisation problem statement, students should be able to properly identify an objective function and relevant constraints.
+- Given an optimisation problem statement, readers should be able to properly identify an objective function and relevant constraints.
 
-- Students should be familiar with linear optimisation concepts like the feasible region and finding optimal solutions as corner points of the feasible region.
+- Readers should be familiar with linear optimisation concepts like the feasible region and finding optimal solutions as corner points of the feasible region.
 
-- Students should be able to solve simple linear optimisation problems. 
+- Readers should be able to solve simple linear optimisation problems. 
 
-- Students should be comfortable in interpreting the results of the optimisation and of sensitivity analyses, and preparing a recommendation memo with justifications.
-
-
-- Students should understand how and when integer constraints apply to optimisation problems.
-
-- Students should know how to use Linear-Program Relaxation (LP Relaxation) to gain insight into integer-constrained problems.
-
-- Students should understand how to solve integer-constrained optimisation problems.
+- Readers should be comfortable in interpreting the results of the optimisation and of sensitivity analyses, and preparing a recommendation memo with justifications.
 
 
+- Readers should understand how and when integer constraints apply to optimisation problems.
 
-```{r optimization-setup, echo=T, warning=F}
+- Readers should know how to use Linear-Program Relaxation (LP Relaxation) to gain insight into integer-constrained problems.
+
+- Readers should understand how to solve integer-constrained optimisation problems.
+
+
+
+```{r optimization-i-setup, echo=T, warning=F}
 # Load the libraries we'll use in this chapter
 library(ggplot2) # for plotting
 library(lpSolve) # for solving linear optimization problems ('linear programming')
@@ -227,20 +227,20 @@ ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) +
 
 <img src="images/optim/optim-plot-1.png" width="800">
 
+Since these are linear constraints, we can easily plot them by defining two points for each line, and then connecting them. For example, in the left graph, we need to plot: $0.20X_1 + 0.70 X_2 \leq 100$. The first point that will be handy is where it crosses the vertical axis; in this case, $X_1 = 0$, and so we can solve $X_2 \leq (100/0.70)$, or $X_2 \leq 142$ (rounding down). The second point is where it crosses the horizontal axis. Now, $X_2 = 0$, and so $X_1 \leq (100/0.20)$ or $X_1 \leq 500$.
+
+Thus, we can connect the point $X_1=0, X_2=142$ on the vertical axis, with $X_1=500, X_2=0$ on the horizontal axis with a straight line. Then we just read the constraint direction and reason that it should include the area down and to the left of this line!
+
+Make sure you understand the right graph as well, and understand how to reproduce it!
 
 ```
-**Finish this part**
-How do I get these graphs!
-```
-
-```
-Q: What do the non-negativity constraint regions look like?
+Question: What do the non-negativity constraint regions look like?
 ```
 
 
 #### Feasible Regions {-}
 
-The Feasible Region is the intersection of all the constraint regions.
+The **Feasible Region** is the intersection of all the constraint regions. So let's plot those two regions above on the same plot.
 
 
 ```{r optim-constraint-plot-2, echo=FALSE, eval=FALSE, fig.height=3, fig.width=4}
@@ -264,15 +264,20 @@ ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) +
 
 <img src="images/optim/optim-plot-2.png" width="500">
 
-- A feasible solution is an allocation of decision variables (like $X_1$ = 10, $X_2$ = 10), that satisfies all the constraints.
-- Every feasible solution will lie in the feasible region.
-- If there is no feasible region, then there is no feasible solution, and we say that the problem is infeasible. In other words, there is no way to solve this problem while satisfying all the constraints.
+A **feasible solution** is an allocation of decision variables (like $X_1$ = 10, $X_2$ = 10), that satisfies all the constraints.
+
+It also follows, that **every feasible solution will lie in the feasible region**. That means that every point within the feasible region (shaded in green above) could be a solution to this problem.
+
+
+If there is no feasible region, then there is no feasible solution, and we say that the problem is *infeasible*. In other words, there is no way to solve this problem while satisfying all the constraints.
 
 
 
 #### Corner Points {-}
 
 While any point in the feasible region is a possible solution, it turns out that the optimal solution, if it exists, lies at a "corner" of the feasible region. Indeed, there are mathematical theorems proving this.
+
+In the plot below we've indicated the four corner points for this problem:
 
 ```{r optim-constraint-plot-3, echo=FALSE, eval=FALSE, fig.height=3, fig.width=4}
 ggplot(data=data.frame(x=c(0, 200, 80, 0),y=c(0, 0, 120, 142)), aes(x=x,y=y)) + 
@@ -300,8 +305,9 @@ ggplot(data=data.frame(x=c(0, 200, 80, 0),y=c(0, 0, 120, 142)), aes(x=x,y=y)) +
 
 <img src="images/optim/optim-plot-3.png" width="500">
 
-Why? Imagine that you have a solution in the center of the feasible region, not near a boundary. 
+Why must an optimal solution lie at a corner? Imagine that you have a solution in the center of the feasible region, not near a boundary. 
 From here, you can still increase or decrease $X_1$; or you can increase or decrease $X_2$. These changes would either increase or decrease your profit ("better" or "worse"). 
+
 So the best (and worst) solutions are when you cannot increase or decrease your decision variables any more!
 
 
@@ -385,7 +391,7 @@ For this chapter, we do not cover *how* the Simplex algorithm works, but we just
 
 
 
-## Using R to solve
+## Using R to solve Linear Optimization
 
 The most difficult part about using R to solve a linear optimization problem is to translate the optimization problem into code. Let's reproduce the table with all the necessary information for the example of Farmer Jean:
 
@@ -397,6 +403,43 @@ Space Constraints | $X_1 + X_2 \leq 200$
 Non-negativity | $X_1 \geq 0$ <br> $X_2 \geq 0$
 
 
+Here's how you translate it into code. First, we define the objective function parameters, which are just the coefficients of $X_1$ and $X_2$ in the object function:  Profits = 0.15 $X_1$ + 0.40 $X_2$
+
+```{r echo=TRUE, eval=FALSE}
+objective.fn <- c(0.15, 0.40)
+```
+
+Next, we define the constraints, which are broken up into 3 variables: the constraints matrix, the constraint directions, and the constraint values (or constraint RHS for right-hand-side).
+
+$$0.20X_1 + 0.70 X_2 \leq 100$$
+$$X_1 + X_2 \leq 200$$
+
+The constraint matrix is simply concatenating all the coefficients here into a matrix. For simplicity, using the convention below, we just read off the matrix from top to bottom, then within each line, from left to right. So we have: (0.20, 0.70, 1, 1). When I construct the matrix, you have to specify the number of columns (`ncol`) which is simply the number of decision variables we have; in this case it's 2.
+
+The constraint directions are just a vector that corresponds to each constraint ($\leq$, $\leq$), and the constraint right-hand-side values are just (100, 200)
+
+```{r echo=TRUE, eval=FALSE}
+const.mat <- matrix(c(0.20, 0.70, 1, 1) , ncol=2 , byrow=TRUE) 
+const.dir <- c("<=", "<=")
+const.rhs <- c(100, 200)
+```
+
+The important thing to note is to get the order of all the constraints correct. In particular, if you have certain constraints that do not include ALL of the decision variables, to include `0`s whenever appropriate.
+
+> <span style='color:blue; font-size:150%'>TIP!</span> 
+> For example, if you have an additional constraint that you can only produce a maximum of 500 $X_1$, this constraint translates to: $X_1 \leq 500$ 
+> <br><br> but to be even more helpful to yourself, write it out as:
+> $$ 1 X_1 + 0 X_2 \leq 500 $$
+> This will help you remember to put ... 1,0 ... into the relevant row of the constraints matrix when you are reading the matrix off from your table.
+
+
+Finally, we put all of these into a call to the `lp` function within the `lpSolve` package. We specify `max` for maximizing the objective function, pass in the rest of the parameters we just defined, and finally we also ask it to `compute.sens=TRUE`: we need this for the sensitivity analysis in the next section.
+```{r echo=TRUE, eval=FALSE}
+lp.solution <- lp("max", objective.fn, const.mat, 
+                  const.dir, const.rhs, compute.sens=TRUE)
+```
+
+Putting it all together, and looking at the solution (`lp.solution$solution`) and objective function value (`lp.solution$objval`)
 ```{r optim-solve-1, echo=TRUE}
 # defining parameters
 objective.fn <- c(0.15, 0.40)
@@ -407,14 +450,18 @@ const.rhs <- c(100, 200)
 lp.solution <- lp("max", objective.fn, const.mat, 
                   const.dir, const.rhs, compute.sens=TRUE)
 
-#decision variables values
+# check if it was successful; it also prints out the objective fn value
+lp.solution
+
+# optimal solution (decision variables values)
 lp.solution$solution
 
-# objective fn value
-lp.solution
+# Printing it out:
+cat("The optimal solution is:", lp.solution$solution, "\nAnd the optimal objective function value is:", lp.solution$objval)
+
 ```
 
-Thus, the optimal solution is $X_1$ = 80, $X_2$ = 120, and the optimal profit is 60, which is what we found manually above.
+Thus, the optimal solution is $X_1$ = 80, $X_2$ = 120, and the optimal profit is 60, which is what we found manually in the previous section.
 
 
 
@@ -579,14 +626,13 @@ const.rhs <- c(100, 200)
 lp.solution2 <- lp("max", objective.fn2, const.mat, 
                    const.dir, const.rhs, compute.sens=TRUE)
 
-#decision variables values
-lp.solution2$solution
 
-# objective fn value
+# check if it was successful; it also prints out the objective fn value
 lp.solution2
 
-# Shadow prices
-lp.solution2$duals
+# Printing it out:
+cat("The optimal solution is:", lp.solution2$solution, "\nThe optimal objective function value is:", lp.solution2$objval, "\nwith the following Shadow Prices", lp.solution2$duals)
+
 ```
 
 As we expected, the solution is $X_1 = 0, X_2 = 142$ (rounded down). Now, if we look at the shadow prices, we notice that the shadow price of the first constraint: $0.20X_1 + 0.70X_2 \leq 100$, is +0.75, so increasing the budget by \$1 will increase profits by \$0.75. The shadow price of the second constraint, $X_1 + X_2 \leq 200$, in this case, is 0. We can also see that because the total amount of land used $X_1 + X_2 = 0 + 142 = 142$ is much less than the available budget, this constraint now becomes non-binding at this solution, and hence the shadow price of this constraint is zero. Getting access to more land will not help improve profits.

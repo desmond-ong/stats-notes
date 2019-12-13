@@ -1,18 +1,18 @@
-# Integer-valued Optimization
+# Optimization II: Integer-valued Optimization
 
 
 In this chapter we will continue our discussion of linear optimization, but now with the added complexity of considering problems with *integer*-valued decision variables.
 
 The learning objectives for this chapter are:
 
-- Students should understand how and when integer constraints apply to optimisation problems.
+- Readers should understand how and when integer constraints apply to optimisation problems.
 
-- Students should know how to use Linear-Program Relaxation (LP Relaxation) to gain insight into integer-constrained problems.
+- Readers should know how to use Linear-Program Relaxation (LP Relaxation) to gain insight into integer-constrained problems.
 
-- Students should understand how to solve integer-constrained optimisation problems.
+- Readers should understand how to solve integer-constrained optimisation problems.
 
 
-```{r integer-optimization-setup, echo=T, warning=F}
+```{r optimization-ii-setup, echo=T, warning=F}
 # Load the libraries we'll use in this chapter
 library(ggplot2) # for plotting
 library(lpSolve) # for solving linear optimization problems ('linear programming')

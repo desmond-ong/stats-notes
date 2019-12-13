@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12.6 Sensitivity Analysis | Some notes on Statistics and Data Analytics</title>
+  <meta name="description" content="A collection of statistics notes useful for data analytics." />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12.6 Sensitivity Analysis | Some notes on Statistics and Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A collection of statistics notes useful for data analytics." />
+  <meta name="github-repo" content="desmond-ong/stats-notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12.6 Sensitivity Analysis | Some notes on Statistics and Data Analytics" />
+  
+  <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
+  
+
+<meta name="author" content="Desmond Ong" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="using-r-to-solve-linear-optimization.html"/>
+<link rel="next" href="summary.html"/>
+<script src="assets/jquery-2.2.3/jquery.min.js"></script>
+<link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="assets/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">My Statistics Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
+<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
+<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
+<li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
+<li class="chapter" data-level="5.1" data-path="not-done-yet-introduction-to-the-linear-model.html"><a href="not-done-yet-introduction-to-the-linear-model.html"><i class="fa fa-check"></i><b>5.1</b> [Not Done Yet] Introduction to the Linear Model</a></li>
+<li class="chapter" data-level="5.2" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.2</b> Basics of Linear Regression</a></li>
+<li class="chapter" data-level="5.3" data-path="running-a-regression.html"><a href="running-a-regression.html"><i class="fa fa-check"></i><b>5.3</b> Running a regression</a></li>
+<li class="chapter" data-level="5.4" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html"><i class="fa fa-check"></i><b>5.4</b> Ordinary Least Squares Regression</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html#ordinary-least-squares-derivation"><i class="fa fa-check"></i><b>5.4.1</b> Ordinary Least Squares Derivation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="not-done-interpreting-the-output-of-a-regression-model.html"><a href="not-done-interpreting-the-output-of-a-regression-model.html"><i class="fa fa-check"></i><b>5.5</b> [Not Done:] Interpreting the output of a regression model</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="not-done-interpreting-the-output-of-a-regression-model.html"><a href="not-done-interpreting-the-output-of-a-regression-model.html#not-done-the-coefficient-table"><i class="fa fa-check"></i><b>5.5.1</b> [Not Done:] The coefficient table</a></li>
+<li class="chapter" data-level="5.5.2" data-path="not-done-interpreting-the-output-of-a-regression-model.html"><a href="not-done-interpreting-the-output-of-a-regression-model.html#not-done-goodness-of-fit-statistics"><i class="fa fa-check"></i><b>5.5.2</b> [Not Done:] Goodness-of-fit statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="not-done-assumptions-behind-linear-regression.html"><a href="not-done-assumptions-behind-linear-regression.html"><i class="fa fa-check"></i><b>5.6</b> [Not Done:] Assumptions behind Linear Regression</a></li>
+<li class="chapter" data-level="5.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>5.7</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="5.8" data-path="standardized-coefficients.html"><a href="standardized-coefficients.html"><i class="fa fa-check"></i><b>5.8</b> Standardized Coefficients</a></li>
+<li class="chapter" data-level="5.9" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html"><i class="fa fa-check"></i><b>5.9</b> Categorical Independent Variables</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding"><i class="fa fa-check"></i><b>5.9.1</b> Dummy Coding</a></li>
+<li class="chapter" data-level="5.9.2" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding-with-3-levels"><i class="fa fa-check"></i><b>5.9.2</b> Dummy Coding with 3 levels</a></li>
+<li class="chapter" data-level="5.9.3" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#the-reference-group"><i class="fa fa-check"></i><b>5.9.3</b> The Reference Group</a></li>
+<li class="chapter" data-level="5.9.4" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#interpreting-categorical-and-continuous-independent-variables"><i class="fa fa-check"></i><b>5.9.4</b> Interpreting categorical and continuous independent variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="todo-discuss-transformations.html"><a href="todo-discuss-transformations.html"><i class="fa fa-check"></i><b>5.10</b> [todo:] Discuss Transformations?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="not-done-the-linear-model-ii-logistic-regression.html"><a href="not-done-the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> [Not Done:] The Linear Model II: Logistic Regression</a></li>
+<li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
+<li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
+<li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
+<li class="chapter" data-level="10" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Data Mining</a></li>
+<li class="chapter" data-level="11" data-path="not-done-simulations.html"><a href="not-done-simulations.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Simulations</a></li>
+<li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
+<li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
+<li class="chapter" data-level="12.2" data-path="objective-functions-decision-variables.html"><a href="objective-functions-decision-variables.html"><i class="fa fa-check"></i><b>12.2</b> Objective Functions &amp; Decision Variables</a><ul>
+<li class="chapter" data-level="" data-path="objective-functions-decision-variables.html"><a href="objective-functions-decision-variables.html#jean-the-farmer-objective-function"><i class="fa fa-check"></i>Jean the Farmer: Objective Function</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="constraints.html"><a href="constraints.html"><i class="fa fa-check"></i><b>12.3</b> Constraints</a><ul>
+<li class="chapter" data-level="" data-path="constraints.html"><a href="constraints.html#jean-the-farmer-constraints"><i class="fa fa-check"></i>Jean the Farmer: Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="solving-the-optimization-model.html"><a href="solving-the-optimization-model.html"><i class="fa fa-check"></i><b>12.4</b> Solving the Optimization Model</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="solving-the-optimization-model.html"><a href="solving-the-optimization-model.html#writing-out-the-optimization-model"><i class="fa fa-check"></i><b>12.4.1</b> Writing out the Optimization model</a></li>
+<li class="chapter" data-level="12.4.2" data-path="solving-the-optimization-model.html"><a href="solving-the-optimization-model.html#solving-an-optimization-problem-graphically"><i class="fa fa-check"></i><b>12.4.2</b> Solving an optimization problem graphically</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="using-r-to-solve-linear-optimization.html"><a href="using-r-to-solve-linear-optimization.html"><i class="fa fa-check"></i><b>12.5</b> Using R to solve Linear Optimization</a></li>
+<li class="chapter" data-level="12.6" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html"><i class="fa fa-check"></i><b>12.6</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#varying-objective-function-coefficients"><i class="fa fa-check"></i>Varying objective function coefficients</a></li>
+<li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#varying-constraint-values-shadow-prices"><i class="fa fa-check"></i>Varying Constraint Values (Shadow Prices)</a></li>
+<li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
+<li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="summary.html"><a href="summary.html"><i class="fa fa-check"></i><b>12.7</b> Summary</a></li>
+<li class="chapter" data-level="12.8" data-path="not-done-exercises.html"><a href="not-done-exercises.html"><i class="fa fa-check"></i><b>12.8</b> [NOT DONE] Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="optimization-ii-integer-valued-optimization.html"><a href="optimization-ii-integer-valued-optimization.html"><i class="fa fa-check"></i><b>13</b> Optimization II: Integer-valued Optimization</a><ul>
+<li class="chapter" data-level="13.1" data-path="integer-valued-decision-variables.html"><a href="integer-valued-decision-variables.html"><i class="fa fa-check"></i><b>13.1</b> Integer-valued decision variables</a></li>
+<li class="chapter" data-level="13.2" data-path="not-done-from-real-valued-to-integer-solutions.html"><a href="not-done-from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> [NOT DONE] From real-valued to integer solutions</a></li>
+<li class="chapter" data-level="13.3" data-path="logical-constraints.html"><a href="logical-constraints.html"><i class="fa fa-check"></i><b>13.3</b> Logical Constraints</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.1</b> Logical Constraints Example: Planning university courses</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="summary-1.html"><a href="summary-1.html"><i class="fa fa-check"></i><b>13.4</b> Summary</a></li>
+<li class="chapter" data-level="13.5" data-path="not-done-exercises-1.html"><a href="not-done-exercises-1.html"><i class="fa fa-check"></i><b>13.5</b> [NOT DONE] Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="not-done-book-summary.html"><a href="not-done-book-summary.html"><i class="fa fa-check"></i><b>14</b> [Not Done:] Book Summary ??</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sensitivity-analysis" class="section level2">
+<h2><span class="header-section-number">12.6</span> Sensitivity Analysis</h2>
+<p>When we get an optimal solution to a linear optimisation problem, oftentimes we may want to ask: what if we change the objective by a little, or what if we change the constraints by a little, what would happen? i.e., how sensitive is the solution to changes in the problem?</p>
+<p>Sensitivity analysis allows us to ask this question systematically. Here we shall cover two types of sensitivity analyses – varying objective function coefficients, and varying constraint values.</p>
+<div id="varying-objective-function-coefficients" class="section level3 unnumbered">
+<h3>Varying objective function coefficients</h3>
+<p>Recall our farming example: our optimal solution is <span class="math inline">\(X_1\)</span> = 80, <span class="math inline">\(X_2\)</span> = 120,
+and our objective function is:
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
+<p>What if Farmer Jean’s customer decides to reduce the amount they are willing to pay for Kale (<span class="math inline">\(X_2\)</span>) to $1.00 (reducing Jean’s profits from 0.40 to 0.30 per unit of <span class="math inline">\(X_2\)</span>).
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.30} X_2 \]</span></p>
+<p>Will that change our optimal solution?</p>
+<p>Turns out, no, it doesn’t. (Try running the code again to verify that the optimal solution is still (80,120)!)</p>
+<p><img src="images/optim/optim-plot-sa-1.png" width="400"></p>
+<p>But now if the price that Farmer Jean can sell Parsnips (<span class="math inline">\(X_1\)</span>) drops from 0.35 to 0.30, i.e., reducing her profits per unit-parsnips from 0.15 to 0.10,</p>
+<p><span class="math display">\[ \text{Profit} = \color{red}{0.10} X_1 + 0.40 X_2 \]</span>
+Then the optimal solution actually changes (to <span class="math inline">\(X_1\)</span> = 0, <span class="math inline">\(X_2\)</span> = 142)! Basically, Parsnips are now not profitable, and Jean should plant plant all Kale.</p>
+<p><img src="images/optim/optim-plot-sa-2.png" width="400"></p>
+<p>Graphically the optimal solution now moves from the blue vertex to the green vertex. The optimal solution is to produce as much Kale as she can afford.</p>
+<p>Indeed in the first case, reducing the price of <span class="math inline">\(X_2\)</span> by 10 cents did not change the solution, but in the second case, reducing the price of <span class="math inline">\(X_1\)</span> by 5 cents did! So this solution is sensitive to some changes but not others.</p>
+<div id="varying-objective-function-coefficients-in-r" class="section level4 unnumbered">
+<h4>Varying objective function coefficients in R</h4>
+<p>R’s <code>lpSolve::lp()</code> function helps you to calculate the <em>range</em> of coefficient values for which the given solution is still optimal. So again, recall that the original objective function is:
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
+<p>We use <code>lp.solution$sens.coef.from</code> and <code>lp.solution$sens.coef.to</code> to get the range of coefficients.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># sensitivity analysis on coefficients</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">lp.solution<span class="op">$</span>sens.coef.from </a></code></pre></div>
+<pre><code>## [1] 0.1142857 0.1500000</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">lp.solution<span class="op">$</span>sens.coef.to</a></code></pre></div>
+<pre><code>## [1] 0.400 0.525</code></pre>
+<p>The way you read this is that “from” is the lower bound of the coefficients (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively), while “to” gives the upper bound of the coefficients.</p>
+<ul>
+<li>This means that as long as the coefficient on <span class="math inline">\(X_1\)</span> lies between [0.1143, 0.400],
+this solution is still optimal.</li>
+<li>Or if the coefficient on <span class="math inline">\(X_2\)</span> lies between [0.150, 0.525], this solution is still optimal.</li>
+</ul>
+<p>If the coefficients shift outside these ranges, then the solution will move to a different vertex. (How will they move?)</p>
+<p>Note that all of these sensitivity calculations assume you only adjust one coefficient at a time. This means that if you decide to reduce <span class="math inline">\(X_1\)</span> to 0.12 and increase <span class="math inline">\(X_2\)</span> to 0.50, the optimal solution might change. These ranges assume that you only change that one coefficient while holding the rest constant. If you want to change two or more coefficients, you should re-run the model.</p>
+<p>Now let’s think through and try to predict what happens when these coefficients go out of these bounds. We just saw that if the coefficient on <span class="math inline">\(X_1\)</span> goes to 0.10, which is less than 0.1143, then the solution moves to: produce no <span class="math inline">\(X_1\)</span> and produce maximum <span class="math inline">\(X_2\)</span>.</p>
+<p>What if the coefficient on <span class="math inline">\(X_1\)</span> goes above 0.400? What do you think will happen? Increasing the profit of <span class="math inline">\(X_1\)</span> beyond this range should mean that it has become more profitable to produce <span class="math inline">\(X_1\)</span>, and we know that the solution must lie on a vertex, so we move down the edge of the feasible region to the solution on the horizontal axis, <span class="math inline">\(X_1 = 200, X_2 = 0\)</span>.</p>
+<p>Similarly, we can think about what will happen when the coefficient on <span class="math inline">\(X_2\)</span> drops below 0.15: it becomes not profitable to produce Kale, so we’ll also get the point <span class="math inline">\(X_1 = 200, X_2 = 0\)</span>.
+But when the coefficient on <span class="math inline">\(X_2\)</span> rises above 0.525, then it becomes much more profitable to produce Kale, so we’ll come to the solution <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>.</p>
+</div>
+</div>
+<div id="varying-constraint-values-shadow-prices" class="section level3 unnumbered">
+<h3>Varying Constraint Values (Shadow Prices)</h3>
+<p>The next type of sensitivity analysis we shall look at is what happens when we vary the constraint values.</p>
+<p>We’ll introduce a new term called <em>shadow prices</em>.
+The <em>Shadow Price</em> of a constraint is the change in the objective function value per unit-increase in the right-hand-side value of that constraint (holding all else equal). Let’s break this down.</p>
+<p>In the Farming example, we have two constraints.</p>
+<p><img src="images/optim/optim-plot-sp-1.png" width="400"></p>
+<p>Let’s consider the first constraint. What if we increased the RHS of the first constraint from 100 to 101?</p>
+<p><span class="math display">\[0.20X_1 + 0.70X_2 \leq 100 \quad \rightarrow \quad 0.20X_1 + 0.70X_2 \leq \color{green}{101}\]</span></p>
+<p><img src="images/optim/optim-plot-sp-2.png" width="400"></p>
+<p>The feasible region was pushed outwards a little, by adding this green segment. Doing this will move the optimal vertex up and to the left.</p>
+<p>The new solution is (<span class="math inline">\(X_1\)</span> = 78, <span class="math inline">\(X_2\)</span> = 122), which gives a profit of $60.50 – an increase of $0.50</p>
+<p>Thus, increasing the budgetary constraint by 1 unit (100 to 101) increases the profit by $0.50 (from $60 to $60.50). Hence, (by definition), <strong>the Shadow Price of the first constraint is $0.50</strong>.</p>
+<p>What this means is that if Farmer Jean increased her operating budget from $100 to $101, then she can increase her profits by $0.50. That’s a pretty good return-on-investment! (Note that the optimal solution also changes, but here the shadow price indicates the effect of changing the constraint value on the <strong>PROFIT</strong>).</p>
+<p>Next, let’s consider the second constraint. What if we increased the RHS of the second constraint from 200 to 201?</p>
+<p><span class="math display">\[X_1 + X_2 \leq 200 \quad \rightarrow \quad X_1 + X_2 \leq \color{cyan}{201}\]</span></p>
+<p><img src="images/optim/optim-plot-sp-3.png" width="400"></p>
+<p>The feasible region was pushed out a little, by adding this cyan segment, which moved the optimal vertex down and to the right.</p>
+<p>The new solution is (<span class="math inline">\(X_1\)</span> = 81.4, <span class="math inline">\(X_2\)</span> = 119.6), which gives a profit of $60.05 – an increase by $0.05</p>
+<p>Thus, increasing the space constraint by 1 unit (200 to 201) increases the profit by $0.05 (from $60 to $60.05).
+The Shadow Price of the space constraint is $0.05.</p>
+<p>What this means is that if Farmer Jean increased her land plot size from 200 to 201, then she can increase her profits by $0.05. That’s not as high as the budgetary constraints, so this translates to a good recommendation: if Jean wants to increase her profit, she gets more bang of the buck if she gets more operating budget than land space.</p>
+<div id="varying-constraint-values-in-r" class="section level4 unnumbered">
+<h4>Varying Constraint Values in R</h4>
+<p>Shadow prices are also known as <code>duals</code> in other fields (e.g. computer science), so we use <code>lp.solution$duals</code> to get them.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># Shadow prices</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">lp.solution<span class="op">$</span>duals</a></code></pre></div>
+<pre><code>## [1] 0.50 0.05 0.00 0.00</code></pre>
+<p>Notice that there are four values here. The first two are the two constraints we put in, in the order they were specified in the constraints matrix (so <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span> then <span class="math inline">\(X_1 + X_2 \leq 200\)</span>).
+So we can see, as per our calculations above, that the shadow price of the first constraint is $0.50, and that of the second constraint is $0.05.</p>
+<p>The last two are the shadow prices of the non-negativity constraints <span class="math inline">\(X_1 \geq 0\)</span>, and <span class="math inline">\(X_2 \geq 0\)</span>. This means that the change in the optimal profit, if we were to increase the right hand side values from 0 to 1, are both 0. Note that in some fields, the shadow prices of the non-negativity constraints have a special name, <em>reduced costs</em>. But the interpretation is the same.</p>
+<p>Why would we have a shadow price of zero for these non-negativity constraints? In this particular case, in the optimal solution we are already producing non-zero quantities of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>. Thus, increasing the right-hand-side value (i.e., forcing us to produce at least 1 <span class="math inline">\(X_1\)</span> or at least 1 <span class="math inline">\(X_2\)</span>) will not change our optimal solution. The shadow prices are zero.</p>
+</div>
+</div>
+<div id="binding-vs-non-binding-constraints" class="section level3 unnumbered">
+<h3>Binding vs non-binding constraints</h3>
+<p>In general, constraints can either be <em>binding</em> or <em>non-binding</em> for the optimal solution. Constraints that are binding ‘restrict’ the optimal solution; so in the Parsnips/Kale example, both the Budget and Space constraints are binding; if we increase the right-hand-side of the constraints, we can do better and increase our profit. Hence, they have non-zero shadow prices.</p>
+<p>Conversely, non-binding constraints do not restrict or bind the optimal solution. Thus, even if we change the right-hand-side value of the constraint by 1, we will not affect the optimal solution. Thus, <strong>shadow prices are zero for non-binding constraints</strong>.</p>
+<p>In certain cases, we might even have <em>negative</em> shadow prices. Let’s consider a modified objective function in the same Parsnip-Kale example, where the profit of Kale is increased to 0.53.
+<span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.53} X_2 \]</span>
+We saw from our earlier sensitivity analysis that this will change the optimal solution to: <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>. Let’s check this by re-running this modified linear optimization problem, saving it as <code>lp.solution2</code>:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb41-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb41-7" data-line-number="7">lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb41-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb41-11" data-line-number="11"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
+<a class="sourceLine" id="cb41-12" data-line-number="12">lp.solution2</a></code></pre></div>
+<pre><code>## Success: the objective function is 75.71429</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution2<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">The optimal objective function value is:&quot;</span>, lp.solution2<span class="op">$</span>objval, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">with the following Shadow Prices&quot;</span>, lp.solution2<span class="op">$</span>duals)</a></code></pre></div>
+<pre><code>## The optimal solution is: 0 142.8571 
+## The optimal objective function value is: 75.71429 
+## with the following Shadow Prices 0.7571429 0 -0.001428571 0</code></pre>
+<p>As we expected, the solution is <span class="math inline">\(X_1 = 0, X_2 = 142\)</span> (rounded down). Now, if we look at the shadow prices, we notice that the shadow price of the first constraint: <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span>, is +0.75, so increasing the budget by $1 will increase profits by $0.75. The shadow price of the second constraint, <span class="math inline">\(X_1 + X_2 \leq 200\)</span>, in this case, is 0. We can also see that because the total amount of land used <span class="math inline">\(X_1 + X_2 = 0 + 142 = 142\)</span> is much less than the available budget, this constraint now becomes non-binding at this solution, and hence the shadow price of this constraint is zero. Getting access to more land will not help improve profits.</p>
+<p>But wait, the third shadow price returned by <code>lp.solution2$duals</code> is negative! What does that mean? This shadow price corresponds to the non-negativity constraint <span class="math inline">\(X_1 \geq 0\)</span>. Going by the definition of the shadow price, this means that increasing the value of the right hand side of this constraint, to <span class="math inline">\(X_1 \geq \color{red}{1}\)</span> will reduce the optimum profit by -$0.0014. This is because if this constraint were to be changed, then now we are forced to produce at least 1 unit of <span class="math inline">\(X_1\)</span>, which is now less profitable, and hence total profit should go down.</p>
+<p>Finally, note that this also implies that <span class="math inline">\(X_1 \geq 0\)</span> is a binding constraint, because changing the value of this constraint will affect the optimal solution. So binding constraints can have either positive, or negative, shadow prices.</p>
+</div>
+<div id="summarizing-sensitivity-analyses" class="section level3 unnumbered">
+<h3>Summarizing sensitivity analyses</h3>
+<p>Solving an optimization problem is straight-forward once you have the objective function and the constraints. Getting the optimal solution is not the end of it. As a top-notch business analyst, we can add more value to the business decision by doing and interpreting sensitivity analyses.</p>
+<ol style="list-style-type: lower-roman">
+<li>We can examine the range of coefficients over which this solution is valid, and make recommendations. For example, we saw earlier than if the profit of Kale goes above 0.53 or profit per Parsnip goes below 0.11, then it makes more sense to switch to producing as much Kale as possible.
+<ul>
+<li>For example, you could provide the following recommendation to Farmer Jean: “If the profit per unit-Kale goes above $0.53 or if the profit per unit-Parsnips goes below $0.11, then please switch your whole production to Kale.”</li>
+</ul></li>
+<li>Secondly, we can examine and interpret shadow prices:
+<ul>
+<li>For example, to Farmer Jean: “If you get one additional plot of land, you can make $0.05 more profit. But if you get $1 more of budget to buy crops, you can increase your profit by $0.50 (by changing your planting allocation to …)”</li>
+</ul></li>
+</ol>
+<p>More broadly, as analysts we could run “what-if” analyses to study the impact of getting more resources, of changing our prices, and of many other possible business decisions. These type of analyses require much more experience, but are potentially much more valuable to making better business decisions.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="using-r-to-solve-linear-optimization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="assets/gitbook-2.6.7/js/app.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/lunr.js"></script>
+<script src="assets/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="assets/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="assets/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
