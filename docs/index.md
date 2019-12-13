@@ -1,7 +1,7 @@
 --- 
 title: "Some notes on Statistics and Data Analytics"
 author: "Desmond Ong"
-date: "Draft Dated: `r Sys.Date()`"
+date: "Draft Dated: 2019-12-13"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:

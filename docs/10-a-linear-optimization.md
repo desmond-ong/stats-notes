@@ -24,7 +24,8 @@ The learning objectives for this chapter are:
 
 
 
-```{r optimization-i-setup, echo=T, warning=F}
+
+```r
 # Load the libraries we'll use in this chapter
 library(ggplot2) # for plotting
 library(lpSolve) # for solving linear optimization problems ('linear programming')
@@ -196,34 +197,7 @@ Below we've plotted the two constraints:
 - $0.20X_1 + 0.70 X_2 \leq 100$, on the left, in magenta
 - $X_1 + X_2 \leq 200$, on the right, in orange
 
-```{r optim-constraint-plot-1, echo=FALSE, eval=FALSE, fig.height=2, fig.width=2}
-# Decided to put a screenshot instead of trying to generate this plot...
-library(latex2exp) # for enabling LaTeX math expressions in plots
-ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) + 
-  xlab(TeX("X_1")) + ylab(TeX("X_2")) +
-  scale_x_continuous(limits=c(0,510), breaks=c(0,500)) +
-  scale_y_continuous(limits=c(0,310), breaks=c(0,142)) +
-  geom_polygon(data=data.frame(x=c(0,500,0), y=c(0,0,142)), fill="magenta4", size=1, alpha=0.5) + 
-  geom_hline(aes(yintercept=0)) +
-  geom_vline(aes(xintercept=0)) + 
-  geom_abline(intercept=100/0.70, slope=-0.20/0.70) +
-  theme_minimal() + theme(panel.grid = element_blank(),
-                          axis.title = element_text(size=16),
-                          axis.text = element_text(size=14))
 
-
-ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) + 
-  xlab(TeX("X_1")) + ylab(TeX("X_2")) +
-  scale_x_continuous(limits=c(0,510), breaks=c(0,200)) +
-  scale_y_continuous(limits=c(0,310), breaks=c(0,200)) +
-  geom_polygon(data=data.frame(x=c(0,200,0), y=c(0,0,200)), fill="orange2", size=1, alpha=0.5) + 
-  geom_hline(aes(yintercept=0)) +
-  geom_vline(aes(xintercept=0)) + 
-  geom_abline(intercept=200, slope=-1) +
-  theme_minimal() + theme(panel.grid = element_blank(),
-                          axis.title = element_text(size=16),
-                          axis.text = element_text(size=14))
-```
 
 <img src="images/optim/optim-plot-1.png" width="800">
 
@@ -243,24 +217,7 @@ Question: What do the non-negativity constraint regions look like?
 The **Feasible Region** is the intersection of all the constraint regions. So let's plot those two regions above on the same plot.
 
 
-```{r optim-constraint-plot-2, echo=FALSE, eval=FALSE, fig.height=3, fig.width=4}
-ggplot(data=data.frame(x=0,y=0), aes(x=x,y=y)) + geom_point(size=0.1) + 
-  xlab(TeX("X_1")) + ylab(TeX("X_2")) +
-  scale_x_continuous(limits=c(0,510), breaks=c(0,200,500)) +
-  scale_y_continuous(limits=c(0,310), breaks=c(0,142,200)) +
-  geom_polygon(data=data.frame(x=c(0,500,0), y=c(0,0,142)), fill="magenta4", size=1, alpha=0.5) + 
-  geom_polygon(data=data.frame(x=c(0,200,0), y=c(0,0,200)), fill="orange2", size=1, alpha=0.5) + 
-  geom_hline(aes(yintercept=0)) +
-  geom_vline(aes(xintercept=0)) + 
-  geom_abline(intercept=100/0.70, slope=-0.20/0.70) +
-  geom_abline(intercept=200, slope=-1) +
-  geom_path(data=data.frame(x=c(0,200,80,0,0),
-                            y=c(0,0,120,142,0)), color="green", size=2) +
-  annotate("text", x = 200, y = 140, label = "Feasible Region", size=5, col="green") +
-  theme_minimal() + theme(panel.grid = element_blank(),
-                          axis.title = element_text(size=16),
-                          axis.text = element_text(size=14))
-```
+
 
 <img src="images/optim/optim-plot-2.png" width="500">
 
@@ -279,29 +236,7 @@ While any point in the feasible region is a possible solution, it turns out that
 
 In the plot below we've indicated the four corner points for this problem:
 
-```{r optim-constraint-plot-3, echo=FALSE, eval=FALSE, fig.height=3, fig.width=4}
-ggplot(data=data.frame(x=c(0, 200, 80, 0),y=c(0, 0, 120, 142)), aes(x=x,y=y)) + 
-  xlab(TeX("X_1")) + ylab(TeX("X_2")) +
-  scale_x_continuous(limits=c(0,510), breaks=c(0,200,500)) +
-  scale_y_continuous(limits=c(0,310), breaks=c(0,142,200)) +
-  geom_polygon(data=data.frame(x=c(0,500,0), y=c(0,0,142)), fill="magenta4", size=1, alpha=0.5) + 
-  geom_polygon(data=data.frame(x=c(0,200,0), y=c(0,0,200)), fill="orange2", size=1, alpha=0.5) + 
-  geom_hline(aes(yintercept=0)) +
-  geom_vline(aes(xintercept=0)) + 
-  geom_abline(intercept=100/0.70, slope=-0.20/0.70) +
-  geom_abline(intercept=200, slope=-1) +
-  geom_path(data=data.frame(x=c(0,200,80,0,0),
-                            y=c(0,0,120,142,0)), color="green", size=2) +
-  geom_point(size=6, col="blue") + 
-  annotate("text", x = 200, y = 200, label = "Corner Points", size=5, col="blue") +
-  annotate("text", x = 30, y = 30, label = "C1", size=5, col="blue") +
-  annotate("text", x = 25, y = 165, label = "C2", size=5, col="blue") +
-  annotate("text", x = 220, y = 30, label = "C3", size=5, col="blue") +
-  annotate("text", x = 100, y = 145, label = "C4", size=5, col="blue") +
-  theme_minimal() + theme(panel.grid = element_blank(),
-                          axis.title = element_text(size=16),
-                          axis.text = element_text(size=14))
-```
+
 
 <img src="images/optim/optim-plot-3.png" width="500">
 
@@ -405,7 +340,8 @@ Non-negativity | $X_1 \geq 0$ <br> $X_2 \geq 0$
 
 Here's how you translate it into code. First, we define the objective function parameters, which are just the coefficients of $X_1$ and $X_2$ in the object function:  Profits = 0.15 $X_1$ + 0.40 $X_2$
 
-```{r echo=TRUE, eval=FALSE}
+
+```r
 objective.fn <- c(0.15, 0.40)
 ```
 
@@ -418,7 +354,8 @@ The constraint matrix is simply concatenating all the coefficients here into a m
 
 The constraint directions are just a vector that corresponds to each constraint ($\leq$, $\leq$), and the constraint right-hand-side values are just (100, 200)
 
-```{r echo=TRUE, eval=FALSE}
+
+```r
 const.mat <- matrix(c(0.20, 0.70, 1, 1) , ncol=2 , byrow=TRUE) 
 const.dir <- c("<=", "<=")
 const.rhs <- c(100, 200)
@@ -434,13 +371,15 @@ The important thing to note is to get the order of all the constraints correct. 
 
 
 Finally, we put all of these into a call to the `lp` function within the `lpSolve` package. We specify `max` for maximizing the objective function, pass in the rest of the parameters we just defined, and finally we also ask it to `compute.sens=TRUE`: we need this for the sensitivity analysis in the next section.
-```{r echo=TRUE, eval=FALSE}
+
+```r
 lp.solution <- lp("max", objective.fn, const.mat, 
                   const.dir, const.rhs, compute.sens=TRUE)
 ```
 
 Putting it all together, and looking at the solution (`lp.solution$solution`) and objective function value (`lp.solution$objval`)
-```{r optim-solve-1, echo=TRUE}
+
+```r
 # defining parameters
 objective.fn <- c(0.15, 0.40)
 const.mat <- matrix(c(0.20, 0.70, 1, 1) , ncol=2 , byrow=TRUE) 
@@ -452,13 +391,29 @@ lp.solution <- lp("max", objective.fn, const.mat,
 
 # check if it was successful; it also prints out the objective fn value
 lp.solution
+```
 
+```
+## Success: the objective function is 60
+```
+
+```r
 # optimal solution (decision variables values)
 lp.solution$solution
+```
 
+```
+## [1]  80 120
+```
+
+```r
 # Printing it out:
 cat("The optimal solution is:", lp.solution$solution, "\nAnd the optimal objective function value is:", lp.solution$objval)
+```
 
+```
+## The optimal solution is: 80 120 
+## And the optimal objective function value is: 60
 ```
 
 Thus, the optimal solution is $X_1$ = 80, $X_2$ = 120, and the optimal profit is 60, which is what we found manually in the previous section.
@@ -510,11 +465,22 @@ $$ \text{Profit} = 0.15 X_1 + 0.40 X_2 $$
 
 We use `lp.solution$sens.coef.from` and `lp.solution$sens.coef.to` to get the range of coefficients.
 
-```{r, optim-sens-1, echo=TRUE}
+
+```r
 # sensitivity analysis on coefficients
 lp.solution$sens.coef.from 
+```
 
+```
+## [1] 0.1142857 0.1500000
+```
+
+```r
 lp.solution$sens.coef.to
+```
+
+```
+## [1] 0.400 0.525
 ```
 
 The way you read this is that "from" is the lower bound of the coefficients ($X_1$ and $X_2$ respectively), while "to" gives the upper bound of the coefficients.
@@ -588,9 +554,14 @@ What this means is that if Farmer Jean increased her land plot size from 200 to 
 
 Shadow prices are also known as `duals` in other fields (e.g. computer science), so we use `lp.solution$duals` to get them.
 
-```{r, optim-sens-2, echo=TRUE}
+
+```r
 # Shadow prices
 lp.solution$duals
+```
+
+```
+## [1] 0.50 0.05 0.00 0.00
 ```
 
 
@@ -616,7 +587,8 @@ $$ \text{Profit} = 0.15 X_1 + \color{red}{0.53} X_2 $$
 We saw from our earlier sensitivity analysis that this will change the optimal solution to: $X_1 = 0, X_2 = 142$. Let's check this by re-running this modified linear optimization problem, saving it as `lp.solution2`:
 
 
-```{r optim-solve-2, echo=TRUE}
+
+```r
 # defining parameters
 objective.fn2 <- c(0.15, 0.53)
 const.mat <- matrix(c(0.20, 0.70, 1, 1) , ncol=2 , byrow=TRUE) 
@@ -629,10 +601,21 @@ lp.solution2 <- lp("max", objective.fn2, const.mat,
 
 # check if it was successful; it also prints out the objective fn value
 lp.solution2
+```
 
+```
+## Success: the objective function is 75.71429
+```
+
+```r
 # Printing it out:
 cat("The optimal solution is:", lp.solution2$solution, "\nThe optimal objective function value is:", lp.solution2$objval, "\nwith the following Shadow Prices", lp.solution2$duals)
+```
 
+```
+## The optimal solution is: 0 142.8571 
+## The optimal objective function value is: 75.71429 
+## with the following Shadow Prices 0.7571429 0 -0.001428571 0
 ```
 
 As we expected, the solution is $X_1 = 0, X_2 = 142$ (rounded down). Now, if we look at the shadow prices, we notice that the shadow price of the first constraint: $0.20X_1 + 0.70X_2 \leq 100$, is +0.75, so increasing the budget by \$1 will increase profits by \$0.75. The shadow price of the second constraint, $X_1 + X_2 \leq 200$, in this case, is 0. We can also see that because the total amount of land used $X_1 + X_2 = 0 + 142 = 142$ is much less than the available budget, this constraint now becomes non-binding at this solution, and hence the shadow price of this constraint is zero. Getting access to more land will not help improve profits.
@@ -660,7 +643,7 @@ More broadly, as analysts we could run "what-if" analyses to study the impact of
 
 
 
-## Linear Optimization Summary
+## Summary
 
 In this chapter, we covered the basics of formulating and solving simple linear optimisation problems, which help us "prescribe" the best business choices to make. 
 

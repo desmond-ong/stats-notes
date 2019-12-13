@@ -12,7 +12,8 @@ The learning objectives for this chapter are:
 - Readers should understand how to solve integer-constrained optimisation problems.
 
 
-```{r optimization-ii-setup, echo=T, warning=F}
+
+```r
 # Load the libraries we'll use in this chapter
 library(ggplot2) # for plotting
 library(lpSolve) # for solving linear optimization problems ('linear programming')
@@ -77,13 +78,7 @@ If you solve the LP relaxation, and the solution happens to be integer valued, t
 But this will not often be the case that the solution to the LP relaxation will be integer-valued. Then, programs use the real-valued solution as a starting point to systematically search for the optimal integer solution (e.g. "branch and bound" algorithm used by `lpSolve`).
 
 
-```{r, echo=FALSE, eval=FALSE}
-lp.solution <- lp("max", objective.fn, const.mat, 
-                  const.dir, const.rhs, int.vec = c(1,2,3),
-                  compute.sens=FALSE)
-# note: the sensitivity analysis calculated by lpSolve::lp()
-# is inaccurate for integer-valued problems, so we won't use them.
-```
+
 
 
 
@@ -202,7 +197,8 @@ This makes it much easier to type this into code. This is the hardest part now, 
 
 
 
-```{r linear-constraints-example-courses, echo=TRUE}
+
+```r
 #defining parameters
 objective.fn <- c(8, 4, 6, 7, 5, 6, 3, 4, 6, 7)
 const.mat <- matrix(c(rep(10,10),
@@ -225,7 +221,18 @@ const.rhs <- c(40, rep(0,7), 1)
 lp.solution <- lp("max", objective.fn, const.mat, const.dir, const.rhs, 
                   binary.vec = c(1:10))
 lp.solution$solution #decision variables values 
+```
+
+```
+##  [1] 1 1 1 1 0 0 0 0 0 0
+```
+
+```r
 lp.solution
+```
+
+```
+## Success: the objective function is 25
 ```
 
 
@@ -236,7 +243,7 @@ In order to maximize her interest while completing the degree, Natalie should ch
 
 
 
-## Integer Optimization Summary
+## Summary
 
 In this lecture we've covered how to use linear optimisation to solved integer-valued optimisation problems, where some of the decision variables are constrained to be integers, or even constrained to be binary variables (which can be used to model yes/no decisions).
 
