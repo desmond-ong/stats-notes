@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics</title>
+  <title>6.1 Basics of Logistic Regression | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="6.1 Basics of Logistic Regression | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="6.1 Basics of Logistic Regression | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="running-a-regression.html"/>
-<link rel="next" href="interpreting-the-output-of-a-regression-model.html"/>
+<link rel="prev" href="the-linear-model-ii-logistic-regression.html"/>
+<link rel="next" href="running-a-logistic-regression.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -220,82 +220,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ordinary-least-squares-regression" class="section level2">
-<h2><span class="header-section-number">5.3</span> Ordinary Least Squares Regression</h2>
-<p>In this section we’ll be taking a quick peek behind what the model is doing, and we’ll discuss the formulation of <strong>Ordinary Least Squares</strong> regression.</p>
-<p>In linear regression, we assume that the “true” model is such that <span class="math inline">\(Y\)</span> is <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>*<span class="math inline">\(X\)</span> plus some “errors”, which could be due to other, unmeasured factors (omitted variables), or maybe just random noise.</p>
-<p><span class="math display">\[ ``\text{True&quot; model: } Y = b_0 + b_1 X + \epsilon \]</span></p>
-<p>In fact, within regression, we make the further assumption that the errors are normally distributed around zero with some variance. (So <span class="math inline">\(\epsilon \sim \mathscr{N}(0, \sigma)\)</span>).</p>
-<p>Since we don’t know the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, we can only choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>; using this we can compute the prediction of our model, <span class="math inline">\(\hat{Y}\)</span>. We want our <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to be as close to the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, which will also make our predictions <span class="math inline">\(\hat{Y}\)</span> as close to the actual <span class="math inline">\(Y\)</span>.</p>
-<p>To do this, we define the Residual or <strong>Residual Error</strong> of our model. For the <span class="math inline">\(i\)</span>-th data point, the residual is the difference between the actual <span class="math inline">\(Y_i\)</span> and our model predicted, <span class="math inline">\(\hat{Y_i}\)</span>.</p>
-<p><span class="math display">\[ \text{Residual Error: } e_i = Y_i - \hat{Y_i} \]</span></p>
-<p>Here’s an illustration. Let’s say I start off just by drawing a green line through the origin with some upward slope.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols1-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>Here, the red lines illustrate the residual error; the difference between the actual value and our prediction. And to make our model better, we want to minimise the red bars.
-Some red bars are lower, some are higher, so let’s pivot the slope upwards.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols2-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>Now, we have this yellow line. It looks better, overall the bars are smaller. Now we note that all the red bars are below, so instead of pivoting, let’s move the whole line down.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols3-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>And finally we get the blue line here, which is the best solution to minimising the red bars. We want to minimise the residuals. How is this done?</p>
-<div id="ordinary-least-squares-derivation" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Ordinary Least Squares Derivation</h3>
-<p>The residuals can be positive or negative, so if we simply add the residuals up we might be cancelling out some of them. So instead of minimising the sum of the residuals, we usually choose to square the residuals and minimise the sum of squares of the residuals. (Mathematically it becomes easier to work with the square than the absolute value).</p>
-<p>So here, we have the Ordinary Least Squares Regression, where the goal is to choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to minimise the sum of squares of the residuals <span class="math inline">\(\sum_{i} e_i^2 = \sum_i \left( Y_i - \hat{Y_i} \right)^2\)</span>.</p>
-<p>We can do this by taking the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>, and setting them both to 0. First, we define the following variables to simplify notation:</p>
-<p><span class="math display">\[\begin{align}
-\text{Define } \bar{Y} &amp;\equiv \frac{1}{n}\sum_i^n Y_i \\
-\text{Define } \bar{X} &amp;\equiv \frac{1}{n}\sum_i^n X_i \\
-\text{Define } Z &amp;\equiv \sum_i \left( Y_i - \hat{Y_i} \right)^2 \\
-&amp;= \left( Y_i - \hat{b_0} - \hat{b_1} X \right)^2 \\
-\end{align}\]</span></p>
-<p>Then we take the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span>, solve for this <span class="math inline">\(\hat{b_0}\)</span>, then substitute it into the partial deriative with respect to <span class="math inline">\(\hat{b_1}\)</span>:
-<span class="math display">\[\begin{align}
-\text{Partial deriative w.r.t. } \hat{b_0} : \; \; 
-\frac{\partial Z}{\partial \hat{b_0}} &amp;= \sum_i^n -2 \left(Y_i - \hat{b_0} - \hat{b_1}X_i \right) \\
-\text{Setting the derivative to 0 and solving, we have: } \; \;
-\hat{b_0} &amp;= \frac{1}{n}\sum_i^n Y_i - \frac{1}{n}\sum_i^n\hat{b_1}X_i \\
-\implies \hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
-\text{Partial deriative w.r.t. } \hat{b_1} : \; \;\frac{\partial Z}{\partial \hat{b_1}} &amp;= \sum_i^n  -2X_i \left( Y_i - \hat{b_0} - \hat{b_1}X_i \right) 
-\end{align}\]</span>
-<span class="math display">\[\begin{align}
-\text{Setting the derivative to 0 and substituting $\hat{b_1}$, we have: } &amp; \\
-\sum_i^n X_i Y_i - \sum_i^n (\bar{Y}-\hat{b_1}\bar{X})X_i - \sum_i^n\hat{b_1}X_i^2 &amp;= 0 \\
-\sum_i^n X_i Y_i - \bar{Y} \sum_i^n X_i + \hat{b_1} \left(\bar{X} \sum_i^n X_i - \sum_i^n X_i^2 \right) &amp;= 0 \\
-\hat{b_1} &amp;= \frac{\sum_i^n X_i Y_i - \bar{Y}\sum_i^n X_i }{ \sum_i^n X_i^2 - \bar{X} \sum_i^n X_i } \\ &amp;= \frac{\sum_i^n X_i Y_i - n\bar{X}\bar{Y}}{ \sum_i^n X_i^2 - n\bar{X}^2} \\
-\text{simplifying: } \; \; \hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 }
-\end{align}\]</span></p>
-<p>And we end up with the final OLS solution:</p>
-<p><span class="math display">\[\begin{align}
-\hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
-\hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 } = \frac{Cov(X,Y)}{Var(X)}
-\end{align}\]</span></p>
-<p>The good news is that <span class="math inline">\(R\)</span> already does this for you. Let’s check this solution with the <code>lm()</code> model we fit on the previous page!</p>
-<p>Let’s do <span class="math inline">\(\hat{b_1}\)</span> first: in R, we can calculate the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and divide that by the variance of <span class="math inline">\(X\)</span>, and save that into b1-hat: for this dataset we get 2.10.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">b1hat =<span class="st"> </span><span class="kw">cov</span>(df1<span class="op">$</span>X, df1<span class="op">$</span>Y) <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(df1<span class="op">$</span>X)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">b1hat</a></code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<p>Following the equation for <span class="math inline">\(\hat{b_0}\)</span>, we can take the mean of <span class="math inline">\(Y\)</span>, and subtract <span class="math inline">\(\hat{b_1}\)</span> times the mean of <span class="math inline">\(X\)</span>, and we get -2.26.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">b0hat =<span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>Y) <span class="op">-</span><span class="st"> </span>b1hat <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>X)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">b0hat</a></code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<p>Finally let’s go back to our regression output table, which we can summon using <code>summary(...)$coeff</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># verifying the OLS solution</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
-<pre><code>##              Estimate Std. Error   t value    Pr(&gt;|t|)
-## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
-## X            2.103757 0.07804321 26.956313 6.44250e-10</code></pre>
-<p>We can see that the Estimate of the Intercept, i.e., <span class="math inline">\(\hat{b_0}\)</span>, is -2.26, and the Estimate of the Coefficient on <span class="math inline">\(X\)</span>, i.e., <span class="math inline">\(\hat{b_1}\)</span>, is 2.10. They agree exactly! Excellent. So our <code>lm()</code> is really doing OLS regression.</p>
-<p>Again, since <span class="math inline">\(R\)</span> does all the calculations for you, it’s not necessary to know how to derive the OLS solutions (especially with more than one independent variable <span class="math inline">\(X\)</span>), but it is handy to know the intuition behind it, especially when we get to more complicated regression.</p>
+<div id="basics-of-logistic-regression" class="section level2">
+<h2><span class="header-section-number">6.1</span> Basics of Logistic Regression</h2>
+<p>Let’s imagine that we have a dataset with individual yes/no decisions, that we want to predict. For example, we might have a dataset of individual consumer purchases on an e-commerce platform, where we want to predict a consumer’s decision to purchase a product based upon other variables such as how much they spend on the platform, what their demographics are<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<p>Here, our dependent variable is whether or not the customer purchased the product, so just “Yes” or “No”, and we can write the model with this Purchased variable on the left hand side. Can we build a linear model to predict purchasing behaviour?</p>
+<p><span class="math display">\[\text{Purchased} \sim \text{Spending} + \text{Demographics} + \ldots\]</span></p>
+<p>Unfortunately, here we cannot use linear regression, but we can use the more general version of the model, called the <code>general linear model</code>. The general idea is that the GLM introduces a link function that maps the actual response variable <code>Y</code> to what the linear model predicts.</p>
+<p>Here we’ll focus on <code>logistic regression</code>, which uses the <code>logit</code> function as its link function.</p>
+<p>Let <span class="math inline">\(p\)</span> be the probability that Purchase = 1 (i.e., “Yes”)<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. Then the logistic regression equation becomes:</p>
+<p><span class="math display">\[\text{logit}(p) = b_0 + b_1 X_1 + \ldots\]</span></p>
+<p>Thus, instead of predicting a continuous outcome variable <span class="math inline">\(Y\)</span> directly, we instead predict the log-odds of an event occurring:</p>
+<p><span class="math display">\[ \text{logit}(p) \equiv \log \frac{p}{1-p}\]</span></p>
+<p>This term is called the log-odds, where <span class="math inline">\(\frac{p}{1-p}\)</span> is called the “odds” or “odds-ratio”. To be clear, the logit is defined using the natural (base-<span class="math inline">\(e\)</span>) logarithm, not the base-10 logarithm.</p>
+<p>The difference between the equation for linear regression (in the previous chapter) and logistic regression is summarized in the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Linear Regression</td>
+<td><span class="math display">\[Y = b_0 + b_1 X_1 + \ldots\]</span></td>
+</tr>
+<tr class="even">
+<td>Logistic Regression</td>
+<td><span class="math display">\[\text{logit}(p) = b_0 + b_1 X_1 + \ldots\]</span></td>
+</tr>
+</tbody>
+</table>
+<p>In fact, linear regression is a special case of the general linear model with the identity function as the link function.</p>
 </div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>Another common example: we might want to predict people’s voting behaviour or willingness to support certain policies, based upon certain characteristics.<a href="basics-of-logistic-regression.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>In general, <span class="math inline">\(p\)</span> is the probability that the dependent variable takes on a particular value of interest (e.g., “success”). R treats binary outcome variables as factors, where the first level (e.g. <code>0</code>, <code>FALSE</code>, <code>No</code>) is the base, comparison group and the second level (e.g., <code>1</code>, <code>TRUE</code>, <code>Yes</code>) is the “success” group. As with categorical independent variables, you can use <code>levels(df$var)</code> to check which level R will use as the base group by default.<a href="basics-of-logistic-regression.html#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="running-a-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interpreting-the-output-of-a-regression-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-linear-model-ii-logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="running-a-logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

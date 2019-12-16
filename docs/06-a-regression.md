@@ -1,7 +1,12 @@
 # The Linear Model I: Linear Regression
 
 
-In this chapter we will learn about a workhorse tool of analytics: the linear model, which allows us to run linear regression models that we can use to estimate simple trends and look at how some variables in our data may affect other variables. We will be going over how to interpret the output of a regression model. 
+In the next few Chapters, we will learning about a workhorse tool of analytics: the linear model, which allows us to run linear regression models that we can use to estimate simple trends and look at how some variables in our data may affect other variables. The linear model is a key tool used in many fields, from psychology, economics, linguistics, business, as well as in some physical sciences like ecology. Thus, it is an essential part of the data scientist's toolkit.
+
+
+In this Chapter, we will be going over linear regression with one or more independent variables, to predict a continuous dependent variable. We will also discuss how to interpret the output of a simple regression model, and discuss the case of categorical independent variables.
+
+
 
 
 The learning objectives for this chapter are:
@@ -9,6 +14,8 @@ The learning objectives for this chapter are:
 - Readers should be able to understand and be able to use both simple and multiple regression to estimate simple trends.
 
 - Readers should be able to interpret the output of a regression model, including regression coefficients, confidence intervals, hypothesis testing about coefficients, and goodness-of-fit statistics.
+
+- Readers should be able to interpret the meaning of dummy-coded variables used to model categorical independent variables.
 
 
 
@@ -18,15 +25,14 @@ The learning objectives for this chapter are:
 library(ggplot2) # for plotting
 ```
 
+I've also made up some simulated data just for the next few sections that we will use to illustrate linear regression. Below is the code I used to generate `df1`: $X$ is just a vector from 0 to 10, and $Y$ is an affine transformation of $X$ with some random noise added.
 
 
-## [Not Done Yet] Introduction to the Linear Model
-
-
+```r
+set.seed(1)
+df1 = data.frame(X=c(seq(0,10), NA))
+df1$Y = -2 + df1$X*2 + rnorm(n=nrow(df1), mean=0, sd=1)
 ```
-intro
-```
-
 
 ## Basics of Linear Regression
 
@@ -43,7 +49,9 @@ Below, we have a simple graphical illustration. Let's say I have a dataset of $X
 On the right I've also drawn the "best-fit" line to the data. Graphically, $b_0$ is where the line crosses the vertical axis (i.e., when $X$ is 0), and $b_1$ is the slope of the line. Some readers may have learnt this in high school, where the slope of the line is the "rise" over the "run", so how many units of "Y" do we increase ('rise') as we increase "X".
 
 
-<img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" />
+
+
+<img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" style="display: block; margin: auto;" />
 
 And that's the basic idea. Our linear model is one way of trying to explain $Y$ using $X$, which is by multiplying $X$ by the regression coefficient $b_1$ and adding a constant $b_0$. It's so simple, yet, it is a very powerful and widely used tool, and we shall see more over the rest of this chapter and the next few chapters.
 
@@ -74,45 +82,61 @@ Similarly, Dependent Variables can either be **continuous** or **categorical**. 
 ## Running a regression
 
 
-The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables. 
+The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables. Often, this is clear from the context: As a researcher we have an objective to model or predict a certain variable --- that will be the dependent variable, $Y$. And we have variables that we think would predict that, and those will be our $X$'s. (Later we'll discuss the differences between predictors, covariates, and confounders, which could all statistically affect the depenent variable.)
+
 
 The second step is to structure your data. 
 For most Linear Regression (at least for the examples in this Chapter), we almost always want `wide`-form data, discussed in the earlier Chapter on data handling, where you have each row of the data frame be one observation, and you have one column for $Y$ and one column for $X$. (In later Chapters we shall see when we may need `long`-form data for other types of regression.)
 
+
+For example, the `mtcars` dataset that comes with R is an example of wide-form data. Each row is one observation (i.e., one car), and each column is an attribute/variable associated with that observation (e.g., fuel economy, number of cylinders, horsepower, etc). 
+
+
+```r
+head(mtcars,3)
 ```
-[todo:] example of wide form?
+
+```
+##                mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
 ```
 
 
 The third step is to visualize your data, discussed also in the earlier Chapter on Data Visualization. For regression analyses, visualization of your data allows you to see whether there may be linear trends or non-linear trends (or no trends).
 
-<img src="06-a-regression_files/figure-html/lmi-plot2a-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-2.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-3.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2a-4.png" width="336" />
+<img src="06-a-regression_files/figure-html/lmi-plot2a-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-2.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-3.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-4.png" width="336" style="display: block; margin: auto;" />
 
-Linear models assume that there exists a linear trend (or perhaps no trend) between $Y$ and $X$. If you have a non-linear trend, like the quadratic and exponential ones shown here, you may want to think about transforming some of your variables to see if you can get a linear trend before running the linear model.
+Linear models assume that there exists a linear trend between $Y$ and $X$. If you have a non-linear trend, like the quadratic and exponential ones shown here, you may want to think about transforming some of your variables to see if you can get a linear trend before running the linear model. If you visually no trend, like the last plot above, you can confirm this lack of trend just by running a linear model.
 
-<img src="06-a-regression_files/figure-html/lmi-plot2b-1.png" width="336" /><img src="06-a-regression_files/figure-html/lmi-plot2b-2.png" width="336" />
+<img src="06-a-regression_files/figure-html/lmi-plot2b-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2b-2.png" width="336" style="display: block; margin: auto;" />
 
 
 Plotting can also help with troubleshooting. For example, you’ll be able to immediately see if you accidentally have a factor instead of a numeric variable, or if you have possible outliers (like the graph on the left) or possibly missing data (like the graph on the right).
 
+Let's plot the two variables in our toy dataset `df1`:
+
+<img src="06-a-regression_files/figure-html/lmi-plot2c-1.png" width="336" style="display: block; margin: auto;" />
+
+Looks very linear! So we should expect to see a strong linear relationship between `df$X` and `df$Y`.
 
 
-
-Finally, we're ready to run the model. And in fact, it's one line of code. `lm` for linear model, and then you provide an "equation", `y~x`, which is R syntax for "Y depends upon X". And then finally put
+Finally, we're ready to run the model. And in fact, it's one line of code. `lm` for linear model, and then you provide an "equation", `y~x`, which is R syntax for "Y depends upon X". The final argument is the dataframe in which the data is stored.
 
 
 ```r
 # running a Linear Model
-fit1 <- lm(y~x, df1)
+fit1 <- lm(Y~X, df1)
 ```
 
 
 > <span style='color:blue; font-size:150%'>TIP!</span> 
-> Best analysis practice: If you store all your Y and X variables in your data frame as wide form data, you can just write `lm(y~x, df1)`, which is very neat.
+> Best analysis practice: If you store all your Y and X variables in your dataframe as wide form data, you can just write `lm(y~x, df1)`, which is very neat syntax.
 > <br> It's not as clean to write `lm(df1$y~df1$x)`, and I discourage this.
 
 
-Then, we can just call `summary()` on our lm object, in order to view the output of the model.
+After fitting the model, we can just call `summary()` on our lm object, in order to view the output of the model.
 
 
 
@@ -124,7 +148,7 @@ summary(fit1)
 ```
 ## 
 ## Call:
-## lm(formula = y ~ x, data = df1)
+## lm(formula = Y ~ X, data = df1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -133,17 +157,18 @@ summary(fit1)
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
 ## (Intercept) -2.26117    0.46171  -4.897 0.000851 ***
-## x            2.10376    0.07804  26.956 6.44e-10 ***
+## X            2.10376    0.07804  26.956 6.44e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.8185 on 9 degrees of freedom
+##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.9878,	Adjusted R-squared:  0.9864 
 ## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10
 ```
 
 
-There's a lot of information here, which we will break down in the next few sections, after a short digression to discuss Ordinary Least Squares regression.
+There's a lot of information here, which we will break down in the next few sections, after a short digression to discuss how (Ordinary Least Squares) regression is solved.
 
 
 
@@ -151,13 +176,14 @@ There's a lot of information here, which we will break down in the next few sect
 
 ## Ordinary Least Squares Regression
 
-Let's take a quick peek behind what the model is doing, and we'll discuss the formulation of **Ordinary Least Squares** regression. 
+In this section we'll be taking a quick peek behind what the model is doing, and we'll discuss the formulation of **Ordinary Least Squares** regression. 
 
-Let's assume that the "true" model is such that $Y$ is $b_0$ + $b_1$\*$X$ plus some "errors", which could be due to other, unmeasured factors, or maybe just random noise.
 
-$$ \text{``True" model: } Y = b_0 + b_1 X + \epsilon $$ 
+In linear regression, we assume that the "true" model is such that $Y$ is $b_0$ + $b_1$\*$X$ plus some "errors", which could be due to other, unmeasured factors (omitted variables), or maybe just random noise.
 
-Within a linear regression, we are making the assumption that the errors are Normally distributed around zero with some variance. (So $\epsilon \sim \mathscr{N}(0, \sigma)$).
+$$ ``\text{True" model: } Y = b_0 + b_1 X + \epsilon $$ 
+
+In fact, within regression, we make the further assumption that the errors are normally distributed around zero with some variance. (So $\epsilon \sim \mathscr{N}(0, \sigma)$).
 
 Since we don't know the "true" $b_0$ and $b_1$, we can only choose $\hat{b_0}$ and $\hat{b_1}$; using this we can compute the prediction of our model, $\hat{Y}$. We want our $\hat{b_0}$ and $\hat{b_1}$ to be as close to the "true" $b_0$ and $b_1$, which will also make our predictions $\hat{Y}$ as close to the actual $Y$.
 
@@ -168,20 +194,21 @@ $$ \text{Residual Error: } e_i = Y_i - \hat{Y_i} $$
 
 Here's an illustration. Let's say I start off just by drawing a green line through the origin with some upward slope. 
 
-<img src="06-a-regression_files/figure-html/lmi-ols1-1.png" width="336" />
+<img src="06-a-regression_files/figure-html/lmi-ols1-1.png" width="336" style="display: block; margin: auto;" />
 
 
 Here, the red lines illustrate the residual error; the difference between the actual value and our prediction. And to make our model better, we want to minimise the red bars.
 Some red bars are lower, some are higher, so let’s pivot the slope upwards.
 
 
-<img src="06-a-regression_files/figure-html/lmi-ols2-1.png" width="336" />
+<img src="06-a-regression_files/figure-html/lmi-ols2-1.png" width="336" style="display: block; margin: auto;" />
+
 
 Now, we have this yellow line. It looks better, overall the bars are smaller. Now we note that all the red bars are below, so instead of pivoting, let’s move the whole line down.
 
 
 
-<img src="06-a-regression_files/figure-html/lmi-ols3-1.png" width="336" />
+<img src="06-a-regression_files/figure-html/lmi-ols3-1.png" width="336" style="display: block; margin: auto;" />
 
 And finally we get the blue line here, which is the best solution to minimising the red bars. We want to minimise the residuals. How is this done?
 
@@ -234,24 +261,24 @@ Let's do $\hat{b_1}$ first: in R, we can calculate the covariance of $X$ and $Y$
 
 
 ```r
-b1hat = cov(df1$x, df1$y) / var(df1$x)
+b1hat = cov(df1$X, df1$Y) / var(df1$X)
 b1hat
 ```
 
 ```
-## [1] 2.103757
+## [1] NA
 ```
 
 Following the equation for $\hat{b_0}$, we can take the mean of $Y$, and subtract $\hat{b_1}$ times the mean of $X$, and we get -2.26.
 
 
 ```r
-b0hat = mean(df1$y) - b1hat * mean(df1$x)
+b0hat = mean(df1$Y) - b1hat * mean(df1$X)
 b0hat
 ```
 
 ```
-## [1] -2.261167
+## [1] NA
 ```
 
 
@@ -260,7 +287,7 @@ Finally let's go back to our regression output table, which we can summon using 
 
 
 ```r
-fit1 <- lm(y~x, df1)
+fit1 <- lm(Y~X, df1)
 # verifying the OLS solution
 summary(fit1)$coeff
 ```
@@ -268,24 +295,282 @@ summary(fit1)$coeff
 ```
 ##              Estimate Std. Error   t value    Pr(>|t|)
 ## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
-## x            2.103757 0.07804321 26.956313 6.44250e-10
+## X            2.103757 0.07804321 26.956313 6.44250e-10
 ```
 
 We can see that the Estimate of the Intercept, i.e., $\hat{b_0}$, is -2.26, and the Estimate of the Coefficient on $X$, i.e., $\hat{b_1}$, is 2.10. They agree exactly! Excellent. So our `lm()` is really doing OLS regression.
 
 
-Again, since $R$ does all the calculations for you, it's not necessary to know how to derive the OLS solutions (especially with more than 1 $X$), but it is handy to know the intuition behind it, especially when we get to more complicated regression.
+Again, since $R$ does all the calculations for you, it's not necessary to know how to derive the OLS solutions (especially with more than one independent variable $X$), but it is handy to know the intuition behind it, especially when we get to more complicated regression.
 
 
 
-## [Not Done:] Interpreting the output of a regression model
+## Interpreting the output of a regression model
+
+In this section we'll be going over the different parts of the linear model output. First, we'll talk about the coefficient table, then we'll talk about goodness-of-fit statistics. 
+
+
+Let's re-run the same model from before:
+
+
+```r
+fit1 <- lm(Y~X, df1)
+summary(fit1)
+```
+
+```
+## 
+## Call:
+## lm(formula = Y ~ X, data = df1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0781 -0.5736  0.1260  0.3071  1.5452 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -2.26117    0.46171  -4.897 0.000851 ***
+## X            2.10376    0.07804  26.956 6.44e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8185 on 9 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.9878,	Adjusted R-squared:  0.9864 
+## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10
+```
+
+First, `summary()` helpfully reiterates the formula that you put in. This is useful to check that it's running what you thought it ran.
+
+```
+Call:
+lm(formula = Y ~ X, data = df1)
+```
+
+It also tells you the minimum, 1st quantile (25\%-ile), median, 3rd quantile (75\%-ile), and maximum of the residuals ($e_i = Y_i - \hat{Y_i}$). That is, the minimum residual error of this model is -1.0781, the median residual error is 0.1260, and the maximum is 1.5452. 
+
+```
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0781 -0.5736  0.1260  0.3071  1.5452 
+```
 
 
 
-### [Not Done:]  The coefficient table
 
 
-### [Not Done:]  Goodness-of-fit statistics
+### The coefficient table
+
+Let's turn next to the coefficient table.
+
+
+```r
+summary(fit1)$coeff
+```
+
+```
+##              Estimate Std. Error   t value    Pr(>|t|)
+## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
+## X            2.103757 0.07804321 26.956313 6.44250e-10
+```
+
+
+Let’s focus on the "Estimate" column. These are the point estimate of $b_0$ and $b_1$, for the equation $$Y= b_0 + b_1 X$$ 
+
+What do these numbers mean?
+
+
+> $b_0$: The mean value of $Y$ when $X$ is zero
+
+The meaning of the intercept, $b_0$, is pretty straightforward. It is the average value of the dependent variable $Y$ when the independent variable $X$ is set to 0. (Graphically, it is the vertical intercept: the point at which the line crosses the vertical axis.)
+
+
+> $b_1$: According to the model, a one-unit change in $X$ results in a $b_1$-unit change in $Y$
+
+
+The coefficient on $X$, $b_1$, captures the magnitude of change in $Y$, per unit-change in $X$. Graphically, this is the slope of the regression line; if $b_1$ is larger, the line will have a steeper slope. Conversely, if $b_1$ is smaller in magnitude, the line will have a more shallow slope. If $b_1$ is positive, the slope will slope upwards `/`, otherwise if $b_1$ is negative, the slope will go downwards `\`.
+
+
+#### Example: Interpreting Simple Regression Coefficients {-}
+
+Let's go through an example. Let's say we fit a model to predict our monthly profit given the amount that we spent on advertising. Both Profit and Expenditure are measured in \$.
+
+$$\text{Profit} = -2500 + 3.21* \text{ExpenditureOnAdvertising}$$
+
+Coefficient | Interpretation
+--- | ---
+($b_0$) | Monthly profit is -\$2500 without any money spent on advertising.
+($b_1$) | For every dollar spent on Advertising, Profit increases by \$3.21
+
+> Q: Why could profit be negative here?
+
+Negative (or otherwise unusual) intercepts arise all the time in linear regression. In this example, this just means that, if we spent \$0 on advertising, we would still incur a negative profit of \$2,500, which could be due to omitted variables such as the amount we have to spent on rent, wages, and other upkeep.
+
+> Note that it is very important to be aware of the **units** that each of the variables, both $Y$ and $X$, are measured in. This will ensure accurate interpretation of the coefficients!
+
+
+
+#### The rest of the coefficient table {-}
+
+The estimated value of $b_0$ and $b_1$ are given in the first column (`Estimate`) of the coefficient table. Next to the estimates, we have the standard error of $b_0$ and $b_1$, which gives us a sense of the error associated with our estimate.
+
+
+In the third column, we have the `t value`. This is the t-statistic for a one-sample t-test comparing this coefficient to zero. That is, it is the one-sample t-test for the null hypothesis that the coefficient is zero, against the alternative, two-sided hypothesis that it is not zero:
+$$ H_0: b_j = 0 \\ H_1: b_j \neq 0 $$
+
+In fact, the t value here, is simply the Estimate divided by the Standard Error. (You can check it yourself!) 
+So with this t value, and the degrees of freedom of the model, we can actually calculate the `p value` for such a t test. R helpfully does this for you, and this is given in the fourth column, `Pr(>|t|)`. We can see that these numbers in this example are quite small, so both $b_0$ and $b_1$ are statistically different from zero.
+
+To the right of the `Pr(>|t|)` column, R will helpfully print out certain significance codes. 
+
+- If $p$ is between 0.1 and 0.05, R will print a `.`. 
+- If $p$ is less than 0.05 ($\alpha$=5\% level of significance) but greater than 0.01 (1\%), R will print a single `*`. 
+- If $p$ is less than 0.01 but greater than 0.001, R will print out two asteriks, `**`. 
+- Finally, if $p$ is less than 0.001, R will print out three asterisks, `***`.
+
+### Goodness-of-fit statistics
+
+Finally we'll look at the last part of the summary output.
+
+```
+## Residual standard error: 0.8185 on 9 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.9878, Adjusted R-squared:  0.9864 
+## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10
+```
+
+First, note that R will helpfully print out whether or not there were observations missing in our data. 
+
+> (1 observation deleted due to missingness)
+
+If, for any data point, either the $X$ value, or the $Y$ value (or both) are missing, then R will remove that observation from the linear model, and report it in the output. This is always something useful to check: do we have an abnormally large number of missing observations that we not expect? For example, perhaps one of the variables has a large number of missing observations? Or maybe when we were calculating new variables, we did not consider certain situations, and so end up with a lot of missing variables. (Or maybe we made a typo in our code!). This is always a good safety check before proceeding further. (Note that if there are no missing observations, R will omit this line).
+
+Next, we'll discuss a very important statistic, called the coefficient of determination, or $R^2$ ("R-squared"), which is a measure of the **proportion of variance explained by the model**. $R^2$ is a number that always lies between 0 and 1. An $R^2$ of 1 means it's a perfect model, it explains all of the variance (all the data points lie on the line. Alternatively, all the residuals are 0). 
+
+The total amount of variability of the data is captured in something called the Total Sum of Squares, which is the sum of the difference between each data point $Y_i$ and the mean $\bar{Y}$ (this is also related to the variance of $Y$):
+\begin{align}
+\text{Total Sum of Squares} \equiv \sum_i \left(Y_i - \bar{Y} \right)^2
+\end{align}
+
+The amount of variability that is explained by our model (which predicts $\hat{Y}$) is given by the Regression Sum of Squares, which is the sum of the squared error between our model predictions and the mean $\bar{Y}$:
+
+\begin{align}
+\text{Regression Sum of Squares} \equiv \sum_i \left(\hat{Y_i} - \bar{Y} \right)^2
+\end{align}
+
+
+And finally, the leftover amount of variability, also called the Residual Sum of Squares, is basically the difference between our model predictions $\hat{Y}$ and the actual data points $Y$. This was the term that Ordinary Least Squares regression tries to minimize, which we saw in the last Section.
+
+\begin{align}
+\text{Residual Sum of Squares} \equiv \sum_i \left(Y_i - \hat{Y_i} \right)^2
+\end{align}
+
+As it turns out, the Total Sum of Squares is made up of these two parts: the Regression Sum of Squares (or "*Explained*" Sum of Squares), and the Residual Sum of Squares (or the "*Unexplained*" Sum of Squares).
+
+\begin{align}
+\text{Total Sum of Squares} \equiv \text{Regression Sum of Squares} + \text{Residual Sum of Squares}
+\end{align}
+
+
+$R^2$ basically measures the proportion of explained variance over the total variance. In other words:
+
+\begin{align}
+R^2 &\equiv \frac{\text{Regression Sum of Squares}}{\text{Total Sum of Squares}} \\
+&\equiv 1 - \frac{\text{Residual Sum of Squares}}{\text{Total Sum of Squares}} 
+\end{align}
+
+
+In the output above, the $R^2$, in 
+
+> ## Multiple R-squared:  0.9878
+
+is 0.9878; this means that this model explains 98.8\% of the variance. That's really high!
+
+
+
+Now, how good is a good $R^2$? Unfortunately there's no good answer, because it really depends on contexts. In some fields and in some contexts, even an $R^2$ of .10 to .20 could be really good. In other fields, maybe we would expect $R^2$s of .80 or .90!
+
+
+
+## Examples: Simple Regression {#regression_example1}
+
+
+Here’s a simple example to illustrate what we've discussed so far, by using a dataset that comes bundled with R, the `mtcars` dataset.  We can load the dataset using `data(mtcars)`.
+
+First, let's see what the data looks like, using `head(mtcars)`, which prints out the first 6 rows of `mtcars`.
+
+
+```r
+data(mtcars)
+head(mtcars)
+```
+
+```
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+```
+
+
+We're interested in particular in predicting the fuel economy (`mtcars$mpg`, measured in miles per gallon) of certain vehicles using its horsepower (`mtcars$hp`).
+
+Let's plot what they look like on a scatterplot.
+
+
+```r
+ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point() + theme_bw()
+```
+
+<img src="06-a-regression_files/figure-html/lmi-mtcarsexample2-1.png" width="336" style="display: block; margin: auto;" />
+
+It looks like there is a linear trend! We can see visually that as horsepower increases, fuel economy drops; large cars tend to guzzle more fuel than smaller ones. And finally, we can run the linear model using using `lm(mpg ~ hp, mtcars)`:
+
+
+
+```r
+summary(lm(mpg ~ hp, mtcars))
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ hp, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7121 -2.1122 -0.8854  1.5819  8.2360 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 30.09886    1.63392  18.421  < 2e-16 ***
+## hp          -0.06823    0.01012  -6.742 1.79e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.863 on 30 degrees of freedom
+## Multiple R-squared:  0.6024,	Adjusted R-squared:  0.5892 
+## F-statistic: 45.46 on 1 and 30 DF,  p-value: 1.788e-07
+```
+
+
+
+Looking at the coefficient table, we can see that $b_0$, the intercept term, suggests suggests that, according to our model, a car with zero horsepower (if such a vehicle exists) would have a mean fuel economy of 30 mpg.
+
+We can look at the coefficient on $X$, which is $b_1 = -0.068$. Now this means that every unit-increase in horsepower would be associated with a decrease in fuel efficiency by -0.068 miles per gallon. Now, these are quite strange units to think about: for one, we do not think about horsepower in 1's and 2's; we think of horsepower in the tens or hundreds, and typical cars have horsepowers around 120 (the median in our dataset is 123). Secondly, -0.068 miles per gallon sounds pretty little, given that we see in the data that the mean fuel consumption is about 20 mpg.
+
+What we can do to help our interpretation is to multiply our coefficient to get more human-understandable values. This means that, according to the model, an increase of horsepower by 100 units, will be associated with a decrease in fuel efficiency by 6.8 miles per gallon. Ahh these numbers make more sense now. 
+
+
+Finally, we note that the $R^2$ of this model is 0.6024. This means that the model explains about 60\% of the variance in the data. Again, it's hard to objectively say whether this is amazing or still needs more work, because this really depends on our desired context.
+
+
+
+One takeaway from this example is that the linear model just calculates the coefficients based upon the numbers that we, as the analyst, provide it. It is up to us to then read the numbers that are output from the model, and **make sense** of those numbers, and interpret the meaning of those numbers. So this means being aware of units, and also not hesitating to wonder, "hmm this isn't right, did I code everything correctly?"
+
 
 
 ## [Not Done:]  Assumptions behind Linear Regression
@@ -552,7 +837,24 @@ Coefficient | Intepretation:
 
 
 
+## [Not Done:] Exercises: Linear Model I
 
+1a) For this simple linear regression,
+$$ \text{Income} = b_0 + b_1 \text{Years of Education} $$
+We find $b_0$=-4500, $b_1$=500 (in units of \$/year). What does this mean? [Negative income?!]
+
+
+1b) 
+For this multiple linear regression,
+$$\text{Income} = b_0 + b_1 \text{Years of Education} + b_2 \text{Years of Experience}$$
+We find $b_0$=-3700, $b_1$=450, $b_2$=350 (in $/year). What do these mean?
+
+
+1c) 
+For this simple linear regression,
+$$\text{Income} = b_0 + b_1 \text{Gender}$$
+Let’s say Gender = 1 if Female, 0 if Male, and 
+we find that $b_0$=3500, $b_1$=5 (in \$). What does this mean?
 
 
 

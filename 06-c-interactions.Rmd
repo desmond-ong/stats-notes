@@ -1,8 +1,9 @@
 # [Not Done:] The Linear Model III: Interactions
 
 
-also cover interpretation.
-simple effect vs main effect
+- Cover interpretation of interactions. 
+- Concept of moderation
+- simple effect vs main effect
 
 
 The learning objectives for this chapter are:
@@ -20,7 +21,5 @@ library(ggplot2) # for plotting
 
 
 
-
-<img src="images/optim/optim-plot-3.png" width="500">
 
 

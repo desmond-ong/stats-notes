@@ -168,8 +168,6 @@ Non-negativity | $X_1 \geq 0$ <br> $X_2 \geq 0$
 ## Solving the Optimization Model
 
 
-### Writing out the Optimization model
-
 Before we start, it is good practice to formally write down the optimisation model that you want to solve.
 
 This summarises all the information in the problem into one system of equations to solve. So for the Farming Example, we have:
@@ -186,8 +184,6 @@ Non-negativity | $X_1 \geq 0$ <br> $X_2 \geq 0$
 
 Any solution that satisfies all the constraints is a _feasible_ solution. In optimization, we want to find the best / optimal feasible solution.
 
-
-### Solving an optimization problem graphically
 
 Let us understand this problem in more detail, by graphing our constraints as regions on an $X_1$-$X_2$ graph, with $X_1$ on the horizontal axis and $X_2$ on the vertical axis.
 
@@ -643,7 +639,7 @@ More broadly, as analysts we could run "what-if" analyses to study the impact of
 
 
 
-## Summary
+## Linear Optimization Summary
 
 In this chapter, we covered the basics of formulating and solving simple linear optimisation problems, which help us "prescribe" the best business choices to make. 
 

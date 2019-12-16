@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics</title>
+  <title>5.4 Interpreting the output of a regression model | Some notes on Statistics and Data Analytics</title>
   <meta name="description" content="A collection of statistics notes useful for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.4 Interpreting the output of a regression model | Some notes on Statistics and Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.3 Ordinary Least Squares Regression | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.4 Interpreting the output of a regression model | Some notes on Statistics and Data Analytics" />
   
   <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="running-a-regression.html"/>
-<link rel="next" href="interpreting-the-output-of-a-regression-model.html"/>
+<link rel="prev" href="ordinary-least-squares-regression.html"/>
+<link rel="next" href="regression-example1.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -220,73 +220,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ordinary-least-squares-regression" class="section level2">
-<h2><span class="header-section-number">5.3</span> Ordinary Least Squares Regression</h2>
-<p>In this section we’ll be taking a quick peek behind what the model is doing, and we’ll discuss the formulation of <strong>Ordinary Least Squares</strong> regression.</p>
-<p>In linear regression, we assume that the “true” model is such that <span class="math inline">\(Y\)</span> is <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>*<span class="math inline">\(X\)</span> plus some “errors”, which could be due to other, unmeasured factors (omitted variables), or maybe just random noise.</p>
-<p><span class="math display">\[ ``\text{True&quot; model: } Y = b_0 + b_1 X + \epsilon \]</span></p>
-<p>In fact, within regression, we make the further assumption that the errors are normally distributed around zero with some variance. (So <span class="math inline">\(\epsilon \sim \mathscr{N}(0, \sigma)\)</span>).</p>
-<p>Since we don’t know the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, we can only choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>; using this we can compute the prediction of our model, <span class="math inline">\(\hat{Y}\)</span>. We want our <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to be as close to the “true” <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, which will also make our predictions <span class="math inline">\(\hat{Y}\)</span> as close to the actual <span class="math inline">\(Y\)</span>.</p>
-<p>To do this, we define the Residual or <strong>Residual Error</strong> of our model. For the <span class="math inline">\(i\)</span>-th data point, the residual is the difference between the actual <span class="math inline">\(Y_i\)</span> and our model predicted, <span class="math inline">\(\hat{Y_i}\)</span>.</p>
-<p><span class="math display">\[ \text{Residual Error: } e_i = Y_i - \hat{Y_i} \]</span></p>
-<p>Here’s an illustration. Let’s say I start off just by drawing a green line through the origin with some upward slope.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols1-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>Here, the red lines illustrate the residual error; the difference between the actual value and our prediction. And to make our model better, we want to minimise the red bars.
-Some red bars are lower, some are higher, so let’s pivot the slope upwards.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols2-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>Now, we have this yellow line. It looks better, overall the bars are smaller. Now we note that all the red bars are below, so instead of pivoting, let’s move the whole line down.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-ols3-1.png" width="336" style="display: block; margin: auto;" /></p>
-<p>And finally we get the blue line here, which is the best solution to minimising the red bars. We want to minimise the residuals. How is this done?</p>
-<div id="ordinary-least-squares-derivation" class="section level3">
-<h3><span class="header-section-number">5.3.1</span> Ordinary Least Squares Derivation</h3>
-<p>The residuals can be positive or negative, so if we simply add the residuals up we might be cancelling out some of them. So instead of minimising the sum of the residuals, we usually choose to square the residuals and minimise the sum of squares of the residuals. (Mathematically it becomes easier to work with the square than the absolute value).</p>
-<p>So here, we have the Ordinary Least Squares Regression, where the goal is to choose <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span> to minimise the sum of squares of the residuals <span class="math inline">\(\sum_{i} e_i^2 = \sum_i \left( Y_i - \hat{Y_i} \right)^2\)</span>.</p>
-<p>We can do this by taking the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span> and <span class="math inline">\(\hat{b_1}\)</span>, and setting them both to 0. First, we define the following variables to simplify notation:</p>
-<p><span class="math display">\[\begin{align}
-\text{Define } \bar{Y} &amp;\equiv \frac{1}{n}\sum_i^n Y_i \\
-\text{Define } \bar{X} &amp;\equiv \frac{1}{n}\sum_i^n X_i \\
-\text{Define } Z &amp;\equiv \sum_i \left( Y_i - \hat{Y_i} \right)^2 \\
-&amp;= \left( Y_i - \hat{b_0} - \hat{b_1} X \right)^2 \\
-\end{align}\]</span></p>
-<p>Then we take the partial derivative with respect to <span class="math inline">\(\hat{b_0}\)</span>, solve for this <span class="math inline">\(\hat{b_0}\)</span>, then substitute it into the partial deriative with respect to <span class="math inline">\(\hat{b_1}\)</span>:
-<span class="math display">\[\begin{align}
-\text{Partial deriative w.r.t. } \hat{b_0} : \; \; 
-\frac{\partial Z}{\partial \hat{b_0}} &amp;= \sum_i^n -2 \left(Y_i - \hat{b_0} - \hat{b_1}X_i \right) \\
-\text{Setting the derivative to 0 and solving, we have: } \; \;
-\hat{b_0} &amp;= \frac{1}{n}\sum_i^n Y_i - \frac{1}{n}\sum_i^n\hat{b_1}X_i \\
-\implies \hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
-\text{Partial deriative w.r.t. } \hat{b_1} : \; \;\frac{\partial Z}{\partial \hat{b_1}} &amp;= \sum_i^n  -2X_i \left( Y_i - \hat{b_0} - \hat{b_1}X_i \right) 
-\end{align}\]</span>
-<span class="math display">\[\begin{align}
-\text{Setting the derivative to 0 and substituting $\hat{b_1}$, we have: } &amp; \\
-\sum_i^n X_i Y_i - \sum_i^n (\bar{Y}-\hat{b_1}\bar{X})X_i - \sum_i^n\hat{b_1}X_i^2 &amp;= 0 \\
-\sum_i^n X_i Y_i - \bar{Y} \sum_i^n X_i + \hat{b_1} \left(\bar{X} \sum_i^n X_i - \sum_i^n X_i^2 \right) &amp;= 0 \\
-\hat{b_1} &amp;= \frac{\sum_i^n X_i Y_i - \bar{Y}\sum_i^n X_i }{ \sum_i^n X_i^2 - \bar{X} \sum_i^n X_i } \\ &amp;= \frac{\sum_i^n X_i Y_i - n\bar{X}\bar{Y}}{ \sum_i^n X_i^2 - n\bar{X}^2} \\
-\text{simplifying: } \; \; \hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 }
-\end{align}\]</span></p>
-<p>And we end up with the final OLS solution:</p>
-<p><span class="math display">\[\begin{align}
-\hat{b_0} &amp;= \bar{Y} - \hat{b_1} \bar{X} \\
-\hat{b_1} &amp;= \frac{\sum_i^n (X_i - \bar{X})(Y_i - \bar{Y})}{ \sum_i^n (X_i - \bar{X})^2 } = \frac{Cov(X,Y)}{Var(X)}
-\end{align}\]</span></p>
-<p>The good news is that <span class="math inline">\(R\)</span> already does this for you. Let’s check this solution with the <code>lm()</code> model we fit on the previous page!</p>
-<p>Let’s do <span class="math inline">\(\hat{b_1}\)</span> first: in R, we can calculate the covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, and divide that by the variance of <span class="math inline">\(X\)</span>, and save that into b1-hat: for this dataset we get 2.10.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">b1hat =<span class="st"> </span><span class="kw">cov</span>(df1<span class="op">$</span>X, df1<span class="op">$</span>Y) <span class="op">/</span><span class="st"> </span><span class="kw">var</span>(df1<span class="op">$</span>X)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">b1hat</a></code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<p>Following the equation for <span class="math inline">\(\hat{b_0}\)</span>, we can take the mean of <span class="math inline">\(Y\)</span>, and subtract <span class="math inline">\(\hat{b_1}\)</span> times the mean of <span class="math inline">\(X\)</span>, and we get -2.26.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">b0hat =<span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>Y) <span class="op">-</span><span class="st"> </span>b1hat <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(df1<span class="op">$</span>X)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">b0hat</a></code></pre></div>
-<pre><code>## [1] NA</code></pre>
-<p>Finally let’s go back to our regression output table, which we can summon using <code>summary(...)$coeff</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># verifying the OLS solution</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
+<div id="interpreting-the-output-of-a-regression-model" class="section level2">
+<h2><span class="header-section-number">5.4</span> Interpreting the output of a regression model</h2>
+<p>In this section we’ll be going over the different parts of the linear model output. First, we’ll talk about the coefficient table, then we’ll talk about goodness-of-fit statistics.</p>
+<p>Let’s re-run the same model from before:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Y ~ X, data = df1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0781 -0.5736  0.1260  0.3071  1.5452 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -2.26117    0.46171  -4.897 0.000851 ***
+## X            2.10376    0.07804  26.956 6.44e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8185 on 9 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.9878, Adjusted R-squared:  0.9864 
+## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10</code></pre>
+<p>First, <code>summary()</code> helpfully reiterates the formula that you put in. This is useful to check that it’s running what you thought it ran.</p>
+<pre><code>Call:
+lm(formula = Y ~ X, data = df1)</code></pre>
+<p>It also tells you the minimum, 1st quantile (25%-ile), median, 3rd quantile (75%-ile), and maximum of the residuals (<span class="math inline">\(e_i = Y_i - \hat{Y_i}\)</span>). That is, the minimum residual error of this model is -1.0781, the median residual error is 0.1260, and the maximum is 1.5452.</p>
+<pre><code>Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0781 -0.5736  0.1260  0.3071  1.5452 </code></pre>
+<div id="the-coefficient-table" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> The coefficient table</h3>
+<p>Let’s turn next to the coefficient table.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
 <pre><code>##              Estimate Std. Error   t value    Pr(&gt;|t|)
 ## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
 ## X            2.103757 0.07804321 26.956313 6.44250e-10</code></pre>
-<p>We can see that the Estimate of the Intercept, i.e., <span class="math inline">\(\hat{b_0}\)</span>, is -2.26, and the Estimate of the Coefficient on <span class="math inline">\(X\)</span>, i.e., <span class="math inline">\(\hat{b_1}\)</span>, is 2.10. They agree exactly! Excellent. So our <code>lm()</code> is really doing OLS regression.</p>
-<p>Again, since <span class="math inline">\(R\)</span> does all the calculations for you, it’s not necessary to know how to derive the OLS solutions (especially with more than one independent variable <span class="math inline">\(X\)</span>), but it is handy to know the intuition behind it, especially when we get to more complicated regression.</p>
+<p>Let’s focus on the “Estimate” column. These are the point estimate of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, for the equation <span class="math display">\[Y= b_0 + b_1 X\]</span></p>
+<p>What do these numbers mean?</p>
+<blockquote>
+<p><span class="math inline">\(b_0\)</span>: The mean value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span> is zero</p>
+</blockquote>
+<p>The meaning of the intercept, <span class="math inline">\(b_0\)</span>, is pretty straightforward. It is the average value of the dependent variable <span class="math inline">\(Y\)</span> when the independent variable <span class="math inline">\(X\)</span> is set to 0. (Graphically, it is the vertical intercept: the point at which the line crosses the vertical axis.)</p>
+<blockquote>
+<p><span class="math inline">\(b_1\)</span>: According to the model, a one-unit change in <span class="math inline">\(X\)</span> results in a <span class="math inline">\(b_1\)</span>-unit change in <span class="math inline">\(Y\)</span></p>
+</blockquote>
+<p>The coefficient on <span class="math inline">\(X\)</span>, <span class="math inline">\(b_1\)</span>, captures the magnitude of change in <span class="math inline">\(Y\)</span>, per unit-change in <span class="math inline">\(X\)</span>. Graphically, this is the slope of the regression line; if <span class="math inline">\(b_1\)</span> is larger, the line will have a steeper slope. Conversely, if <span class="math inline">\(b_1\)</span> is smaller in magnitude, the line will have a more shallow slope. If <span class="math inline">\(b_1\)</span> is positive, the slope will slope upwards <code>/</code>, otherwise if <span class="math inline">\(b_1\)</span> is negative, the slope will go downwards <code>\</code>.</p>
+<div id="example-interpreting-simple-regression-coefficients" class="section level4 unnumbered">
+<h4>Example: Interpreting Simple Regression Coefficients</h4>
+<p>Let’s go through an example. Let’s say we fit a model to predict our monthly profit given the amount that we spent on advertising. Both Profit and Expenditure are measured in $.</p>
+<p><span class="math display">\[\text{Profit} = -2500 + 3.21* \text{ExpenditureOnAdvertising}\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th>Coefficient</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(<span class="math inline">\(b_0\)</span>)</td>
+<td>Monthly profit is -$2500 without any money spent on advertising.</td>
+</tr>
+<tr class="even">
+<td>(<span class="math inline">\(b_1\)</span>)</td>
+<td>For every dollar spent on Advertising, Profit increases by $3.21</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Q: Why could profit be negative here?</p>
+</blockquote>
+<p>Negative (or otherwise unusual) intercepts arise all the time in linear regression. In this example, this just means that, if we spent $0 on advertising, we would still incur a negative profit of $2,500, which could be due to omitted variables such as the amount we have to spent on rent, wages, and other upkeep.</p>
+<blockquote>
+<p>Note that it is very important to be aware of the <strong>units</strong> that each of the variables, both <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, are measured in. This will ensure accurate interpretation of the coefficients!</p>
+</blockquote>
+</div>
+<div id="the-rest-of-the-coefficient-table" class="section level4 unnumbered">
+<h4>The rest of the coefficient table</h4>
+<p>The estimated value of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> are given in the first column (<code>Estimate</code>) of the coefficient table. Next to the estimates, we have the standard error of <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>, which gives us a sense of the error associated with our estimate.</p>
+<p>In the third column, we have the <code>t value</code>. This is the t-statistic for a one-sample t-test comparing this coefficient to zero. That is, it is the one-sample t-test for the null hypothesis that the coefficient is zero, against the alternative, two-sided hypothesis that it is not zero:
+<span class="math display">\[ H_0: b_j = 0 \\ H_1: b_j \neq 0 \]</span></p>
+<p>In fact, the t value here, is simply the Estimate divided by the Standard Error. (You can check it yourself!)
+So with this t value, and the degrees of freedom of the model, we can actually calculate the <code>p value</code> for such a t test. R helpfully does this for you, and this is given in the fourth column, <code>Pr(&gt;|t|)</code>. We can see that these numbers in this example are quite small, so both <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> are statistically different from zero.</p>
+<p>To the right of the <code>Pr(&gt;|t|)</code> column, R will helpfully print out certain significance codes.</p>
+<ul>
+<li>If <span class="math inline">\(p\)</span> is between 0.1 and 0.05, R will print a <code>.</code>.</li>
+<li>If <span class="math inline">\(p\)</span> is less than 0.05 (<span class="math inline">\(\alpha\)</span>=5% level of significance) but greater than 0.01 (1%), R will print a single <code>*</code>.</li>
+<li>If <span class="math inline">\(p\)</span> is less than 0.01 but greater than 0.001, R will print out two asteriks, <code>**</code>.</li>
+<li>Finally, if <span class="math inline">\(p\)</span> is less than 0.001, R will print out three asterisks, <code>***</code>.</li>
+</ul>
+</div>
+</div>
+<div id="goodness-of-fit-statistics" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> Goodness-of-fit statistics</h3>
+<p>Finally we’ll look at the last part of the summary output.</p>
+<pre><code>## Residual standard error: 0.8185 on 9 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.9878, Adjusted R-squared:  0.9864 
+## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10</code></pre>
+<p>First, note that R will helpfully print out whether or not there were observations missing in our data.</p>
+<blockquote>
+<p>(1 observation deleted due to missingness)</p>
+</blockquote>
+<p>If, for any data point, either the <span class="math inline">\(X\)</span> value, or the <span class="math inline">\(Y\)</span> value (or both) are missing, then R will remove that observation from the linear model, and report it in the output. This is always something useful to check: do we have an abnormally large number of missing observations that we not expect? For example, perhaps one of the variables has a large number of missing observations? Or maybe when we were calculating new variables, we did not consider certain situations, and so end up with a lot of missing variables. (Or maybe we made a typo in our code!). This is always a good safety check before proceeding further. (Note that if there are no missing observations, R will omit this line).</p>
+<p>Next, we’ll discuss a very important statistic, called the coefficient of determination, or <span class="math inline">\(R^2\)</span> (“R-squared”), which is a measure of the <strong>proportion of variance explained by the model</strong>. <span class="math inline">\(R^2\)</span> is a number that always lies between 0 and 1. An <span class="math inline">\(R^2\)</span> of 1 means it’s a perfect model, it explains all of the variance (all the data points lie on the line. Alternatively, all the residuals are 0).</p>
+<p>The total amount of variability of the data is captured in something called the Total Sum of Squares, which is the sum of the difference between each data point <span class="math inline">\(Y_i\)</span> and the mean <span class="math inline">\(\bar{Y}\)</span> (this is also related to the variance of <span class="math inline">\(Y\)</span>):
+<span class="math display">\[\begin{align}
+\text{Total Sum of Squares} \equiv \sum_i \left(Y_i - \bar{Y} \right)^2
+\end{align}\]</span></p>
+<p>The amount of variability that is explained by our model (which predicts <span class="math inline">\(\hat{Y}\)</span>) is given by the Regression Sum of Squares, which is the sum of the squared error between our model predictions and the mean <span class="math inline">\(\bar{Y}\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\text{Regression Sum of Squares} \equiv \sum_i \left(\hat{Y_i} - \bar{Y} \right)^2
+\end{align}\]</span></p>
+<p>And finally, the leftover amount of variability, also called the Residual Sum of Squares, is basically the difference between our model predictions <span class="math inline">\(\hat{Y}\)</span> and the actual data points <span class="math inline">\(Y\)</span>. This was the term that Ordinary Least Squares regression tries to minimize, which we saw in the last Section.</p>
+<p><span class="math display">\[\begin{align}
+\text{Residual Sum of Squares} \equiv \sum_i \left(Y_i - \hat{Y_i} \right)^2
+\end{align}\]</span></p>
+<p>As it turns out, the Total Sum of Squares is made up of these two parts: the Regression Sum of Squares (or “<em>Explained</em>” Sum of Squares), and the Residual Sum of Squares (or the “<em>Unexplained</em>” Sum of Squares).</p>
+<p><span class="math display">\[\begin{align}
+\text{Total Sum of Squares} \equiv \text{Regression Sum of Squares} + \text{Residual Sum of Squares}
+\end{align}\]</span></p>
+<p><span class="math inline">\(R^2\)</span> basically measures the proportion of explained variance over the total variance. In other words:</p>
+<p><span class="math display">\[\begin{align}
+R^2 &amp;\equiv \frac{\text{Regression Sum of Squares}}{\text{Total Sum of Squares}} \\
+&amp;\equiv 1 - \frac{\text{Residual Sum of Squares}}{\text{Total Sum of Squares}} 
+\end{align}\]</span></p>
+<p>In the output above, the <span class="math inline">\(R^2\)</span>, in</p>
+<blockquote>
+<h2 id="multiple-r-squared-0.9878"><span class="header-section-number">5.4.2</span> Multiple R-squared: 0.9878</h2>
+</blockquote>
+<p>is 0.9878; this means that this model explains 98.8% of the variance. That’s really high!</p>
+<p>Now, how good is a good <span class="math inline">\(R^2\)</span>? Unfortunately there’s no good answer, because it really depends on contexts. In some fields and in some contexts, even an <span class="math inline">\(R^2\)</span> of .10 to .20 could be really good. In other fields, maybe we would expect <span class="math inline">\(R^2\)</span>s of .80 or .90!</p>
 </div>
 </div>
             </section>
@@ -294,8 +362,8 @@ Some red bars are lower, some are higher, so let’s pivot the slope upwards.</p
           </div>
         </div>
       </div>
-<a href="running-a-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interpreting-the-output-of-a-regression-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ordinary-least-squares-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-example1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

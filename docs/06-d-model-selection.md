@@ -15,3 +15,4 @@ library(ggplot2) # for plotting
 ```
 
 
+Pairwise model comparisons

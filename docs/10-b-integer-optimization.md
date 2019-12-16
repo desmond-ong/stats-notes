@@ -243,7 +243,7 @@ In order to maximize her interest while completing the degree, Natalie should ch
 
 
 
-## Summary
+## Integer Optimization Summary
 
 In this lecture we've covered how to use linear optimisation to solved integer-valued optimisation problems, where some of the decision variables are constrained to be integers, or even constrained to be binary variables (which can be used to model yes/no decisions).
 
