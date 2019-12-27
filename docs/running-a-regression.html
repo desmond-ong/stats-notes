@@ -4,24 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.2 Running a regression | Some notes on Statistics and Data Analytics</title>
-  <meta name="description" content="A collection of statistics notes useful for data analytics." />
+  <title>5.2 Running a regression | Some notes on Statistics and Data Analytics (Working Title)</title>
+  <meta name="description" content="A collection of statistics notes for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.2 Running a regression | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.2 Running a regression | Some notes on Statistics and Data Analytics (Working Title)" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes useful for data analytics." />
+  <meta property="og:description" content="A collection of statistics notes for data analytics." />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.2 Running a regression | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.2 Running a regression | Some notes on Statistics and Data Analytics (Working Title)" />
   
-  <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
+  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
   
 
-<meta name="author" content="Desmond Ong" />
+<meta name="author" content="Desmond C. Ong" />
 
 
 
@@ -114,6 +114,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -126,7 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">My Statistics Notes</a></li>
+<li><a href="./">Some notes on Statistics</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -139,7 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="running-a-regression.html"><a href="running-a-regression.html"><i class="fa fa-check"></i><b>5.2</b> Running a regression</a></li>
+<li class="chapter" data-level="5.2" data-path="running-a-regression.html"><a href="running-a-regression.html"><i class="fa fa-check"></i><b>5.2</b> Running a regression</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="running-a-regression.html"><a href="running-a-regression.html#structure-your-dataset"><i class="fa fa-check"></i><b>5.2.1</b> Structure your dataset</a></li>
+<li class="chapter" data-level="5.2.2" data-path="running-a-regression.html"><a href="running-a-regression.html#visualize"><i class="fa fa-check"></i><b>5.2.2</b> Visualize</a></li>
+<li class="chapter" data-level="5.2.3" data-path="running-a-regression.html"><a href="running-a-regression.html#running-the-linear-model"><i class="fa fa-check"></i><b>5.2.3</b> Running the linear model</a></li>
+</ul></li>
 <li class="chapter" data-level="5.3" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html"><i class="fa fa-check"></i><b>5.3</b> Ordinary Least Squares Regression</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html#ordinary-least-squares-derivation"><i class="fa fa-check"></i><b>5.3.1</b> Ordinary Least Squares Derivation</a></li>
 </ul></li>
@@ -148,14 +153,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="interpreting-the-output-of-a-regression-model.html"><a href="interpreting-the-output-of-a-regression-model.html#goodness-of-fit-statistics"><i class="fa fa-check"></i><b>5.4.2</b> Goodness-of-fit statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="regression-example1.html"><a href="regression-example1.html"><i class="fa fa-check"></i><b>5.5</b> Examples: Simple Regression</a></li>
-<li class="chapter" data-level="5.6" data-path="not-done-assumptions-behind-linear-regression.html"><a href="not-done-assumptions-behind-linear-regression.html"><i class="fa fa-check"></i><b>5.6</b> [Not Done:] Assumptions behind Linear Regression</a></li>
-<li class="chapter" data-level="5.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>5.7</b> Multiple Linear Regression</a></li>
-<li class="chapter" data-level="5.8" data-path="standardized-coefficients.html"><a href="standardized-coefficients.html"><i class="fa fa-check"></i><b>5.8</b> Standardized Coefficients</a></li>
-<li class="chapter" data-level="5.9" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html"><i class="fa fa-check"></i><b>5.9</b> Categorical Independent Variables</a><ul>
-<li class="chapter" data-level="5.9.1" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding"><i class="fa fa-check"></i><b>5.9.1</b> Dummy Coding</a></li>
-<li class="chapter" data-level="5.9.2" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding-with-3-levels"><i class="fa fa-check"></i><b>5.9.2</b> Dummy Coding with 3 levels</a></li>
-<li class="chapter" data-level="5.9.3" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#the-reference-group"><i class="fa fa-check"></i><b>5.9.3</b> The Reference Group</a></li>
-<li class="chapter" data-level="5.9.4" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#interpreting-categorical-and-continuous-independent-variables"><i class="fa fa-check"></i><b>5.9.4</b> Interpreting categorical and continuous independent variables</a></li>
+<li class="chapter" data-level="5.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>5.6</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="5.7" data-path="standardized-coefficients.html"><a href="standardized-coefficients.html"><i class="fa fa-check"></i><b>5.7</b> Standardized Coefficients</a></li>
+<li class="chapter" data-level="5.8" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html"><i class="fa fa-check"></i><b>5.8</b> Categorical Independent Variables</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding"><i class="fa fa-check"></i><b>5.8.1</b> Dummy Coding</a></li>
+<li class="chapter" data-level="5.8.2" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding-with-3-levels"><i class="fa fa-check"></i><b>5.8.2</b> Dummy Coding with 3 levels</a></li>
+<li class="chapter" data-level="5.8.3" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#the-reference-group"><i class="fa fa-check"></i><b>5.8.3</b> The Reference Group</a></li>
+<li class="chapter" data-level="5.8.4" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#interpreting-categorical-and-continuous-independent-variables"><i class="fa fa-check"></i><b>5.8.4</b> Interpreting categorical and continuous independent variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html"><i class="fa fa-check"></i><b>5.9</b> Assumptions behind Linear Regression</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.9.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.9.2" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#not-done-multicollinearity"><i class="fa fa-check"></i><b>5.9.2</b> [Not done:] Multicollinearity</a></li>
+<li class="chapter" data-level="5.9.3" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#not-done-autocorrelation"><i class="fa fa-check"></i><b>5.9.3</b> [Not done:] Autocorrelation</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="not-done-exercises-linear-model-i.html"><a href="not-done-exercises-linear-model-i.html"><i class="fa fa-check"></i><b>5.10</b> [Not Done:] Exercises: Linear Model I</a></li>
 <li class="chapter" data-level="5.11" data-path="todo-discuss-transformations.html"><a href="todo-discuss-transformations.html"><i class="fa fa-check"></i><b>5.11</b> [todo:] Discuss Transformations?</a></li>
@@ -168,8 +177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
 <li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
-<li class="chapter" data-level="10" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Data Mining</a></li>
-<li class="chapter" data-level="11" data-path="not-done-simulations.html"><a href="not-done-simulations.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Simulations</a></li>
+<li class="chapter" data-level="10" data-path="not-done-simulations.html"><a href="not-done-simulations.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Simulations</a></li>
+<li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
 <li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
 <li class="chapter" data-level="12.2" data-path="objective-functions-decision-variables.html"><a href="objective-functions-decision-variables.html"><i class="fa fa-check"></i><b>12.2</b> Objective Functions &amp; Decision Variables</a><ul>
@@ -212,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
           </h1>
         </div>
 
@@ -222,7 +231,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="running-a-regression" class="section level2">
 <h2><span class="header-section-number">5.2</span> Running a regression</h2>
+<p><span class="badge badge-bt"> BT1101 </span></p>
 <p>The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables. Often, this is clear from the context: As a researcher we have an objective to model or predict a certain variable — that will be the dependent variable, <span class="math inline">\(Y\)</span>. And we have variables that we think would predict that, and those will be our <span class="math inline">\(X\)</span>’s. (Later we’ll discuss the differences between predictors, covariates, and confounders, which could all statistically affect the depenent variable.)</p>
+<div id="structure-your-dataset" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Structure your dataset</h3>
 <p>The second step is to structure your data.
 For most Linear Regression (at least for the examples in this Chapter), we almost always want <code>wide</code>-form data, discussed in the earlier Chapter on data handling, where you have each row of the data frame be one observation, and you have one column for <span class="math inline">\(Y\)</span> and one column for <span class="math inline">\(X\)</span>. (In later Chapters we shall see when we may need <code>long</code>-form data for other types of regression.)</p>
 <p>For example, the <code>mtcars</code> dataset that comes with R is an example of wide-form data. Each row is one observation (i.e., one car), and each column is an attribute/variable associated with that observation (e.g., fuel economy, number of cylinders, horsepower, etc).</p>
@@ -231,6 +243,9 @@ For most Linear Regression (at least for the examples in this Chapter), we almos
 ## Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
 ## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
+</div>
+<div id="visualize" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> Visualize</h3>
 <p>The third step is to visualize your data, discussed also in the earlier Chapter on Data Visualization. For regression analyses, visualization of your data allows you to see whether there may be linear trends or non-linear trends (or no trends).</p>
 <p><img src="06-a-regression_files/figure-html/lmi-plot2a-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-2.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-3.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot2a-4.png" width="336" style="display: block; margin: auto;" /></p>
 <p>Linear models assume that there exists a linear trend between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. If you have a non-linear trend, like the quadratic and exponential ones shown here, you may want to think about transforming some of your variables to see if you can get a linear trend before running the linear model. If you visually no trend, like the last plot above, you can confirm this lack of trend just by running a linear model.</p>
@@ -239,17 +254,55 @@ For most Linear Regression (at least for the examples in this Chapter), we almos
 <p>Let’s plot the two variables in our toy dataset <code>df1</code>:</p>
 <p><img src="06-a-regression_files/figure-html/lmi-plot2c-1.png" width="336" style="display: block; margin: auto;" /></p>
 <p>Looks very linear! So we should expect to see a strong linear relationship between <code>df$X</code> and <code>df$Y</code>.</p>
+<div id="additional-plotting-tips" class="section level6 unnumbered">
+<h6>Additional plotting tips</h6>
+<p>If you are using <code>ggplot()</code> to plot your data, you can ask it to plot the best fit <strong>linear</strong> line using <code>geom_smooth(method=&quot;lm&quot;, se=FALSE)</code>.</p>
+<blockquote>
+<p>(If you don’t specify the method, it defaults to a non-linear smoothing, e.g. LOESS smoothing using stats::loess() for N&lt;1000 observations.
+“se=FALSE” will remove the standard error ribbon – try setting it to true to see what it gives you).</p>
+</blockquote>
+<p>For example, if I wanted to plot the best-fitting linear line to the graph above with the exponential trend, I can use the following chunk of code, which produces:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">ggplot</span>(df0, <span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y_exp)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X </span><span class="ch">\n</span><span class="st"> Exponential Trend&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">        <span class="dt">panel.background =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
+<p><img src="06-a-regression_files/figure-html/lmi-plot2d-example-of-smooth-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>Now you can see above that the line does have a significant slope (and indeed if you actually run the linear model using the code in the next section, you’ll see that there is a significant linear relationship). However, the linear line is not really the best description of the data, is it? This is why it is helpful to always plot our variables, so that we can see if we’re trying to fit a linear line to data that is better described by a non-linear relationship.</p>
+<p>Consider this other case, where we now have discrete X variables.</p>
+<p><img src="06-a-regression_files/figure-html/lmi-plot2e-example-of-jitter1-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>It might be hard to see any linear trend. And in fact a lot of the data are overlapping, so it’s hard to see where the data are! This is where we have two more plotting tricks up our sleeve.</p>
+<p>First, is to jitter each point. Jittering means slightly shifting each datapoint a little to the left/right (jitter in the “width” direction), or up and down (“height”). This is mainly for visualization, we are not actually changing our data values. We do this giving the option <code>position=position_jitter(width= XXX , height= YYY)</code> to <code>geom_point()</code>, where XXX is how much is our maximum jitter on the horizontal/x direction, and YYY is how much we want to jitter on the vertical/y axis. If say we have an integer valued variable (“How happy are you” on a scale from 1-5), then I recommend a jitter of about 0.1 to 0.2. This is big enough to be seen, but small enough to not be confusing.</p>
+<p>Second tip, is to make your points slightly transparent, using the <code>alpha = ZZZ</code> option in <code>geom_point()</code>. This will help you see dense clusters of points vs. non-dense clusters.</p>
+<p>And of course, we can use <code>geom_smooth()</code>. So here we have:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ggplot</span>(df0, <span class="kw">aes</span>(<span class="dt">x=</span>x_discrete, <span class="dt">y=</span>y_discrete)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">position=</span><span class="kw">position_jitter</span>(<span class="dt">width=</span><span class="fl">0.2</span>, <span class="dt">height=</span> <span class="fl">0.2</span>), <span class="dt">alpha=</span><span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;X </span><span class="ch">\n</span><span class="st"> Discrete points, with jitter, alpha, and best-fit&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Y&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(), </a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">        <span class="dt">panel.background =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>())</a></code></pre></div>
+<p><img src="06-a-regression_files/figure-html/lmi-plot2e-example-of-jitter2-1.png" width="336" style="display: block; margin: auto;" /></p>
+<p>And it’s much easier to see the trend!</p>
+</div>
+</div>
+<div id="running-the-linear-model" class="section level3">
+<h3><span class="header-section-number">5.2.3</span> Running the linear model</h3>
 <p>Finally, we’re ready to run the model. And in fact, it’s one line of code. <code>lm</code> for linear model, and then you provide an “equation”, <code>y~x</code>, which is R syntax for “Y depends upon X”. The final argument is the dataframe in which the data is stored.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># running a Linear Model</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># running a Linear Model</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a></code></pre></div>
 <blockquote>
 <p><span style="color:blue; font-size:150%">TIP!</span>
 Best analysis practice: If you store all your Y and X variables in your dataframe as wide form data, you can just write <code>lm(y~x, df1)</code>, which is very neat syntax.
 <br> It’s not as clean to write <code>lm(df1$y~df1$x)</code>, and I discourage this.</p>
 </blockquote>
 <p>After fitting the model, we can just call <code>summary()</code> on our lm object, in order to view the output of the model.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># examining the output</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># examining the output</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y ~ X, data = df1)
@@ -270,6 +323,7 @@ Best analysis practice: If you store all your Y and X variables in your datafram
 ## Multiple R-squared:  0.9878, Adjusted R-squared:  0.9864 
 ## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10</code></pre>
 <p>There’s a lot of information here, which we will break down in the next few sections, after a short digression to discuss how (Ordinary Least Squares) regression is solved.</p>
+</div>
 </div>
             </section>
 

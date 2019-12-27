@@ -1,6 +1,6 @@
 # [Not Done:] The Linear Model IV: Model Selection
 
-
+<span class="badge badge-bt"> BT1101 </span>
 
 
 The learning objectives for this chapter are:

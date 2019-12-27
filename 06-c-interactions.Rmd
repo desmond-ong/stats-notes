@@ -1,5 +1,7 @@
 # [Not Done:] The Linear Model III: Interactions
 
+<span class="badge badge-bt"> BT1101 </span>
+
 
 - Cover interpretation of interactions. 
 - Concept of moderation

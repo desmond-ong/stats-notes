@@ -1,18 +1,19 @@
 --- 
-title: "Some notes on Statistics and Data Analytics"
-author: "Desmond Ong"
+title: "Some notes on Statistics and Data Analytics (Working Title)"
+author: "Desmond C. Ong"
 date: "Draft Dated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
     lib_dir: assets
     split_by: section
+    css: "css/style.css"
     config:
       toolbar:
         position: static
       toc:
         before: |
-          <li><a href="./">My Statistics Notes</a></li>
+          <li><a href="./">Some notes on Statistics</a></li>
         after: |
           <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 documentclass: book
@@ -20,24 +21,28 @@ bibliography: [stats-references.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: desmond-ong/stats-notes
-description: "A collection of statistics notes useful for data analytics."
+description: "A collection of statistics notes for data analytics."
 ---
 
 # Preface {-}
 
-This is a collection of notes on statistics and data analytics that I am compiling, primarily to supplement a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), which is a statistics course in R targeted at first-year undergraduate students and aspiring data scientists / researchers. Some material will go beyond this level, though, and should be useful to graduate-level researchers as well.
+This is a collection of notes on statistics and data analytics that I am compiling, primarily to supplement a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), which is a statistics course in R targeted at first-year undergraduate students and aspiring data scientists / researchers. However, some material in this set of notes will go beyond this introductory level, and should be useful to graduate-level researchers as well.
 
 
-I hope to cover quite broadly several important and useful statistical concepts (e.g. regression, simulations), as well as discuss issues like data visualization best practices. If I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
-
+I hope to cover quite broadly several important and useful statistical tools (e.g. my top priorities right now are to cover multivariate regression and simulations), as well as discuss issues like data visualization best practices. If I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
 
 As some background, I am a computational cognitive psychologist, with a little bit of training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences.
 
 
-This is a work in progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
+
+> Disclaimer: For students taking BT1101, please refer to these notes **only if you are taking this course under me**. If you are taking the course under a different instructor, that instructor's lecture notes take precedence as to whether something is in syllabus or not (and hence, testable on assessments/exams). We are always making improvements to the syllabus, and so for different offerings of the course, instructors may cover slightly different material. So if you are taking it under a different instructor, do not assume that concepts covered here will show up on the exam, or assume that concepts not covered here will not show up on the exam. I've indicated sections that were covered the last time I taught BT1101 with a <span class="badge badge-bt"> BT1101 </span> label).
 
 
-Feedback can be sent to dco (at) comp.nus.edu.sg.
+
+This is a work in progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
+
+
+Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg. You can find my website [here](https://desmond-ong.github.io/).
 
 
 ## Outline of notes {-}
@@ -50,18 +55,18 @@ Feedback can be sent to dco (at) comp.nus.edu.sg.
 - [In Progress] Probability ? - Normal distribution?
 - [In Progress] Handling Data
 - [In Progress] Data Visualization
-- The Linear Model
-    a. Linear Regression
-    b. Logistic Regression
-    c. [In Progress] Interactions
-    d. [In Progress] Model Selection
+- The Linear Model 
+    a. Linear Regression <span class="badge badge-bt"> BT1101 </span>
+    b. Logistic Regression <span class="badge badge-bt"> BT1101 </span>
+    c. [In Progress] Interactions <span class="badge badge-bt"> BT1101 </span>
+    d. [In Progress] Model Selection <span class="badge badge-bt"> BT1101 </span>
     e. [In Progress] Mixed-effects linear models
-- [In Progress] Data Mining
 - [In Progress] Simulations
     a. Monte Carlo Simulations
     b. The Bootstrap
+- [In Progress] Data Mining
 - Optimization
-    a. Linear Optimization
-    b. [In Progress] Integer-valued Optimization
+    a. Linear Optimization <span class="badge badge-bt"> BT1101 </span>
+    b. [In Progress] Integer-valued Optimization <span class="badge badge-bt"> BT1101 </span>
 
 ...

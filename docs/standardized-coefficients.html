@@ -4,24 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.8 Standardized Coefficients | Some notes on Statistics and Data Analytics</title>
-  <meta name="description" content="A collection of statistics notes useful for data analytics." />
+  <title>5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)</title>
+  <meta name="description" content="A collection of statistics notes for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.8 Standardized Coefficients | Some notes on Statistics and Data Analytics" />
+  <meta property="og:title" content="5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes useful for data analytics." />
+  <meta property="og:description" content="A collection of statistics notes for data analytics." />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.8 Standardized Coefficients | Some notes on Statistics and Data Analytics" />
+  <meta name="twitter:title" content="5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)" />
   
-  <meta name="twitter:description" content="A collection of statistics notes useful for data analytics." />
+  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
   
 
-<meta name="author" content="Desmond Ong" />
+<meta name="author" content="Desmond C. Ong" />
 
 
 
@@ -114,6 +114,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -126,7 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">My Statistics Notes</a></li>
+<li><a href="./">Some notes on Statistics</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -139,7 +140,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
-<li class="chapter" data-level="5.2" data-path="running-a-regression.html"><a href="running-a-regression.html"><i class="fa fa-check"></i><b>5.2</b> Running a regression</a></li>
+<li class="chapter" data-level="5.2" data-path="running-a-regression.html"><a href="running-a-regression.html"><i class="fa fa-check"></i><b>5.2</b> Running a regression</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="running-a-regression.html"><a href="running-a-regression.html#structure-your-dataset"><i class="fa fa-check"></i><b>5.2.1</b> Structure your dataset</a></li>
+<li class="chapter" data-level="5.2.2" data-path="running-a-regression.html"><a href="running-a-regression.html#visualize"><i class="fa fa-check"></i><b>5.2.2</b> Visualize</a></li>
+<li class="chapter" data-level="5.2.3" data-path="running-a-regression.html"><a href="running-a-regression.html#running-the-linear-model"><i class="fa fa-check"></i><b>5.2.3</b> Running the linear model</a></li>
+</ul></li>
 <li class="chapter" data-level="5.3" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html"><i class="fa fa-check"></i><b>5.3</b> Ordinary Least Squares Regression</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="ordinary-least-squares-regression.html"><a href="ordinary-least-squares-regression.html#ordinary-least-squares-derivation"><i class="fa fa-check"></i><b>5.3.1</b> Ordinary Least Squares Derivation</a></li>
 </ul></li>
@@ -148,14 +153,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4.2" data-path="interpreting-the-output-of-a-regression-model.html"><a href="interpreting-the-output-of-a-regression-model.html#goodness-of-fit-statistics"><i class="fa fa-check"></i><b>5.4.2</b> Goodness-of-fit statistics</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="regression-example1.html"><a href="regression-example1.html"><i class="fa fa-check"></i><b>5.5</b> Examples: Simple Regression</a></li>
-<li class="chapter" data-level="5.6" data-path="not-done-assumptions-behind-linear-regression.html"><a href="not-done-assumptions-behind-linear-regression.html"><i class="fa fa-check"></i><b>5.6</b> [Not Done:] Assumptions behind Linear Regression</a></li>
-<li class="chapter" data-level="5.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>5.7</b> Multiple Linear Regression</a></li>
-<li class="chapter" data-level="5.8" data-path="standardized-coefficients.html"><a href="standardized-coefficients.html"><i class="fa fa-check"></i><b>5.8</b> Standardized Coefficients</a></li>
-<li class="chapter" data-level="5.9" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html"><i class="fa fa-check"></i><b>5.9</b> Categorical Independent Variables</a><ul>
-<li class="chapter" data-level="5.9.1" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding"><i class="fa fa-check"></i><b>5.9.1</b> Dummy Coding</a></li>
-<li class="chapter" data-level="5.9.2" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding-with-3-levels"><i class="fa fa-check"></i><b>5.9.2</b> Dummy Coding with 3 levels</a></li>
-<li class="chapter" data-level="5.9.3" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#the-reference-group"><i class="fa fa-check"></i><b>5.9.3</b> The Reference Group</a></li>
-<li class="chapter" data-level="5.9.4" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#interpreting-categorical-and-continuous-independent-variables"><i class="fa fa-check"></i><b>5.9.4</b> Interpreting categorical and continuous independent variables</a></li>
+<li class="chapter" data-level="5.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>5.6</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="5.7" data-path="standardized-coefficients.html"><a href="standardized-coefficients.html"><i class="fa fa-check"></i><b>5.7</b> Standardized Coefficients</a></li>
+<li class="chapter" data-level="5.8" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html"><i class="fa fa-check"></i><b>5.8</b> Categorical Independent Variables</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding"><i class="fa fa-check"></i><b>5.8.1</b> Dummy Coding</a></li>
+<li class="chapter" data-level="5.8.2" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#dummy-coding-with-3-levels"><i class="fa fa-check"></i><b>5.8.2</b> Dummy Coding with 3 levels</a></li>
+<li class="chapter" data-level="5.8.3" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#the-reference-group"><i class="fa fa-check"></i><b>5.8.3</b> The Reference Group</a></li>
+<li class="chapter" data-level="5.8.4" data-path="categorical-independent-variables.html"><a href="categorical-independent-variables.html#interpreting-categorical-and-continuous-independent-variables"><i class="fa fa-check"></i><b>5.8.4</b> Interpreting categorical and continuous independent variables</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html"><i class="fa fa-check"></i><b>5.9</b> Assumptions behind Linear Regression</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#residual-plots"><i class="fa fa-check"></i><b>5.9.1</b> Residual plots</a></li>
+<li class="chapter" data-level="5.9.2" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#not-done-multicollinearity"><i class="fa fa-check"></i><b>5.9.2</b> [Not done:] Multicollinearity</a></li>
+<li class="chapter" data-level="5.9.3" data-path="assumptions-behind-linear-regression.html"><a href="assumptions-behind-linear-regression.html#not-done-autocorrelation"><i class="fa fa-check"></i><b>5.9.3</b> [Not done:] Autocorrelation</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="not-done-exercises-linear-model-i.html"><a href="not-done-exercises-linear-model-i.html"><i class="fa fa-check"></i><b>5.10</b> [Not Done:] Exercises: Linear Model I</a></li>
 <li class="chapter" data-level="5.11" data-path="todo-discuss-transformations.html"><a href="todo-discuss-transformations.html"><i class="fa fa-check"></i><b>5.11</b> [todo:] Discuss Transformations?</a></li>
@@ -168,8 +177,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
 <li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
-<li class="chapter" data-level="10" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Data Mining</a></li>
-<li class="chapter" data-level="11" data-path="not-done-simulations.html"><a href="not-done-simulations.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Simulations</a></li>
+<li class="chapter" data-level="10" data-path="not-done-simulations.html"><a href="not-done-simulations.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Simulations</a></li>
+<li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
 <li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
 <li class="chapter" data-level="12.2" data-path="objective-functions-decision-variables.html"><a href="objective-functions-decision-variables.html"><i class="fa fa-check"></i><b>12.2</b> Objective Functions &amp; Decision Variables</a><ul>
@@ -212,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
           </h1>
         </div>
 
@@ -221,7 +230,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="standardized-coefficients" class="section level2">
-<h2><span class="header-section-number">5.8</span> Standardized Coefficients</h2>
+<h2><span class="header-section-number">5.7</span> Standardized Coefficients</h2>
+<p><span class="badge badge-bt"> BT1101 </span></p>
 <p>Let’s take a short digression to discuss standardised coefficients. In all the examples in this Chapter, we’ve seen that it’s very important to be clear about what the units of measurement are, as this affects how we interpret the numbers.</p>
 <p>For example, in <span class="math inline">\(\text{Income} = b_0 + b_1 \text{YearsOfEducation}\)</span>, we can say for a 1 unit increase in <span class="math inline">\(X_1\)</span>, so for one additional year of education, there is a <span class="math inline">\(b_1\)</span> unit increase in <span class="math inline">\(Y\)</span>; so there is a $<span class="math inline">\(b_1\)</span> increase in income.</p>
 <p>Unfortunately, sometimes we may have difficulty comparing <span class="math inline">\(X\)</span>’s. Perhaps I have a dataset of American students and their standardized test scores on the SATs, and a corresponding dataset of Singaporean students and their standardized test scores on the O-levels<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. I want to compare the datasets to predict how test scores (<span class="math inline">\(X\)</span>) affect income (<span class="math inline">\(Y\)</span>), but my <span class="math inline">\(X\)</span>s here are on different scales. How should we compare them?</p>
@@ -241,14 +251,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes, standardised coefficients makes it easier to interpret when the underlying unit is quite difficult to interpret, for example: IQ, the intelligence quotient, is actually a standardised variable itself such that 100 is the mean of the population and 15 is the standard deviation. It’s hard to come up with units of “absolute” intelligence, and so IQ is actually measured relative to others in the population.</p>
 <p>Coming back to the example of comparing the results in an American sample with the SAT and a Singaporean sample with the O-levels; even if I cannot compare 1 point on the SAT with 1 point on the O-levels, with standardized coefficients I can still ask: does a 1 standard deviation increase in SAT score have the same effect (on whatever <span class="math inline">\(Y\)</span>), as a 1 standard deviation increase in O-level score?</p>
 <p>Here is some R code to ‘manually’ standardize variables and use them in a model</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># unstandardized</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="co"># standardized</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># unstandardized</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># standardized</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</a></code></pre></div>
 </div>
 <div class="footnotes">
 <hr />

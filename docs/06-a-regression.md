@@ -1,5 +1,6 @@
 # The Linear Model I: Linear Regression
 
+<span class="badge badge-bt"> BT1101 </span>
 
 In the next few Chapters, we will learning about a workhorse tool of analytics: the linear model, which allows us to run linear regression models that we can use to estimate simple trends and look at how some variables in our data may affect other variables. The linear model is a key tool used in many fields, from psychology, economics, linguistics, business, as well as in some physical sciences like ecology. Thus, it is an essential part of the data scientist's toolkit.
 
@@ -35,6 +36,8 @@ df1$Y = -2 + df1$X*2 + rnorm(n=nrow(df1), mean=0, sd=1)
 ```
 
 ## Basics of Linear Regression
+
+<span class="badge badge-bt"> BT1101 </span>
 
 Linear Regression really boils down to this simple equation. 
 
@@ -81,9 +84,12 @@ Similarly, Dependent Variables can either be **continuous** or **categorical**. 
 
 ## Running a regression
 
+<span class="badge badge-bt"> BT1101 </span>
+
 
 The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables. Often, this is clear from the context: As a researcher we have an objective to model or predict a certain variable --- that will be the dependent variable, $Y$. And we have variables that we think would predict that, and those will be our $X$'s. (Later we'll discuss the differences between predictors, covariates, and confounders, which could all statistically affect the depenent variable.)
 
+### Structure your dataset
 
 The second step is to structure your data. 
 For most Linear Regression (at least for the examples in this Chapter), we almost always want `wide`-form data, discussed in the earlier Chapter on data handling, where you have each row of the data frame be one observation, and you have one column for $Y$ and one column for $X$. (In later Chapters we shall see when we may need `long`-form data for other types of regression.)
@@ -103,6 +109,7 @@ head(mtcars,3)
 ## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
 ```
 
+### Visualize
 
 The third step is to visualize your data, discussed also in the earlier Chapter on Data Visualization. For regression analyses, visualization of your data allows you to see whether there may be linear trends or non-linear trends (or no trends).
 
@@ -120,6 +127,61 @@ Let's plot the two variables in our toy dataset `df1`:
 <img src="06-a-regression_files/figure-html/lmi-plot2c-1.png" width="336" style="display: block; margin: auto;" />
 
 Looks very linear! So we should expect to see a strong linear relationship between `df$X` and `df$Y`.
+
+###### Additional plotting tips {-}
+
+If you are using `ggplot()` to plot your data, you can ask it to plot the best fit __linear__ line using `geom_smooth(method="lm", se=FALSE)`. 
+
+> (If you don't specify the method, it defaults to a non-linear smoothing, e.g. LOESS smoothing using stats::loess() for N<1000 observations. 
+> "se=FALSE" will remove the standard error ribbon -- try setting it to true to see what it gives you).
+
+For example, if I wanted to plot the best-fitting linear line to the graph above with the exponential trend, I can use the following chunk of code, which produces:
+
+
+```r
+ggplot(df0, aes(x=x, y=y_exp)) + geom_point() + 
+  geom_smooth(method="lm", se=FALSE) +
+  xlab("X \n Exponential Trend") + ylab("Y") + theme_bw() + 
+  theme(panel.grid = element_blank(), 
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+```
+
+<img src="06-a-regression_files/figure-html/lmi-plot2d-example-of-smooth-1.png" width="336" style="display: block; margin: auto;" />
+
+Now you can see above that the line does have a significant slope (and indeed if you actually run the linear model using the code in the next section, you'll see that there is a significant linear relationship). However, the linear line is not really the best description of the data, is it? This is why it is helpful to always plot our variables, so that we can see if we're trying to fit a linear line to data that is better described by a non-linear relationship.
+
+Consider this other case, where we now have discrete X variables. 
+
+<img src="06-a-regression_files/figure-html/lmi-plot2e-example-of-jitter1-1.png" width="336" style="display: block; margin: auto;" />
+
+It might be hard to see any linear trend. And in fact a lot of the data are overlapping, so it's hard to see where the data are! This is where we have two more plotting tricks up our sleeve.
+
+First, is to jitter each point. Jittering means slightly shifting each datapoint a little to the left/right (jitter in the "width" direction), or up and down ("height"). This is mainly for visualization, we are not actually changing our data values. We do this giving the option `position=position_jitter(width= XXX , height= YYY)` to `geom_point()`, where XXX is how much is our maximum jitter on the horizontal/x direction, and YYY is how much we want to jitter on the vertical/y axis. If say we have an integer valued variable ("How happy are you" on a scale from 1-5), then I recommend a jitter of about 0.1 to 0.2. This is big enough to be seen, but small enough to not be confusing.
+
+Second tip, is to make your points slightly transparent, using the `alpha = ZZZ` option in `geom_point()`. This will help you see dense clusters of points vs. non-dense clusters. 
+
+And of course, we can use `geom_smooth()`. So here we have:
+
+
+```r
+ggplot(df0, aes(x=x_discrete, y=y_discrete)) + 
+  geom_point(position=position_jitter(width=0.2, height= 0.2), alpha=0.3) + 
+  geom_smooth(method="lm", se=FALSE) +
+  xlab("X \n Discrete points, with jitter, alpha, and best-fit") + ylab("Y") +
+  theme_bw() + 
+  theme(panel.grid = element_blank(), 
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+```
+
+<img src="06-a-regression_files/figure-html/lmi-plot2e-example-of-jitter2-1.png" width="336" style="display: block; margin: auto;" />
+
+And it's much easier to see the trend!
+
+### Running the linear model
 
 
 Finally, we're ready to run the model. And in fact, it's one line of code. `lm` for linear model, and then you provide an "equation", `y~x`, which is R syntax for "Y depends upon X". The final argument is the dataframe in which the data is stored.
@@ -175,6 +237,8 @@ There's a lot of information here, which we will break down in the next few sect
 
 
 ## Ordinary Least Squares Regression
+
+<span class="badge badge-bt"> BT1101 </span>
 
 In this section we'll be taking a quick peek behind what the model is doing, and we'll discuss the formulation of **Ordinary Least Squares** regression. 
 
@@ -306,6 +370,8 @@ Again, since $R$ does all the calculations for you, it's not necessary to know h
 
 
 ## Interpreting the output of a regression model
+
+<span class="badge badge-bt"> BT1101 </span>
 
 In this section we'll be going over the different parts of the linear model output. First, we'll talk about the coefficient table, then we'll talk about goodness-of-fit statistics. 
 
@@ -480,11 +546,11 @@ R^2 &\equiv \frac{\text{Regression Sum of Squares}}{\text{Total Sum of Squares}}
 \end{align}
 
 
-In the output above, the $R^2$, in 
+You can read off the $R^2$ value from the field indicated by "Multiple R-squared", i.e., 
 
-> ## Multiple R-squared:  0.9878
+> \#\# Multiple R-squared:  0.9878, ...
 
-is 0.9878; this means that this model explains 98.8\% of the variance. That's really high!
+In the output above, the $R^2$ is 0.9878; this means that this model explains 98.8\% of the variance. That's really high!
 
 
 
@@ -494,6 +560,7 @@ Now, how good is a good $R^2$? Unfortunately there's no good answer, because it 
 
 ## Examples: Simple Regression {#regression_example1}
 
+<span class="badge badge-bt"> BT1101 </span>
 
 Here’s a simple example to illustrate what we've discussed so far, by using a dataset that comes bundled with R, the `mtcars` dataset.  We can load the dataset using `data(mtcars)`.
 
@@ -573,11 +640,14 @@ One takeaway from this example is that the linear model just calculates the coef
 
 
 
-## [Not Done:]  Assumptions behind Linear Regression
 
 
 
 ## Multiple Linear Regression
+
+<span class="badge badge-bt"> BT1101 </span>
+
+
 
 We’ve covered Simple Linear Regression, whereby "Simple" means just one independent variable. Next we’ll talk about Multiple Linear Regression, where "Multiple" just means multiple independent variables.
 
@@ -617,6 +687,9 @@ Coefficient | Intepretation:
 
 
 ## Standardized Coefficients
+
+<span class="badge badge-bt"> BT1101 </span>
+
 
 
 Let's take a short digression to discuss standardised coefficients. In all the examples in this Chapter, we've seen that it's very important to be clear about what the units of measurement are, as this affects how we interpret the numbers. 
@@ -666,6 +739,8 @@ lm(Y_standardized ~ X_standardized, df1)
 
 
 ## Categorical Independent Variables
+
+<span class="badge badge-bt"> BT1101 </span>
 
 So far we have been dealing with continuous independent variables ($X$), (e.g. Expenditure, Years, Age, Numbers, ...). In this section, we consider categorical independent variables (e.g., Gender, Ethnicity, MaritalStatus, Color-Of-Search-Button, ...).
 
@@ -833,11 +908,127 @@ Coefficient | Intepretation:
 
 
 
+## Assumptions behind Linear Regression
+
+<span class="badge badge-bt"> BT1101 </span>
+
+
+
+
+
+
+
+
+
+
+Linear Regression is a powerful tool, but also makes a lot of assumptions about the data. These assumptions are necessary in order for the mathematical derivations to work out nicely (e.g., we saw the nice solution to the the Ordinary Least Squares minimization problem). Thus, we have to be mindful of these assumptions, as statistical tools become less valid when there are violations of these assumptions.
+
+The following table summarizes some of the assumptions behind linear regression, and how we can check that these assumptions are met (or at least, not violated). Note that in some of these cases there are formal ways to check (e.g. Breusch-Pagan test for homoscedasticity), but for right now our goal is to build intuition, so we will explore graphical methods. 
+
+Assumption | How to (informally) check
+--- | ---
+There exists a linear relationship between dependent variable and the independent variable | Examine X-Y scatterplot -- there should be a linear trend.
+There are no outliers | Examine X-Y scatterplot and the univariate histograms for outliers
+Errors are normally-distributed about zero | Examine the residual plot: Residuals should be normally distributed about 0
+There is no _heteroscedasticity_ / there IS _homoscedasticity_. <br>i.e., Errors are independent of the independent variable | Examine the residual plot: Residuals should not depend on X
+No or little _multicollinearity_ | Check correlation between independent variables / <br> calculate variance inflation factor in linear model
+Errors are independent of each other; they are not correlated. | Check for autocorrelation between errors.
+
+
+
+
+We already saw the first two assumptions in the previous few sections: that we expect there to be a linear relationship between the DV and the IV(s), without any outliers. The way to visually eyeball this is to simply plot the X-Y scatterplot, also known as a bivariate ("two-variable") scatterplot.
+
+
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-2-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-2-2.png" width="336" style="display: block; margin: auto;" />
+
+
+
+
+### Residual plots
+
+We saw earlier that the objective of Ordinary Least Squares regression is to find the line that minimizes the sum of the (squares of the) residuals $e_i = Y_i - \hat{Y_i}$. Below, we have the best-fit linear line to a (purposely) non-linear dataset. The residual errors are shown in red, going from the actual data points ($Y_i$'s) to the predicted line ($\hat{Y_i}$'s).
+
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-3-1.png" width="336" style="display: block; margin: auto;" />
+
+Now let's instead plot the residuals $e_i$ against $X$. That is, instead of plotting $Y$ on the vertical axis, we plot the length of the red bars $e_i$ against X:
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-4-1.png" width="336" style="display: block; margin: auto;" />
+
+
+Ideally, residuals should be normally distributed around 0, and not depend on X. 
+
+
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-5-1.png" width="240" style="display: block; margin: auto;" />
+
+But we clearly see from the red dots above that it is not the case here that the residuals are normally distributed around 0. In fact, there seems to be some non-linearity in the data.
+
+
+One solution might be to do a non-linear transformation to one of the variables, e.g. $\log(...)$, $exp(...)$. Let's try taking the logarithm of the dependent variable, e.g. $\log(Y) \sim X$
+
+> One thing to note here is that if you just write `log()` in R you’ll get the natural logarithm (log base e); you’ll need to specify `log10()` if you want a base10 logarithm. They both achieve the same thing in terms of the purpose of the transformation here. The main difference is in interpretability; if your variable is something like GDP, then a base10 log will be more interpretable, because a base10 log of 3 is a thousand, 4 is ten thousand, and so forth.
+
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-6-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-6-2.png" width="336" style="display: block; margin: auto;" />
+
+
+The residuals of the transformed plot look a lot better. But actually here we see a slightly different problem: notice that the errors seem to be larger for smaller values of $X$:
+This is called _heteroscedasticity_, which by definition is when the residual error depends on the value of the independent variable. Having heteroscedasticity often implies that your model is missing some variables that can explain this dependence.
+
+Linear regression often assumes no or little heteroscedasticity; in other words, linear regression assumes homoscedasticity. While there are formal tests for heteroscedasticity, for now we leave it as something that we might be able to eyeball from the data.
+
+
+In summary, residual plots should look distributed with no discernable pattern, with respect to the independent variables (first graph below). There are many possibilities, such as having non-normal distributions (second graph below) or heteroscedastic errors (third graph below).
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-7-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-7-2.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-7-3.png" width="336" style="display: block; margin: auto;" />
+
+
+If you run a linear model, you can easily pull the residuals using `residuals(lm_object)`. For example, let's take the `mtcars` example predicting fuel economy (`mpg`) using horsepower (`hp`).
+
+
+
+```r
+# Use mtcars, run simple lm()
+data(mtcars)
+fit1 <- lm(mpg ~ hp, mtcars)
+mtcars$predicted <- predict(fit1) # get predictions if needed
+mtcars$residuals <- residuals(fit1) # get residuals
+
+# plotting DV against IV
+ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point(color="blue") + 
+  geom_smooth(method="lm", se=FALSE) + theme_bw()
+```
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-8-1.png" width="336" style="display: block; margin: auto;" />
+
+```r
+# plotting the residuals against IV
+ggplot(mtcars, aes(x=hp, y=residuals)) + geom_point(color="red") + 
+  geom_hline(yintercept=0, linetype="dashed") + theme_bw()
+```
+
+<img src="06-a-regression_files/figure-html/lmi-residuals-8-2.png" width="336" style="display: block; margin: auto;" />
+
+
+We see what looks like maybe one outlier right on the right edge of the graph, but aside from that the residuals look fine.
+
+
+
+### [Not done:] Multicollinearity
+
+### [Not done:] Autocorrelation
+
+
 
 
 
 
 ## [Not Done:] Exercises: Linear Model I
+
+<span class="badge badge-bt"> BT1101 </span>
 
 1a) For this simple linear regression,
 $$ \text{Income} = b_0 + b_1 \text{Years of Education} $$
