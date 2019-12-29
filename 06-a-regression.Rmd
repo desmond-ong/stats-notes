@@ -1213,7 +1213,6 @@ we find that $b_0$=3500, $b_1$=5 (in \$). What does this mean?
 
 
 ```{r echo=FALSE, eval=FALSE}
-
 # plotting the mean/SE of the b1 coefficient
 tempPlotDF = data.frame(var = c("Intercept (b0)", "Coefficient on\nx (b1)"),
                         y=c(summary(fit1)$coeff["(Intercept)", "Estimate"],
@@ -1232,110 +1231,9 @@ ggplot(tempPlotDF, aes(x=var, y=y, fill=var)) + geom_bar(stat="identity") +
         axis.text = element_text(size=16))
 # 400 x 500
 
-
-
-
-
-
-
 ###
-
-
 
 # not taught:
 #lmtest::bptest(fit_mt)
 #car::ncvTest(fit_mt)
-
-
-
-
-
-
-
-
-## DATA MUNGING FOR TUTORIAL
-
-library(dplyr)
-library(tidyr)
-d0 = read.csv('Data_Extract_From_World_Development_Indicators/318204f5-7150-4858-9b2a-92c54aa6c9a8_Data.csv')
-
-# If 2017 data is not present, try taking 2016 data.
-fill_in_blanks = function(x, y){
-  x = as.numeric(levels(x))[x]
-  y = as.numeric(levels(y))[y]
-  for (j in 1:length(x)) {
-    if (is.na(x[j])) {
-      x[j] = y[j]
-    }
-  }
-  return(x)
-}
-d0$data = fill_in_blanks(d0$X2017..YR2017., d0$X2016..YR2016.)
-
-d0plot1 = d0 %>% 
-  filter(Series.Name %in% c("GDP per capita, PPP (current international $)", 
-                            "Human capital index (HCI) (scale 0-1)",
-                            "Current health expenditure per capita, PPP (current international $)",
-                            "Government expenditure per student, tertiary (% of GDP per capita)",
-                            "Population, total",
-                            "Life expectancy at birth, total (years)",
-                            "Diabetes prevalence (% of population ages 20 to 79)",
-                            "Compulsory education, duration (years)"
-                            )) %>%
-  select(c("Country.Name", "Country.Code", "Series.Name", "data")) %>%
-  spread("Series.Name", "data") %>%
-  rename(Human.Capital.Index = `Human capital index (HCI) (scale 0-1)`,
-         GDP.per.capita.PPP = `GDP per capita, PPP (current international $)`,
-         Health.Expenditure.per.capita = `Current health expenditure per capita, PPP (current international $)`,
-         Tertiary.Education.Expenditure.per.student = `Government expenditure per student, tertiary (% of GDP per capita)`,
-         Population = `Population, total`,
-         Life.Expectancy.at.birth = `Life expectancy at birth, total (years)`,
-         Diabetes.Prevalence = `Diabetes prevalence (% of population ages 20 to 79)`,
-         Years.of.Compulsory.Education = `Compulsory education, duration (years)`
-         ) # %>%
-  # mutate_at("Human.Capital.Index", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("GDP.per.capita.PPP", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Health.Expenditure.per.capita", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Tertiary.Education.Expenditure.per.student", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Population", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Life.Expectancy.at.birth", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Diabetes.Prevalence", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Years.of.Compulsory.Education", function(x) {as.numeric(levels(x))[x]}) %>%
-  # mutate_at("Rainfall.mm", function(x) {as.numeric(levels(x))[x]})
-
-
-d0plot1 <- d0plot1[rowSums(is.na(d0plot1)) < 6,]
-
-
-write.csv(d0plot1, "Tutorial5_WorldBankData.csv", row.names = FALSE)
-
-ggplot(d0plot1, aes(x=log10(GDP.per.capita.PPP), y=Human.Capital.Index)) + geom_point() + 
-  geom_point(data=subset(d0plot1, d0plot1$Country.Name=="Singapore"), color="red") +
-  geom_text(data=subset(d0plot1, d0plot1$Country.Name=="Singapore"), 
-            aes(label=Country.Name), vjust=-1.0, hjust=0.8, color="red") +
-  theme_bw() + ylab("Human Capital Index") + xlab("(log) GDP per capita (PPP)") +
-  ylim(0.2, 1.0) +
-  theme(panel.grid = element_blank(), 
-        panel.background = element_blank(),
-        axis.title = element_text(size=16),
-        axis.text = element_text(size=16))
-# 400 x 400
-
-
-
-ggplot(d0plot1, aes(x=Health.Expenditure.per.capita, y=Life.Expectancy.at.birth)) + geom_point() + 
-  geom_point(data=subset(d0plot1, d0plot1$Country.Name=="Singapore"), color="red") +
-  geom_text(data=subset(d0plot1, d0plot1$Country.Name=="Singapore"), 
-            aes(label=Country.Name), vjust=-1.0, hjust=0.8, color="red") +
-  theme_bw() + ylab("Life.Expectancy.at.birth") + xlab("Health.Expenditure.per.capita") +
-  #ylim(0.2, 1.0) +
-  theme(panel.grid = element_blank(), 
-        panel.background = element_blank(),
-        axis.title = element_text(size=16),
-        axis.text = element_text(size=16))
-
-
-summary(lm(Human.Capital.Index ~ GDP.per.capita.PPP + Health.Expenditure.per.capita, d0plot1))
-
-summary(lm(Life.Expectancy.at.birth ~ Diabetes.Prevalence + Health.Expenditure.per.capita, d0plot1))
 ```

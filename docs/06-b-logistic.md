@@ -4,7 +4,7 @@
 
 In the previous chapter, we introduced the general linear model, and showed how we can use it to model continuous dependent variables ($Y$), using a combination of both continuous and categorical indepdent variables ($X$).
 
-In this chapter we will discuss expanding our toolkit to use a different type of regression, **logistic** regression, to model categorical dependent variables ($Y$). For now, we **only consider binary dependent variables** (such as `Yes`/`No` Decisions), although there are also extensions to categorical dependent variable with multiple levels (e.g., multinomial regression).
+In this chapter we will discuss expanding our toolkit to use a different type of regression, **logistic** regression, to model categorical dependent variables ($Y$). For now, we **only consider binary dependent variables** (such as `Yes`/`No` Decisions, `True`/`False` classifications, etc), although there are also extensions to categorical dependent variable with multiple levels (e.g., multinomial regression).
 
 
 
@@ -35,7 +35,7 @@ $$\text{Purchased} \sim \text{Spending} + \text{Demographics} + \ldots$$
 
 
 
-Unfortunately, here we cannot use linear regression, but we can use the more general version of the model, called the `general linear model`. The general idea is that the GLM introduces a link function that maps the actual response variable `Y` to what the linear model predicts.
+Unfortunately, here we cannot use linear regression, but we can use the more general version of the model, called the `general linear model`. The general idea is that the GLM introduces a _link_ function that maps the actual response variable `Y` to what the linear model predicts.
 
 Here we'll focus on `logistic regression`, which uses the `logit` function as its link function. 
 
@@ -97,7 +97,7 @@ levels(df2$Purchase)
 
 
 ```r
-# running a logistic regression via a general linear model
+# next, running a logistic regression via a general linear model
 fit_log1 <- glm(Purchase ~ x1 + x2, family="binomial", df2)
 summary(fit_log1)
 ```
@@ -130,7 +130,7 @@ summary(fit_log1)
 
 
 
-The summary output looks almost the same too. Let’s focus on the coefficient table, and reproduce the equation to help us interpret.
+The summary output looks almost the same too as a `lm()` call. Let’s focus on the coefficient table, and reproduce the regression equation to help us in the interpretation.
 
 
 

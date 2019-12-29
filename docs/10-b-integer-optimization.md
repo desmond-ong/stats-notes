@@ -174,7 +174,7 @@ Similarly, we can write out the pre-requisite constraints for the rest. Now, let
 Natalie needs to take either PG2a OR PG2b before being allowed to take PG3. 
 ```
 
-One easy thing to try is to replace ST2 ($X_2$) in the previous inequality with PG3 ($X_7$), and now we have to replace ST1 ($X_1$) with (PG2a or PG2b), or ($(X_5+X_6)$). So let's try:
+One easy thing to try is to replace ST2 ($X_2$) in the previous inequality with PG3 ($X_7$), and replace ST1 ($X_1$) with (PG2a or PG2b), or ($(X_5+X_6)$). So let's try:
 
 $$ (X_5 + X_6) - X_7 \geq 0 $$
 

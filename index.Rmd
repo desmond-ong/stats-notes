@@ -42,7 +42,18 @@ As some background, I am a computational cognitive psychologist, with a little b
 This is a work in progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
 
 
-Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg. You can find my website [here](https://desmond-ong.github.io/).
+Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg. 
+
+
+This material is shared under a [Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) License](https://creativecommons.org/licenses/by-sa/4.0/). What this means is that you are free to copy, redistribute, and even adapt the material in this book, in any format or for any purpose, even commercial. Basically, this is a freely-available educational resource that you can share and use. The only conditions are (i) you must give appropriate credit, and if you made any changes, you must indicate so and not in in any way that suggests that I endorse your changes, and (ii) if you transform or build upon the material here, you must also distribute this contributions under the same license.
+
+
+#### About the Author {-}
+
+[Desmond Ong](https://desmond-ong.github.io/) is an Assistant Professor in the Department of Information Systems and Analytics, in the School of Computing at the National University of Singapore. He also holds a concurrent appointment as a Research Scientist at the A\*STAR Artificial Intelligence Initiative (A\*AI).
+
+Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science from Stanford University, and his undergraduate degrees in Economics and Physics from Cornell University.
+
 
 
 ## Outline of notes {-}

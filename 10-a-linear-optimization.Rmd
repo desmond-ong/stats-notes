@@ -102,7 +102,7 @@ Here, the difference is that we often formulate the objective function in terms 
 
 ### Jean the Farmer: Objective Function {-}
 
-Let’s get introduced to Farmer Jean, who runs a small farm in a little [valley](https://www.stardewvalley.net/)^[Sprites and the costs/profits of Parsnips and Kale are borrowed from Stardew Valley, and this example is an optimization problem that could actually arise in the game.], who will be with us throughout this chapter.
+Let’s get introduced to Farmer Jean, who runs a small farm in a little [valley](https://www.stardewvalley.net/)^[Sprites and the costs/profits of Parsnips and Kale are borrowed from [Stardew Valley](https://www.stardewvalley.net/), and this example is an optimization problem that could actually arise in the game.], who will be with us throughout this chapter.
 
 ```
 Farmer Jean has two types of crops, Parsnips and Kale. 
