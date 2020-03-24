@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>[Not Done:] Getting Started | Some notes on Statistics and Data Analytics (Working Title)</title>
+  <title>Coding Best Practices | Some notes on Statistics and Data Analytics (Working Title)</title>
   <meta name="description" content="A collection of statistics notes for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="[Not Done:] Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="Coding Best Practices | Some notes on Statistics and Data Analytics (Working Title)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="[Not Done:] Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="Coding Best Practices | Some notes on Statistics and Data Analytics (Working Title)" />
   
   <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="outline-of-notes.html"/>
+<link rel="prev" href="getting-started.html"/>
 <link rel="next" href="intro.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -229,20 +237,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="not-done-getting-started" class="section level1 unnumbered">
-<h1>[Not Done:] Getting Started</h1>
-<p>How to use R</p>
-<p>How to use R Markdown</p>
-<p>Coding Best Practices</p>
-<p>DO NOT SAVE .RDATA!</p>
+<div id="coding-best-practices" class="section level2 unnumbered">
+<h2>Coding Best Practices</h2>
+<div id="ensuring-a-reproducible-workflow" class="section level3 unnumbered">
+<h3>Ensuring a Reproducible workflow</h3>
+<p>A very important concept in statistical data analysis (and in programming and science in general) is the concept of a reproducible workflow. What this means is that, given your code, anyone (including your future self) should be able to reproduce your results exactly.</p>
+<p>To be more specific, imagine this scenario:</p>
+<ul>
+<li>You are a data analyst at a company, and your manager tells you “hey, I really liked those graphs you made for your presentation last week, can you make these important changes and send it to me by lunchtime? I need to brief the C-Suite at 1pm”.</li>
+<li>You get yourself a coffee, sit down at your machine, fire up your RStudio, and open up the file that you worked on last week late into the night. You try to run your script again, and to your horror, you find numerous errors.</li>
+<li>You try to reconstruct your thought processes that night, as you click into this menu and that menu. “Did I click this checkbox or not when I imported the data?”. “Did I import <code>data_version1</code> or <code>data_version2</code>?”. “How come this function is giving me a different result now? Or is throwing an error now when it didn’t last week?”</li>
+<li>If you are lucky you are able to retrace every click you did. If not, you’ll have to tell your boss that you can’t reproduce that graph, let alone make the changes. Regardless, there will be a lot of mental and emotional cost that was unnecessary.</li>
+</ul>
+<p>Now imagine this other scenario:</p>
+<ul>
+<li>You fire up your RStudio, hit a button, and your code automagically produces a nicely formatted report with the graph you made last week. You go into your code, modify a few lines to make the changes your manager wants. You run your code again, get the new graph out, send it to your manager, and happily move on to your next task.</li>
+</ul>
+<p>Consider this last scenario:</p>
+<ul>
+<li>Your manager asks you for some additional analysis on James’ project, but James had left the company last week. James had given you all his code, neatly organized.</li>
+<li>You plop James’ code into your RStudio, and hit “run”. It magically works!
+<ul>
+<li>Or, maybe it doesn’t.</li>
+</ul></li>
+<li>Which world do you want to be in?
+<ul>
+<li>By the way, James doesn’t even have to have left the company — he could be a colleague in a remote team, or on leave that week, or otherwise indisposed to do that analysis, and you have to pick up where he left off. These types of situations happen all the time.</li>
+<li>Isn’t it much better for everyone to have a workflow that works again and again?</li>
+</ul></li>
+</ul>
+<div id="what-is-a-reproducible-workflow" class="section level4 unnumbered">
+<h4>What is a reproducible workflow</h4>
+<p>What a reproducible workflow means is:</p>
+<ul>
+<li>You should write every part of your data analysis pipeline into code.
+<ul>
+<li>This includes setting your working directory.
+<ul>
+<li>It is very handy to go to the point-and-click interface to set your working directory, since your file may reside deep in many other folders. For example, on Mac, I can click <code>Session</code> -&gt; <code>Set Working Directory</code> -&gt; <code>To Source File Location</code>.</li>
+<li>After you click this, RStudio will output a <code>setwd(...)</code> command in the console. For example: <code>setwd(&quot;~/stats-notes&quot;)</code>. <strong>Take this line, and copy it into the preamble of your R script</strong>, so that when you next open the file, you know which is your working directory and you can just set it by running that line.
+<ul>
+<li>Note: R Markdown has a different way of handling working directories. When you knit a Rmd file, it automatically assumes the working directory of the source file.</li>
+</ul></li>
+</ul></li>
+<li>This also includes reading in your data.
+<ul>
+<li>Do <strong>NOT</strong> use the Import Dataset from the dropdown menu.</li>
+<li><strong>DO</strong> Use <code>read.csv(...)</code> or <code>read.xlsx(...)</code> or equivalent commands to read in your datasets.</li>
+</ul></li>
+<li>This also includes loading libraries and packages.
+<ul>
+<li>Do <strong>NOT</strong> use the <code>Packages</code> pane of RStudio to click and load the packages you require for your analysis.</li>
+<li><strong>DO</strong> use <code>library(...)</code> to load in packages.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>For more advanced analysts (including graduate-level researchers preparing publication-quality analyses), you may also want to consider:</p>
+<ul>
+<li>Putting all your data processing / data cleaning steps into code. So your code should take in the raw datafile (as raw as possible) and manipulating it only in R. (<strong>NEVER EXCEL</strong>).
+<ul>
+<li>If data processing takes too long to run every time, you could output a “cleaned” datafile and just read that in everytime you do analysis. But you should still save the data processing code just in case you need to modify it or check what you did.</li>
+<li>This can be saved either in another R script or in a chunk in an R Markdown file with <code>eval=F</code> so that it won’t run every single time.</li>
+</ul></li>
+<li>Putting any exclusion criteria into code. This also allows you to modify your exclusion criteria if you needed to.</li>
+</ul>
+</div>
+<div id="do-not-save-.rdata" class="section level4 unnumbered">
+<h4>DO NOT SAVE .RDATA!</h4>
+<p>A pre-requisite for a <code>reproducible workflow</code> is that everytime you fire up RStudio, it should be a clean session, with no data loaded and no libraries loaded.</p>
+<p>This means that you should NOT save or reload your session. If RStudio ever prompts you to save your session (to a .RData file) upon exit, do not accept.</p>
+<p>You can customize RStudio to never do this by going into Preferences (see screenshot below for Mac OSX) and making sure:</p>
+<ul>
+<li>the <code>Restore .RData into workspace at startup</code> is <em>unselected</em>.</li>
+<li>the <code>Save workspace to .RData on exit</code> dropdown menu is set to <code>Never</code>.</li>
+</ul>
+<p><img src="images/intro/RStudio_SaveData.png" /></p>
+<p>Building habits to ensure a reproducible workflow takes time, but you will thank yourself later for this. It’s never too early to start, and in fact, the earlier the better, so you do not have to unlearn bad habits. It’s just like, for programming, learning programming conventions: why do people name their variables like this or structure their code like that? After you become much more proficient in programming, you’ll see why it helps to make your code so much more efficient. This is the same with reproducibility.</p>
+</div>
+</div>
+<div id="other-coding-best-practices" class="section level3 unnumbered">
+<h3>Other Coding Best Practices</h3>
+<p>(This will be a growing list that I will add to.)</p>
+<ul>
+<li>Try not to re-use variable names or data frame names.
+<ul>
+<li>I highly recommend NOT doing something like: <code>d1$score = d1$score * 100</code>.
+<ul>
+<li>Why? Well, if you accidentally run that line of code again, your <code>score</code> will be 100x higher than you wanted it to be.</li>
+</ul></li>
+</ul></li>
+<li>Try having longer and more informative names.
+<ul>
+<li>Do <strong>NOT</strong> write something like: <code>mean = mean(d1$score)</code>.
+<ul>
+<li>Why? Doing this will overwrite <code>mean()</code> (the function that calculates the average) in the namespace with <code>mean</code> (the variable that you just created). This means (haha) that you will not be able to calculate anymore means because typing <code>mean</code> would then reference the newly-created variable, not the function you had in mind.</li>
+<li>Instead, try to be more informative <code>meanScore = mean(d1$score)</code>. If ever in doubt, just type the variable name into the console to see if it’s already used. If it is, it’ll print out a function or some data. If not, it’ll say <code>Error: object 'x' not found</code>.</li>
+</ul></li>
+</ul></li>
+<li>Do not use very common letters like x, y, i, j. Especially as counter variables.
+<ul>
+<li>For example, what’s wrong with the following code?
+<ul>
+<li><code>x = mean(d1$score)</code></li>
+<li><code>...</code></li>
+<li><code>for(x in 1:10) {</code></li>
+<li><code>print(d1$score[x])</code></li>
+<li><code>}</code></li>
+</ul></li>
+<li>Then later when you want to print out the mean score, you’ll find that <code>x</code> is 10. And not what you expected.</li>
+<li>I personally recommend using longer variable names, even for counter variables, and again, never re-using them.</li>
+</ul></li>
+</ul>
+</div>
+<div id="analysis-best-practices" class="section level3 unnumbered">
+<h3>Analysis Best Practices</h3>
+<p>(This will be a growing list that I will add to.)</p>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="outline-of-notes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

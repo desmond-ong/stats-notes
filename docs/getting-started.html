@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.1 Basics of Linear Regression | Some notes on Statistics and Data Analytics (Working Title)</title>
+  <title>Getting Started | Some notes on Statistics and Data Analytics (Working Title)</title>
   <meta name="description" content="A collection of statistics notes for data analytics." />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.1 Basics of Linear Regression | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.1 Basics of Linear Regression | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
   
   <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="the-linear-model-i-linear-regression.html"/>
-<link rel="next" href="running-a-regression.html"/>
+<link rel="prev" href="outline-of-notes.html"/>
+<link rel="next" href="coding-best-practices.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -237,61 +237,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="basics-of-linear-regression" class="section level2">
-<h2><span class="header-section-number">5.1</span> Basics of Linear Regression</h2>
+<div id="getting-started" class="section level1 unnumbered">
+<h1>Getting Started</h1>
 <p><span class="badge badge-bt"> BT1101 </span></p>
-<p>Linear Regression really boils down to this simple equation.</p>
-<p><span class="math display">\[ Y = b_0 + b_1 X \]</span></p>
-<p>We want to predict <span class="math inline">\(Y\)</span>, our outcome variable or <strong>dependent variable (DV)</strong>, using <span class="math inline">\(X\)</span>, which can have several names, like <strong>independent variable (IV)</strong>, predictor or regressor.</p>
-<p><span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span> are <em>parameters</em> that we have to estimate in the model: <span class="math inline">\(b_0\)</span> is the Constant or <em>Intercept</em> term, and <span class="math inline">\(b_1\)</span> is generally called a regression coefficient, or the slope.</p>
-<p>Below, we have a simple graphical illustration. Let’s say I have a dataset of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> values, and I plot a scatterplot of <span class="math inline">\(Y\)</span> on the vertical axis and <span class="math inline">\(X\)</span> on the horizontal. It’s convention that the dependent variable is always on the vertical axis.</p>
-<p>On the right I’ve also drawn the “best-fit” line to the data. Graphically, <span class="math inline">\(b_0\)</span> is where the line crosses the vertical axis (i.e., when <span class="math inline">\(X\)</span> is 0), and <span class="math inline">\(b_1\)</span> is the slope of the line. Some readers may have learnt this in high school, where the slope of the line is the “rise” over the “run”, so how many units of “Y” do we increase (‘rise’) as we increase “X”.</p>
-<p><img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" style="display: block; margin: auto;" /></p>
-<p>And that’s the basic idea. Our linear model is one way of trying to explain <span class="math inline">\(Y\)</span> using <span class="math inline">\(X\)</span>, which is by multiplying <span class="math inline">\(X\)</span> by the regression coefficient <span class="math inline">\(b_1\)</span> and adding a constant <span class="math inline">\(b_0\)</span>. It’s so simple, yet, it is a very powerful and widely used tool, and we shall see more over the rest of this chapter and the next few chapters.</p>
-<p>Our dependent variable <span class="math inline">\(Y\)</span> is always the quantity that we are interested in and that we are trying to predict. Our independent variables <span class="math inline">\(X\)</span> are variables that we use to predict <span class="math inline">\(Y\)</span>.</p>
-<p>Here are some examples:</p>
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Dependent Variable <br> Y</th>
-<th>Independent Variable <br> X</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Income</td>
-<td>Years of Education</td>
-</tr>
-<tr class="even">
-<td>Quartly Revenue</td>
-<td>Expenditure on Marketing</td>
-</tr>
-<tr class="odd">
-<td>Quantity of Products Sold</td>
-<td>Month of Year</td>
-</tr>
-<tr class="even">
-<td>Click-through rate</td>
-<td>Colour of advertisement <br>(Note that this is an experiment!)</td>
-</tr>
-</tbody>
-</table>
-<p>Perhaps we are interested in predicting an individual’s income based on their years of education. Or for a company, we might want to predict Quarterly Revenue using the amount we spent on Marketing, or predict sales at in different months of the year.</p>
-<p>We can also use regression to model the results of experiments. For example, we might be interested in whether changing the colour of an advertisement will affect how effective it is, measured by how many people click on the advertisement (called the click-through rate, measuring how many people click on our ad). So we may show some of our participants the ad in blue, some in green, etc, and then see how that affects our click-through rate. So linear modelling can and is frequently used to model experiments as well.</p>
-<p>Independent Variables can be <strong>continuous</strong> (e.g., Years; Expenditure), or they can also be <strong>discrete</strong>/<strong>categorical</strong> (e.g., Month, Colour, Ethnicity). And we shall see examples of both in this chapter</p>
-<p>Similarly, Dependent Variables can either be <strong>continuous</strong> or <strong>categorical</strong>. In this Chapter we shall only cover continuous DVs, and we shall learn about categorical DVs in the next Chapter on Logistic Regression.</p>
+<p>This course will be taught in <code>R</code>, which is a free statistical software environment (/ programming language) that makes it very handy to run data analysis. It is a fully <em>functional</em> programming language, and by that I mean two things:</p>
+<ul>
+<li><ol style="list-style-type: decimal">
+<li>In my experience, any operation that you want to do to data, you can do it in <code>R</code>. (There are certain exceptions, e.g., I find that Natural Language Processing better done in Python than R.). In particular, there are handy wrappers for Python/C++ (which allow you to port <code>R</code> code to Python/C++), many user-contributed libraries and code, as well as innovative tools like Jupyter notebooks and <code>R Markdown</code> documents which allow incredible flexibility in setting up a data analysis pipeline.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: decimal">
+<li>For programming language enthusiasts, R is also a <a href="http://adv-r.had.co.nz/Functional-programming.html">functional programming language</a>. There are some neat tricks that you can do by exploiting R’s more advanced functional capabilites.</li>
+</ol></li>
+</ul>
+<div id="how-to-download-r-and-rstudio" class="section level4 unnumbered">
+<h4>How to download R and RStudio</h4>
+<p><code>R</code> is free, and can be downloaded from <a href="https://www.r-project.org/">the R Project website</a>. We will be using <code>RStudio</code>, which is an excellent development environment that makes it much friendlier to use <code>R</code>. You can download the free Desktop version at <a href="https://rstudio.com/products/rstudio/download/">the R Studio website</a>.</p>
+</div>
+<div id="todo-resources-for-learning-r-and-studio" class="section level3 unnumbered">
+<h3>[Todo:] Resources for learning R and Studio</h3>
+</div>
+<div id="how-to-use-r-markdown" class="section level3 unnumbered">
+<h3>How to use R Markdown</h3>
+<p>R Markdown documents are an extremely useful tool that professional data scientists and business analysts use in their day-to-day work. They allow for R code (and the output of R code) to be neatly formatted (using Markdown) into various output types, such as PDFs, HTML, or MS Word Documents (note, for MS Word, you’ll need MS Word installed on your system).</p>
+<p>This process is called <code>Knitting</code>. If you open a R Markdown document (<code>.rmd</code>) in RStudio, it should detect it and you shold see a little command called <code>Knit</code> at the top of your source window. (If this is your first time, you may have to install a few packages like <code>knitr</code>; RStudio will helpfully suggest them.)</p>
+<p>R Markdown is nice because it allows you to embed code and writeup into the same document, and it produces presentable output, so you can use it to generate reports from your homework, and, when you eventually go out to work in a company, for your projects.</p>
+<p>Here’s how you embed a “chunk” of R code.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>After the three apostrophes, you’ll need <code>r</code>, then you can give the chunk a name. Please note that <strong>NAMES HAVE TO BE A SINGLE-WORD, NO SPACES ALLOWED</strong>. Also, names have to be unique, that is, every chunk needs a <strong>different</strong> name. You can give chunks names like:</p>
+<ul>
+<li><code>chunk1</code></li>
+<li><code>read-in-data</code></li>
+<li><code>run-regression</code></li>
+</ul>
+<p>or, what will help you with homework:</p>
+<ul>
+<li><code>q1a-read-in-data</code></li>
+<li><code>q1b-regression</code></li>
+</ul>
+<p>These names are for you to help organize your code. (In practice it will be very useful when you have files with thousands of lines of code…). Names are optional. If you do not give a name, it will default to <code>unnamed-chunk-1</code>, etc</p>
+<p>After the name of the chunk, you can give it certain options, separated by commas. Here are some important options:</p>
+<ul>
+<li><code>echo=T</code> / <code>echo=TRUE</code> or <code>echo=F</code> / <code>echo=FALSE</code>: whether or not the code chunk will be copied into the output file.</li>
+<li><code>eval=T</code> / <code>eval=TRUE</code> or <code>eval=F</code> / <code>eval=FALSE</code>: whether or not the code chunk will be evaluated. If you set one chunk <code>eval=F</code>, it will be as if you commented all the code in that chunk; they just won’t run. This can be super useful, if e.g. you have some analyses that take up more time, and you don’t want to run them every single time you knit, so you can just comment them out using this one liner.</li>
+</ul>
+<p>There is a lot to syntax to learn using the R Markdown. And lots of cool stuff too (interactive HTML documents anyone?).</p>
+<p>In real work environments, one use-case for the R Markdown document is to generate regular reports using different data. For example, let’s say every week you get some data (weekly sales) from another team. When you get a new data file, you could just edit one line of the R Markdown file (which data file it’s reading in), and you can generate the exact same report that you did last week, just that now it’s on this week’s data. Exact same analysis, exact same graphs, just with new data. And it’s professional enough to show your manager.</p>
+<p>Note about <em>working directories</em> in R Markdown. If you do not specify your working directory via <code>setwd('...')</code>, and you hit <code>Knit</code>, the document will assume that the working directory is the directory that the <code>.rmd</code> file is in. Thus, if your rmd is in <code>XYZ/folder1/code.rmd</code> and your dataset is <code>XYZ/folder1/data.csv</code>, then you can simply read in a data file using the local path: <code>d0 &lt;- read.csv('data.csv')</code> without running <code>setwd()</code>.</p>
+</div> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="the-linear-model-i-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="running-a-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="outline-of-notes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="coding-best-practices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

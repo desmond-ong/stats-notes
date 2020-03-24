@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -240,12 +248,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Readers should be able to interpret the output of a regression model, including regression coefficients, confidence intervals, hypothesis testing about coefficients, and goodness-of-fit statistics.</p></li>
 <li><p>Readers should be able to interpret the meaning of dummy-coded variables used to model categorical independent variables.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Load the libraries we&#39;ll use in this chapter</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggplot2) <span class="co"># for plotting</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Load the libraries we&#39;ll use in this chapter</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(ggplot2) <span class="co"># for plotting</span></a></code></pre></div>
 <p>I’ve also made up some simulated data just for the next few sections that we will use to illustrate linear regression. Below is the code I used to generate <code>df1</code>: <span class="math inline">\(X\)</span> is just a vector from 0 to 10, and <span class="math inline">\(Y\)</span> is an affine transformation of <span class="math inline">\(X\)</span> with some random noise added.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">df1 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">X=</span><span class="kw">c</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">df1<span class="op">$</span>Y =<span class="st"> </span><span class="dv">-2</span> <span class="op">+</span><span class="st"> </span>df1<span class="op">$</span>X<span class="op">*</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="kw">nrow</span>(df1), <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div> 
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">df1 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">X=</span><span class="kw">c</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>), <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">df1<span class="op">$</span>Y =<span class="st"> </span><span class="dv">-2</span> <span class="op">+</span><span class="st"> </span>df1<span class="op">$</span>X<span class="op">*</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n=</span><span class="kw">nrow</span>(df1), <span class="dt">mean=</span><span class="dv">0</span>, <span class="dt">sd=</span><span class="dv">1</span>)</a></code></pre></div> 
 </div>
             </section>
 

@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -234,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="badge badge-bt"> BT1101 </span></p>
 <p>Here’s a simple example to illustrate what we’ve discussed so far, by using a dataset that comes bundled with R, the <code>mtcars</code> dataset. We can load the dataset using <code>data(mtcars)</code>.</p>
 <p>First, let’s see what the data looks like, using <code>head(mtcars)</code>, which prints out the first 6 rows of <code>mtcars</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">head</span>(mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">data</span>(mtcars)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">head</span>(mtcars)</a></code></pre></div>
 <pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
@@ -245,10 +253,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <p>We’re interested in particular in predicting the fuel economy (<code>mtcars$mpg</code>, measured in miles per gallon) of certain vehicles using its horsepower (<code>mtcars$hp</code>).</p>
 <p>Let’s plot what they look like on a scatterplot.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="06-a-regression_files/figure-html/lmi-mtcarsexample2-1.png" width="336" style="display: block; margin: auto;" /></p>
 <p>It looks like there is a linear trend! We can see visually that as horsepower increases, fuel economy drops; large cars tend to guzzle more fuel than smaller ones. And finally, we can run the linear model using using <code>lm(mpg ~ hp, mtcars)</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, mtcars))</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, mtcars))</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ hp, data = mtcars)

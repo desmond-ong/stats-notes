@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -234,8 +242,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="badge badge-bt"> BT1101 </span></p>
 <p>In this section we’ll be going over the different parts of the linear model output. First, we’ll talk about the coefficient table, then we’ll talk about goodness-of-fit statistics.</p>
 <p>Let’s re-run the same model from before:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Y<span class="op">~</span>X, df1)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">summary</span>(fit1)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Y ~ X, data = df1)
@@ -265,7 +273,7 @@ lm(formula = Y ~ X, data = df1)</code></pre>
 <div id="the-coefficient-table" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> The coefficient table</h3>
 <p>Let’s turn next to the coefficient table.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">summary</span>(fit1)<span class="op">$</span>coeff</a></code></pre></div>
 <pre><code>##              Estimate Std. Error   t value    Pr(&gt;|t|)
 ## (Intercept) -2.261167 0.46170984 -4.897376 8.50721e-04
 ## X            2.103757 0.07804321 26.956313 6.44250e-10</code></pre>

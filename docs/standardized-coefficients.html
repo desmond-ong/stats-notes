@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -251,14 +259,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes, standardised coefficients makes it easier to interpret when the underlying unit is quite difficult to interpret, for example: IQ, the intelligence quotient, is actually a standardised variable itself such that 100 is the mean of the population and 15 is the standard deviation. It’s hard to come up with units of “absolute” intelligence, and so IQ is actually measured relative to others in the population.</p>
 <p>Coming back to the example of comparing the results in an American sample with the SAT and a Singaporean sample with the O-levels; even if I cannot compare 1 point on the SAT with 1 point on the O-levels, with standardized coefficients I can still ask: does a 1 standard deviation increase in SAT score have the same effect (on whatever <span class="math inline">\(Y\)</span>), as a 1 standard deviation increase in O-level score?</p>
 <p>Here is some R code to ‘manually’ standardize variables and use them in a model</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># unstandardized</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="co"># standardized</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb28-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb28-8" data-line-number="8"><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># unstandardized</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># standardized</span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</a></code></pre></div>
 </div>
 <div class="footnotes">
 <hr />

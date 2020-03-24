@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -255,10 +263,10 @@ Then the optimal solution actually changes (to <span class="math inline">\(X_1\)
 <p>R’s <code>lpSolve::lp()</code> function helps you to calculate the <em>range</em> of coefficient values for which the given solution is still optimal. So again, recall that the original objective function is:
 <span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
 <p>We use <code>lp.solution$sens.coef.from</code> and <code>lp.solution$sens.coef.to</code> to get the range of coefficients.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># sensitivity analysis on coefficients</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">lp.solution<span class="op">$</span>sens.coef.from </a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># sensitivity analysis on coefficients</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">lp.solution<span class="op">$</span>sens.coef.from </a></code></pre></div>
 <pre><code>## [1] 0.1142857 0.1500000</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">lp.solution<span class="op">$</span>sens.coef.to</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">lp.solution<span class="op">$</span>sens.coef.to</a></code></pre></div>
 <pre><code>## [1] 0.400 0.525</code></pre>
 <p>The way you read this is that “from” is the lower bound of the coefficients (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively), while “to” gives the upper bound of the coefficients.</p>
 <ul>
@@ -299,8 +307,8 @@ The Shadow Price of the space constraint is $0.05.</p>
 <div id="varying-constraint-values-in-r" class="section level4 unnumbered">
 <h4>Varying Constraint Values in R</h4>
 <p>Shadow prices are also known as <code>duals</code> in other fields (e.g. computer science), so we use <code>lp.solution$duals</code> to get them.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># Shadow prices</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">lp.solution<span class="op">$</span>duals</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># Shadow prices</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">lp.solution<span class="op">$</span>duals</a></code></pre></div>
 <pre><code>## [1] 0.50 0.05 0.00 0.00</code></pre>
 <p>Notice that there are four values here. The first two are the two constraints we put in, in the order they were specified in the constraints matrix (so <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span> then <span class="math inline">\(X_1 + X_2 \leq 200\)</span>).
 So we can see, as per our calculations above, that the shadow price of the first constraint is $0.50, and that of the second constraint is $0.05.</p>
@@ -315,21 +323,21 @@ So we can see, as per our calculations above, that the shadow price of the first
 <p>In certain cases, we might even have <em>negative</em> shadow prices. Let’s consider a modified objective function in the same Parsnip-Kale example, where the profit of Kale is increased to 0.53.
 <span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.53} X_2 \]</span>
 We saw from our earlier sensitivity analysis that this will change the optimal solution to: <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>. Let’s check this by re-running this modified linear optimization problem, saving it as <code>lp.solution2</code>:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># defining parameters</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2">objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</a>
-<a class="sourceLine" id="cb64-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb64-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
-<a class="sourceLine" id="cb64-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="co"># solving model</span></a>
-<a class="sourceLine" id="cb64-7" data-line-number="7">lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </a>
-<a class="sourceLine" id="cb64-8" data-line-number="8">                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb64-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb64-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb64-11" data-line-number="11"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
-<a class="sourceLine" id="cb64-12" data-line-number="12">lp.solution2</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7">lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </a>
+<a class="sourceLine" id="cb66-8" data-line-number="8">                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb66-11" data-line-number="11"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
+<a class="sourceLine" id="cb66-12" data-line-number="12">lp.solution2</a></code></pre></div>
 <pre><code>## Success: the objective function is 75.71429</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution2<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">The optimal objective function value is:&quot;</span>, lp.solution2<span class="op">$</span>objval, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">with the following Shadow Prices&quot;</span>, lp.solution2<span class="op">$</span>duals)</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution2<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">The optimal objective function value is:&quot;</span>, lp.solution2<span class="op">$</span>objval, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">with the following Shadow Prices&quot;</span>, lp.solution2<span class="op">$</span>duals)</a></code></pre></div>
 <pre><code>## The optimal solution is: 0 142.8571 
 ## The optimal objective function value is: 75.71429 
 ## with the following Shadow Prices 0.7571429 0 -0.001428571 0</code></pre>

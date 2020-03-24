@@ -1,7 +1,7 @@
 --- 
 title: "Some notes on Statistics and Data Analytics (Working Title)"
 author: "Desmond C. Ong"
-date: "Draft Dated: 2019-12-29"
+date: "Draft Dated: 2020-03-24"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -45,7 +45,7 @@ This is a work in progress that is inspired by Russ Poldrack's Psych10 book here
 Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg. 
 
 
-This material is shared under a [Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) License](https://creativecommons.org/licenses/by-sa/4.0/). What this means is that you are free to copy, redistribute, and even adapt the material in this book, in any format or for any purpose, even commercial. Basically, this is a freely-available educational resource that you can share and use. The only conditions are (i) you must give appropriate credit, and if you made any changes, you must indicate so and not in in any way that suggests that I endorse your changes, and (ii) if you transform or build upon the material here, you must also distribute this contributions under the same license.
+This material is shared under a [Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) License](https://creativecommons.org/licenses/by-sa/4.0/). What this means is that you are free to copy, redistribute, and even adapt the material in this book, in any format or for any purpose, even commercial. Basically, this is a freely-available educational resource that you can share and use. The only conditions are (i) you must give appropriate credit, and if you made any changes, you must indicate so and not in any way that suggests that I endorse your changes, and (ii) if you transform or build upon the material here, you must also distribute this contributions under the same license.
 
 
 #### About the Author {-}
@@ -58,7 +58,7 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 
 ## Outline of notes {-}
 
-- [In Progress] Getting Started - R, RStudio, R Markdown. 
+- Getting Started - R, RStudio, R Markdown. 
     a. Coding Best Practices. 
     b. Analysis Best Practices.
 - [In Progress] Introduction - detective analogy

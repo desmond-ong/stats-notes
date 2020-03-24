@@ -133,7 +133,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
 <li class="chapter" data-level="" data-path="outline-of-notes.html"><a href="outline-of-notes.html"><i class="fa fa-check"></i>Outline of notes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="not-done-getting-started.html"><a href="not-done-getting-started.html"><i class="fa fa-check"></i>[Not Done:] Getting Started</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i>Getting Started</a><ul>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#todo-resources-for-learning-r-and-studio"><i class="fa fa-check"></i>[Todo:] Resources for learning R and Studio</a></li>
+<li class="chapter" data-level="" data-path="getting-started.html"><a href="getting-started.html#how-to-use-r-markdown"><i class="fa fa-check"></i>How to use R Markdown</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html"><i class="fa fa-check"></i>Coding Best Practices</a><ul>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#ensuring-a-reproducible-workflow"><i class="fa fa-check"></i>Ensuring a Reproducible workflow</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#other-coding-best-practices"><i class="fa fa-check"></i>Other Coding Best Practices</a></li>
+<li class="chapter" data-level="" data-path="coding-best-practices.html"><a href="coding-best-practices.html#analysis-best-practices"><i class="fa fa-check"></i>Analysis Best Practices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
 <li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
@@ -264,15 +272,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Here’s how you translate it into code. First, we define the objective function parameters, which are just the coefficients of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> in the object function: Profits = 0.15 <span class="math inline">\(X_1\)</span> + 0.40 <span class="math inline">\(X_2\)</span></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a></code></pre></div>
 <p>Next, we define the constraints, which are broken up into 3 variables: the constraints matrix, the constraint directions, and the constraint values (or constraint RHS for right-hand-side).</p>
 <p><span class="math display">\[0.20X_1 + 0.70 X_2 \leq 100\]</span>
 <span class="math display">\[X_1 + X_2 \leq 200\]</span></p>
 <p>The constraint matrix is simply concatenating all the coefficients here into a matrix. For simplicity, using the convention below, we just read off the matrix from top to bottom, then within each line, from left to right. So we have: (0.20, 0.70, 1, 1). When I construct the matrix, you have to specify the number of columns (<code>ncol</code>) which is simply the number of decision variables we have; in this case it’s 2.</p>
 <p>The constraint directions are just a vector that corresponds to each constraint (<span class="math inline">\(\leq\)</span>, <span class="math inline">\(\leq\)</span>), and the constraint right-hand-side values are just (100, 200)</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb50-2" data-line-number="2">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
-<a class="sourceLine" id="cb50-3" data-line-number="3">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a></code></pre></div>
 <p>The important thing to note is to get the order of all the constraints correct. In particular, if you have certain constraints that do not include ALL of the decision variables, to include <code>0</code>s whenever appropriate.</p>
 <blockquote>
 <p><span style="color:blue; font-size:150%">TIP!</span>
@@ -282,26 +290,26 @@ For example, if you have an additional constraint that you can only produce a ma
 This will help you remember to put … 1,0 … into the relevant row of the constraints matrix when you are reading the matrix off from your table.</p>
 </blockquote>
 <p>Finally, we put all of these into a call to the <code>lp</code> function within the <code>lpSolve</code> package. We specify <code>max</code> for maximizing the objective function, pass in the rest of the parameters we just defined, and finally we also ask it to <code>compute.sens=TRUE</code>: we need this for the sensitivity analysis in the next section.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
-<a class="sourceLine" id="cb51-2" data-line-number="2">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Putting it all together, and looking at the solution (<code>lp.solution$solution</code>) and objective function value (<code>lp.solution$objval</code>)</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># defining parameters</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
-<a class="sourceLine" id="cb52-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
-<a class="sourceLine" id="cb52-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="co"># solving model</span></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
-<a class="sourceLine" id="cb52-8" data-line-number="8">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb52-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
-<a class="sourceLine" id="cb52-11" data-line-number="11">lp.solution</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># defining parameters</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.40</span>)</a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb54-4" data-line-number="4">const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co"># solving model</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7">lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </a>
+<a class="sourceLine" id="cb54-8" data-line-number="8">                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co"># check if it was successful; it also prints out the objective fn value</span></a>
+<a class="sourceLine" id="cb54-11" data-line-number="11">lp.solution</a></code></pre></div>
 <pre><code>## Success: the objective function is 60</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co"># optimal solution (decision variables values)</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">lp.solution<span class="op">$</span>solution</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># optimal solution (decision variables values)</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">lp.solution<span class="op">$</span>solution</a></code></pre></div>
 <pre><code>## [1]  80 120</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">And the optimal objective function value is:&quot;</span>, lp.solution<span class="op">$</span>objval)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># Printing it out:</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">And the optimal objective function value is:&quot;</span>, lp.solution<span class="op">$</span>objval)</a></code></pre></div>
 <pre><code>## The optimal solution is: 80 120 
 ## And the optimal objective function value is: 60</code></pre>
 <p>Thus, the optimal solution is <span class="math inline">\(X_1\)</span> = 80, <span class="math inline">\(X_2\)</span> = 120, and the optimal profit is 60, which is what we found manually in the previous section.</p>
