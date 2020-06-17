@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics (Working Title)</title>
-  <meta name="description" content="A collection of statistics notes for data analytics." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes for data analytics." />
+  <meta property="og:description" content="12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.1 What is Linear Optimization | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
+  <meta name="twitter:description" content="12.1 What is Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Some notes on Statistics</a></li>
+<li><a href="./">Statistics and Analytics for the Social and Computing Sciences</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -143,8 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
-<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
-<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="2" data-path="handling-data.html"><a href="handling-data.html"><i class="fa fa-check"></i><b>2</b> Handling Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-data-wrangling.html"><a href="basics-of-data-wrangling.html"><i class="fa fa-check"></i><b>2.1</b> Basics of Data Wrangling</a></li>
+<li class="chapter" data-level="2.2" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html"><i class="fa fa-check"></i><b>2.2</b> Wrangling in the tidyverse</a><ul>
+<li><a href="wrangling-in-the-tidyverse.html#the-operator">The <code>%&gt;%</code> operator</a></li>
+<li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#wide-to-long-pivot_longer"><i class="fa fa-check"></i>Wide-to-long: pivot_longer()</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
@@ -229,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics and Analytics for the Social and Computing Sciences</a>
           </h1>
         </div>
 

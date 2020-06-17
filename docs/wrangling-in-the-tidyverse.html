@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences" />
+  <title>2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="13.3 Logical Constraints | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-from-real-valued-to-integer-solutions.html"/>
-<link rel="next" href="integer-optimization-summary.html"/>
+<link rel="prev" href="basics-of-data-wrangling.html"/>
+<link rel="next" href="not-done-a-data-cleaning-pipeline-for-research-projects.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -246,251 +246,326 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logical-constraints" class="section level2">
-<h2><span class="header-section-number">13.3</span> Logical Constraints</h2>
+<div id="wrangling-in-the-tidyverse" class="section level2">
+<h2><span class="header-section-number">2.2</span> Wrangling in the tidyverse</h2>
 <p><span class="badge badge-bt"> BT1101 </span></p>
-<p>Some logical constraints can also be formalised as integer constraints. For example, if I choose <span class="math inline">\(X_1\)</span>, then I must choose <span class="math inline">\(X_2\)</span> as well. This can be formalised as the following constraint:
-<span class="math display">\[X_2 - X_1 \geq 0\]</span>
-If <span class="math inline">\(X_1\)</span> is 1, then this forces <span class="math inline">\(X_2\)</span> to be 1 too.</p>
-<p>In general, the following table summaries how some logical constraints can be represented using binary decision variables:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Logical Condition</th>
-<th>Linear Constraint</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>if <span class="math inline">\(A\)</span> then <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(B - A \geq 0\)</span></td>
-</tr>
-<tr class="even">
-<td>if not <span class="math inline">\(A\)</span> then <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(B - (1 - A) \geq 0\)</span>, or <span class="math inline">\(A + B \geq 1\)</span></td>
-</tr>
-<tr class="odd">
-<td>At most one of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(A + B \leq 1\)</span></td>
-</tr>
-<tr class="even">
-<td>At least one of <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(A + B \geq 1\)</span></td>
-</tr>
-<tr class="odd">
-<td>if (<span class="math inline">\(A\)</span> or <span class="math inline">\(C\)</span>) then <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(B - (A+C) \geq 0\)</span></td>
-</tr>
-<tr class="even">
-<td>if (<span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span>) then <span class="math inline">\(B\)</span></td>
-<td><span class="math inline">\(B - (A+C) \geq -1\)</span>, or <span class="math inline">\((A+C) - B \leq 1\)</span></td>
-</tr>
-<tr class="odd">
-<td>if <span class="math inline">\(A\)</span> then (<span class="math inline">\(B\)</span> or <span class="math inline">\(C\)</span>)</td>
-<td><span class="math inline">\((B+C) - A \geq 0\)</span></td>
-</tr>
-<tr class="even">
-<td>if <span class="math inline">\(A\)</span> then (<span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>)</td>
-<td><span class="math inline">\((B+C) - 2A \geq 0\)</span></td>
-</tr>
-</tbody>
-</table>
-<div id="logical-constraints-example-planning-university-courses" class="section level3">
-<h3><span class="header-section-number">13.3.1</span> Logical Constraints Example: Planning university courses</h3>
-<p>Let’s see logical constraints in action in the following example.</p>
-<p>Natalie has decided to switch her career to data science, as she feels it has more prospects than her previous industry. She is eyeing a “Pico-masters (TM)” program at her local university, where she has to complete 40 units of courses to satisfy the pico-degree. (“Pico-masters” and “nano-masters” are fictional—at least, for now—but some online education platforms and universities like edX are offering “MicroMasters<sup>®</sup>” and other similar products.)</p>
-<p>The program offers the following courses, in <strong>ST</strong>atistics, <strong>P</strong>ro<strong>G</strong>ramming, and <strong>D</strong>ata <strong>M</strong>anagement, along with their associated costs and pre-requisites. The pre-requisites for each course must be fulfilled before students are allowed to take that course. In order to finish the PicoMasters, she needs to finish a specialization in one of the three tracks, which is fulfilled by completing the “Level 3” version of that course. Natalie has also indicated her personal interest in each course, in the following table.</p>
-<table>
-<thead>
-<tr class="header">
-<th>Course</th>
-<th>Units</th>
-<th>Pre-requisites</th>
-<th>Interest</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ST1</td>
-<td>10</td>
-<td>-</td>
-<td>8</td>
-</tr>
-<tr class="even">
-<td>ST2</td>
-<td>10</td>
-<td>ST1</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>ST3</td>
-<td>10</td>
-<td>ST2</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>PG1</td>
-<td>10</td>
-<td>-</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>PG2a</td>
-<td>10</td>
-<td>PG1</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>PG2b</td>
-<td>10</td>
-<td>PG1</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td>PG3</td>
-<td>10</td>
-<td>PG2a <em>or</em> PG2b</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td>DM1</td>
-<td>10</td>
-<td>-</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td>DM2</td>
-<td>10</td>
-<td>DM1</td>
-<td>6</td>
-</tr>
-<tr class="even">
-<td>DM3</td>
-<td>10</td>
-<td>DM2</td>
-<td>7</td>
-</tr>
-</tbody>
-</table>
-<p>Imagine that her goal is to maximize her interest and satisfy the requirements of the degree, while also taking exactly 40 units (in order to keep costs low). Which classes should she take?</p>
-<p>First, let’s define our decision variables, by just using <span class="math inline">\(X_1\)</span> to <span class="math inline">\(X_{10}\)</span> to correspond to taking each of the ten courses, in the order in the table above. That is,</p>
-<p><span class="math inline">\(X_1\)</span> = Take ST1, <span class="math inline">\(X_2\)</span> = Take ST2, <span class="math inline">\(X_3\)</span> = Take ST3, <br>
-<span class="math inline">\(X_4\)</span> = Take PG1, <span class="math inline">\(X_5\)</span> = Take PG2a, <span class="math inline">\(X_6\)</span> = Take PG2b, <span class="math inline">\(X_7\)</span> = Take PG3, <br>
-<span class="math inline">\(X_8\)</span> = Take DM1, <span class="math inline">\(X_9\)</span> = Take DM2, <span class="math inline">\(X_{10}\)</span> = Take DM3</p>
-<p>Now let’s tackle the constraints one-by-one.</p>
-<p>Consider the following pre-requisite:</p>
-<pre><code>Natalie needs to take ST1 before being allowed to take ST2. </code></pre>
-<p>We can represent this using the following constraint:</p>
-<p><span class="math display">\[ X_1 - X_2 \geq 0 \]</span></p>
-<p>You can easily check if this is correct by ‘testing’ it by subtituting values. If Natalie takes ST2 (i.e., <span class="math inline">\(X_2 = 1\)</span>), then we have the following inequality: <span class="math inline">\(X_1 - 1 \geq 0\)</span>. In order for this also to be true, we need <span class="math inline">\(X_1\)</span> to also be 1. This means that Natalie taking ST2 (<span class="math inline">\(X_2 = 1\)</span>) actually forces her to also have taken ST1 (<span class="math inline">\(X_1 = 1\)</span>).</p>
-<p>Similarly, we can write out the pre-requisite constraints for the rest. Now, let’s consider one more case:</p>
-<pre><code>Natalie needs to take either PG2a OR PG2b before being allowed to take PG3. </code></pre>
-<p>One easy thing to try is to replace ST2 (<span class="math inline">\(X_2\)</span>) in the previous inequality with PG3 (<span class="math inline">\(X_7\)</span>), and replace ST1 (<span class="math inline">\(X_1\)</span>) with (PG2a or PG2b), or (<span class="math inline">\((X_5+X_6)\)</span>). So let’s try:</p>
-<p><span class="math display">\[ (X_5 + X_6) - X_7 \geq 0 \]</span></p>
-<p>And actually this is the correct inequality! Let’s test this out. If Natalie takes PG3, then <span class="math inline">\(X_7=1\)</span>, and so we are left with:
-<span class="math inline">\((X_5 + X_6) - 1 \geq 0\)</span>.
-This inequality will be satisfied if <span class="math inline">\(X_5\)</span> is 1, or if <span class="math inline">\(X_6\)</span> is 1, that is, if she takes either PG2a or PG2b. (Note that this will also be satisifed if BOTH <span class="math inline">\(X_5\)</span> and <span class="math inline">\(X_6\)</span> is 1 – there is nothing stopping her from taking both PG2a and PG2b!)</p>
-<p>And finally let’s consider the constraint that she needs to finish a specialization. That is, she needs to take either ST3 (<span class="math inline">\(X_3\)</span>) or PG3 (<span class="math inline">\(X_7\)</span>) or DM3 (<span class="math inline">\(X_{10}\)</span>). This means that at least one of them needs to be 1. So we can just write:</p>
-<p><span class="math display">\[ X_3 + X_7 + X_{10} \geq 0 \]</span></p>
-<p>Please make sure you understand how we got (or how we tested/verified) the above inequalities!</p>
-<p>Now, we can finally write out our optimization problem in a large table:</p>
-<table>
+<p>(Here’s a great reference, “cheat sheet”, that is very useful to refer to once you have learnt the <code>tidyverse</code> functions and want to refer back to it, although it’s a little outdated:
+<a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf</a>. Do note that <code>pivot_longer()</code>, covered below, is an updated version of <code>gather()</code> from the pdf.)</p>
+<p>In this section we’ll briefly discuss using functions from the <code>tidyverse</code> package, which is a very useful package for handling data. It is a very rich package (with an accompanying <a href="https://www.tidyverse.org/">book</a>), with too much content to cover here, so we’ll only introduce some very basic functions.</p>
+<p>If you would like to follow along, use the following code to generate the toy data that we’ll use in this example.</p>
+<div id="the-operator" class="section level3 unnumbered">
+<h3>The <code>%&gt;%</code> operator</h3>
+<p>First, we’ll introduce the <code>%&gt;%</code> operator, which I refer to as the pipe operator<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The <code>%&gt;%</code> operator ‘pipes’ the argument before it, into the function after it, as the first argument (by default).</p>
+<ol style="list-style-type: decimal">
+<li><p><code>A %&gt;% function</code> is equivalent to calling <code>function(A)</code>. The variable before %&gt;% is always the first argument, and you can list other arguments too.</p></li>
+<li><p><code>A %&gt;% function(B, C)</code> is equivalent to calling <code>function(A,B,C)</code>.</p></li>
+</ol>
+<p>The nice thing about the <code>%&gt;%</code> operator, is that you can chain many operations together, while maintaining readability of the code. For example,</p>
+<ol start="3" style="list-style-type: decimal">
+<li><code>A %&gt;% step1(B,C) %&gt;% step2(D) %&gt;% step3()</code> means: Take <code>A</code>, apply <code>Step1</code> (with other arguments <code>B</code>, <code>C</code>), and then apply <code>Step2</code> with additional argument <code>D</code>, and then<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> apply <code>Step3</code>. Overall, this is much easier to read as the code reads sequentially from left to right, as the code “happens”. Contrast this with: <code>step3(step2(step1(A,B,C),D))</code>.</li>
+</ol>
+<p>NOTE: if you like, you can pipe arguments into the argument at position, using <code>.</code>. For example, <code>B %&gt;% function(A, ., C)</code> is equivalent to calling <code>function(A, B, C)</code>.</p>
+</div>
+<div id="wide-to-long-pivot_longer" class="section level3 unnumbered">
+<h3>Wide-to-long: pivot_longer()</h3>
+<p>The function to transform wide data to long data is <code>pivot_longer()</code> (<a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">Documentation</a>). Its first argument, like a lot of the tidyverse functions, is the data frame that we want to manipulate, and is handled by the <code>%&gt;%</code> operator. Recall that the wide-form data looks like, with the columns we want to modify in bold:</p>
+<center>
+<table style="width:83%;">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col width="12%" />
+<col width="12%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Decision variables <br> <span class="math inline">\(X_1\)</span> = Take ST1, <span class="math inline">\(X_2\)</span> = Take ST2, <br> <span class="math inline">\(X_3\)</span> = Take ST3, <br> <span class="math inline">\(X_4\)</span> = Take PG1, <span class="math inline">\(X_5\)</span> = Take PG2a, <br> <span class="math inline">\(X_6\)</span> = Take PG2b, <span class="math inline">\(X_7\)</span> = Take PG3, <br> <span class="math inline">\(X_8\)</span> = Take DM1, <span class="math inline">\(X_9\)</span> = Take DM2, <br> <span class="math inline">\(X_{10}\)</span> = Take DM3</th>
-<th>Maximize Interest = <br> 8<span class="math inline">\(X_1\)</span> + 4<span class="math inline">\(X_2\)</span> + 6<span class="math inline">\(X_3\)</span> + 7<span class="math inline">\(X_4\)</span> + 5<span class="math inline">\(X_5\)</span> + <br> 6<span class="math inline">\(X_6\)</span> + 3<span class="math inline">\(X_7\)</span> + 4<span class="math inline">\(X_8\)</span> + 6<span class="math inline">\(X_9\)</span> + 7<span class="math inline">\(X_{10}\)</span></th>
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">Height_Pri1</th>
+<th align="center">Height_Pri2</th>
+<th align="center">Height_Pri3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Subject to</td>
-<td></td>
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center"><strong>116</strong></td>
+<td align="center"><strong>120</strong></td>
+<td align="center"><strong>127</strong></td>
 </tr>
 <tr class="even">
-<td>Minimum Course Requirements (= for cost savings)</td>
-<td>10 <span class="math inline">\(X_1\)</span> + 10 <span class="math inline">\(X_2\)</span> + 10 <span class="math inline">\(X_3\)</span> + 10 <span class="math inline">\(X_4\)</span> + 10 <span class="math inline">\(X_5\)</span> + <br> 10 <span class="math inline">\(X_6\)</span> + 10 <span class="math inline">\(X_7\)</span> + 10 <span class="math inline">\(X_8\)</span> + 10 <span class="math inline">\(X_9\)</span> + 10 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(=\)</span> 40</td>
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center"><strong>110</strong></td>
+<td align="center"><strong>116</strong></td>
+<td align="center"><strong>123</strong></td>
 </tr>
 <tr class="odd">
-<td>Pre-Requisite for ST2</td>
-<td><span class="math inline">\(X_1 - X_2 \geq 0\)</span> <br> or <br> 1 <span class="math inline">\(X_1\)</span> + (-1) <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="even">
-<td>Pre-Requisite for ST3</td>
-<td><span class="math inline">\(X_2 - X_3 \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 1 <span class="math inline">\(X_2\)</span> + -1 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="odd">
-<td>Pre-Requisite for PG2a</td>
-<td><span class="math inline">\(X_4 - X_5 \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 1 <span class="math inline">\(X_4\)</span> + -1 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="even">
-<td>Pre-Requisite for PG2b</td>
-<td><span class="math inline">\(X_4 - X_6 \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 1 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> -1 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="odd">
-<td>Pre-Requisite for PG3 <br> (PG2a OR PG2b)</td>
-<td><span class="math inline">\((X_5 + X_6) - X_7 \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 1 <span class="math inline">\(X_5\)</span> + <br> 1 <span class="math inline">\(X_6\)</span> + -1 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="even">
-<td>Pre-Requisite for DM2</td>
-<td><span class="math inline">\(X_8 - X_9 \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 1 <span class="math inline">\(X_8\)</span> + -1 <span class="math inline">\(X_9\)</span> + 0 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="odd">
-<td>Pre-Requisite for DM3</td>
-<td><span class="math inline">\(X_9 - X_{10} \geq 0\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 0 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 0 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 1 <span class="math inline">\(X_9\)</span> + -1 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 0</td>
-</tr>
-<tr class="even">
-<td>Complete Specialization</td>
-<td><span class="math inline">\(X_3 + X_7 + X_{10} \geq 1\)</span> <br> or <br> 0 <span class="math inline">\(X_1\)</span> + 0 <span class="math inline">\(X_2\)</span> + 1 <span class="math inline">\(X_3\)</span> + 0 <span class="math inline">\(X_4\)</span> + 0 <span class="math inline">\(X_5\)</span> + <br> 0 <span class="math inline">\(X_6\)</span> + 1 <span class="math inline">\(X_7\)</span> + 0 <span class="math inline">\(X_8\)</span> + 0 <span class="math inline">\(X_9\)</span> + 1 <span class="math inline">\(X_{10}\)</span> <span class="math inline">\(\geq\)</span> 1</td>
-</tr>
-<tr class="odd">
-<td>Binary, Integer, Non-Negativity Constraints</td>
-<td><span class="math inline">\(X_1\)</span>, to <span class="math inline">\(X_{10}\)</span> all binary, integers and <span class="math inline">\(\geq 0\)</span>.</td>
+<td align="center">Cathy</td>
+<td align="center">Female</td>
+<td align="center"><strong>121</strong></td>
+<td align="center"><strong>125</strong></td>
+<td align="center"><strong>131</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Notice that I’ve written out the inequalities into longer forms with explicit “0”s, so</p>
-<p><span class="math display">\[X_1 - X_2 \geq 0\]</span> becomes <span class="math display">\[X_1 + (-1) X_2 + 0 X_3 + 0 X_4 + 0 X_5 + 0 X_6 + 0 X_7 + 0 X_8 + 0 X_9 + 0 X_{10} \geq 0\]</span></p>
-<p>This makes it much easier to type this into code. This is the hardest part now, transfering this into code without making any mistakes!</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="logical-constraints.html#cb89-1"></a><span class="co">#defining parameters</span></span>
-<span id="cb89-2"><a href="logical-constraints.html#cb89-2"></a>objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
-<span id="cb89-3"><a href="logical-constraints.html#cb89-3"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">10</span>,<span class="dv">10</span>),</span>
-<span id="cb89-4"><a href="logical-constraints.html#cb89-4"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="co"># ST2</span></span>
-<span id="cb89-5"><a href="logical-constraints.html#cb89-5"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>), <span class="co"># ST3</span></span>
-<span id="cb89-6"><a href="logical-constraints.html#cb89-6"></a>                      </span>
-<span id="cb89-7"><a href="logical-constraints.html#cb89-7"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">3</span>), <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="co"># PG2a</span></span>
-<span id="cb89-8"><a href="logical-constraints.html#cb89-8"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">3</span>), <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">4</span>), <span class="co"># PG2b</span></span>
-<span id="cb89-9"><a href="logical-constraints.html#cb89-9"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>), <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="co"># PG3</span></span>
-<span id="cb89-10"><a href="logical-constraints.html#cb89-10"></a>                      </span>
-<span id="cb89-11"><a href="logical-constraints.html#cb89-11"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="co"># DM2</span></span>
-<span id="cb89-12"><a href="logical-constraints.html#cb89-12"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="dv">1</span>, <span class="dv">-1</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="co"># DM3</span></span>
-<span id="cb89-13"><a href="logical-constraints.html#cb89-13"></a>                      </span>
-<span id="cb89-14"><a href="logical-constraints.html#cb89-14"></a>                      <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">2</span>), <span class="dv">1</span>, <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">3</span>), <span class="dv">1</span>, <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">2</span>), <span class="dv">1</span> <span class="co"># complete specialization</span></span>
-<span id="cb89-15"><a href="logical-constraints.html#cb89-15"></a>                      ) , <span class="dt">ncol=</span><span class="dv">10</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
-<span id="cb89-16"><a href="logical-constraints.html#cb89-16"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;=&quot;</span>, <span class="kw">rep</span>(<span class="st">&quot;&gt;=&quot;</span>, <span class="dv">8</span>))</span>
-<span id="cb89-17"><a href="logical-constraints.html#cb89-17"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">40</span>, <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="dv">1</span>)</span>
-<span id="cb89-18"><a href="logical-constraints.html#cb89-18"></a></span>
-<span id="cb89-19"><a href="logical-constraints.html#cb89-19"></a><span class="co">#solving model</span></span>
-<span id="cb89-20"><a href="logical-constraints.html#cb89-20"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, const.dir, const.rhs, </span>
-<span id="cb89-21"><a href="logical-constraints.html#cb89-21"></a>                  <span class="dt">binary.vec =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))</span>
-<span id="cb89-22"><a href="logical-constraints.html#cb89-22"></a>lp.solution<span class="op">$</span>solution <span class="co">#decision variables values </span></span></code></pre></div>
-<pre><code>##  [1] 1 1 1 1 0 0 0 0 0 0</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="logical-constraints.html#cb91-1"></a>lp.solution</span></code></pre></div>
-<pre><code>## Success: the objective function is 25</code></pre>
-<p>Thus, the final solution is <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>, <span class="math inline">\(X_4\)</span> = 1, with the rest = 0.</p>
-<p>In order to maximize her interest while completing the degree, Natalie should choose to specialize in Statistics (taking ST1, ST2, ST3), and then also taking the first course in Programming (PG1).</p>
+</center>
+<p>The second set of arguments to <code>pivot_longer()</code> are the columns. In this case, it is “Height_Pri1”, “Height_Pri2”, and “Height_Pri3”. Note that these need to be concatenated into a single vector, so use c(…) to concatenate them.</p>
+<p>The last two arguments that we need, which are named arguments, are <code>names_to</code> and <code>values_to</code>, which give the names of the ‘key’ column and the ‘value’ column in the output long form dataframe. Let’s try the following, where I pipe <code>df_wide</code> into a <code>pivot_longer()</code> command, and save the output to a new data frame called <code>df_long_1</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="wrangling-in-the-tidyverse.html#cb4-1"></a>df_long_<span class="dv">1</span> =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="wrangling-in-the-tidyverse.html#cb4-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </span>
+<span id="cb4-3"><a href="wrangling-in-the-tidyverse.html#cb4-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) </span></code></pre></div>
+<p>Let’s take a look at what this produces:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wrangling-in-the-tidyverse.html#cb5-1"></a><span class="co"># output several selected rows</span></span>
+<span id="cb5-2"><a href="wrangling-in-the-tidyverse.html#cb5-2"></a><span class="kw">pander</span>(df_long_<span class="dv">1</span>[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>),], <span class="dt">emphasize.strong.cols=</span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
+<table style="width:64%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="25%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">Variable</th>
+<th align="center">Height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center"><strong>Height_Pri1</strong></td>
+<td align="center"><strong>116</strong></td>
+</tr>
+<tr class="even">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center"><strong>Height_Pri2</strong></td>
+<td align="center"><strong>120</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center"><strong>Height_Pri3</strong></td>
+<td align="center"><strong>127</strong></td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center"><strong>Height_Pri1</strong></td>
+<td align="center"><strong>110</strong></td>
+</tr>
+<tr class="odd">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center"><strong>Height_Pri2</strong></td>
+<td align="center"><strong>116</strong></td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center"><strong>Height_Pri3</strong></td>
+<td align="center"><strong>123</strong></td>
+</tr>
+</tbody>
+</table>
+<p>This looks close! Notice how the <code>names_to</code> and <code>values_to</code> arguments became the names of the columns? Note also how “Name” and “Gender” variables get copied automatically?</p>
+<div id="mutate" class="section level4 unnumbered">
+<h4>mutate()</h4>
+<p>The last step we want to do to clean this up is to rename the <code>Variable</code> column and the variables in that column. For example, we want to change <code>Height_Pri1</code> to something more readable, like maybe the number <code>1</code>. But instead of renaming, I want to introduce the function <code>mutate()</code> which creates new variables.</p>
+<ul>
+<li><code>mutate()</code>’s first argument is the dataframe, which again is handled by <code>%&gt;%</code></li>
+<li><code>mutate()</code>’s subsequent arguments follow the format <code>new_variable = operation()</code>. You can also stack many such operations to create many variables at the same time. For example, <code>mutate(newVar1 = operation(), newVar2 = operation(), newVar3 = ...)</code></li>
+</ul>
+<p>Let’s use the <code>factor()</code> operation to create a new factor using the values in the <code>Variable</code> column. We specify the <code>levels</code> of the factor as the original values of the <code>Variable</code> column, and then we use <code>labels</code> to rename what these values will be called in the new variable.</p>
+<p>Specifically, let’s use <code>mutate()</code> to make a new variable called <code>School_Level</code>, which will just have values of 1, 2, 3 to refer to Primary 1, 2 or 3:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="wrangling-in-the-tidyverse.html#cb6-1"></a>df_long_<span class="dv">2</span> =<span class="st"> </span>df_long_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-2"><a href="wrangling-in-the-tidyverse.html#cb6-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </span>
+<span id="cb6-3"><a href="wrangling-in-the-tidyverse.html#cb6-3"></a>                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</span>
+<span id="cb6-4"><a href="wrangling-in-the-tidyverse.html#cb6-4"></a>                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) </span></code></pre></div>
+This produces:
+<center>
+<table style="width:78%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="19%" />
+<col width="12%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">Variable</th>
+<th align="center">Height</th>
+<th align="center">School_Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">Height_Pri1</td>
+<td align="center">116</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">Height_Pri2</td>
+<td align="center">120</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">Height_Pri3</td>
+<td align="center">127</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">Height_Pri1</td>
+<td align="center">110</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">Height_Pri2</td>
+<td align="center">116</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">Height_Pri3</td>
+<td align="center">123</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Which is great, we now have <code>School_Level</code>, which is a lot more readable than <code>Variable</code>. Finally, we can use <code>select()</code> to choose the names of the columns that we want to keep. Let’s just keep <code>School_Level</code> instead of <code>Variable</code>, since they have the same information (We can also use this function to re-order the columns; note the order in the following function call).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="wrangling-in-the-tidyverse.html#cb7-1"></a>df_long_<span class="dv">3</span> =<span class="st"> </span>df_long_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</span></code></pre></div>
+<p>Which finally produces what we want:</p>
+<center>
+<table style="width:58%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="20%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">School_Level</th>
+<th align="center">Height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">1</td>
+<td align="center">116</td>
+</tr>
+<tr class="even">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">2</td>
+<td align="center">120</td>
+</tr>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">3</td>
+<td align="center">127</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">1</td>
+<td align="center">110</td>
+</tr>
+<tr class="odd">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">2</td>
+<td align="center">116</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">3</td>
+<td align="center">123</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Thus, putting it all together, we can perform all the previous steps using:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="wrangling-in-the-tidyverse.html#cb8-1"></a>df_long =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-2"><a href="wrangling-in-the-tidyverse.html#cb8-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </span>
+<span id="cb8-3"><a href="wrangling-in-the-tidyverse.html#cb8-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-4"><a href="wrangling-in-the-tidyverse.html#cb8-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </span>
+<span id="cb8-5"><a href="wrangling-in-the-tidyverse.html#cb8-5"></a>                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</span>
+<span id="cb8-6"><a href="wrangling-in-the-tidyverse.html#cb8-6"></a>                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb8-7"><a href="wrangling-in-the-tidyverse.html#cb8-7"></a><span class="st">  </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</span>
+<span id="cb8-8"><a href="wrangling-in-the-tidyverse.html#cb8-8"></a></span>
+<span id="cb8-9"><a href="wrangling-in-the-tidyverse.html#cb8-9"></a><span class="co">## equivalent to:</span></span>
+<span id="cb8-10"><a href="wrangling-in-the-tidyverse.html#cb8-10"></a><span class="co">#</span></span>
+<span id="cb8-11"><a href="wrangling-in-the-tidyverse.html#cb8-11"></a><span class="co"># df_long_1 = df_wide %&gt;% pivot_longer(c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;), names_to = &quot;Variable&quot;, values_to = &quot;Height&quot;) </span></span>
+<span id="cb8-12"><a href="wrangling-in-the-tidyverse.html#cb8-12"></a><span class="co"># </span></span>
+<span id="cb8-13"><a href="wrangling-in-the-tidyverse.html#cb8-13"></a><span class="co"># df_long_2 = df_long_1 %&gt;% </span></span>
+<span id="cb8-14"><a href="wrangling-in-the-tidyverse.html#cb8-14"></a><span class="co">#   mutate(School_Level = factor(Variable, </span></span>
+<span id="cb8-15"><a href="wrangling-in-the-tidyverse.html#cb8-15"></a><span class="co">#                                levels=c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;),</span></span>
+<span id="cb8-16"><a href="wrangling-in-the-tidyverse.html#cb8-16"></a><span class="co">#                                labels=c(1, 2, 3))) </span></span>
+<span id="cb8-17"><a href="wrangling-in-the-tidyverse.html#cb8-17"></a><span class="co"># </span></span>
+<span id="cb8-18"><a href="wrangling-in-the-tidyverse.html#cb8-18"></a><span class="co"># df_long_3 = df_long_2 %&gt;% select(Name, Gender, School_Level, Height)</span></span>
+<span id="cb8-19"><a href="wrangling-in-the-tidyverse.html#cb8-19"></a><span class="co">#</span></span></code></pre></div>
 </div>
+<div id="long-to-wide-pivot_wider" class="section level4 unnumbered">
+<h4>Long-to-wide: pivot_wider()</h4>
+<p>Finally, let’s try to go backwards, from a long-form dataframe to a wide-form dataframe. Let’s assume we start with <code>df_long</code> made from the previous section, and we want to spread it back to a wide format. The relevant function is <code>pivot_wider()</code>. <a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">Documentation</a></p>
+<ul>
+<li>The first argument is the data frame, and is handled by <code>%&gt;%</code>.</li>
+<li>The second argument is the id columns; these are the variables that identify the observation. In this case, it is the <code>Name</code> and <code>Gender</code> columns, since they stick with each observation.</li>
+<li>Then, we have <code>names_from</code> and <code>values_from</code>, which specify the names of the columns that we want to take the values from to spread them out.</li>
+</ul>
+<p>Let’s try:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wrangling-in-the-tidyverse.html#cb9-1"></a>df_wide_test1 =<span class="st"> </span>df_long <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb9-2"><a href="wrangling-in-the-tidyverse.html#cb9-2"></a>  <span class="dt">id_cols =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Gender&quot;</span>),</span>
+<span id="cb9-3"><a href="wrangling-in-the-tidyverse.html#cb9-3"></a>  <span class="dt">names_from =</span> <span class="st">&quot;School_Level&quot;</span>,</span>
+<span id="cb9-4"><a href="wrangling-in-the-tidyverse.html#cb9-4"></a>  <span class="dt">values_from =</span> <span class="st">&quot;Height&quot;</span>)</span></code></pre></div>
+<p>Which gives us:</p>
+<p><code>pander(df_wide_test1[1:3,])</code></p>
+<p>Great! We got back a wide form dataset. But notice how the columns are now labelled <code>1</code>, <code>2</code>, <code>3</code>, and this makes it hard to understand what they mean? We’ll leave it as an exercise to the reader to try to convert these back into something more understandable. (There are several possible solutions!)</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>As it behaves similar to other pipe operators in Python, Unix, etc. The creator pronounces <code>%&gt;%</code> as “and then”: Source: <a href="https://community.rstudio.com/t/how-is-pronounced/1783/12" class="uri">https://community.rstudio.com/t/how-is-pronounced/1783/12</a><a href="wrangling-in-the-tidyverse.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>That’s why some people call <code>%&gt;%</code> “and then”<a href="wrangling-in-the-tidyverse.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-from-real-valued-to-integer-solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="integer-optimization-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="basics-of-data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="not-done-a-data-cleaning-pipeline-for-research-projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

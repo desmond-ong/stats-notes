@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting Started | Some notes on Statistics and Data Analytics (Working Title)</title>
-  <meta name="description" content="A collection of statistics notes for data analytics." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>Getting Started | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="Getting Started | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="Getting Started | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes for data analytics." />
+  <meta property="og:description" content="Getting Started | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting Started | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="Getting Started | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
+  <meta name="twitter:description" content="Getting Started | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Some notes on Statistics</a></li>
+<li><a href="./">Statistics and Analytics for the Social and Computing Sciences</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -143,8 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
-<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
-<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="2" data-path="handling-data.html"><a href="handling-data.html"><i class="fa fa-check"></i><b>2</b> Handling Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-data-wrangling.html"><a href="basics-of-data-wrangling.html"><i class="fa fa-check"></i><b>2.1</b> Basics of Data Wrangling</a></li>
+<li class="chapter" data-level="2.2" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html"><i class="fa fa-check"></i><b>2.2</b> Wrangling in the tidyverse</a><ul>
+<li><a href="wrangling-in-the-tidyverse.html#the-operator">The <code>%&gt;%</code> operator</a></li>
+<li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#wide-to-long-pivot_longer"><i class="fa fa-check"></i>Wide-to-long: pivot_longer()</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
@@ -229,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics and Analytics for the Social and Computing Sciences</a>
           </h1>
         </div>
 
@@ -243,12 +252,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This course will be taught in <code>R</code>, which is a free statistical software environment (/ programming language) that makes it very handy to run data analysis. It is a fully <em>functional</em> programming language, and by that I mean two things:</p>
 <ul>
 <li><ol style="list-style-type: decimal">
-<li>In my experience, any operation that you want to do to data, you can do it in <code>R</code>. (There are certain exceptions, e.g., I find that Natural Language Processing better done in Python than R.). In particular, there are handy wrappers for Python/C++ (which allow you to port <code>R</code> code to Python/C++), many user-contributed libraries and code, as well as innovative tools like Jupyter notebooks and <code>R Markdown</code> documents which allow incredible flexibility in setting up a data analysis pipeline.</li>
+<li>In my experience, any operation that you want to do to data, you can do it in <code>R</code>. There are also many user-contributed libraries (called “packages”), which continually expand the capabilities that you can achieve with <code>R</code>.
+In particular, I would like to highlight innovative tools like Jupyter notebooks and <code>R Markdown</code> documents which allow incredible flexibility in setting up a data analysis pipeline.</li>
 </ol></li>
 <li><ol start="2" style="list-style-type: decimal">
 <li>For programming language enthusiasts, R is also a <a href="http://adv-r.had.co.nz/Functional-programming.html">functional programming language</a>. There are some neat tricks that you can do by exploiting R’s more advanced functional capabilites.</li>
 </ol></li>
 </ul>
+<p>In particular, the R community is very active, which is another plus as it allows users to easily find answers online (e.g., by searching and asking on Stack Overflow).</p>
 <div id="how-to-download-r-and-rstudio" class="section level4 unnumbered">
 <h4>How to download R and RStudio</h4>
 <p><code>R</code> is free, and can be downloaded from <a href="https://www.r-project.org/">the R Project website</a>. We will be using <code>RStudio</code>, which is an excellent development environment that makes it much friendlier to use <code>R</code>. You can download the free Desktop version at <a href="https://rstudio.com/products/rstudio/download/">the R Studio website</a>.</p>
@@ -261,9 +272,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R Markdown documents are an extremely useful tool that professional data scientists and business analysts use in their day-to-day work. They allow for R code (and the output of R code) to be neatly formatted (using Markdown) into various output types, such as PDFs, HTML, or MS Word Documents (note, for MS Word, you’ll need MS Word installed on your system).</p>
 <p>This process is called <code>Knitting</code>. If you open a R Markdown document (<code>.rmd</code>) in RStudio, it should detect it and you shold see a little command called <code>Knit</code> at the top of your source window. (If this is your first time, you may have to install a few packages like <code>knitr</code>; RStudio will helpfully suggest them.)</p>
 <p>R Markdown is nice because it allows you to embed code and writeup into the same document, and it produces presentable output, so you can use it to generate reports from your homework, and, when you eventually go out to work in a company, for your projects.</p>
-<p>Here’s how you embed a “chunk” of R code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></a></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<p>Here’s how you embed a “chunk” of R code. We use three apostrophes to denote the start and end of a code chunk</p>
+<pre><code>```
+{r, example-chunk-1, echo=TRUE, eval=FALSE} 
+1+1
+```
+</code></pre>
+<p>which (after removing the space between the apostrophes and the {…} on the following line) produces:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started.html#cb2-1"></a><span class="dv">1</span><span class="op">+</span><span class="dv">1</span></span></code></pre></div>
 <p>After the three apostrophes, you’ll need <code>r</code>, then you can give the chunk a name. Please note that <strong>NAMES HAVE TO BE A SINGLE-WORD, NO SPACES ALLOWED</strong>. Also, names have to be unique, that is, every chunk needs a <strong>different</strong> name. You can give chunks names like:</p>
 <ul>
 <li><code>chunk1</code></li>
@@ -284,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There is a lot to syntax to learn using the R Markdown. And lots of cool stuff too (interactive HTML documents anyone?).</p>
 <p>In real work environments, one use-case for the R Markdown document is to generate regular reports using different data. For example, let’s say every week you get some data (weekly sales) from another team. When you get a new data file, you could just edit one line of the R Markdown file (which data file it’s reading in), and you can generate the exact same report that you did last week, just that now it’s on this week’s data. Exact same analysis, exact same graphs, just with new data. And it’s professional enough to show your manager.</p>
 <p>Note about <em>working directories</em> in R Markdown. If you do not specify your working directory via <code>setwd('...')</code>, and you hit <code>Knit</code>, the document will assume that the working directory is the directory that the <code>.rmd</code> file is in. Thus, if your rmd is in <code>XYZ/folder1/code.rmd</code> and your dataset is <code>XYZ/folder1/data.csv</code>, then you can simply read in a data file using the local path: <code>d0 &lt;- read.csv('data.csv')</code> without running <code>setwd()</code>.</p>
-</div> 
+</div>
 </div>
             </section>
 

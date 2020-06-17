@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 [Not Done:] Handling Data | Some notes on Statistics and Data Analytics (Working Title)</title>
-  <meta name="description" content="A collection of statistics notes for data analytics." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 [Not Done:] Handling Data | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes for data analytics." />
+  <meta property="og:description" content="2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 [Not Done:] Handling Data | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
+  <meta name="twitter:description" content="2.1 Basics of Data Wrangling | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-descriptive-statistics.html"/>
-<link rel="next" href="not-done-data-visualization.html"/>
+<link rel="prev" href="handling-data.html"/>
+<link rel="next" href="wrangling-in-the-tidyverse.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Some notes on Statistics</a></li>
+<li><a href="./">Statistics and Analytics for the Social and Computing Sciences</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -143,8 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
-<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
-<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="2" data-path="handling-data.html"><a href="handling-data.html"><i class="fa fa-check"></i><b>2</b> Handling Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-data-wrangling.html"><a href="basics-of-data-wrangling.html"><i class="fa fa-check"></i><b>2.1</b> Basics of Data Wrangling</a></li>
+<li class="chapter" data-level="2.2" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html"><i class="fa fa-check"></i><b>2.2</b> Wrangling in the tidyverse</a><ul>
+<li><a href="wrangling-in-the-tidyverse.html#the-operator">The <code>%&gt;%</code> operator</a></li>
+<li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#wide-to-long-pivot_longer"><i class="fa fa-check"></i>Wide-to-long: pivot_longer()</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
@@ -229,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics and Analytics for the Social and Computing Sciences</a>
           </h1>
         </div>
 
@@ -237,18 +246,171 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="not-done-handling-data" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> [Not Done:] Handling Data</h1>
-<p>Wide Form, Long Form, when to choose each…</p>
-
+<div id="basics-of-data-wrangling" class="section level2">
+<h2><span class="header-section-number">2.1</span> Basics of Data Wrangling</h2>
+<p><span class="badge badge-bt"> BT1101 </span></p>
+<blockquote>
+<p>Data wrangling, or data munging, is the process of “wrangling” data from one format to another.</p>
+</blockquote>
+<p>Let us imagine that you are interested in the heights of every student when they enter school for the first time at Primary 1. You spend time recording the heights and gender of each student. One very obvious format to store the data is to record your results in a three-column table, with name, gender, and height (in centimeters) being the three columns.</p>
+<center>
+<table style="width:38%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">Height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">116</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">110</td>
+</tr>
+<tr class="odd">
+<td align="center">Cathy</td>
+<td align="center">Female</td>
+<td align="center">121</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>This is called <code>wide-form</code> data, where <b>each observation is a single row, and each variable is in one column</b>. This is a very common way of representing data, and is very useful for plotting variables. For example, when we have data in this format, we can easily call a function to represent the heights of Male vs. Female students using a boxplot, like below (see Data Visualization chapter for more on the boxplot and other visualizations).</p>
+<center>
+<img src="02-munging_files/figure-html/boxplot-wide1-1.png" width="384" />
+</center>
+<p>Now, imagine that the following two years you get a chance to repeat the study with the same set of students. You collect their heights again at Primary 2, and at Primary 3. You decide to add two new columns, as follows:</p>
+<center>
+<table style="width:83%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="19%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">Height_Pri1</th>
+<th align="center">Height_Pri2</th>
+<th align="center">Height_Pri3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">116</td>
+<td align="center">120</td>
+<td align="center">127</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">110</td>
+<td align="center">116</td>
+<td align="center">123</td>
+</tr>
+<tr class="odd">
+<td align="center">Cathy</td>
+<td align="center">Female</td>
+<td align="center">121</td>
+<td align="center">125</td>
+<td align="center">131</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>This is still <code>wide-form</code> data, as each student’s data is still only in one row, and you have merely added two new variables as new columns.</p>
+<p>With this wide-form data, you could still do things like calculate the correlation between <code>Height_Pri1</code> and <code>Height_Pri2</code> using <code>cor(df_wide$Height_Pri1, df_wide$Height_Pri2)</code>, or plot a scatterplot between their heights in Primary 1 and Primary 3, like so:</p>
+<center>
+<img src="02-munging_files/figure-html/scatterplot-wide1-1.png" width="384" />
+</center>
+<p>But now if you wanted to do something like look at the change of height over time, this representation may not be the easiest to do that type of analysis. Ideally we would want a case where each row had <code>Primary School Level</code> and <code>Height</code>, perhaps like:</p>
+<center>
+<table style="width:58%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="20%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">School_Level</th>
+<th align="center">Height</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">1</td>
+<td align="center">116</td>
+</tr>
+<tr class="even">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">2</td>
+<td align="center">120</td>
+</tr>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">3</td>
+<td align="center">127</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">1</td>
+<td align="center">110</td>
+</tr>
+<tr class="odd">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">2</td>
+<td align="center">116</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">3</td>
+<td align="center">123</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>This is called <code>long-form</code> data, where each response is in one row. This also means that each student, because they were measured three times, would appear in three rows. If you notice above, the student Angela, appears three times.
+A more general definition of <code>long-form</code> is one where <b>each row contains a key-value pair</b>. The <code>value</code> is the actual value of the variable (e.g., the value of “Height” in centimeters), while the <code>key</code> gives you the variables that are associated with that value (e.g. the “School Level” that the height was measured at).</p>
+<p>This data representation makes it easier to do other kinds of modelling, for example to model how Height increases over time with School Level. It also allows easier plotting such as the one below, whereby each student’s height trajectory is plotted against time on the horizontal axis. (Note that this is an example of <i>longitudinal</i> or <i>repeated measures</i> data, which requires advanced multilevel modelling to properly model.)</p>
+<center>
+<img src="02-munging_files/figure-html/lineplot-long1-1.png" width="576" />
+</center>
+<p>In the next section we’ll learn a little bit about the functions needed to move between wide and long form data.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-descriptive-statistics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="not-done-data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="handling-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="wrangling-in-the-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,9 +4,12 @@
 
 This course will be taught in `R`, which is a free statistical software environment (/ programming language) that makes it very handy to run data analysis. It is a fully *functional* programming language, and by that I mean two things:
 
-- 1) In my experience, any operation that you want to do to data, you can do it in `R`. (There are certain exceptions, e.g., I find that Natural Language Processing better done in Python than R.). In particular, there are handy wrappers for Python/C++ (which allow you to port `R` code to Python/C++), many user-contributed libraries and code, as well as innovative tools like Jupyter notebooks and `R Markdown` documents which allow incredible flexibility in setting up a data analysis pipeline.
+- 1) In my experience, any operation that you want to do to data, you can do it in `R`. There are also many user-contributed libraries (called "packages"), which continually expand the capabilities that you can achieve with `R`.
+In particular, I would like to highlight innovative tools like Jupyter notebooks and `R Markdown` documents which allow incredible flexibility in setting up a data analysis pipeline.
 - 2) For programming language enthusiasts, R is also a [functional programming language](http://adv-r.had.co.nz/Functional-programming.html). There are some neat tricks that you can do by exploiting R's more advanced functional capabilites.
 
+
+In particular, the R community is very active, which is another plus as it allows users to easily find answers online (e.g., by searching and asking on Stack Overflow).
 
 
 #### How to download R and RStudio {-}
@@ -25,15 +28,21 @@ This process is called ``Knitting``. If you open a R Markdown document (`.rmd`) 
 
 R Markdown is nice because it allows you to embed code and writeup into the same document, and it produces presentable output, so you can use it to generate reports from your homework, and, when you eventually go out to work in a company, for your projects.
 
-Here's how you embed a "chunk" of R code.
+Here's how you embed a "chunk" of R code. We use three apostrophes to denote the start and end of a code chunk 
+
+````
+```
+{r, example-chunk-1, echo=TRUE, eval=FALSE} 
+1+1
+```
+
+````
+
+which (after removing the space between the apostrophes and the \{...\} on the following line) produces:
 
 
 ```r
 1+1
-```
-
-```
-## [1] 2
 ```
 
 After the three apostrophes, you'll need `r`, then you can give the chunk a name. Please note that **NAMES HAVE TO BE A SINGLE-WORD, NO SPACES ALLOWED**. Also, names have to be unique, that is, every chunk needs a **different** name. You can give chunks names like:

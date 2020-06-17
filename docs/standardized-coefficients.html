@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)</title>
-  <meta name="description" content="A collection of statistics notes for data analytics." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes for data analytics." />
+  <meta property="og:description" content="5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.7 Standardized Coefficients | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
+  <meta name="twitter:description" content="5.7 Standardized Coefficients | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Some notes on Statistics</a></li>
+<li><a href="./">Statistics and Analytics for the Social and Computing Sciences</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -143,8 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
-<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
-<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="2" data-path="handling-data.html"><a href="handling-data.html"><i class="fa fa-check"></i><b>2</b> Handling Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-data-wrangling.html"><a href="basics-of-data-wrangling.html"><i class="fa fa-check"></i><b>2.1</b> Basics of Data Wrangling</a></li>
+<li class="chapter" data-level="2.2" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html"><i class="fa fa-check"></i><b>2.2</b> Wrangling in the tidyverse</a><ul>
+<li><a href="wrangling-in-the-tidyverse.html#the-operator">The <code>%&gt;%</code> operator</a></li>
+<li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#wide-to-long-pivot_longer"><i class="fa fa-check"></i>Wide-to-long: pivot_longer()</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
@@ -229,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics and Analytics for the Social and Computing Sciences</a>
           </h1>
         </div>
 
@@ -242,8 +251,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="badge badge-bt"> BT1101 </span></p>
 <p>Let’s take a short digression to discuss standardised coefficients. In all the examples in this Chapter, we’ve seen that it’s very important to be clear about what the units of measurement are, as this affects how we interpret the numbers.</p>
 <p>For example, in <span class="math inline">\(\text{Income} = b_0 + b_1 \text{YearsOfEducation}\)</span>, we can say for a 1 unit increase in <span class="math inline">\(X_1\)</span>, so for one additional year of education, there is a <span class="math inline">\(b_1\)</span> unit increase in <span class="math inline">\(Y\)</span>; so there is a $<span class="math inline">\(b_1\)</span> increase in income.</p>
-<p>Unfortunately, sometimes we may have difficulty comparing <span class="math inline">\(X\)</span>’s. Perhaps I have a dataset of American students and their standardized test scores on the SATs, and a corresponding dataset of Singaporean students and their standardized test scores on the O-levels<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. I want to compare the datasets to predict how test scores (<span class="math inline">\(X\)</span>) affect income (<span class="math inline">\(Y\)</span>), but my <span class="math inline">\(X\)</span>s here are on different scales. How should we compare them?</p>
-<p>One way is by using standardised coefficients<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Unfortunately, sometimes we may have difficulty comparing <span class="math inline">\(X\)</span>’s. Perhaps I have a dataset of American students and their standardized test scores on the SATs, and a corresponding dataset of Singaporean students and their standardized test scores on the O-levels<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. I want to compare the datasets to predict how test scores (<span class="math inline">\(X\)</span>) affect income (<span class="math inline">\(Y\)</span>), but my <span class="math inline">\(X\)</span>s here are on different scales. How should we compare them?</p>
+<p>One way is by using standardised coefficients<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
 <p>To do so, we “standardize” each variable by subtracting its mean and dividing by its standard deviation. Then we just re-run the regression. Now, notice that I’ve replaced <span class="math inline">\(b\)</span>’s with <span class="math inline">\(\beta\)</span>s, and now these <span class="math inline">\(\beta\)</span>s are unit-less. Or, to put it another way, they are in “standardized” units. By convention (although not everyone follows this), <span class="math inline">\(b\)</span> are used to refer to unstandardized regression coefficients while <span class="math inline">\(\beta\)</span>s are used to refer to standardized regression coefficients.</p>
 <p><span class="math display">\[\left[ \frac{Y-\bar{Y}}{\sigma_{Y}} \right] = \beta_0 + \beta_1 \left[ \frac{X_1 - \bar{X_1}}{\sigma_{X_1}} \right] + \beta_2 \left[ \frac{X_2 - \bar{X_2}}{\sigma_{X_2}} \right] + \ldots\]</span></p>
 <ul>
@@ -259,20 +268,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes, standardised coefficients makes it easier to interpret when the underlying unit is quite difficult to interpret, for example: IQ, the intelligence quotient, is actually a standardised variable itself such that 100 is the mean of the population and 15 is the standard deviation. It’s hard to come up with units of “absolute” intelligence, and so IQ is actually measured relative to others in the population.</p>
 <p>Coming back to the example of comparing the results in an American sample with the SAT and a Singaporean sample with the O-levels; even if I cannot compare 1 point on the SAT with 1 point on the O-levels, with standardized coefficients I can still ask: does a 1 standard deviation increase in SAT score have the same effect (on whatever <span class="math inline">\(Y\)</span>), as a 1 standard deviation increase in O-level score?</p>
 <p>Here is some R code to ‘manually’ standardize variables and use them in a model</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># unstandardized</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># standardized</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb30-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb30-8" data-line-number="8"><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="standardized-coefficients.html#cb41-1"></a><span class="co"># unstandardized</span></span>
+<span id="cb41-2"><a href="standardized-coefficients.html#cb41-2"></a><span class="kw">lm</span>(Y <span class="op">~</span><span class="st"> </span>X, df1)</span>
+<span id="cb41-3"><a href="standardized-coefficients.html#cb41-3"></a></span>
+<span id="cb41-4"><a href="standardized-coefficients.html#cb41-4"></a><span class="co"># standardized</span></span>
+<span id="cb41-5"><a href="standardized-coefficients.html#cb41-5"></a>df1<span class="op">$</span>X_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>X, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</span>
+<span id="cb41-6"><a href="standardized-coefficients.html#cb41-6"></a>df1<span class="op">$</span>Y_standardized =<span class="st"> </span><span class="kw">scale</span>(df1<span class="op">$</span>Y, <span class="dt">center=</span><span class="ot">TRUE</span>, <span class="dt">scale=</span><span class="ot">TRUE</span>)</span>
+<span id="cb41-7"><a href="standardized-coefficients.html#cb41-7"></a></span>
+<span id="cb41-8"><a href="standardized-coefficients.html#cb41-8"></a><span class="kw">lm</span>(Y_standardized <span class="op">~</span><span class="st"> </span>X_standardized, df1)</span></code></pre></div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>ignore the fact that the SAT and O-levels are at different levels<a href="standardized-coefficients.html#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Confusingly, when we use standardised coefficients, it is the variables that get standardised, not the coefficients.<a href="standardized-coefficients.html#fnref2" class="footnote-back">↩</a></p></li>
+<ol start="3">
+<li id="fn3"><p>ignore the fact that the SAT and O-levels are at different levels<a href="standardized-coefficients.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Confusingly, when we use standardised coefficients, it is the variables that get standardised, not the coefficients.<a href="standardized-coefficients.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

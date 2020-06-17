@@ -81,7 +81,8 @@ Let's generate a simple dataset with two independent variables $X_1$ and $X_2$, 
 set.seed(1)
 df2 = data.frame(x1=rnorm(20,0,5) + seq(20,1),
                  x2=rnorm(20,5,3),
-                 Purchase = rep(c("Yes", "No"), each=10))
+                 Purchase = factor(rep(c("Yes", "No"), each=10)),
+                                   levels=c("No", "Yes"))
 levels(df2$Purchase) 
 ```
 

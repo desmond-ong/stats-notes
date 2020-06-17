@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.9 Assumptions behind Linear Regression | Some notes on Statistics and Data Analytics (Working Title)</title>
-  <meta name="description" content="A collection of statistics notes for data analytics." />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.9 Assumptions behind Linear Regression | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta property="og:title" content="5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="A collection of statistics notes for data analytics." />
+  <meta property="og:description" content="5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.9 Assumptions behind Linear Regression | Some notes on Statistics and Data Analytics (Working Title)" />
+  <meta name="twitter:title" content="5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="A collection of statistics notes for data analytics." />
+  <meta name="twitter:description" content="5.9 Assumptions behind Linear Regression | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -127,7 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Some notes on Statistics</a></li>
+<li><a href="./">Statistics and Analytics for the Social and Computing Sciences</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -143,8 +145,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> [Not Done:] Introduction</a></li>
-<li class="chapter" data-level="2" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>2</b> [Not Done:] Descriptive Statistics</a></li>
-<li class="chapter" data-level="3" data-path="not-done-handling-data.html"><a href="not-done-handling-data.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Handling Data</a></li>
+<li class="chapter" data-level="2" data-path="handling-data.html"><a href="handling-data.html"><i class="fa fa-check"></i><b>2</b> Handling Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-data-wrangling.html"><a href="basics-of-data-wrangling.html"><i class="fa fa-check"></i><b>2.1</b> Basics of Data Wrangling</a></li>
+<li class="chapter" data-level="2.2" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html"><i class="fa fa-check"></i><b>2.2</b> Wrangling in the tidyverse</a><ul>
+<li><a href="wrangling-in-the-tidyverse.html#the-operator">The <code>%&gt;%</code> operator</a></li>
+<li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#wide-to-long-pivot_longer"><i class="fa fa-check"></i>Wide-to-long: pivot_longer()</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
 <li class="chapter" data-level="5" data-path="the-linear-model-i-linear-regression.html"><a href="the-linear-model-i-linear-regression.html"><i class="fa fa-check"></i><b>5</b> The Linear Model I: Linear Regression</a><ul>
 <li class="chapter" data-level="5.1" data-path="basics-of-linear-regression.html"><a href="basics-of-linear-regression.html"><i class="fa fa-check"></i><b>5.1</b> Basics of Linear Regression</a></li>
@@ -229,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Some notes on Statistics and Data Analytics (Working Title)</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics and Analytics for the Social and Computing Sciences</a>
           </h1>
         </div>
 
@@ -285,16 +294,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="residual-plots" class="section level3">
 <h3><span class="header-section-number">5.9.1</span> Residual plots</h3>
 <p>We saw earlier that the objective of Ordinary Least Squares regression is to find the line that minimizes the sum of the (squares of the) residuals <span class="math inline">\(e_i = Y_i - \hat{Y_i}\)</span>. Below, we have the best-fit linear line to a (purposely) non-linear dataset. The residual errors are shown in red, going from the actual data points (<span class="math inline">\(Y_i\)</span>’s) to the predicted line (<span class="math inline">\(\hat{Y_i}\)</span>’s).</p>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-3-1.png" width="336" style="display: block; margin: auto;" /></p>
 <p>Now let’s instead plot the residuals <span class="math inline">\(e_i\)</span> against <span class="math inline">\(X\)</span>. That is, instead of plotting <span class="math inline">\(Y\)</span> on the vertical axis, we plot the length of the red bars <span class="math inline">\(e_i\)</span> against X:</p>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-4-1.png" width="336" style="display: block; margin: auto;" /></p>
 <p>Ideally, residuals should be normally distributed around 0, and not depend on X.</p>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-5-1.png" width="240" style="display: block; margin: auto;" /></p>
 <p>But we clearly see from the red dots above that it is not the case here that the residuals are normally distributed around 0. In fact, there seems to be some non-linearity in the data.</p>
-<p>One solution might be to do a non-linear transformation to one of the variables, e.g. <span class="math inline">\(\log(...)\)</span>, <span class="math inline">\(exp(...)\)</span>. Let’s try taking the logarithm of the dependent variable, e.g. <span class="math inline">\(\log(Y) \sim X\)</span></p>
+<p>One solution might be to do a non-linear transformation to one of the variables, e.g. <span class="math inline">\(\log(...)\)</span>, <span class="math inline">\(exp(...)\)</span>. Let’s try taking the logarithm of the dependent variable, e.g. <span class="math inline">\(\log(Y) \sim X\)</span></p>
 <blockquote>
 <p>One thing to note here is that if you just write <code>log()</code> in R you’ll get the natural logarithm (log base e); you’ll need to specify <code>log10()</code> if you want a base10 logarithm. They both achieve the same thing in terms of the purpose of the transformation here. The main difference is in interpretability; if your variable is something like GDP, then a base10 log will be more interpretable, because a base10 log of 3 is a thousand, 4 is ten thousand, and so forth.</p>
 </blockquote>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-6-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-6-2.png" width="336" style="display: block; margin: auto;" /></p>
 <p>The residuals of the transformed plot look a lot better. But actually here we see a slightly different problem: notice that the errors seem to be larger for smaller values of <span class="math inline">\(X\)</span>:
 This is called <em>heteroscedasticity</em>, which by definition is when the residual error depends on the value of the independent variable. Having heteroscedasticity often implies that your model is missing some variables that can explain this dependence.</p>
@@ -302,19 +313,20 @@ This is called <em>heteroscedasticity</em>, which by definition is when the resi
 <p>In summary, residual plots should look distributed with no discernable pattern, with respect to the independent variables (first graph below). There are many possibilities, such as having non-normal distributions (second graph below) or heteroscedastic errors (third graph below).</p>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-7-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-7-2.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-7-3.png" width="336" style="display: block; margin: auto;" /></p>
 <p>If you run a linear model, you can easily pull the residuals using <code>residuals(lm_object)</code>. For example, let’s take the <code>mtcars</code> example predicting fuel economy (<code>mpg</code>) using horsepower (<code>hp</code>).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Use mtcars, run simple lm()</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">data</span>(mtcars)</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, mtcars)</a>
-<a class="sourceLine" id="cb33-4" data-line-number="4">mtcars<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1) <span class="co"># get predictions if needed</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5">mtcars<span class="op">$</span>residuals &lt;-<span class="st"> </span><span class="kw">residuals</span>(fit1) <span class="co"># get residuals</span></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="co"># plotting DV against IV</span></a>
-<a class="sourceLine" id="cb33-8" data-line-number="8"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="assumptions-behind-linear-regression.html#cb46-1"></a><span class="co"># Use mtcars, run simple lm()</span></span>
+<span id="cb46-2"><a href="assumptions-behind-linear-regression.html#cb46-2"></a><span class="kw">data</span>(mtcars)</span>
+<span id="cb46-3"><a href="assumptions-behind-linear-regression.html#cb46-3"></a>fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(mpg <span class="op">~</span><span class="st"> </span>hp, mtcars)</span>
+<span id="cb46-4"><a href="assumptions-behind-linear-regression.html#cb46-4"></a>mtcars<span class="op">$</span>predicted &lt;-<span class="st"> </span><span class="kw">predict</span>(fit1) <span class="co"># get predictions if needed</span></span>
+<span id="cb46-5"><a href="assumptions-behind-linear-regression.html#cb46-5"></a>mtcars<span class="op">$</span>residuals &lt;-<span class="st"> </span><span class="kw">residuals</span>(fit1) <span class="co"># get residuals</span></span>
+<span id="cb46-6"><a href="assumptions-behind-linear-regression.html#cb46-6"></a></span>
+<span id="cb46-7"><a href="assumptions-behind-linear-regression.html#cb46-7"></a><span class="co"># plotting DV against IV</span></span>
+<span id="cb46-8"><a href="assumptions-behind-linear-regression.html#cb46-8"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>mpg)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb46-9"><a href="assumptions-behind-linear-regression.html#cb46-9"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-8-1.png" width="336" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co"># plotting the residuals against IV</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>residuals)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="dv">0</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="assumptions-behind-linear-regression.html#cb48-1"></a><span class="co"># plotting the residuals against IV</span></span>
+<span id="cb48-2"><a href="assumptions-behind-linear-regression.html#cb48-2"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x=</span>hp, <span class="dt">y=</span>residuals)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb48-3"><a href="assumptions-behind-linear-regression.html#cb48-3"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept=</span><span class="dv">0</span>, <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <p><img src="06-a-regression_files/figure-html/lmi-residuals-8-2.png" width="336" style="display: block; margin: auto;" /></p>
 <p>We see what looks like maybe one outlier right on the right edge of the graph, but aside from that the residuals look fine.</p>
 </div>
