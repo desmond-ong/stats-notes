@@ -12,12 +12,14 @@ The learning objectives for this chapter are:
 
 ```r
 # Load the libraries we'll use in this chapter
-library(ggplot2) # for plotting
 library(pander) # for displaying tables
 
 library(tidyverse) # for data munging
-# tidyverse encompasses both tidyr and dplyr
-#library(tidyr); library(dplyr)
+## tidyverse encompasses both tidyr and dplyr, as well as ggplot2 and many others
+##  library(tidyverse) is equivalent to:
+# library(tidyr)
+# library(dplyr)
+# library(ggplot2)
 ```
 
 
@@ -109,7 +111,7 @@ This is called `long-form` data, where each response is in one row. This also me
 A more general definition of `long-form` is one where <b>each row contains a key-value pair</b>. The `value` is the actual value of the variable (e.g., the value of "Height" in centimeters), while the `key` gives you the variables that are associated with that value (e.g. the "School Level" that the height was measured at).
 
 
-This data representation makes it easier to do other kinds of modelling, for example to model how Height increases over time with School Level. It also allows easier plotting such as the one below, whereby each student's height trajectory is plotted against time on the horizontal axis. (Note that this is an example of <i>longitudinal</i> or <i>repeated measures</i> data, which requires advanced multilevel modelling to properly model.)
+This data representation makes it easier to do other kinds of modelling, for example to model how Height increases over time with School Level. It also allows easier plotting such as the one below, whereby each student's height trajectory is plotted (as separate lines) against time on the horizontal axis. (Note that this is an example of <i>longitudinal</i> or <i>repeated measures</i> data, which requires advanced multilevel modelling to properly model.)
 
 <center>
 <img src="02-munging_files/figure-html/lineplot-long1-1.png" width="576" />
@@ -117,7 +119,7 @@ This data representation makes it easier to do other kinds of modelling, for exa
 
 
 
-In the next section we'll learn a little bit about the functions needed to move between wide and long form data. 
+In the next section we'll learn a little bit about the functions needed to move between wide and long-form data. 
 
 
 
@@ -135,7 +137,7 @@ In the next section we'll learn a little bit about the functions needed to move 
 
 <span class="badge badge-bt"> BT1101 </span>
 
-(Here's a great reference, "cheat sheet", that is very useful to refer to once you have learnt the `tidyverse` functions and want to refer back to it, although it's a little outdated: 
+(Here's a great reference, or "cheat sheet", that is very useful to refer to once you have learnt the `tidyverse` functions and want to refer back to it, although it's a little outdated: 
 https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf. Do note that `pivot_longer()`, covered below, is an updated version of `gather()` from the pdf.)
 
 In this section we'll briefly discuss using functions from the `tidyverse` package, which is a very useful package for handling data. It is a very rich package (with an accompanying [book](https://www.tidyverse.org/)), with too much content to cover here, so we'll only introduce some very basic functions. 
@@ -145,6 +147,22 @@ If you would like to follow along, use the following code to generate the toy da
 
 
 
+```r
+df_wide1 = data.frame(
+  Name = c("Angela", "Brian", "Cathy", "Daniel", "Elaine", "Frank", "Grace", "Ben", "Chloe", "James", "Natalie", "Matthew", "Samantha", "David", "Vivian", "Joseph", "Lisa", "Mark", "Jane", "Jason"),
+  Gender = rep(c("Female", "Male"), 10),
+  Height = c(116, 110, 121, 117, 111, 114, 127, 116, 121, 116, 126, 113, 122, 113, 116, 115, 123, 122, 115, 118)
+)
+
+set.seed(1)
+df_wide = data.frame(
+  Name = df_wide1$Name,
+  Gender = df_wide1$Gender,
+  Height_Pri1 = df_wide1$Height,
+  Height_Pri2 = df_wide1$Height + ceiling(rnorm(20, 5, 2))
+)
+df_wide$Height_Pri3 = df_wide$Height_Pri2 + ceiling(rnorm(20, 5, 2))
+```
 
 
 
@@ -153,7 +171,7 @@ If you would like to follow along, use the following code to generate the toy da
 
 First, we'll introduce the `%>%` operator, which I refer to as the pipe operator^[As it behaves similar to other pipe operators in Python, Unix, etc. The creator pronounces `%>%` as "and then": Source: https://community.rstudio.com/t/how-is-pronounced/1783/12]. The `%>%` operator 'pipes' the argument before it, into the function after it, as the first argument (by default). 
 
-1. `A %>% function` is equivalent to calling `function(A)`. The variable before %>% is always the first argument, and you can list other arguments too.
+1. `A %>% function` is equivalent to calling `function(A)`. The variable before `%>%` is by default the first argument into `function()`, and you can list other arguments too.
 
 2. `A %>% function(B, C)` is equivalent to calling `function(A,B,C)`.
 
@@ -161,13 +179,13 @@ The nice thing about the `%>%` operator, is that you can chain many operations t
 
 3. `A %>% step1(B,C) %>% step2(D) %>% step3()` means: Take `A`, apply `Step1` (with other arguments `B`, `C`), and then apply `Step2` with additional argument `D`, and then^[That's why some people call `%>%` "and then"] apply `Step3`. Overall, this is much easier to read as the code reads sequentially from left to right, as the code "happens". Contrast this with:  `step3(step2(step1(A,B,C),D))`.
 
-NOTE: if you like, you can pipe arguments into the argument at position, using `.`. For example, `B %>% function(A, ., C)` is equivalent to calling `function(A, B, C)`.
+NOTE: if you like, you can pipe arguments into the function at a specified position, using `.`. For example, `B %>% function(A, ., C)` is equivalent to calling `function(A, B, C)`.
 
 
 
 ### Wide-to-long: pivot_longer() {-}
 
-The function to transform wide data to long data is `pivot_longer()` ([Documentation](https://tidyr.tidyverse.org/reference/pivot_longer.html)). Its first argument, like a lot of the tidyverse functions, is the data frame that we want to manipulate, and is handled by the `%>%` operator. Recall that the wide-form data looks like, with the columns we want to modify in bold:
+The function to transform wide data to long data is `pivot_longer()` ([Documentation](https://tidyr.tidyverse.org/reference/pivot_longer.html)). Its first argument, like a lot of the tidyverse functions, is the data frame that we want to manipulate, and is handled by the `%>%` operator. Recall that the wide-form data looks like the following, with the columns we want to modify in bold:
 
 <center>
 
@@ -184,9 +202,9 @@ The function to transform wide data to long data is `pivot_longer()` ([Documenta
 
 </center>
 
-The second set of arguments to `pivot_longer()` are the columns. In this case, it is "Height_Pri1", "Height_Pri2", and "Height_Pri3". Note that these need to be concatenated into a single vector, so use c(...) to concatenate them.
+The second set of arguments to `pivot_longer()` are the columns we want to modify. In this case, they are "Height_Pri1", "Height_Pri2", and "Height_Pri3". Note that these need to be concatenated into a single vector, so use `c(...)` to concatenate them.
 
-The last two arguments that we need, which are named arguments, are `names_to` and `values_to`, which give the names of the 'key' column and the 'value' column in the output long form dataframe. Let's try the following, where I pipe `df_wide` into a `pivot_longer()` command, and save the output to a new data frame called `df_long_1`
+The last two arguments that we need, which are named arguments, are `names_to` and `values_to`, which give the names of the 'key' column and the 'value' column in the output long-form data frame. Let's try the following, where I pipe `df_wide` into a `pivot_longer()` command, and save the output to a new data frame called `df_long_1`
 
 
 
@@ -226,11 +244,11 @@ pander(df_long_1[c(1:6),], emphasize.strong.cols=3:4)
 This looks close! Notice how the `names_to` and `values_to` arguments became the names of the columns? Note also how "Name" and "Gender" variables get copied automatically? 
 
 
-#### mutate() {-}
+### mutate() {-}
 
 The last step we want to do to clean this up is to rename the `Variable` column and the variables in that column. For example, we want to change `Height_Pri1` to something more readable, like maybe the number `1`. But instead of renaming, I want to introduce the function `mutate()` which creates new variables. 
 
-- `mutate()`'s first argument is the dataframe, which again is handled by `%>%`
+- `mutate()`'s first argument is the data frame, which again is handled by `%>%`
 - `mutate()`'s subsequent arguments follow the format `new_variable = operation()`. You can also stack many such operations to create many variables at the same time. For example, `mutate(newVar1 = operation(), newVar2 = operation(), newVar3 = ...)`
 
 Let's use the `factor()` operation to create a new factor using the values in the `Variable` column. We specify the `levels` of the factor as the original values of the `Variable` column, and then we use `labels` to rename what these values will be called in the new variable. 
@@ -326,9 +344,9 @@ df_long = df_wide %>%
 
 
 
-#### Long-to-wide: pivot_wider() {-}
+### Long-to-wide: pivot_wider() {-}
 
-Finally, let's try to go backwards, from a long-form dataframe to a wide-form dataframe. Let's assume we start with `df_long` made from the previous section, and we want to spread it back to a wide format. The relevant function is `pivot_wider()`. [Documentation](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+Finally, let's try to go backwards, from a long-form data frame to a wide-form data frame. Let's assume we start with `df_long` made from the previous section, and we want to spread it back to a wide format. The relevant function is `pivot_wider()`. ([Documentation](https://tidyr.tidyverse.org/reference/pivot_wider.html))
 
 - The first argument is the data frame, and is handled by `%>%`.
 - The second argument is the id columns; these are the variables that identify the observation. In this case, it is the `Name` and `Gender` columns, since they stick with each observation.
@@ -346,9 +364,16 @@ df_wide_test1 = df_long %>% pivot_wider(
 
 Which gives us:
 
-`pander(df_wide_test1[1:3,])`
+<center>
+Quitting from lines 297-310 (02-munging.Rmd) 
+Error in pander(df_wide_test1[1:3, ]) : object 'df_wide_test1' not found
+Calls: local ... inline_exec -> hook_eval -> withVisible -> eval -> eval -> pander
+In addition: Warning messages:
+1: package 'tibble' was built under R version 3.6.2 
+2: package 'dplyr' was built under R version 3.6.2 
+</center>
 
-Great! We got back a wide form dataset. But notice how the columns are now labelled `1`, `2`, `3`, and this makes it hard to understand what they mean? We'll leave it as an exercise to the reader to try to convert these back into something more understandable. (There are several possible solutions!)
+Great! We got back a wide-form data frame. But notice how the columns are now labelled `1`, `2`, `3`, and this makes it hard to understand what they mean? We'll leave it as an exercise to the reader to try to convert these back into something more understandable. (There are several possible solutions!)
 
 
 ## [Not Done:] A data cleaning pipeline for research projects 

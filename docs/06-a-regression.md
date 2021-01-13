@@ -31,7 +31,7 @@ I've also made up some simulated data just for the next few sections that we wil
 
 ```r
 set.seed(1)
-df1 = data.frame(X=c(seq(0,10), NA))
+df1 = data.frame(X=c(seq(0,10)))
 df1$Y = -2 + df1$X*2 + rnorm(n=nrow(df1), mean=0, sd=1)
 ```
 
@@ -54,13 +54,7 @@ On the right I've also drawn the "best-fit" line to the data. Graphically, $b_0$
 
 
 
-<img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" style="display: block; margin: auto;" />
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-<img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" style="display: block; margin: auto;" />
+<img src="06-a-regression_files/figure-html/lmi-plot1-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-plot1-2.png" width="336" style="display: block; margin: auto;" />
 
 And that's the basic idea. Our linear model is one way of trying to explain $Y$ using $X$, which is by multiplying $X$ by the regression coefficient $b_1$ and adding a constant $b_0$. It's so simple, yet, it is a very powerful and widely used tool, and we shall see more over the rest of this chapter and the next few chapters.
 
@@ -154,10 +148,6 @@ ggplot(df0, aes(x=x, y=y_exp)) + geom_point() +
         axis.text = element_blank())
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 <img src="06-a-regression_files/figure-html/lmi-plot2d-example-of-smooth-1.png" width="336" style="display: block; margin: auto;" />
 
 Now you can see above that the line does have a significant slope (and indeed if you actually run the linear model using the code in the next section, you'll see that there is a significant linear relationship). However, the linear line is not really the best description of the data, is it? This is why it is helpful to always plot our variables, so that we can see if we're trying to fit a linear line to data that is better described by a non-linear relationship.
@@ -187,10 +177,6 @@ ggplot(df0, aes(x=x_discrete, y=y_discrete)) +
         axis.text = element_blank())
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 <img src="06-a-regression_files/figure-html/lmi-plot2e-example-of-jitter2-1.png" width="336" style="display: block; margin: auto;" />
 
 And it's much easier to see the trend!
@@ -208,7 +194,7 @@ fit1 <- lm(Y~X, df1)
 
 
 > <span style='color:blue; font-size:150%'>TIP!</span> 
-> Best analysis practice: If you store all your Y and X variables in your dataframe as wide form data, you can just write `lm(y~x, df1)`, which is very neat syntax.
+> Best practice tip: If you store all your Y and X variables in your dataframe as wide form data, you can just write `lm(y~x, df1)`, which is very neat syntax.
 > <br> It's not as clean to write `lm(df1$y~df1$x)`, and I discourage this.
 
 
@@ -238,7 +224,6 @@ summary(fit1)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.8185 on 9 degrees of freedom
-##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.9878,	Adjusted R-squared:  0.9864 
 ## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10
 ```
@@ -344,7 +329,7 @@ b1hat
 ```
 
 ```
-## [1] NA
+## [1] 2.103757
 ```
 
 Following the equation for $\hat{b_0}$, we can take the mean of $Y$, and subtract $\hat{b_1}$ times the mean of $X$, and we get -2.26.
@@ -356,7 +341,7 @@ b0hat
 ```
 
 ```
-## [1] NA
+## [1] -2.261167
 ```
 
 
@@ -415,7 +400,6 @@ summary(fit1)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 0.8185 on 9 degrees of freedom
-##   (1 observation deleted due to missingness)
 ## Multiple R-squared:  0.9878,	Adjusted R-squared:  0.9864 
 ## F-statistic: 726.6 on 1 and 9 DF,  p-value: 6.442e-10
 ```
@@ -965,11 +949,6 @@ We already saw the first two assumptions in the previous few sections: that we e
 We saw earlier that the objective of Ordinary Least Squares regression is to find the line that minimizes the sum of the (squares of the) residuals $e_i = Y_i - \hat{Y_i}$. Below, we have the best-fit linear line to a (purposely) non-linear dataset. The residual errors are shown in red, going from the actual data points ($Y_i$'s) to the predicted line ($\hat{Y_i}$'s).
 
 
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 <img src="06-a-regression_files/figure-html/lmi-residuals-3-1.png" width="336" style="display: block; margin: auto;" />
 
 Now let's instead plot the residuals $e_i$ against $X$. That is, instead of plotting $Y$ on the vertical axis, we plot the length of the red bars $e_i$ against X:
@@ -990,11 +969,6 @@ One solution might be to do a non-linear transformation to one of the variables,
 
 > One thing to note here is that if you just write `log()` in R you’ll get the natural logarithm (log base e); you’ll need to specify `log10()` if you want a base10 logarithm. They both achieve the same thing in terms of the purpose of the transformation here. The main difference is in interpretability; if your variable is something like GDP, then a base10 log will be more interpretable, because a base10 log of 3 is a thousand, 4 is ten thousand, and so forth.
 
-
-
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
 
 <img src="06-a-regression_files/figure-html/lmi-residuals-6-1.png" width="336" style="display: block; margin: auto;" /><img src="06-a-regression_files/figure-html/lmi-residuals-6-2.png" width="336" style="display: block; margin: auto;" />
 
@@ -1026,10 +1000,6 @@ ggplot(mtcars, aes(x=hp, y=mpg)) + geom_point(color="blue") +
   geom_smooth(method="lm", se=FALSE) + theme_bw()
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
 <img src="06-a-regression_files/figure-html/lmi-residuals-8-1.png" width="336" style="display: block; margin: auto;" />
 
 ```r
@@ -1054,7 +1024,7 @@ We see what looks like maybe one outlier right on the right edge of the graph, b
 
 
 
-## [Not Done:] Exercises: Linear Model I
+## Exercises: Linear Model I
 
 <span class="badge badge-bt"> BT1101 </span>
 
@@ -1077,7 +1047,7 @@ we find that $b_0$=3500, $b_1$=5 (in \$). What does this mean?
 
 
 
-## [todo:] Discuss Transformations?
+
 
 
 

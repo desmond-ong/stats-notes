@@ -78,6 +78,7 @@ Here are the basic steps in Linear Optimization, which we'll go over in the next
 
 ## Objective Functions & Decision Variables
 
+<span class="badge badge-bt"> BT1101 </span>
 
 Your goal (or objective) in linear optimisation is to optimise an objective function. This will be in the form of maximising or minimising some quantity of interest, by choosing the values of $X$, our Decision Variables.
 

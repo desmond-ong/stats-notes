@@ -8,10 +8,10 @@ Topics that I would like to eventually cover with this set of notes include:
 - Descriptive Statistics
 - Data Visualization
 - Regression Analysis (including multiple regression and interactions; mixed-effects modelling)
-- Monte carlo simulations (including using simulations to do non-parametric statistics like the bootstrap)
-- Simple linear optimization / with integer constraints.
 - Time Series Analysis
 - Introduction to Data Mining techniques
+- Simple linear optimization / with integer constraints.
+- Monte carlo simulations (including using simulations to do non-parametric statistics like the bootstrap)
 - Good (R & R Markdown; analysis) Practices
 
 The link to this book is [here](http://desmond-ong.github.io/stats-notes). More information can be found in the preface of the book.

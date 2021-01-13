@@ -61,7 +61,7 @@ In fact, linear regression is a special case of the general linear model with th
 
 
 
-## Running a logistic regression
+## Running a Logistic Regression
 
 <span class="badge badge-bt"> BT1101 </span>
 

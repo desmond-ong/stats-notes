@@ -67,29 +67,30 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 - Getting Started - R, RStudio, R Markdown. 
     a. Coding Best Practices. 
     b. Analysis Best Practices.
-- [In Progress] Introduction - detective analogy
+- Introduction
 - Handling Data
     a. Basics of Data Wrangling <span class="badge badge-bt"> BT1101 </span>
     b. Wrangling in the tidyverse <span class="badge badge-bt"> BT1101 </span>
     c. [In Progress] A data cleaning pipeline for research projects <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Descriptive Statistics - Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation
-- [In Progress] Probability ? - Normal distribution?
-- [In Progress] Data Visualization
+- <i>[In Progress] Descriptive Statistics - Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation</i>
+- <i>[In Progress] A discussion on probability ? - Normal distribution?</i>
+- <i>[In Progress] Data Visualization</i>
 - The Linear Model 
     a. Linear Regression <span class="badge badge-bt"> BT1101 </span>
     b. Logistic Regression <span class="badge badge-bt"> BT1101 </span>
     c. [In Progress] Interactions <span class="badge badge-bt"> BT1101 </span>
     d. [In Progress] Model Selection <span class="badge badge-bt"> BT1101 </span>
     e. [In Progress] Mixed-effects linear models <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Simulations (I)
-    a. Monte Carlo Simulations <span class="badge badge-bt"> BT1101 </span>
-    b. The Bootstrap <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Simulations (II): Statistics in Machine Learning 
-    a. Understanding the statistics of machine learning models <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Data Mining
+- [In Progress] Introduction to Time Series Data <span class="badge badge-bt"> BT1101 </span>
+- [In Progress] Data Mining <span class="badge badge-bt"> BT1101 </span>
 - Optimization
     a. Linear Optimization <span class="badge badge-bt"> BT1101 </span>
     b. [In Progress] Integer-valued Optimization <span class="badge badge-bt"> BT1101 </span>
+- [In Progress] Simulations (I) 
+    a. Monte Carlo Simulations <span class="badge badge-adv"> Advanced </span>
+    b. The Bootstrap <span class="badge badge-adv"> Advanced </span>
+- [In Progress] Simulations (II): Statistics in Machine Learning 
+    a. Understanding the statistics of machine learning models <span class="badge badge-adv"> Advanced </span>
 
 
 ...
