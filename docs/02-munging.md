@@ -169,7 +169,7 @@ df_wide$Height_Pri3 = df_wide$Height_Pri2 + ceiling(rnorm(20, 5, 2))
 
 ### The `%>%` operator {-}
 
-First, we'll introduce the `%>%` operator, which I refer to as the pipe operator^[As it behaves similar to other pipe operators in Python, Unix, etc. The creator pronounces `%>%` as "and then": Source: https://community.rstudio.com/t/how-is-pronounced/1783/12]. The `%>%` operator 'pipes' the argument before it, into the function after it, as the first argument (by default). 
+First, we'll introduce the `%>%` operator, which I refer to as the pipe operator^[As it behaves similar to other pipe operators in Python and Unix, the creator pronounces `%>%` as "and then": Source: https://community.rstudio.com/t/how-is-pronounced/1783/12]. The `%>%` operator 'pipes' the argument before it, into the function after it, as the first argument (by default). 
 
 1. `A %>% function` is equivalent to calling `function(A)`. The variable before `%>%` is by default the first argument into `function()`, and you can list other arguments too.
 
@@ -365,19 +365,50 @@ df_wide_test1 = df_long %>% pivot_wider(
 Which gives us:
 
 <center>
-Quitting from lines 297-310 (02-munging.Rmd) 
-Error in pander(df_wide_test1[1:3, ]) : object 'df_wide_test1' not found
-Calls: local ... inline_exec -> hook_eval -> withVisible -> eval -> eval -> pander
-In addition: Warning messages:
-1: package 'tibble' was built under R version 3.6.2 
-2: package 'dplyr' was built under R version 3.6.2 
+
+-----------------------------------
+  Name    Gender    1     2     3  
+-------- -------- ----- ----- -----
+ Angela   Female   116   120   127 
+
+ Brian     Male    110   116   123 
+
+ Cathy    Female   121   125   131 
+-----------------------------------
+
+
 </center>
 
 Great! We got back a wide-form data frame. But notice how the columns are now labelled `1`, `2`, `3`, and this makes it hard to understand what they mean? We'll leave it as an exercise to the reader to try to convert these back into something more understandable. (There are several possible solutions!)
 
 
-## [Not Done:] A data cleaning pipeline for research projects 
+## A data cleaning pipeline for research projects 
 
 <span class="badge badge-adv"> Advanced </span>
+
+In research, we often collect data, and the "raw" data that we collect usually cannot be analyzed as it is. Firstly, it may contain identifiable information that needs to be removed carefully. Secondly, we may have to do additional calculations to extract our dependent/independent variables from the data. The golden rule is to never touch the raw data. Everything should be done programmatically, and the output of any processing should not overwrite the raw data. This is to allow us to 'retrace' our analysis steps. 
+
+> The only exception I can think of to touch the raw data is if for some reason, some of the raw data needs to be deleted. For example, if a participant from a study decides to withdraw, they are entitled to have their raw data deleted. 
+
+Think of the following pipeline:
+
+1. Raw data. Contains identifiable information. Should be kept under the strictest data protection (e.g., password protection, access control only to limited people).
+2. Deidentified data. This is raw data with any identifiers stripped. Deidentified data can then be safely analysed by more people, like research assistants.
+    - Usually we replace the identifiers with a "random key", and then we have some file that allows us to match the original identifiers with the random key. 
+    - For example, we might decide to replace "John Smith" with "ID001". In that case we have to create a new file that contains this information "John Smith = ID001", and we will store this file with the raw data under the same strict restrictions.
+    - Nowadays I am of the opinion that we could use a one-way function (like a cryptographic hash function) to solve this issue. This allows us to maintain the security of the deidentified data, while minimizing the risk of the leak of the file that contains the identifiers.
+3. Processed data. This is deidentified data that has been processed. There are different types of processing that one can do: 
+    - Survey items have been scored. This usually means calculating scores for the subscales, taking into account any reverse-coded items.
+    - Additional measures have been calculated.
+    - Any attention check measures, CAPTCHA, or other inclusion and exclusion criteria.
+
+
+**Going from Raw data to Deidentified data**: This should be done via a simple script, and should only have to be done once, immediately after data collection. After this is done, the raw data (and any identifier keys) should be safely stored, not to be accessed unless necessary.
+
+**Going from Deidentified data to Processed data**: This file can be iterated on over the course of analyses. For example, we may first be interested in some data, and start processing and analyzing those first, subsequently we may want to process more variables. Again, this should be done programatically (via an R / RMD script) so that every step can be stored, in case one needs to backtrack.
+
+> Neither of the above steps should be done manually. For example, opening up the raw data file in Excel, deleting the "Name" column, and saving it as another file, is *not* a reproducible pipeline. 
+
+Finally, you can start analyzing the processed data.
 
 

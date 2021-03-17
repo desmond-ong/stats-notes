@@ -1,7 +1,7 @@
 --- 
 title: "Statistics and Analytics for the Social and Computing Sciences"
 author: "Desmond C. Ong"
-date: "Draft Dated: 2021-01-13"
+date: "Draft Dated: 2021-03-17"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -26,18 +26,22 @@ description: "Statistics and Analytics for the Social and Computing Sciences"
 
 # Preface {-}
 
-This is a collection of notes on statistics and data analytics that I am compiling, with two goals:
+This is a working collection of notes on statistics and data analytics that I am compiling, with two goals:
 
-1) To serve as a supplement to a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), which is a statistics course in R targeted at first-year undergraduate students who are aspiring data scientists. These sections will cover introductory material, and will be marked with <span class="badge badge-bt"> BT1101 </span>. 
+1) To serve as a supplement to a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), a statistics course in R targeted at first-year undergraduate students and aspiring data scientists. These sections will cover introductory material, and will be marked with <span class="badge badge-bt"> BT1101 </span>. 
 
 2) To discuss material that would be useful for graduate-level researchers in the social and computing sciences. This material will build upon the introductory level, and will be marked with <span class="badge badge-adv"> Advanced </span>
 
 
-I hope to cover quite broadly several important and useful statistical tools (e.g. my top priorities right now are to cover multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
+I hope to cover quite broadly several important and useful statistical tools (such as multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
+
+
+My philosophy in teaching statistics and analytics is to focus on helping students to achieve a conceptual understanding, and develop their own intuition for data. Yes, students will need some mathematical background to appreciate statistics, and yes, students will need to learn some programming (in R) to actually implement modern statistical calculations, but these are means to an end. The end is an appreciation of data, and especially, how data exists in the real world. Real data rarely conforms to the assumptions we make in our analyses. The job of the analyst is to understand the data, which involves "troubleshooting" confusing statistical output, modifying statistical models and their underlying assumptions, and perhaps even inventing new ones.
 
 
 
-As some background, I am a computational cognitive psychologist, with a little bit of training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences. 
+
+As some background, I am a computational cognitive psychologist, with a little training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences. 
 
 
 
@@ -45,7 +49,7 @@ As some background, I am a computational cognitive psychologist, with a little b
 
 
 
-This is a work in progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
+This is a work-in-progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
 
 
 Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg. 
@@ -64,9 +68,9 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 
 ## Outline of notes {-}
 
-- Getting Started - R, RStudio, R Markdown. 
-    a. Coding Best Practices. 
-    b. Analysis Best Practices.
+- Getting Started
+    a. R, RStudio, R Markdown 
+    b. Coding Best Practices
 - Introduction
 - Handling Data
     a. Basics of Data Wrangling <span class="badge badge-bt"> BT1101 </span>
@@ -81,7 +85,10 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
     c. [In Progress] Interactions <span class="badge badge-bt"> BT1101 </span>
     d. [In Progress] Model Selection <span class="badge badge-bt"> BT1101 </span>
     e. [In Progress] Mixed-effects linear models <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Introduction to Time Series Data <span class="badge badge-bt"> BT1101 </span>
+- Introduction to Time Series Data <span class="badge badge-bt"> BT1101 </span>
+    a. Time Series Basics
+    b. Smoothing-based models
+    c. [In Progress] Time-Series Regression
 - [In Progress] Data Mining <span class="badge badge-bt"> BT1101 </span>
 - Optimization
     a. Linear Optimization <span class="badge badge-bt"> BT1101 </span>

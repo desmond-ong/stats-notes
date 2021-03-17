@@ -2,7 +2,7 @@
 
 <span class="badge badge-bt"> BT1101 </span>
 
-In the previous chapter, we introduced the general linear model, and showed how we can use it to model continuous dependent variables ($Y$), using a combination of both continuous and categorical indepdent variables ($X$).
+In the previous chapter, we introduced the linear model, and showed how we can use it to model continuous dependent variables ($Y$), using a combination of both continuous and categorical indepdent variables ($X$).
 
 In this chapter we will discuss expanding our toolkit to use a different type of regression, **logistic** regression, to model categorical dependent variables ($Y$). For now, we **only consider binary dependent variables** (such as `Yes`/`No` Decisions, `True`/`False` classifications, etc), although there are also extensions to categorical dependent variable with multiple levels (e.g., multinomial regression).
 
@@ -34,7 +34,7 @@ $$\text{Purchased} \sim \text{Spending} + \text{Demographics} + \ldots$$
 
 
 
-Unfortunately, here we cannot use linear regression, but we can use the more general version of the model, called the `general linear model`. The general idea is that the GLM introduces a _link_ function that maps the actual response variable `Y` to what the linear model predicts.
+Unfortunately, here we cannot use linear regression, because our response variable is a binary (yes/no) variable, while the linear regression model assumes a variable with normally distributed errors. But we can use the `generalized linear model`, which, as its name suggests, generalizes the linear model to other types of variables. The idea is that the GLM introduces a _link_ function that maps the actual response variable `Y` to what the linear model predicts.
 
 Here we'll focus on `logistic regression`, which uses the `logit` function as its link function. 
 

@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <title>10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="10.2 Smoothing-based models | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="outline-of-notes.html"/>
+<link rel="prev" href="time-series-basics.html"/>
+<link rel="next" href="not-done-regression-based-forecasting-models.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -257,31 +257,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Statistics and Analytics for the Social and Computing Sciences</h1>
-<p class="author"><em>Desmond C. Ong</em></p>
-<p class="date"><em>Draft Dated: 2021-03-17</em></p>
+<div id="smoothing-based-models" class="section level2">
+<h2><span class="header-section-number">10.2</span> Smoothing-based models</h2>
+<p>Time-series data is often quite noisy, and often we may want to “smooth” out individual variation in the data, in order to be able to see the bigger picture, like trends.</p>
+<p>First we define a simple moving average window, sometimes called a sliding window: we define a <span class="math inline">\(k\)</span>-period simple moving average window as just the average of the most recent <span class="math inline">\(k\)</span> elements of the time-series:</p>
+<p><span class="math display">\[\text{Window}_t = \frac{1}{k} \left( Y_t + Y_{t-1} + \ldots + Y_{t-(k-1)} \right)\]</span></p>
+<p>Note that the default for early timepoints (when there’s not enough to fit in the window), is undefined, and in R is left as a missing, or NA value. There are several functions you can use to calculate these moving averages, here we use the SMA function from the TTR package:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="smoothing-based-models.html#cb6-1"></a><span class="co"># There are many different ways to calculate simple moving averages. </span></span>
+<span id="cb6-2"><a href="smoothing-based-models.html#cb6-2"></a><span class="co"># Here&#39;s one from the TTR package</span></span>
+<span id="cb6-3"><a href="smoothing-based-models.html#cb6-3"></a><span class="co"># install.packages(&#39;TTR&#39;)</span></span>
+<span id="cb6-4"><a href="smoothing-based-models.html#cb6-4"></a><span class="kw">library</span>(TTR)</span>
+<span id="cb6-5"><a href="smoothing-based-models.html#cb6-5"></a><span class="kw">SMA</span>(df<span class="op">$</span>y, <span class="dt">n=</span><span class="dv">3</span>) <span class="co"># taking window size of 3</span></span></code></pre></div>
+<p><img src="images/time-series/sma-eg1.png" width="400px" style="display: block; margin: auto;" />
+This graph shows a simple time-series (in black), as well as the corresponding simple moving average windows of size 2 (in red) and size 4 (in brown). Take a minute to look at how the windows “smooth” out the variation in the data.</p>
+<p><img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" /></p>
+<p>The CNN graph of covid cases on the previous page also has a seven-day moving average window overlaid on the raw data (which you can see in the faded bars). Notice how the red line makes it easier to see trends and cycles.</p>
+<p><img src="images/time-series/temperature-raw.png" width="600px" style="display: block; margin: auto;" /><img src="images/time-series/temperature-7sma.png" width="600px" style="display: block; margin: auto;" /></p>
+<p>Here’s another graph that is also related to Covid. This is a real graph of body temperature, taken twice a day. Now you might not be able to see much from this data because it’s so noisy. But if we instead took a seven day moving average, we can see that this individual’s temperature data seems to follow this repeated pattern. (And indeed, this individual happens to be a female, and this data does follow a repeated, biological seasonality.)</p>
+<div id="simple-moving-average-model" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Simple Moving Average Model</h3>
+<p>Now, a very simple model is to just use the window of recent values, as a prediction of the future. That is, we use the window to predict the value at the next time step: <span class="math display">\[\hat{Y}_{t+1} = \text{Window}_t = \frac{1}{k} \left( Y_t + Y_{t-1} + \ldots + Y_{t-(k-1)} \right)\]</span></p>
+<p>The major assumption in this model is that Y will stay the same, at least for short time-steps into the future. This assumes stationarity. And thus the simple moving average model does <strong>not</strong> account for trends, cycles, or seasons, and that we can get an estimate of the data just by averaging out some variation in the recent past. It’s a relatively simple model that can be calculated very quickly, even using a pen and paper pad, and can be used for quick, short-range forecasting. For example, if you are running a small store and you are wondering how much of a product to stock up on, a good estimate would be the average of those products you sold over the past few weeks.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This is a working collection of notes on statistics and data analytics that I am compiling, with two goals:</p>
-<ol style="list-style-type: decimal">
-<li><p>To serve as a supplement to a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), a statistics course in R targeted at first-year undergraduate students and aspiring data scientists. These sections will cover introductory material, and will be marked with <span class="badge badge-bt"> BT1101 </span>.</p></li>
-<li><p>To discuss material that would be useful for graduate-level researchers in the social and computing sciences. This material will build upon the introductory level, and will be marked with <span class="badge badge-adv"> Advanced </span></p></li>
-</ol>
-<p>I hope to cover quite broadly several important and useful statistical tools (such as multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.</p>
-<p>My philosophy in teaching statistics and analytics is to focus on helping students to achieve a conceptual understanding, and develop their own intuition for data. Yes, students will need some mathematical background to appreciate statistics, and yes, students will need to learn some programming (in R) to actually implement modern statistical calculations, but these are means to an end. The end is an appreciation of data, and especially, how data exists in the real world. Real data rarely conforms to the assumptions we make in our analyses. The job of the analyst is to understand the data, which involves “troubleshooting” confusing statistical output, modifying statistical models and their underlying assumptions, and perhaps even inventing new ones.</p>
-<p>As some background, I am a computational cognitive psychologist, with a little training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences.</p>
-<blockquote>
-<p>Disclaimer: For students taking BT1101, please refer to these notes <strong>only if you are taking this course under me</strong>. If you are taking the course under a different instructor, that instructor’s lecture notes take precedence as to whether something is in syllabus or not (and hence, testable on assessments/exams). We are always making improvements to the syllabus, and so for different offerings of the course, instructors may cover slightly different material. So if you are taking it under a different instructor, do not assume that concepts covered here will show up on the exam, or assume that concepts not covered here will not show up on the exam. I’ve indicated sections that were covered the last time I taught BT1101 with a <span class="badge badge-bt"> BT1101 </span> label).</p>
-</blockquote>
-<p>This is a work-in-progress that is inspired by Russ Poldrack’s Psych10 book here: <a href="http://statsthinking21.org/" class="uri">http://statsthinking21.org/</a>, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on <a href="https://github.com/desmond-ong/stats-notes">GitHub</a> and built using <a href="https://github.com/rstudio/bookdown">Bookdown</a>.</p>
-<p>Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg.</p>
-<p>This material is shared under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) License</a>. What this means is that you are free to copy, redistribute, and even adapt the material in this book, in any format or for any purpose, even commercial. Basically, this is a freely-available educational resource that you can share and use. The only conditions are (i) you must give appropriate credit, and if you made any changes, you must indicate so and not in any way that suggests that I endorse your changes, and (ii) if you transform or build upon the material here, you must also distribute this contributions under the same license.</p>
-<div id="about-the-author" class="section level4 unnumbered">
-<h4>About the Author</h4>
-<p><a href="https://desmond-ong.github.io/">Desmond Ong</a> is an Assistant Professor in the Department of Information Systems and Analytics, in the School of Computing at the National University of Singapore. He also holds a concurrent appointment as a Research Scientist at the Institute of High Performance Computing (IHPC), A*STAR.</p>
-<p>Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science from Stanford University, and his undergraduate degrees in Economics and Physics from Cornell University.</p>
+<div id="exponential-smoothing-models" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Exponential Smoothing Models</h3>
+<p>The next model we’ll consider is the single exponential smoothing model. This model has a parameter called <span class="math inline">\(\alpha\)</span>. Our prediction for time <span class="math inline">\(t+1\)</span> is a weighted sum of the actual value of <span class="math inline">\(Y_t\)</span> and our model’s prediction <span class="math inline">\(\hat{Y}_t\)</span>. We can then subtitute in our prediction for <span class="math inline">\(\hat{Y}_t\)</span> in terms of <span class="math inline">\(Y_{t-1}\)</span> and <span class="math inline">\(\hat{Y}_{t-1}\)</span>, and so forth.</p>
+<p><span class="math display">\[\hat{Y}_{t+1} = \alpha Y_t + (1-\alpha) \hat{Y}_{t}
+\\ = \alpha Y_t + (1-\alpha) \left( \alpha Y_{t-1} + (1-\alpha) \hat{Y}_{t-1} \right)
+\\ = \alpha \left( Y_t + (1-\alpha) Y_{t-1} + (1-\alpha)^2 Y_{t-2} + \ldots \right)\]</span></p>
+<p>Thus, we end up that our model’s prediction for the next time point, <span class="math inline">\(\hat{Y}_{t+1}\)</span>, contains a weighted sum of all previous time points <span class="math inline">\(Y_t, Y_{t-1}, \ldots\)</span>. Because <span class="math inline">\(\alpha\)</span> lies between 0 and 1, as you go further back in time, each value gets less and less weight.</p>
+<p>So notice that there are two main differences between the simple moving average and this: this model takes into account all past data (as opposed to a finite simple moving average window), and this model gives more weight to more recent values (as opposed to the same, uniform weight in a simple moving average window).</p>
+<p>Unfortunately, this model still doesn’t take into account trends or seasonality.</p>
+<p>We can go further and consider a double exponential smoothing model, which can handle trends.</p>
+<p><span class="math display">\[\hat{Y}_{t+k} = a_t + b_t k \]</span></p>
+<p>Here we have just measured time <span class="math inline">\(t\)</span>, and now we want to forecast forward to some <span class="math inline">\(t+k\)</span>. The main idea here is that we have <span class="math inline">\(Y_{t+k}\)</span> made up of two components, the “intercept” component <span class="math inline">\(a_t\)</span> which “looks like” the single exponential model; and a second component, the “slope” <span class="math inline">\(b_t\)</span> which will help it to account for trends.</p>
+<p><span class="math display">\[a_t = \alpha Y_t + (1-\alpha) \left( a_{t-1} + b_{t-1} \right)\]</span></p>
+<p>For the “slope” term, we have:</p>
+<p><span class="math display">\[b_t = \beta \left( a_t - a_{t-1} \right) + (1-\beta) b_{t-1}\]</span>
+where we update the slope estimate using both (<span class="math inline">\(a_t - a_{t-1}\)</span>), the current slope estimate, and <span class="math inline">\(b_{t-1}\)</span>, the previous slope estimate.</p>
+<p>The basic intuition is that each component is “smoothed” using the same linear combination (<span class="math inline">\(\alpha, (1-\alpha)\)</span>) equation. The slope variable is also smoothed using a (<span class="math inline">\(\beta, (1-\beta)\)</span>) equation. At every timestep we smooth and update our value of <span class="math inline">\(a_t\)</span> and <span class="math inline">\(b_t\)</span>, using these parameters <span class="math inline">\(\alpha, \beta\)</span> and our estimates at the previous timesteps.</p>
+<p>There is a further generalization of this to add a third application of exponential smoothing to model seasonality. This is called the Holt-Winters model. Luckily, R’s HoltWinters() function can do all three types of exponential smoothing. The call is:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="smoothing-based-models.html#cb7-1"></a><span class="kw">HoltWinters</span>(x, alpha, beta, gamma, ...)</span></code></pre></div>
+<p>The <code>R</code> function will allow you to specify <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span>, and whichever you do not specify it’ll try to fit.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="left">Trend</th>
+<th align="left">Seasonality</th>
+<th align="left">Parameters</th>
+<th align="left">Call</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Single Exponential Smoothing</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">alpha</td>
+<td align="left">HoltWinters(x, beta=FALSE, gamma=FALSE)</td>
+</tr>
+<tr class="even">
+<td align="left">Double Exponential Smoothing</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">alpha, beta (trend)</td>
+<td align="left">HoltWinters(x, gamma=FALSE)</td>
+</tr>
+<tr class="odd">
+<td align="left">Holt-Winters</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left">alpha, beta (trend), gamma (seasonality)</td>
+<td align="left">HoltWinters(x)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
             </section>
@@ -289,8 +340,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="outline-of-notes.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="time-series-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="not-done-regression-based-forecasting-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -343,6 +394,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <title>10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="10.1 Time Series Basics | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="outline-of-notes.html"/>
+<link rel="prev" href="time-series.html"/>
+<link rel="next" href="smoothing-based-models.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -257,40 +257,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Statistics and Analytics for the Social and Computing Sciences</h1>
-<p class="author"><em>Desmond C. Ong</em></p>
-<p class="date"><em>Draft Dated: 2021-03-17</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>This is a working collection of notes on statistics and data analytics that I am compiling, with two goals:</p>
-<ol style="list-style-type: decimal">
-<li><p>To serve as a supplement to a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), a statistics course in R targeted at first-year undergraduate students and aspiring data scientists. These sections will cover introductory material, and will be marked with <span class="badge badge-bt"> BT1101 </span>.</p></li>
-<li><p>To discuss material that would be useful for graduate-level researchers in the social and computing sciences. This material will build upon the introductory level, and will be marked with <span class="badge badge-adv"> Advanced </span></p></li>
-</ol>
-<p>I hope to cover quite broadly several important and useful statistical tools (such as multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.</p>
-<p>My philosophy in teaching statistics and analytics is to focus on helping students to achieve a conceptual understanding, and develop their own intuition for data. Yes, students will need some mathematical background to appreciate statistics, and yes, students will need to learn some programming (in R) to actually implement modern statistical calculations, but these are means to an end. The end is an appreciation of data, and especially, how data exists in the real world. Real data rarely conforms to the assumptions we make in our analyses. The job of the analyst is to understand the data, which involves “troubleshooting” confusing statistical output, modifying statistical models and their underlying assumptions, and perhaps even inventing new ones.</p>
-<p>As some background, I am a computational cognitive psychologist, with a little training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences.</p>
-<blockquote>
-<p>Disclaimer: For students taking BT1101, please refer to these notes <strong>only if you are taking this course under me</strong>. If you are taking the course under a different instructor, that instructor’s lecture notes take precedence as to whether something is in syllabus or not (and hence, testable on assessments/exams). We are always making improvements to the syllabus, and so for different offerings of the course, instructors may cover slightly different material. So if you are taking it under a different instructor, do not assume that concepts covered here will show up on the exam, or assume that concepts not covered here will not show up on the exam. I’ve indicated sections that were covered the last time I taught BT1101 with a <span class="badge badge-bt"> BT1101 </span> label).</p>
-</blockquote>
-<p>This is a work-in-progress that is inspired by Russ Poldrack’s Psych10 book here: <a href="http://statsthinking21.org/" class="uri">http://statsthinking21.org/</a>, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on <a href="https://github.com/desmond-ong/stats-notes">GitHub</a> and built using <a href="https://github.com/rstudio/bookdown">Bookdown</a>.</p>
-<p>Feedback can be sent to dco (at) comp (dot) nus (dot) edu (dot) sg.</p>
-<p>This material is shared under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution Share Alike 4.0 International (CC-BY-SA-4.0) License</a>. What this means is that you are free to copy, redistribute, and even adapt the material in this book, in any format or for any purpose, even commercial. Basically, this is a freely-available educational resource that you can share and use. The only conditions are (i) you must give appropriate credit, and if you made any changes, you must indicate so and not in any way that suggests that I endorse your changes, and (ii) if you transform or build upon the material here, you must also distribute this contributions under the same license.</p>
-<div id="about-the-author" class="section level4 unnumbered">
-<h4>About the Author</h4>
-<p><a href="https://desmond-ong.github.io/">Desmond Ong</a> is an Assistant Professor in the Department of Information Systems and Analytics, in the School of Computing at the National University of Singapore. He also holds a concurrent appointment as a Research Scientist at the Institute of High Performance Computing (IHPC), A*STAR.</p>
-<p>Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science from Stanford University, and his undergraduate degrees in Economics and Physics from Cornell University.</p>
-</div>
+<div id="time-series-basics" class="section level2">
+<h2><span class="header-section-number">10.1</span> Time Series Basics</h2>
+<p>First, let’s introduce some useful terminology that we can use to describe time-series data.</p>
+<ul>
+<li><p><strong>Trend</strong>: a gradual upward or downwards movement of a time series over time.</p></li>
+<li><p>A <strong>Seasonal</strong> effect: an effect that occurs/repeats at a fixed interval</p>
+<ul>
+<li>Could be at any time-scales</li>
+<li>Examples: Diurnal temperature, temperature and length of day in temperate climates, “holiday season sales” that occur at specific times in the year</li>
+</ul></li>
+<li><p><strong>Cyclical</strong> effects: longer-term effects that do not have a fixed interval/length</p>
+<ul>
+<li>Example: stock market “boom/bust cycles”.</li>
+<li>The difference between <strong>cyclical</strong> and <strong>seasonal</strong> effects is that the latter are predictable, in that they repeat at regular intervals.</li>
+</ul></li>
+<li><p><strong>Stationarity</strong>: when statistical properties of the time-series (e.g., mean, variance) do not change over time.</p>
+<ul>
+<li>So by definition, a stationary time-series has no trend.</li>
+</ul></li>
+<li><p><strong>Autocorrelation</strong>: when a time-series is correlated with a past version of itself</p>
+<ul>
+<li>Auto here means “with itself”, and so autocorrelation means that the signal Y is correlated with previous versions of itself.</li>
+</ul></li>
+</ul>
+<p>Here are some examples to motivate how time-series data is interesting:</p>
+<p><img src="images/time-series/airPassengers.png" width="400px" style="display: block; margin: auto;" /></p>
+<p>Here we have a dataset, which is in base R and which shows the monthly total of international airline passengers from 1949 to 1960. You can see that there is a gradual increase, but there is also this very stable pattern, going up and down over a year. Thus, this dataset shows a trend, and an obvious seasonal effect.</p>
+<p><img src="images/time-series/sp500.png" width="400px" style="display: block; margin: auto;" /></p>
+<p>This is a graph showing the historical prices of the S&amp;P500, a stock market index listed on the stock exchanges in the US, from 1990 until 2019. There are a lot of things going on, as is the case in real world data: There is a dramatic increase in price in the past 3 decades (trend), but also these large stock market fluctuations, or cycles.</p>
+<p>The first of these cycles was the dot-com bubble in the 2000s, when tech companies were getting very hot, the internet was opening up, everyone was investing heavily in dot-com companies. The nature of these bubbles, however, is not that there is no value, but that the value is overestimated and actually doesn’t match the risks or the actual return-on-investment. So when investors started realising this and when companies actually couldn’t deliver as much as they promised, the bubble popped and the stock market crashed. This second cycle here precipitated what the 2008 financial crisis, and was actually due to overvalued mortgage loans in the US. Part of the American dream was to be able to own your own house in the suburbs; banks capitalized on this and started offering generous loans to people who couldn’t really afford them, and who were in turn more likely to default on paying their loans. This resulted in a “housing bubble”. When people actually started defaulting on their loans, the banks actually started losing money and some went bankrupt, and the whole worldwide economy was impacted.</p>
+<p><img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" /></p>
+<p>Finally, here’s another time-series graph that is relevant given the Covid-19 pandemic. This screenshot, taken from CNN on Dec 30, 2020, contains the number of cases in the US up through Dec 29 of 2020. (I note that the data is publically available, while credits for this particular visualization goes to CNN.)
+Similar to the stock market example, there is both an increasing trend, as well as several cycles.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="outline-of-notes.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="time-series.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="smoothing-based-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -343,6 +350,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
