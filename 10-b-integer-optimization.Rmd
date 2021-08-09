@@ -25,15 +25,17 @@ library(lpSolve) # for solving linear optimization problems ('linear programming
 
 <span class="badge badge-bt"> BT1101 </span>
 
-There are many other examples of integer-valued optimisation problems (i.e., with integer variables). For example,
+In the previous chapter we learnt how to solve optimization problems by finding real-valued solutions to decision problems. Recall that in the Furniture Factory example, we discovered that the optimal solution was to produce 5.93 tables, 3.70 sofas, and 0 beds. But in real-life, we cannot produce fractional tables or sofas, so this becomes a problem, which we will learn to solve in this Chapter. 
 
-- how many days to operate a factory; 
-- how many cars / products to produce;
-- how many shifts to assign an employee
+In addition to decision variables like physical products (e.g., how many cars or tables to produce) that must be integer-valued, there are other examples of integer-valued optimization problems, such as:
 
-We can also consider the special case of binary-valued decision variables (i.e., when your decision variable $X$ can only take values of 1 or 0).
+- how many days to operate a factory; (perhaps operating costs are charged or rental contracts are executed for the whole day even if you only need some fraction of it)
+- how many shifts to assign an employee; (another indivisible quantity)
 
-Binary (Yes/No) Decisions:
+Note that we can have some decision variables that are real-valued, and others that must be integer-valued. In such a case, we call this a **mixed-integer** optimisation problem.
+
+
+We can also consider the special case of *binary-valued* decision variables (i.e., when your decision variable $X$ can only take values of 1 or 0). These can be used to model binary (Yes/No) decisions:
 
 - Should I invest or not?    $X_i$ = 1 or 0
 - Is worker Bob assigned to shift $j$?    $X_j$ = 1 or 0
@@ -42,59 +44,98 @@ Binary (Yes/No) Decisions:
 And finally, we will also see how we can represent logical constraints using binary decision variables. This allows us to encode constraints like, "if A, then B". 
 
 
-In an optimisation problem, if some (but not all) of the decision variables are integer-valued, this is called a **mixed-integer** optimisation problem.
 
 
 
-## [NOT DONE] From real-valued to integer solutions
+
+## From real-valued to integer solutions
 
 <span class="badge badge-bt"> BT1101 </span>
 
+Let's revisit the Furniture Factory example from the previous Chapter. Recall that the objective function, constraints, and solution are:
+
+
+$$ X_1 = \text{number of tables made} \\
+X_2 = \text{number of sofas made} \\
+X_3 = \text{number of beds made} \\
+\text{Maximize Profit} = 500 X_1 + 450 X_2 + 580 X_3 $$
+
+Production Hour Budget Constraints:
+$$  8.4X_1 +   6X_2 + 9.6X_3 \leq 72$$
+Storage Space Constraints: 
+$$      3X_1 +   6X_2 +    8X_3  \leq 40$$
+
+Demand Constraints: 
+$$    X_1 +    \qquad      +   \qquad       \leq 8$$
+
+Non-negativity Constraints: 
+$$ X_1 \geq 0; X_2 \geq 0; X_3 \geq 0 $$
+
+
+And, the optimal solution is: 
+$$X_1 = 5.93, X_2 = 3.70, X_3 = 0$$
+Let us ignore the beds ($X_3$) for just a second, and plot the 3 constraints onto $X_1$ (tables) on the horizontal axis and $X_2$ (sofas) on the vertical axis (in the plane $X_3=0$).
+
+
+<img src="images/optim/optiminteger-plot-1.png" width="500">
+
+The optimal solution ($X_1 = 5.93, X_2 = 3.70, X_3 = 0$) is given in pink. 
+
+Now, if we want to impose an integer constraint, such that all our decision variables ($X_1$, $X_2$, $X_3$) must be integer valued, then our feasible solutions change. They cannot take on just any value, but only values indicated by the yellow dots below:
+
+<img src="images/optim/optiminteger-plot-2.png" width="500">
+
+The first question that many people will ask is: 
+
+> Well, can we just round off the real-valued answer to the nearest solution?
+
+The answer is **No**, because in this case, the rounded off answer ($X_1=6, X_2=4$) is not a feasible solution (it lies outside the other constraints).
+
+Then a natural response would be: 
+
+> Can we then round down the answer, or round off the answer to the nearest feasible answer?
+
+Maybe. But the nearest feasible answer is not guaranteed to be optimal! Have a look at the following plot, where the profit at several chosen yellow dots (near the constraint boundaries) are shown:
+
+<img src="images/optim/optiminteger-plot-3.png" width="500">
+
+We can actually see that the nearest feasible answers (e.g., (5,4) and (6,3)) may not produce the optimal solution. In fact, the optimal solution in this plane (keeping $X_3 = 0$) is actually quite far away from ($X_1 = 5.93$, $X_2 = 3.70$). It is ($X_1 = 7$, $X_2 = 2$)! 
+
+
+And actually if we do solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is 
+
+$$ X_1 = 6, X_2 = 2, X_3 = 1 $$ 
+
+which has a profit of \$4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make ($X_3=0$). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the "not-so-profitable" Beds become profitable to make!
 
 
 
+> In reality, solving integer-constrained optimization problems is a hard problem. In fact, in computer science jargon, this is one of a class of NP-Complete problems, which just means there exists no efficient (polynomial-time) method to find solutions to this problem. (Unlike in the simple linear optimization case where such methods do exist). This means that one approach to get the optimal solution is to brute-force search through every solution (the time-complexity of which grows very rapidly with the problem size); another popular approach to use heuristics or approximation algorithms to offer a best-guess at an answer.
 
 
 
-
-
-
-
-
-
-
-
-```
-    [ need to rework examples from lecture to illustrate this more ]
-```
-
-
-Feasible solutions are now integer-valued solutions that lie within the feasible region bounded by the other constraints
-
-- Can we just round off the real-valued answer?
-- No. In this case, rounded-answer is not feasible
-
-- Can we just round down the answer or round off to the nearest feasible answer?
-- Maybe. But the nearest feasible answer is not guaranteed to be optimal!
-
+### LP-Relaxation
 
 
 We've seen that the optimal integer solution may not necessarily be near the optimal real-valued solution.
 
 But that doesn't mean the real-valued solution is useless. In fact, the most common way to solve the integer optimisation problem is to FIRST solve the problem without the integer constraints.
-
 Solving the optimisation without the integer constraints is called Linear Program [LP] Relaxation, because you "relax" the integer constraints.
 
 
-If you solve the LP relaxation, and the solution happens to be integer valued, then you are lucky, and that solution is also the optimal solution to the integer problem.
+Now, if you solve the LP relaxation, and the solution happens to be integer valued, then you can thank your lucky stars, because that solution is also the optimal solution to the integer problem.
 
-- think back to the example of Farmer Jean. In that case the solution was an integer number of plots of crops, (80, 120)
-
-
-But this will not often be the case that the solution to the LP relaxation will be integer-valued. Then, programs use the real-valued solution as a starting point to systematically search for the optimal integer solution (e.g. "branch and bound" algorithm used by `lpSolve`).
+- Think back to the example of Farmer Jean in the previous Chapter. In her case, the solution to her optimization problem was an integer number of plots of crops, (80, 120). Thus, even if we had to consider integer constraints, this solution is still valid. And in fact, it still remains optimal.
+- Another collorary is that the objective of the optimal solution to the LP-relaxed problem (e.g., the maximum profit) is always better than or equal to the objective of the optimal integer-valued solution.
 
 
-```{r, echo=FALSE, eval=FALSE}
+But this will not often be the case that the solution to the LP relaxation will be integer-valued. Then, programs use the real-valued solution as a starting point to systematically search for the optimal integer solution (such as the "branch and bound" algorithm used by `lpSolve`). 
+
+### Specifying Integer Constraints
+
+In order to tell `lpSolve` that we want to impose integer constraints, we simply add a new option `int.vec = c(...)`, where we give a `vec`tor of `int`egers. For example, if we want to specify in the furnitude example that $X_1, X_2, X_3$ are all integers, we specify `int.vec = c(1,2,3)`. (conversely, if only $X_2$ was an integer, we would write `int.vec=c(2)`.)
+
+```{r optim-int-example-1a, echo=T, eval=FALSE}
 lp.solution <- lp("max", objective.fn, const.mat, 
                   const.dir, const.rhs, int.vec = c(1,2,3),
                   compute.sens=FALSE)
@@ -102,16 +143,59 @@ lp.solution <- lp("max", objective.fn, const.mat,
 # is inaccurate for integer-valued problems, so we won't use them.
 ```
 
+And that's it. We can use the same functions `lp.solution` and `lp.solution$solution` to read out the optimal objective function value and the optimal values of the decision variables. Thus, for the furniture example above, we have:
 
+
+
+```{r optim-int-example-1b, echo=T, eval=T}
+objective.fn <- c(500, 450, 580)
+const.mat <- matrix(c(8.4,  6, 9.6, 
+                        3,  6,   8, 
+                        1,  0,   0), 
+                      ncol=3 , byrow=TRUE) 
+const.dir <- c("<=", "<=", "<=")
+const.rhs <- c(72, 40, 8)
+# solving model
+lp.solution <- lp("max", objective.fn, const.mat, 
+                  const.dir, const.rhs, int.vec = c(1,2,3),
+                  compute.sens=FALSE)
+
+# to print out the optimal objective function value
+lp.solution
+
+# to print out the values of the decision variables (X1, X2, X3)
+lp.solution$solution
+```
+
+
+Lastly, one final point to note is that the sensitivity analyses calculated by `lpSolve` may not be accurate for integer-valued problems (i.e., the effect of varying the objective function coefficients and shadow prices may not be accurate), so we choose not to have `complete.sens` in the function call. Of course, since we are already experts in this from last Chapter, we could always change the objective function coefficients or constraint values manually and try to solve it to estimate a sensitivity analysis, but the inbuilt convenience function doesn't do that for us. 
 
 
 ## Logical Constraints
 
 <span class="badge badge-bt"> BT1101 </span>
 
-Some logical constraints can also be formalised as integer constraints. For example, if I choose $X_1$, then I must choose $X_2$ as well. This can be formalised as the following constraint:
-$$X_2 - X_1 \geq 0$$
-If $X_1$ is 1, then this forces $X_2$ to be 1 too.
+Logical constraints can also be formalised as integer constraints. For example, let's say that $X_1$ is whether I decide to buy a new house, and $X_2$ is whether I decide to renovate the new house. We restrict both $X_1$, $X_2$ to be either $0$ or $1$. Obviously, I need to purchase the house before I can renovate it, so $X_1$ is a pre-requisite for $X_2$.
+
+Using logic, I can write that: 
+
+$$ \text{if I choose } X_2, \text{then I must choose } X_1  \text{ as well.} $$
+
+This logical constraint can be formalised as the following integer-valued constraint:
+
+$$X_1 - X_2 \geq 0$$
+(In fact, this is not just an integer-valued constraint, but it is even stronger: the two variables are binary-valued).
+
+The intuition is that if $X_2$ is 1, then this forces $X_1$ to be 1 too. Let us check:
+
+- $X_1 = 0$, $X_2 = 0$: Constraint: $0 - 0 = 0 \geq 0$ is satisfied. This is fine since I don't purchase the house and I don't renovate the house.
+- $X_1 = 1$, $X_2 = 0$: Constraint: $1 - 0 = 1 \geq 0$ is satisfied. This is fine since I can choose to purchase the house without renovating it. 
+- $X_1 = 1$, $X_2 = 1$: Constraint: $1 - 1 = 0 \geq 0$ is satisfied. Again, this is fine since I can choose to both purchase and renovate the house. 
+- Most importantly: $X_1 = 0$, $X_2 = 1$: Constraint: $0 - 1 = -1 \not \geq 0$. The constraint is *not* satisfied. This makes sense, because I cannot not purchase the house ($X_1=0$) but still choose to renovate it ($X_2=1$). 
+
+Thus, we can check and see that this integer constraint correctly captures the intuition behind the logical constraint.
+
+
 
 In general, the following table summaries how some logical constraints can be represented using binary decision variables:
 
@@ -125,6 +209,15 @@ if ($A$ or $C$) then $B$ | $B - (A+C) \geq 0$
 if ($A$ and $C$) then $B$ | $B - (A+C) \geq -1$, or $(A+C) - B \leq 1$
 if $A$ then ($B$ or $C$) | $(B+C) - A \geq 0$
 if $A$ then ($B$ and $C$) | $(B+C) - 2A \geq 0$
+
+
+### How to specify logical constraints
+
+
+Earlier we saw that to tell `lpSolve` that certain decision variables are integer-valued, we used an option `int.vec = c(...)`. If we want to tell `lpSolve` that instead some decision variables are binary-valued, then we use: `binary.vec = c(...)`. And that's it! `lpSolve` does everything else for us.
+
+(In fact, it's harder to ensure that you have written down the constraints correctly!)
+
 
 
 ### Logical Constraints Example: Planning university courses
@@ -261,20 +354,19 @@ In order to maximize her interest while completing the degree, Natalie should ch
 
 In this lecture we've covered how to use linear optimisation to solved integer-valued optimisation problems, where some of the decision variables are constrained to be integers, or even constrained to be binary variables (which can be used to model yes/no decisions).
 
-We've also seen how to transform logical constraints into linear constraints using binary variables. And we've also seen worked examples of problems with 20+ decision variables -- these problems scale up very fast!
+We've also seen how to transform logical constraints into linear constraints using binary variables. And we've also seen worked examples of problems with 10+ decision variables -- these problems scale up very fast!
 
 The output of these problems can be very useful in helping managers make optimal decisions based on the data, and is the whole objective behind prescriptive analytics.
 
 
-## [NOT DONE] Exercises
+## Exercises: Integer Optimization
 
 <span class="badge badge-bt"> BT1101 </span>
 
-```
-    to be completed
-```
 
-Q1)
+
+##### Q1 {-}
+
 John is interested in buying ads to market his new startup. He sees the following options:
 
 Ad | Cost per ad | Reach | Limits
@@ -291,14 +383,6 @@ Q1a) Identify the decision variables, objective function and constraints. Write 
 Q1b) Write R code to solve this problem. What is the optimal solution, and what is the value of the objective function that this optimal solution?
 
 
-
-
-
-
-
-```
-    something similar to the distribution center example?
-```
 
 
 

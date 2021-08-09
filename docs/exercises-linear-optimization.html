@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="Chapter 15 [Not Done:] Simulations (II): Statistics in Machine Learning | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="12.9 Exercises: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-the-bootstrap.html"/>
-<link rel="next" href="not-done-book-summary.html"/>
+<link rel="prev" href="linear-optimization-summary.html"/>
+<link rel="next" href="optimization-ii-integer-valued-optimization.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -150,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#mutate"><i class="fa fa-check"></i>mutate()</a></li>
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#long-to-wide-pivot_wider"><i class="fa fa-check"></i>Long-to-wide: pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+<li class="chapter" data-level="2.3" data-path="a-data-cleaning-pipeline-for-research-projects.html"><a href="a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> A data cleaning pipeline for research projects</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
@@ -186,13 +188,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
-<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a logistic regression</a></li>
+<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
 <li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
-<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Introduction to Time-Series Data</a></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Introduction to Time-Series Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="time-series-basics.html"><a href="time-series-basics.html"><i class="fa fa-check"></i><b>10.1</b> Time Series Basics</a></li>
+<li class="chapter" data-level="10.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html"><i class="fa fa-check"></i><b>10.2</b> Smoothing-based models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
 <li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
@@ -210,25 +219,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.7</b> Linear Optimization Summary</a></li>
-<li class="chapter" data-level="12.8" data-path="not-done-exercises.html"><a href="not-done-exercises.html"><i class="fa fa-check"></i><b>12.8</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="12.7" data-path="examples-linear-optimization.html"><a href="examples-linear-optimization.html"><i class="fa fa-check"></i><b>12.7</b> Examples: Linear Optimization</a></li>
+<li class="chapter" data-level="12.8" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.8</b> Linear Optimization Summary</a></li>
+<li class="chapter" data-level="12.9" data-path="exercises-linear-optimization.html"><a href="exercises-linear-optimization.html"><i class="fa fa-check"></i><b>12.9</b> Exercises: Linear Optimization</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="optimization-ii-integer-valued-optimization.html"><a href="optimization-ii-integer-valued-optimization.html"><i class="fa fa-check"></i><b>13</b> Optimization II: Integer-valued Optimization</a><ul>
 <li class="chapter" data-level="13.1" data-path="integer-valued-decision-variables.html"><a href="integer-valued-decision-variables.html"><i class="fa fa-check"></i><b>13.1</b> Integer-valued decision variables</a></li>
-<li class="chapter" data-level="13.2" data-path="not-done-from-real-valued-to-integer-solutions.html"><a href="not-done-from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> [NOT DONE] From real-valued to integer solutions</a></li>
+<li class="chapter" data-level="13.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> From real-valued to integer solutions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#lp-relaxation"><i class="fa fa-check"></i><b>13.2.1</b> LP-Relaxation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#specifying-integer-constraints"><i class="fa fa-check"></i><b>13.2.2</b> Specifying Integer Constraints</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="logical-constraints.html"><a href="logical-constraints.html"><i class="fa fa-check"></i><b>13.3</b> Logical Constraints</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.1</b> Logical Constraints Example: Planning university courses</a></li>
+<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#how-to-specify-logical-constraints"><i class="fa fa-check"></i><b>13.3.1</b> How to specify logical constraints</a></li>
+<li class="chapter" data-level="13.3.2" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.2</b> Logical Constraints Example: Planning university courses</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="integer-optimization-summary.html"><a href="integer-optimization-summary.html"><i class="fa fa-check"></i><b>13.4</b> Integer Optimization Summary</a></li>
-<li class="chapter" data-level="13.5" data-path="not-done-exercises-1.html"><a href="not-done-exercises-1.html"><i class="fa fa-check"></i><b>13.5</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="exercises-integer-optimization.html"><a href="exercises-integer-optimization.html"><i class="fa fa-check"></i><b>13.5</b> Exercises: Integer Optimization</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="not-done-simulations-i.html"><a href="not-done-simulations-i.html"><i class="fa fa-check"></i><b>14</b> [Not Done:] Simulations (I)</a><ul>
-<li class="chapter" data-level="14.1" data-path="not-done-monte-carlo-simulations.html"><a href="not-done-monte-carlo-simulations.html"><i class="fa fa-check"></i><b>14.1</b> [Not Done:] Monte Carlo simulations</a></li>
-<li class="chapter" data-level="14.2" data-path="not-done-the-bootstrap.html"><a href="not-done-the-bootstrap.html"><i class="fa fa-check"></i><b>14.2</b> [Not Done:] The Bootstrap</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="not-done-simulations-ii-statistics-in-machine-learning.html"><a href="not-done-simulations-ii-statistics-in-machine-learning.html"><i class="fa fa-check"></i><b>15</b> [Not Done:] Simulations (II): Statistics in Machine Learning</a></li>
-<li class="chapter" data-level="16" data-path="not-done-book-summary.html"><a href="not-done-book-summary.html"><i class="fa fa-check"></i><b>16</b> [Not Done:] Book Summary ??</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -249,18 +256,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="not-done-simulations-ii-statistics-in-machine-learning" class="section level1">
-<h1><span class="header-section-number">Chapter 15</span> [Not Done:] Simulations (II): Statistics in Machine Learning</h1>
-<p>Understanding the statistics of machine learning models</p>
+<div id="exercises-linear-optimization" class="section level2">
+<h2><span class="header-section-number">12.9</span> Exercises: Linear Optimization</h2>
+<p><span class="badge badge-bt"> BT1101 </span></p>
+<div id="q1" class="section level5 unnumbered">
+<h5>Q1</h5>
+<p>Consider the following 4 constraints</p>
+<ul>
+<li>Constraint A: <span class="math inline">\(X_1 + X_2 \leq 10\)</span></li>
+<li>Constraint B: <span class="math inline">\(0.5X_1 + 2X_2 \leq 10\)</span></li>
+<li>Constraint C: <span class="math inline">\(X_1 - 0.5X_2 \geq 12\)</span></li>
+<li>Constraint D: <span class="math inline">\(X_2 \geq 7\)</span></li>
+<li>Non-negativity constraints: <span class="math inline">\(X_1 \geq 0\)</span>, <span class="math inline">\(X_2 \geq 0\)</span></li>
+</ul>
+<p>Assume the non-negativity constraints always hold. For each of the following sets of constraints, please indicate whether they are (i) Feasible, (ii) Infeasible, or (iii) Unbounded.</p>
+<ol style="list-style-type: lower-alpha">
+<li>A+B</li>
+<li>A+C</li>
+<li>A+D</li>
+<li>B+C</li>
+<li>B+D</li>
+<li>C+D</li>
+</ol>
+</div>
+<div id="q2" class="section level5 unnumbered">
+<h5>Q2</h5>
+<p>The examples we discussed in the earlier part of this chapter were all maximization problems (specifically, to maximize profit). In this question we shall explore minimisation.</p>
+<ol style="list-style-type: lower-alpha">
+<li>FunToys is famous for three types of toys: Cars, Animals, and Robots. Each year, near the holiday season, it receives large bulk orders for these items. To meet these orders, FunToys operates three small toy-making factories, A, B and C.</li>
+</ol>
+<ul>
+<li>Factory A costs $1000 per day to operate, and can produce 30 cars, 20 animals and 30 robots per day.</li>
+<li>Factory B costs $1200 per day to operate, and can produce 40 cars, 50 animals and 10 robots per day.</li>
+<li>Factory C costs $1500 per day to operate, and can produce 50 cars, 40 animals and 15 robots per day.</li>
+</ul>
+<p>This Christmas, FunToys is required to deliver 5000 cars, 3000 animals and 2500 robots. You are tasked with finding out what is the most cost-efficient way to meet the order. (In this question, please <em>IGNORE</em> integer requirements, i.e., just use fractional answers if/when they come up.)</p>
+<p>Let us start by trying to formulate this as a optimisation problem.</p>
+<ul>
+<li>First, write down what you want to minimize.</li>
+<li>Second, write down your decision variables. What are you actually choosing?</li>
+<li>Third, write your objective function in terms of your decision variables.</li>
+<li>Fourth, write down the constraints: what are the contractual requirements you need to fulfill. What other constraints are there? Write them down in terms of your decision variables.</li>
+<li>Summarize them nicely in a table.</li>
+</ul>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Write code to solve this optimisation problem. Report the optimal solution, and the value of the objective function at that solution. Interpret the solution: what do these numbers mean? (again, please ignore any integer requirements and just report fractional answers if they appear)</p></li>
+<li><p>What if we impose an additional constraint that FunToys only has 60 days to complete the order? (Note that we can run all three factories <em>simultaneously</em>). What happens now?
+Re-produce a new table summarizing the optimisation problem (including the existing and new constraints), and write R code to solve it. What is the new solution, and what is the objective function value?</p></li>
+<li><p>For the solution in (c), which of the constraints are binding, and which are non-binding?</p></li>
+<li><p>Using your solution in (c), print out the Shadow Prices. Interpret these values – make sure you can explain why each shadow price is zero or why it is positive/negative! Your answer from part (d) should also help you explain. (Note again, that we IGNORE integer requirements in this question, so your <span class="math inline">\(X\)</span> variables can be fractional…)</p></li>
+</ol>
 
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="not-done-the-bootstrap.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="not-done-book-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="linear-optimization-summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="optimization-ii-integer-valued-optimization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

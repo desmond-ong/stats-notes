@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <title>13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="12.8 [NOT DONE] Exercises | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="13.2 From real-valued to integer solutions | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="linear-optimization-summary.html"/>
-<link rel="next" href="optimization-ii-integer-valued-optimization.html"/>
+<link rel="prev" href="integer-valued-decision-variables.html"/>
+<link rel="next" href="logical-constraints.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -150,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#mutate"><i class="fa fa-check"></i>mutate()</a></li>
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#long-to-wide-pivot_wider"><i class="fa fa-check"></i>Long-to-wide: pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+<li class="chapter" data-level="2.3" data-path="a-data-cleaning-pipeline-for-research-projects.html"><a href="a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> A data cleaning pipeline for research projects</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
@@ -186,13 +188,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
-<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a logistic regression</a></li>
+<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
 <li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
-<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Introduction to Time-Series Data</a></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Introduction to Time-Series Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="time-series-basics.html"><a href="time-series-basics.html"><i class="fa fa-check"></i><b>10.1</b> Time Series Basics</a></li>
+<li class="chapter" data-level="10.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html"><i class="fa fa-check"></i><b>10.2</b> Smoothing-based models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
 <li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
@@ -210,25 +219,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.7</b> Linear Optimization Summary</a></li>
-<li class="chapter" data-level="12.8" data-path="not-done-exercises.html"><a href="not-done-exercises.html"><i class="fa fa-check"></i><b>12.8</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="12.7" data-path="examples-linear-optimization.html"><a href="examples-linear-optimization.html"><i class="fa fa-check"></i><b>12.7</b> Examples: Linear Optimization</a></li>
+<li class="chapter" data-level="12.8" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.8</b> Linear Optimization Summary</a></li>
+<li class="chapter" data-level="12.9" data-path="exercises-linear-optimization.html"><a href="exercises-linear-optimization.html"><i class="fa fa-check"></i><b>12.9</b> Exercises: Linear Optimization</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="optimization-ii-integer-valued-optimization.html"><a href="optimization-ii-integer-valued-optimization.html"><i class="fa fa-check"></i><b>13</b> Optimization II: Integer-valued Optimization</a><ul>
 <li class="chapter" data-level="13.1" data-path="integer-valued-decision-variables.html"><a href="integer-valued-decision-variables.html"><i class="fa fa-check"></i><b>13.1</b> Integer-valued decision variables</a></li>
-<li class="chapter" data-level="13.2" data-path="not-done-from-real-valued-to-integer-solutions.html"><a href="not-done-from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> [NOT DONE] From real-valued to integer solutions</a></li>
+<li class="chapter" data-level="13.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> From real-valued to integer solutions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#lp-relaxation"><i class="fa fa-check"></i><b>13.2.1</b> LP-Relaxation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#specifying-integer-constraints"><i class="fa fa-check"></i><b>13.2.2</b> Specifying Integer Constraints</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="logical-constraints.html"><a href="logical-constraints.html"><i class="fa fa-check"></i><b>13.3</b> Logical Constraints</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.1</b> Logical Constraints Example: Planning university courses</a></li>
+<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#how-to-specify-logical-constraints"><i class="fa fa-check"></i><b>13.3.1</b> How to specify logical constraints</a></li>
+<li class="chapter" data-level="13.3.2" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.2</b> Logical Constraints Example: Planning university courses</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="integer-optimization-summary.html"><a href="integer-optimization-summary.html"><i class="fa fa-check"></i><b>13.4</b> Integer Optimization Summary</a></li>
-<li class="chapter" data-level="13.5" data-path="not-done-exercises-1.html"><a href="not-done-exercises-1.html"><i class="fa fa-check"></i><b>13.5</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="exercises-integer-optimization.html"><a href="exercises-integer-optimization.html"><i class="fa fa-check"></i><b>13.5</b> Exercises: Integer Optimization</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="not-done-simulations-i.html"><a href="not-done-simulations-i.html"><i class="fa fa-check"></i><b>14</b> [Not Done:] Simulations (I)</a><ul>
-<li class="chapter" data-level="14.1" data-path="not-done-monte-carlo-simulations.html"><a href="not-done-monte-carlo-simulations.html"><i class="fa fa-check"></i><b>14.1</b> [Not Done:] Monte Carlo simulations</a></li>
-<li class="chapter" data-level="14.2" data-path="not-done-the-bootstrap.html"><a href="not-done-the-bootstrap.html"><i class="fa fa-check"></i><b>14.2</b> [Not Done:] The Bootstrap</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="not-done-simulations-ii-statistics-in-machine-learning.html"><a href="not-done-simulations-ii-statistics-in-machine-learning.html"><i class="fa fa-check"></i><b>15</b> [Not Done:] Simulations (II): Statistics in Machine Learning</a></li>
-<li class="chapter" data-level="16" data-path="not-done-book-summary.html"><a href="not-done-book-summary.html"><i class="fa fa-check"></i><b>16</b> [Not Done:] Book Summary ??</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -249,20 +256,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="not-done-exercises" class="section level2">
-<h2><span class="header-section-number">12.8</span> [NOT DONE] Exercises</h2>
+<div id="from-real-valued-to-integer-solutions" class="section level2">
+<h2><span class="header-section-number">13.2</span> From real-valued to integer solutions</h2>
 <p><span class="badge badge-bt"> BT1101 </span></p>
-<pre><code>to be completed</code></pre>
-
+<p>Let’s revisit the Furniture Factory example from the previous Chapter. Recall that the objective function, constraints, and solution are:</p>
+<p><span class="math display">\[ X_1 = \text{number of tables made} \\
+X_2 = \text{number of sofas made} \\
+X_3 = \text{number of beds made} \\
+\text{Maximize Profit} = 500 X_1 + 450 X_2 + 580 X_3 \]</span></p>
+<p>Production Hour Budget Constraints:
+<span class="math display">\[  8.4X_1 +   6X_2 + 9.6X_3 \leq 72\]</span>
+Storage Space Constraints:
+<span class="math display">\[      3X_1 +   6X_2 +    8X_3  \leq 40\]</span></p>
+<p>Demand Constraints:
+<span class="math display">\[    X_1 +    \qquad      +   \qquad       \leq 8\]</span></p>
+<p>Non-negativity Constraints:
+<span class="math display">\[ X_1 \geq 0; X_2 \geq 0; X_3 \geq 0 \]</span></p>
+<p>And, the optimal solution is:
+<span class="math display">\[X_1 = 5.93, X_2 = 3.70, X_3 = 0\]</span>
+Let us ignore the beds (<span class="math inline">\(X_3\)</span>) for just a second, and plot the 3 constraints onto <span class="math inline">\(X_1\)</span> (tables) on the horizontal axis and <span class="math inline">\(X_2\)</span> (sofas) on the vertical axis (in the plane <span class="math inline">\(X_3=0\)</span>).</p>
+<p><img src="images/optim/optiminteger-plot-1.png" width="500"></p>
+<p>The optimal solution (<span class="math inline">\(X_1 = 5.93, X_2 = 3.70, X_3 = 0\)</span>) is given in pink.</p>
+<p>Now, if we want to impose an integer constraint, such that all our decision variables (<span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>) must be integer valued, then our feasible solutions change. They cannot take on just any value, but only values indicated by the yellow dots below:</p>
+<p><img src="images/optim/optiminteger-plot-2.png" width="500"></p>
+<p>The first question that many people will ask is:</p>
+<blockquote>
+<p>Well, can we just round off the real-valued answer to the nearest solution?</p>
+</blockquote>
+<p>The answer is <strong>No</strong>, because in this case, the rounded off answer (<span class="math inline">\(X_1=6, X_2=4\)</span>) is not a feasible solution (it lies outside the other constraints).</p>
+<p>Then a natural response would be:</p>
+<blockquote>
+<p>Can we then round down the answer, or round off the answer to the nearest feasible answer?</p>
+</blockquote>
+<p>Maybe. But the nearest feasible answer is not guaranteed to be optimal! Have a look at the following plot, where the profit at several chosen yellow dots (near the constraint boundaries) are shown:</p>
+<p><img src="images/optim/optiminteger-plot-3.png" width="500"></p>
+<p>We can actually see that the nearest feasible answers (e.g., (5,4) and (6,3)) may not produce the optimal solution. In fact, the optimal solution in this plane (keeping <span class="math inline">\(X_3 = 0\)</span>) is actually quite far away from (<span class="math inline">\(X_1 = 5.93\)</span>, <span class="math inline">\(X_2 = 3.70\)</span>). It is (<span class="math inline">\(X_1 = 7\)</span>, <span class="math inline">\(X_2 = 2\)</span>)!</p>
+<p>And actually if we do solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is</p>
+<p><span class="math display">\[ X_1 = 6, X_2 = 2, X_3 = 1 \]</span></p>
+<p>which has a profit of $4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make (<span class="math inline">\(X_3=0\)</span>). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the “not-so-profitable” Beds become profitable to make!</p>
+<blockquote>
+<p>In reality, solving integer-constrained optimization problems is a hard problem. In fact, in computer science jargon, this is one of a class of NP-Complete problems, which just means there exists no efficient (polynomial-time) method to find solutions to this problem. (Unlike in the simple linear optimization case where such methods do exist). This means that one approach to get the optimal solution is to brute-force search through every solution (the time-complexity of which grows very rapidly with the problem size); another popular approach to use heuristics or approximation algorithms to offer a best-guess at an answer.</p>
+</blockquote>
+<div id="lp-relaxation" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> LP-Relaxation</h3>
+<p>We’ve seen that the optimal integer solution may not necessarily be near the optimal real-valued solution.</p>
+<p>But that doesn’t mean the real-valued solution is useless. In fact, the most common way to solve the integer optimisation problem is to FIRST solve the problem without the integer constraints.
+Solving the optimisation without the integer constraints is called Linear Program [LP] Relaxation, because you “relax” the integer constraints.</p>
+<p>Now, if you solve the LP relaxation, and the solution happens to be integer valued, then you can thank your lucky stars, because that solution is also the optimal solution to the integer problem.</p>
+<ul>
+<li>Think back to the example of Farmer Jean in the previous Chapter. In her case, the solution to her optimization problem was an integer number of plots of crops, (80, 120). Thus, even if we had to consider integer constraints, this solution is still valid. And in fact, it still remains optimal.</li>
+<li>Another collorary is that the objective of the optimal solution to the LP-relaxed problem (e.g., the maximum profit) is always better than or equal to the objective of the optimal integer-valued solution.</li>
+</ul>
+<p>But this will not often be the case that the solution to the LP relaxation will be integer-valued. Then, programs use the real-valued solution as a starting point to systematically search for the optimal integer solution (such as the “branch and bound” algorithm used by <code>lpSolve</code>).</p>
 </div>
-<!-- </div> -->
+<div id="specifying-integer-constraints" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> Specifying Integer Constraints</h3>
+<p>In order to tell <code>lpSolve</code> that we want to impose integer constraints, we simply add a new option <code>int.vec = c(...)</code>, where we give a <code>vec</code>tor of <code>int</code>egers. For example, if we want to specify in the furnitude example that <span class="math inline">\(X_1, X_2, X_3\)</span> are all integers, we specify <code>int.vec = c(1,2,3)</code>. (conversely, if only <span class="math inline">\(X_2\)</span> was an integer, we would write <code>int.vec=c(2)</code>.)</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="from-real-valued-to-integer-solutions.html#cb93-1"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
+<span id="cb93-2"><a href="from-real-valued-to-integer-solutions.html#cb93-2"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb93-3"><a href="from-real-valued-to-integer-solutions.html#cb93-3"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
+<span id="cb93-4"><a href="from-real-valued-to-integer-solutions.html#cb93-4"></a><span class="co"># note: the sensitivity analysis calculated by lpSolve::lp()</span></span>
+<span id="cb93-5"><a href="from-real-valued-to-integer-solutions.html#cb93-5"></a><span class="co"># is inaccurate for integer-valued problems, so we won&#39;t use them.</span></span></code></pre></div>
+<p>And that’s it. We can use the same functions <code>lp.solution</code> and <code>lp.solution$solution</code> to read out the optimal objective function value and the optimal values of the decision variables. Thus, for the furniture example above, we have:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="from-real-valued-to-integer-solutions.html#cb94-1"></a>objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">450</span>, <span class="dv">580</span>)</span>
+<span id="cb94-2"><a href="from-real-valued-to-integer-solutions.html#cb94-2"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">8.4</span>,  <span class="dv">6</span>, <span class="fl">9.6</span>, </span>
+<span id="cb94-3"><a href="from-real-valued-to-integer-solutions.html#cb94-3"></a>                        <span class="dv">3</span>,  <span class="dv">6</span>,   <span class="dv">8</span>, </span>
+<span id="cb94-4"><a href="from-real-valued-to-integer-solutions.html#cb94-4"></a>                        <span class="dv">1</span>,  <span class="dv">0</span>,   <span class="dv">0</span>), </span>
+<span id="cb94-5"><a href="from-real-valued-to-integer-solutions.html#cb94-5"></a>                      <span class="dt">ncol=</span><span class="dv">3</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
+<span id="cb94-6"><a href="from-real-valued-to-integer-solutions.html#cb94-6"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
+<span id="cb94-7"><a href="from-real-valued-to-integer-solutions.html#cb94-7"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">72</span>, <span class="dv">40</span>, <span class="dv">8</span>)</span>
+<span id="cb94-8"><a href="from-real-valued-to-integer-solutions.html#cb94-8"></a><span class="co"># solving model</span></span>
+<span id="cb94-9"><a href="from-real-valued-to-integer-solutions.html#cb94-9"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
+<span id="cb94-10"><a href="from-real-valued-to-integer-solutions.html#cb94-10"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb94-11"><a href="from-real-valued-to-integer-solutions.html#cb94-11"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
+<span id="cb94-12"><a href="from-real-valued-to-integer-solutions.html#cb94-12"></a></span>
+<span id="cb94-13"><a href="from-real-valued-to-integer-solutions.html#cb94-13"></a><span class="co"># to print out the optimal objective function value</span></span>
+<span id="cb94-14"><a href="from-real-valued-to-integer-solutions.html#cb94-14"></a>lp.solution</span></code></pre></div>
+<pre><code>## Success: the objective function is 4480</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="from-real-valued-to-integer-solutions.html#cb96-1"></a><span class="co"># to print out the values of the decision variables (X1, X2, X3)</span></span>
+<span id="cb96-2"><a href="from-real-valued-to-integer-solutions.html#cb96-2"></a>lp.solution<span class="op">$</span>solution</span></code></pre></div>
+<pre><code>## [1] 6 2 1</code></pre>
+<p>Lastly, one final point to note is that the sensitivity analyses calculated by <code>lpSolve</code> may not be accurate for integer-valued problems (i.e., the effect of varying the objective function coefficients and shadow prices may not be accurate), so we choose not to have <code>complete.sens</code> in the function call. Of course, since we are already experts in this from last Chapter, we could always change the objective function coefficients or constraint values manually and try to solve it to estimate a sensitivity analysis, but the inbuilt convenience function doesn’t do that for us.</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="linear-optimization-summary.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="optimization-ii-integer-valued-optimization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="integer-valued-decision-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logical-constraints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

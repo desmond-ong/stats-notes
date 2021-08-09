@@ -1,7 +1,7 @@
 --- 
 title: "Statistics and Analytics for the Social and Computing Sciences"
 author: "Desmond C. Ong"
-date: "Draft Dated: 2021-03-17"
+date: "Draft Dated: 2021-08-09"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -75,9 +75,9 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 - Handling Data
     a. Basics of Data Wrangling <span class="badge badge-bt"> BT1101 </span>
     b. Wrangling in the tidyverse <span class="badge badge-bt"> BT1101 </span>
-    c. [In Progress] A data cleaning pipeline for research projects <span class="badge badge-adv"> Advanced </span>
-- <i>[In Progress] Descriptive Statistics - Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation</i>
-- <i>[In Progress] A discussion on probability ? - Normal distribution?</i>
+    c. A data cleaning pipeline for research projects <span class="badge badge-adv"> Advanced </span>
+- <i>[In Progress] Descriptive Statistics<!-- -  Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation--></i> 
+<!-- - <i>[In Progress] A discussion on probability ? - Normal distribution?</i> -->
 - <i>[In Progress] Data Visualization</i>
 - The Linear Model 
     a. Linear Regression <span class="badge badge-bt"> BT1101 </span>
@@ -90,14 +90,14 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
     b. Smoothing-based models
     c. [In Progress] Time-Series Regression
 - [In Progress] Data Mining <span class="badge badge-bt"> BT1101 </span>
-- Optimization
-    a. Linear Optimization <span class="badge badge-bt"> BT1101 </span>
-    b. [In Progress] Integer-valued Optimization <span class="badge badge-bt"> BT1101 </span>
-- [In Progress] Simulations (I) 
-    a. Monte Carlo Simulations <span class="badge badge-adv"> Advanced </span>
-    b. The Bootstrap <span class="badge badge-adv"> Advanced </span>
-- [In Progress] Simulations (II): Statistics in Machine Learning 
-    a. Understanding the statistics of machine learning models <span class="badge badge-adv"> Advanced </span>
+- Optimization <span class="badge badge-bt"> BT1101 </span>
+    a. Linear Optimization 
+    b. Integer-valued Optimization
+<!-- - [In Progress] Simulations (I)  -->
+<!--     a. Monte Carlo Simulations <span class="badge badge-adv"> Advanced </span> -->
+<!--     b. The Bootstrap <span class="badge badge-adv"> Advanced </span> -->
+<!-- - [In Progress] Simulations (II): Statistics in Machine Learning  -->
+<!--     a. Understanding the statistics of machine learning models <span class="badge badge-adv"> Advanced </span> -->
 
 
 ...

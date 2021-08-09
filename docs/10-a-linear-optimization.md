@@ -650,6 +650,147 @@ More broadly, as analysts we could run "what-if" analyses to study the impact of
 
 
 
+## Examples: Linear Optimization 
+
+In this example, imagine that you operate a furniture company, with the following three products:
+
+- Tables: Each table makes a profit of \$500, costs 8.4 production hours to make, and 3$m^3$ of storage to store
+- Sofas: Each sofa makes a profit of \$450
+- Beds: Each bed makes a profit of \$580, costs 9.6 production hours to make, and 8
+
+The profit earned by selling each type of furniture is listed above. 
+However, each piece of furniture requires some factory-time to make and requires warehouse space to store.
+
+Each week you have a budget of only 72 production hours at your factory. 
+Additionally, you have enough warehouse storage to store only 40 m3 (cubic-meters).  
+Furthermore, from past trends, you can only sell a maximum of 8 tables a week. 
+
+How many of each type of furniture should you make for next week to maximise profit?
+
+---
+
+First, we define our decision variables and objective function:
+
+$$ X_1 = \text{number of tables made} \\
+X_2 = \text{number of sofas made} \\
+X_3 = \text{number of beds made} \\
+\text{Maximize Profit} = 500 X_1 + 450 X_2 + 580 X_3 $$
+
+
+Next, we define our four constraints:
+
+Production Hour Budget Constraints:
+$$  8.4X_1 +   6X_2 + 9.6X_3 \leq 72$$
+Storage Space Constraints: 
+$$      3X_1 +   6X_2 +    8X_3  \leq 40$$
+
+Demand Constraints: 
+$$    X_1 +    \qquad      +   \qquad       \leq 8$$
+
+Non-negativity Constraints: 
+$$ X_1 \geq 0; X_2 \geq 0; X_3 \geq 0 $$
+
+The lp code looks like this:
+
+
+```r
+objective.fn <- c(500, 450, 580)
+const.mat <- matrix(c(8.4,  6, 9.6, 
+                        3,  6,   8, 
+                        1,  0,   0), 
+                      ncol=3 , byrow=TRUE) 
+const.dir <- c("<=", "<=", "<=")
+const.rhs <- c(72, 40, 8)
+# solving model
+lp.solution <- lp("max", objective.fn, const.mat, 
+                  const.dir, const.rhs, compute.sens=TRUE)
+```
+
+And we can obtain the solution by running:
+
+
+```r
+# to print out the optimal objective function value
+lp.solution
+```
+
+```
+## Success: the objective function is 4629.63
+```
+
+```r
+# to print out the values of the decision variables (X1, X2, X3)
+lp.solution$solution
+```
+
+```
+## [1] 5.925926 3.703704 0.000000
+```
+
+Thus, the optimal solution is: 
+$$X_1 = 5.93, X_2 = 3.70, X_3 = 0$$
+
+Hence, the optimal solution, given the constraints, is to produce 5.93 tables, 3.70 sofas, and 0 beds. This will yield a maximum profit of \$4629.63
+
+Note that: 
+
+1) The optimal solution is to not produce any beds at all!
+2) How do we produce fractional tables?? (We'll address this in the next chapter!)
+
+Q: Which constraints are binding? Which constraints are non-binding?
+
+
+Now let's do some sensitivity analyses:
+
+
+```r
+lp.solution$sens.coef.from 
+```
+
+```
+## [1]  2.25000e+02  3.64375e+02 -1.00000e+30
+```
+
+```r
+lp.solution$sens.coef.to
+```
+
+```
+## [1]  630.0000 1000.0000  681.4815
+```
+
+This means that the optimal solution remains the same if: 
+
+- The profit from tables (coefficient on $X_1$) lies between \$225 and \$630
+- The profit from sofas (coefficient on $X_2$) lies between  \$364 and \$1000
+- The profit from beds (coefficient on $X_3$) lies between \$ (-Infinity) and \$681.48
+
+That is, in order for the beds to be profitable, we would need to increase the profit of beds to at least \$682 per bed!
+
+
+Now, let's examine the Shadow prices of the solution.
+
+
+```r
+# Shadow prices
+lp.solution$duals
+```
+
+```
+## [1]   50.92593   24.07407    0.00000    0.00000    0.00000 -101.48148
+```
+
+This returns 6 values. The first three correspond to the constraints in the order we put them in. The last three are the shadow prices of the non-negativity constraints ($X_1 \geq 0$, $X_2 \geq 0$, and $X_3 \geq 0$, respectively)
+
+Q: How would you interpret each of these values?
+
+Q: Why is the last (the 6th) shadow price non-zero? And why is it negative?
+
+
+
+
+
+
 
 ## Linear Optimization Summary
 
@@ -664,13 +805,66 @@ In the models we've covered this chapter, we've assumed that all the decision va
 In the next chapter, we will discuss linear optimisation problems where some of the decision variables have to be integers, as well as when some of the decision variables are binary yes/no decisions.
 
 
-## [NOT DONE] Exercises
+## Exercises: Linear Optimization
 
 <span class="badge badge-bt"> BT1101 </span>
 
-```
-to be completed
-```
+
+##### Q1 {-}
+
+Consider the following 4 constraints
+
+  - Constraint A: $X_1 + X_2 \leq 10$
+  - Constraint B: $0.5X_1 + 2X_2 \leq 10$
+  - Constraint C: $X_1 - 0.5X_2 \geq 12$
+  - Constraint D: $X_2 \geq 7$
+  - Non-negativity constraints: $X_1 \geq 0$, $X_2 \geq 0$
+
+Assume the non-negativity constraints always hold. For each of the following sets of constraints, please indicate whether they are (i) Feasible, (ii) Infeasible, or (iii) Unbounded.
+
+  a. A+B
+  b. A+C
+  c. A+D
+  d. B+C
+  e. B+D
+  f. C+D
+
+
+##### Q2 {-}
+
+The examples we discussed in the earlier part of this chapter were all maximization problems (specifically, to maximize profit). In this question we shall explore minimisation.
+
+
+a) FunToys is famous for three types of toys: Cars, Animals, and Robots. Each year, near the holiday season, it receives large bulk orders for these items. To meet these orders, FunToys operates three small toy-making factories, A, B and C. 
+
+  - Factory A costs \$1000 per day to operate, and can produce 30 cars, 20 animals and 30 robots per day.
+  - Factory B costs \$1200 per day to operate, and can produce 40 cars, 50 animals and 10 robots per day.
+  - Factory C costs \$1500 per day to operate, and can produce 50 cars, 40 animals and 15 robots per day.
+
+This Christmas, FunToys is required to deliver 5000 cars, 3000 animals and 2500 robots. You are tasked with finding out what is the most cost-efficient way to meet the order. (In this question, please *IGNORE* integer requirements, i.e., just use fractional answers if/when they come up.)
+
+
+Let us start by trying to formulate this as a optimisation problem. 
+
+- First, write down what you want to minimize.
+- Second, write down your decision variables. What are you actually choosing?
+- Third, write your objective function in terms of your decision variables.
+- Fourth, write down the constraints: what are the contractual requirements you need to fulfill. What other constraints are there? Write them down in terms of your decision variables.
+- Summarize them nicely in a table.
+
+
+b) Write code to solve this optimisation problem. Report the optimal solution, and the value of the objective function at that solution. Interpret the solution: what do these numbers mean? (again, please ignore any integer requirements and just report fractional answers if they appear)
+
+c) What if we impose an additional constraint that FunToys only has 60 days to complete the order? (Note that we can run all three factories *simultaneously*). What happens now?
+Re-produce a new table summarizing the optimisation problem (including the existing and new constraints), and write R code to solve it. What is the new solution, and what is the objective function value?
+
+d) For the solution in (c), which of the constraints are binding, and which are non-binding?
+
+
+e) Using your solution in (c), print out the Shadow Prices. Interpret these values -- make sure you can explain why each shadow price is zero or why it is positive/negative! Your answer from part (d) should also help you explain. (Note again, that we IGNORE integer requirements in this question, so your $X$ variables can be fractional...)
+
+
+
 
 
 

@@ -219,24 +219,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.7</b> Linear Optimization Summary</a></li>
-<li class="chapter" data-level="12.8" data-path="not-done-exercises.html"><a href="not-done-exercises.html"><i class="fa fa-check"></i><b>12.8</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="12.7" data-path="examples-linear-optimization.html"><a href="examples-linear-optimization.html"><i class="fa fa-check"></i><b>12.7</b> Examples: Linear Optimization</a></li>
+<li class="chapter" data-level="12.8" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.8</b> Linear Optimization Summary</a></li>
+<li class="chapter" data-level="12.9" data-path="exercises-linear-optimization.html"><a href="exercises-linear-optimization.html"><i class="fa fa-check"></i><b>12.9</b> Exercises: Linear Optimization</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="optimization-ii-integer-valued-optimization.html"><a href="optimization-ii-integer-valued-optimization.html"><i class="fa fa-check"></i><b>13</b> Optimization II: Integer-valued Optimization</a><ul>
 <li class="chapter" data-level="13.1" data-path="integer-valued-decision-variables.html"><a href="integer-valued-decision-variables.html"><i class="fa fa-check"></i><b>13.1</b> Integer-valued decision variables</a></li>
-<li class="chapter" data-level="13.2" data-path="not-done-from-real-valued-to-integer-solutions.html"><a href="not-done-from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> [NOT DONE] From real-valued to integer solutions</a></li>
+<li class="chapter" data-level="13.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> From real-valued to integer solutions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#lp-relaxation"><i class="fa fa-check"></i><b>13.2.1</b> LP-Relaxation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#specifying-integer-constraints"><i class="fa fa-check"></i><b>13.2.2</b> Specifying Integer Constraints</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="logical-constraints.html"><a href="logical-constraints.html"><i class="fa fa-check"></i><b>13.3</b> Logical Constraints</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.1</b> Logical Constraints Example: Planning university courses</a></li>
+<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#how-to-specify-logical-constraints"><i class="fa fa-check"></i><b>13.3.1</b> How to specify logical constraints</a></li>
+<li class="chapter" data-level="13.3.2" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.2</b> Logical Constraints Example: Planning university courses</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="integer-optimization-summary.html"><a href="integer-optimization-summary.html"><i class="fa fa-check"></i><b>13.4</b> Integer Optimization Summary</a></li>
-<li class="chapter" data-level="13.5" data-path="not-done-exercises-1.html"><a href="not-done-exercises-1.html"><i class="fa fa-check"></i><b>13.5</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="exercises-integer-optimization.html"><a href="exercises-integer-optimization.html"><i class="fa fa-check"></i><b>13.5</b> Exercises: Integer Optimization</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="not-done-simulations-i.html"><a href="not-done-simulations-i.html"><i class="fa fa-check"></i><b>14</b> [Not Done:] Simulations (I)</a><ul>
-<li class="chapter" data-level="14.1" data-path="not-done-monte-carlo-simulations.html"><a href="not-done-monte-carlo-simulations.html"><i class="fa fa-check"></i><b>14.1</b> [Not Done:] Monte Carlo simulations</a></li>
-<li class="chapter" data-level="14.2" data-path="not-done-the-bootstrap.html"><a href="not-done-the-bootstrap.html"><i class="fa fa-check"></i><b>14.2</b> [Not Done:] The Bootstrap</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="not-done-book-summary.html"><a href="not-done-book-summary.html"><i class="fa fa-check"></i><b>15</b> [Not Done:] Book Summary ??</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -263,11 +262,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First we define a simple moving average window, sometimes called a sliding window: we define a <span class="math inline">\(k\)</span>-period simple moving average window as just the average of the most recent <span class="math inline">\(k\)</span> elements of the time-series:</p>
 <p><span class="math display">\[\text{Window}_t = \frac{1}{k} \left( Y_t + Y_{t-1} + \ldots + Y_{t-(k-1)} \right)\]</span></p>
 <p>Note that the default for early timepoints (when there’s not enough to fit in the window), is undefined, and in R is left as a missing, or NA value. There are several functions you can use to calculate these moving averages, here we use the SMA function from the TTR package:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="smoothing-based-models.html#cb6-1"></a><span class="co"># There are many different ways to calculate simple moving averages. </span></span>
-<span id="cb6-2"><a href="smoothing-based-models.html#cb6-2"></a><span class="co"># Here&#39;s one from the TTR package</span></span>
-<span id="cb6-3"><a href="smoothing-based-models.html#cb6-3"></a><span class="co"># install.packages(&#39;TTR&#39;)</span></span>
-<span id="cb6-4"><a href="smoothing-based-models.html#cb6-4"></a><span class="kw">library</span>(TTR)</span>
-<span id="cb6-5"><a href="smoothing-based-models.html#cb6-5"></a><span class="kw">SMA</span>(df<span class="op">$</span>y, <span class="dt">n=</span><span class="dv">3</span>) <span class="co"># taking window size of 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="smoothing-based-models.html#cb54-1"></a><span class="co"># There are many different ways to calculate simple moving averages. </span></span>
+<span id="cb54-2"><a href="smoothing-based-models.html#cb54-2"></a><span class="co"># Here&#39;s one from the TTR package</span></span>
+<span id="cb54-3"><a href="smoothing-based-models.html#cb54-3"></a><span class="co"># install.packages(&#39;TTR&#39;)</span></span>
+<span id="cb54-4"><a href="smoothing-based-models.html#cb54-4"></a><span class="kw">library</span>(TTR)</span>
+<span id="cb54-5"><a href="smoothing-based-models.html#cb54-5"></a><span class="kw">SMA</span>(df<span class="op">$</span>y, <span class="dt">n=</span><span class="dv">3</span>) <span class="co"># taking window size of 3</span></span></code></pre></div>
 <p><img src="images/time-series/sma-eg1.png" width="400px" style="display: block; margin: auto;" />
 This graph shows a simple time-series (in black), as well as the corresponding simple moving average windows of size 2 (in red) and size 4 (in brown). Take a minute to look at how the windows “smooth” out the variation in the data.</p>
 <p><img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" /></p>
@@ -297,7 +296,7 @@ This graph shows a simple time-series (in black), as well as the corresponding s
 where we update the slope estimate using both (<span class="math inline">\(a_t - a_{t-1}\)</span>), the current slope estimate, and <span class="math inline">\(b_{t-1}\)</span>, the previous slope estimate.</p>
 <p>The basic intuition is that each component is “smoothed” using the same linear combination (<span class="math inline">\(\alpha, (1-\alpha)\)</span>) equation. The slope variable is also smoothed using a (<span class="math inline">\(\beta, (1-\beta)\)</span>) equation. At every timestep we smooth and update our value of <span class="math inline">\(a_t\)</span> and <span class="math inline">\(b_t\)</span>, using these parameters <span class="math inline">\(\alpha, \beta\)</span> and our estimates at the previous timesteps.</p>
 <p>There is a further generalization of this to add a third application of exponential smoothing to model seasonality. This is called the Holt-Winters model. Luckily, R’s HoltWinters() function can do all three types of exponential smoothing. The call is:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="smoothing-based-models.html#cb7-1"></a><span class="kw">HoltWinters</span>(x, alpha, beta, gamma, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="smoothing-based-models.html#cb55-1"></a><span class="kw">HoltWinters</span>(x, alpha, beta, gamma, ...)</span></code></pre></div>
 <p>The <code>R</code> function will allow you to specify <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span>, and whichever you do not specify it’ll try to fit.</p>
 <table>
 <thead>

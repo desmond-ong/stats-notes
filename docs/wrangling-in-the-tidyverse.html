@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences</title>
   <meta name="description" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
-  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.2 Wrangling in the tidyverse | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="basics-of-data-wrangling.html"/>
-<link rel="next" href="not-done-a-data-cleaning-pipeline-for-research-projects.html"/>
+<link rel="next" href="a-data-cleaning-pipeline-for-research-projects.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,9 +52,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -63,14 +63,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +81,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -150,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#mutate"><i class="fa fa-check"></i>mutate()</a></li>
 <li class="chapter" data-level="" data-path="wrangling-in-the-tidyverse.html"><a href="wrangling-in-the-tidyverse.html#long-to-wide-pivot_wider"><i class="fa fa-check"></i>Long-to-wide: pivot_wider()</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="not-done-a-data-cleaning-pipeline-for-research-projects.html"><a href="not-done-a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> [Not Done:] A data cleaning pipeline for research projects</a></li>
+<li class="chapter" data-level="2.3" data-path="a-data-cleaning-pipeline-for-research-projects.html"><a href="a-data-cleaning-pipeline-for-research-projects.html"><i class="fa fa-check"></i><b>2.3</b> A data cleaning pipeline for research projects</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="not-done-descriptive-statistics.html"><a href="not-done-descriptive-statistics.html"><i class="fa fa-check"></i><b>3</b> [Not Done:] Descriptive Statistics</a></li>
 <li class="chapter" data-level="4" data-path="not-done-data-visualization.html"><a href="not-done-data-visualization.html"><i class="fa fa-check"></i><b>4</b> [Not Done:] Data Visualization</a></li>
@@ -186,13 +188,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
-<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a logistic regression</a></li>
+<li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
 <li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
 <li class="chapter" data-level="9" data-path="not-done-the-linear-model-v-mixed-effects-linear-models.html"><a href="not-done-the-linear-model-v-mixed-effects-linear-models.html"><i class="fa fa-check"></i><b>9</b> [Not Done:] The Linear Model V: Mixed Effects Linear Models</a></li>
-<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> [Not Done:] Introduction to Time-Series Data</a></li>
+<li class="chapter" data-level="10" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>10</b> Introduction to Time-Series Data</a><ul>
+<li class="chapter" data-level="10.1" data-path="time-series-basics.html"><a href="time-series-basics.html"><i class="fa fa-check"></i><b>10.1</b> Time Series Basics</a></li>
+<li class="chapter" data-level="10.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html"><i class="fa fa-check"></i><b>10.2</b> Smoothing-based models</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
+<li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
 <li class="chapter" data-level="12.1" data-path="what-is-linear-optimization.html"><a href="what-is-linear-optimization.html"><i class="fa fa-check"></i><b>12.1</b> What is Linear Optimization</a></li>
@@ -210,25 +219,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#binding-vs-non-binding-constraints"><i class="fa fa-check"></i>Binding vs non-binding constraints</a></li>
 <li class="chapter" data-level="" data-path="sensitivity-analysis.html"><a href="sensitivity-analysis.html#summarizing-sensitivity-analyses"><i class="fa fa-check"></i>Summarizing sensitivity analyses</a></li>
 </ul></li>
-<li class="chapter" data-level="12.7" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.7</b> Linear Optimization Summary</a></li>
-<li class="chapter" data-level="12.8" data-path="not-done-exercises.html"><a href="not-done-exercises.html"><i class="fa fa-check"></i><b>12.8</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="12.7" data-path="examples-linear-optimization.html"><a href="examples-linear-optimization.html"><i class="fa fa-check"></i><b>12.7</b> Examples: Linear Optimization</a></li>
+<li class="chapter" data-level="12.8" data-path="linear-optimization-summary.html"><a href="linear-optimization-summary.html"><i class="fa fa-check"></i><b>12.8</b> Linear Optimization Summary</a></li>
+<li class="chapter" data-level="12.9" data-path="exercises-linear-optimization.html"><a href="exercises-linear-optimization.html"><i class="fa fa-check"></i><b>12.9</b> Exercises: Linear Optimization</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="optimization-ii-integer-valued-optimization.html"><a href="optimization-ii-integer-valued-optimization.html"><i class="fa fa-check"></i><b>13</b> Optimization II: Integer-valued Optimization</a><ul>
 <li class="chapter" data-level="13.1" data-path="integer-valued-decision-variables.html"><a href="integer-valued-decision-variables.html"><i class="fa fa-check"></i><b>13.1</b> Integer-valued decision variables</a></li>
-<li class="chapter" data-level="13.2" data-path="not-done-from-real-valued-to-integer-solutions.html"><a href="not-done-from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> [NOT DONE] From real-valued to integer solutions</a></li>
+<li class="chapter" data-level="13.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html"><i class="fa fa-check"></i><b>13.2</b> From real-valued to integer solutions</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#lp-relaxation"><i class="fa fa-check"></i><b>13.2.1</b> LP-Relaxation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="from-real-valued-to-integer-solutions.html"><a href="from-real-valued-to-integer-solutions.html#specifying-integer-constraints"><i class="fa fa-check"></i><b>13.2.2</b> Specifying Integer Constraints</a></li>
+</ul></li>
 <li class="chapter" data-level="13.3" data-path="logical-constraints.html"><a href="logical-constraints.html"><i class="fa fa-check"></i><b>13.3</b> Logical Constraints</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.1</b> Logical Constraints Example: Planning university courses</a></li>
+<li class="chapter" data-level="13.3.1" data-path="logical-constraints.html"><a href="logical-constraints.html#how-to-specify-logical-constraints"><i class="fa fa-check"></i><b>13.3.1</b> How to specify logical constraints</a></li>
+<li class="chapter" data-level="13.3.2" data-path="logical-constraints.html"><a href="logical-constraints.html#logical-constraints-example-planning-university-courses"><i class="fa fa-check"></i><b>13.3.2</b> Logical Constraints Example: Planning university courses</a></li>
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="integer-optimization-summary.html"><a href="integer-optimization-summary.html"><i class="fa fa-check"></i><b>13.4</b> Integer Optimization Summary</a></li>
-<li class="chapter" data-level="13.5" data-path="not-done-exercises-1.html"><a href="not-done-exercises-1.html"><i class="fa fa-check"></i><b>13.5</b> [NOT DONE] Exercises</a></li>
+<li class="chapter" data-level="13.5" data-path="exercises-integer-optimization.html"><a href="exercises-integer-optimization.html"><i class="fa fa-check"></i><b>13.5</b> Exercises: Integer Optimization</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="not-done-simulations-i.html"><a href="not-done-simulations-i.html"><i class="fa fa-check"></i><b>14</b> [Not Done:] Simulations (I)</a><ul>
-<li class="chapter" data-level="14.1" data-path="not-done-monte-carlo-simulations.html"><a href="not-done-monte-carlo-simulations.html"><i class="fa fa-check"></i><b>14.1</b> [Not Done:] Monte Carlo simulations</a></li>
-<li class="chapter" data-level="14.2" data-path="not-done-the-bootstrap.html"><a href="not-done-the-bootstrap.html"><i class="fa fa-check"></i><b>14.2</b> [Not Done:] The Bootstrap</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="not-done-simulations-ii-statistics-in-machine-learning.html"><a href="not-done-simulations-ii-statistics-in-machine-learning.html"><i class="fa fa-check"></i><b>15</b> [Not Done:] Simulations (II): Statistics in Machine Learning</a></li>
-<li class="chapter" data-level="16" data-path="not-done-book-summary.html"><a href="not-done-book-summary.html"><i class="fa fa-check"></i><b>16</b> [Not Done:] Book Summary ??</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -256,20 +263,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf" class="uri">https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf</a>. Do note that <code>pivot_longer()</code>, covered below, is an updated version of <code>gather()</code> from the pdf.)</p>
 <p>In this section we’ll briefly discuss using functions from the <code>tidyverse</code> package, which is a very useful package for handling data. It is a very rich package (with an accompanying <a href="https://www.tidyverse.org/">book</a>), with too much content to cover here, so we’ll only introduce some very basic functions.</p>
 <p>If you would like to follow along, use the following code to generate the toy data that we’ll use in this example.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">df_wide1 =<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Angela&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Cathy&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Elaine&quot;</span>, <span class="st">&quot;Frank&quot;</span>, <span class="st">&quot;Grace&quot;</span>, <span class="st">&quot;Ben&quot;</span>, <span class="st">&quot;Chloe&quot;</span>, <span class="st">&quot;James&quot;</span>, <span class="st">&quot;Natalie&quot;</span>, <span class="st">&quot;Matthew&quot;</span>, <span class="st">&quot;Samantha&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Vivian&quot;</span>, <span class="st">&quot;Joseph&quot;</span>, <span class="st">&quot;Lisa&quot;</span>, <span class="st">&quot;Mark&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;Jason&quot;</span>),</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">Gender =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), <span class="dv">10</span>),</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">Height =</span> <span class="kw">c</span>(<span class="dv">116</span>, <span class="dv">110</span>, <span class="dv">121</span>, <span class="dv">117</span>, <span class="dv">111</span>, <span class="dv">114</span>, <span class="dv">127</span>, <span class="dv">116</span>, <span class="dv">121</span>, <span class="dv">116</span>, <span class="dv">126</span>, <span class="dv">113</span>, <span class="dv">122</span>, <span class="dv">113</span>, <span class="dv">116</span>, <span class="dv">115</span>, <span class="dv">123</span>, <span class="dv">122</span>, <span class="dv">115</span>, <span class="dv">118</span>)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">df_wide =<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">Name =</span> df_wide1<span class="op">$</span>Name,</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">  <span class="dt">Gender =</span> df_wide1<span class="op">$</span>Gender,</a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">  <span class="dt">Height_Pri1 =</span> df_wide1<span class="op">$</span>Height,</a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">  <span class="dt">Height_Pri2 =</span> df_wide1<span class="op">$</span>Height <span class="op">+</span><span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">df_wide<span class="op">$</span>Height_Pri3 =<span class="st"> </span>df_wide<span class="op">$</span>Height_Pri2 <span class="op">+</span><span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="wrangling-in-the-tidyverse.html#cb4-1"></a>df_wide1 =<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb4-2"><a href="wrangling-in-the-tidyverse.html#cb4-2"></a>  <span class="dt">Name =</span> <span class="kw">c</span>(<span class="st">&quot;Angela&quot;</span>, <span class="st">&quot;Brian&quot;</span>, <span class="st">&quot;Cathy&quot;</span>, <span class="st">&quot;Daniel&quot;</span>, <span class="st">&quot;Elaine&quot;</span>, <span class="st">&quot;Frank&quot;</span>, <span class="st">&quot;Grace&quot;</span>, <span class="st">&quot;Ben&quot;</span>, <span class="st">&quot;Chloe&quot;</span>, <span class="st">&quot;James&quot;</span>, <span class="st">&quot;Natalie&quot;</span>, <span class="st">&quot;Matthew&quot;</span>, <span class="st">&quot;Samantha&quot;</span>, <span class="st">&quot;David&quot;</span>, <span class="st">&quot;Vivian&quot;</span>, <span class="st">&quot;Joseph&quot;</span>, <span class="st">&quot;Lisa&quot;</span>, <span class="st">&quot;Mark&quot;</span>, <span class="st">&quot;Jane&quot;</span>, <span class="st">&quot;Jason&quot;</span>),</span>
+<span id="cb4-3"><a href="wrangling-in-the-tidyverse.html#cb4-3"></a>  <span class="dt">Gender =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;Female&quot;</span>, <span class="st">&quot;Male&quot;</span>), <span class="dv">10</span>),</span>
+<span id="cb4-4"><a href="wrangling-in-the-tidyverse.html#cb4-4"></a>  <span class="dt">Height =</span> <span class="kw">c</span>(<span class="dv">116</span>, <span class="dv">110</span>, <span class="dv">121</span>, <span class="dv">117</span>, <span class="dv">111</span>, <span class="dv">114</span>, <span class="dv">127</span>, <span class="dv">116</span>, <span class="dv">121</span>, <span class="dv">116</span>, <span class="dv">126</span>, <span class="dv">113</span>, <span class="dv">122</span>, <span class="dv">113</span>, <span class="dv">116</span>, <span class="dv">115</span>, <span class="dv">123</span>, <span class="dv">122</span>, <span class="dv">115</span>, <span class="dv">118</span>)</span>
+<span id="cb4-5"><a href="wrangling-in-the-tidyverse.html#cb4-5"></a>)</span>
+<span id="cb4-6"><a href="wrangling-in-the-tidyverse.html#cb4-6"></a></span>
+<span id="cb4-7"><a href="wrangling-in-the-tidyverse.html#cb4-7"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb4-8"><a href="wrangling-in-the-tidyverse.html#cb4-8"></a>df_wide =<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb4-9"><a href="wrangling-in-the-tidyverse.html#cb4-9"></a>  <span class="dt">Name =</span> df_wide1<span class="op">$</span>Name,</span>
+<span id="cb4-10"><a href="wrangling-in-the-tidyverse.html#cb4-10"></a>  <span class="dt">Gender =</span> df_wide1<span class="op">$</span>Gender,</span>
+<span id="cb4-11"><a href="wrangling-in-the-tidyverse.html#cb4-11"></a>  <span class="dt">Height_Pri1 =</span> df_wide1<span class="op">$</span>Height,</span>
+<span id="cb4-12"><a href="wrangling-in-the-tidyverse.html#cb4-12"></a>  <span class="dt">Height_Pri2 =</span> df_wide1<span class="op">$</span>Height <span class="op">+</span><span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">2</span>))</span>
+<span id="cb4-13"><a href="wrangling-in-the-tidyverse.html#cb4-13"></a>)</span>
+<span id="cb4-14"><a href="wrangling-in-the-tidyverse.html#cb4-14"></a>df_wide<span class="op">$</span>Height_Pri3 =<span class="st"> </span>df_wide<span class="op">$</span>Height_Pri2 <span class="op">+</span><span class="st"> </span><span class="kw">ceiling</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>, <span class="dv">5</span>, <span class="dv">2</span>))</span></code></pre></div>
 <div id="the-operator" class="section level3 unnumbered">
 <h3>The <code>%&gt;%</code> operator</h3>
 <p>First, we’ll introduce the <code>%&gt;%</code> operator, which I refer to as the pipe operator<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The <code>%&gt;%</code> operator ‘pipes’ the argument before it, into the function after it, as the first argument (by default).</p>
@@ -331,12 +338,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>The second set of arguments to <code>pivot_longer()</code> are the columns we want to modify. In this case, they are “Height_Pri1”, “Height_Pri2”, and “Height_Pri3”. Note that these need to be concatenated into a single vector, so use <code>c(...)</code> to concatenate them.</p>
 <p>The last two arguments that we need, which are named arguments, are <code>names_to</code> and <code>values_to</code>, which give the names of the ‘key’ column and the ‘value’ column in the output long-form data frame. Let’s try the following, where I pipe <code>df_wide</code> into a <code>pivot_longer()</code> command, and save the output to a new data frame called <code>df_long_1</code></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">df_long_<span class="dv">1</span> =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="wrangling-in-the-tidyverse.html#cb5-1"></a>df_long_<span class="dv">1</span> =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-2"><a href="wrangling-in-the-tidyverse.html#cb5-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </span>
+<span id="cb5-3"><a href="wrangling-in-the-tidyverse.html#cb5-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) </span></code></pre></div>
 <p>Let’s take a look at what this produces:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># output several selected rows</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">pander</span>(df_long_<span class="dv">1</span>[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>),], <span class="dt">emphasize.strong.cols=</span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="wrangling-in-the-tidyverse.html#cb6-1"></a><span class="co"># output several selected rows</span></span>
+<span id="cb6-2"><a href="wrangling-in-the-tidyverse.html#cb6-2"></a><span class="kw">pander</span>(df_long_<span class="dv">1</span>[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>),], <span class="dt">emphasize.strong.cols=</span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>)</span></code></pre></div>
 <table style="width:64%;">
 <colgroup>
 <col width="12%" />
@@ -402,10 +409,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Let’s use the <code>factor()</code> operation to create a new factor using the values in the <code>Variable</code> column. We specify the <code>levels</code> of the factor as the original values of the <code>Variable</code> column, and then we use <code>labels</code> to rename what these values will be called in the new variable.</p>
 <p>Specifically, let’s use <code>mutate()</code> to make a new variable called <code>School_Level</code>, which will just have values of 1, 2, 3 to refer to Primary 1, 2 or 3:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">df_long_<span class="dv">2</span> =<span class="st"> </span>df_long_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) </a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="wrangling-in-the-tidyverse.html#cb7-1"></a>df_long_<span class="dv">2</span> =<span class="st"> </span>df_long_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb7-2"><a href="wrangling-in-the-tidyverse.html#cb7-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </span>
+<span id="cb7-3"><a href="wrangling-in-the-tidyverse.html#cb7-3"></a>                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</span>
+<span id="cb7-4"><a href="wrangling-in-the-tidyverse.html#cb7-4"></a>                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) </span></code></pre></div>
 This produces:
 <center>
 <table style="width:78%;">
@@ -472,7 +479,7 @@ This produces:
 </table>
 </center>
 <p>Which is great, we now have <code>School_Level</code>, which is a lot more readable than <code>Variable</code>. Finally, we can use <code>select()</code> to choose the names of the columns that we want to keep. Let’s just keep <code>School_Level</code> instead of <code>Variable</code>, since they have the same information (We can also use this function to re-order the columns; note the order in the following function call).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">df_long_<span class="dv">3</span> =<span class="st"> </span>df_long_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="wrangling-in-the-tidyverse.html#cb8-1"></a>df_long_<span class="dv">3</span> =<span class="st"> </span>df_long_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</span></code></pre></div>
 <p>Which finally produces what we want:</p>
 <center>
 <table style="width:58%;">
@@ -531,25 +538,25 @@ This produces:
 </table>
 </center>
 <p>Thus, putting it all together, we can perform all the previous steps using:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">df_long =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">## equivalent to:</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co"># df_long_1 = df_wide %&gt;% pivot_longer(c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;), names_to = &quot;Variable&quot;, values_to = &quot;Height&quot;) </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co"># </span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co"># df_long_2 = df_long_1 %&gt;% </span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#   mutate(School_Level = factor(Variable, </span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#                                levels=c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;),</span></a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co">#                                labels=c(1, 2, 3))) </span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17"><span class="co"># </span></a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"><span class="co"># df_long_3 = df_long_2 %&gt;% select(Name, Gender, School_Level, Height)</span></a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co">#</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="wrangling-in-the-tidyverse.html#cb9-1"></a>df_long =<span class="st"> </span>df_wide <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="wrangling-in-the-tidyverse.html#cb9-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>), </span>
+<span id="cb9-3"><a href="wrangling-in-the-tidyverse.html#cb9-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;Variable&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;Height&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-4"><a href="wrangling-in-the-tidyverse.html#cb9-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">School_Level =</span> <span class="kw">factor</span>(Variable, </span>
+<span id="cb9-5"><a href="wrangling-in-the-tidyverse.html#cb9-5"></a>                               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;Height_Pri1&quot;</span>, <span class="st">&quot;Height_Pri2&quot;</span>, <span class="st">&quot;Height_Pri3&quot;</span>),</span>
+<span id="cb9-6"><a href="wrangling-in-the-tidyverse.html#cb9-6"></a>                               <span class="dt">labels=</span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-7"><a href="wrangling-in-the-tidyverse.html#cb9-7"></a><span class="st">  </span><span class="kw">select</span>(Name, Gender, School_Level, Height)</span>
+<span id="cb9-8"><a href="wrangling-in-the-tidyverse.html#cb9-8"></a></span>
+<span id="cb9-9"><a href="wrangling-in-the-tidyverse.html#cb9-9"></a><span class="co">## equivalent to:</span></span>
+<span id="cb9-10"><a href="wrangling-in-the-tidyverse.html#cb9-10"></a><span class="co">#</span></span>
+<span id="cb9-11"><a href="wrangling-in-the-tidyverse.html#cb9-11"></a><span class="co"># df_long_1 = df_wide %&gt;% pivot_longer(c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;), names_to = &quot;Variable&quot;, values_to = &quot;Height&quot;) </span></span>
+<span id="cb9-12"><a href="wrangling-in-the-tidyverse.html#cb9-12"></a><span class="co"># </span></span>
+<span id="cb9-13"><a href="wrangling-in-the-tidyverse.html#cb9-13"></a><span class="co"># df_long_2 = df_long_1 %&gt;% </span></span>
+<span id="cb9-14"><a href="wrangling-in-the-tidyverse.html#cb9-14"></a><span class="co">#   mutate(School_Level = factor(Variable, </span></span>
+<span id="cb9-15"><a href="wrangling-in-the-tidyverse.html#cb9-15"></a><span class="co">#                                levels=c(&quot;Height_Pri1&quot;, &quot;Height_Pri2&quot;, &quot;Height_Pri3&quot;),</span></span>
+<span id="cb9-16"><a href="wrangling-in-the-tidyverse.html#cb9-16"></a><span class="co">#                                labels=c(1, 2, 3))) </span></span>
+<span id="cb9-17"><a href="wrangling-in-the-tidyverse.html#cb9-17"></a><span class="co"># </span></span>
+<span id="cb9-18"><a href="wrangling-in-the-tidyverse.html#cb9-18"></a><span class="co"># df_long_3 = df_long_2 %&gt;% select(Name, Gender, School_Level, Height)</span></span>
+<span id="cb9-19"><a href="wrangling-in-the-tidyverse.html#cb9-19"></a><span class="co">#</span></span></code></pre></div>
 </div>
 <div id="long-to-wide-pivot_wider" class="section level3 unnumbered">
 <h3>Long-to-wide: pivot_wider()</h3>
@@ -560,18 +567,53 @@ This produces:
 <li>Then, we have <code>names_from</code> and <code>values_from</code>, which specify the names of the columns that we want to take the values from to spread them out.</li>
 </ul>
 <p>Let’s try:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">df_wide_test1 =<span class="st"> </span>df_long <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_wider</span>(</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">  <span class="dt">id_cols =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Gender&quot;</span>),</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">  <span class="dt">names_from =</span> <span class="st">&quot;School_Level&quot;</span>,</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">values_from =</span> <span class="st">&quot;Height&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="wrangling-in-the-tidyverse.html#cb10-1"></a>df_wide_test1 =<span class="st"> </span>df_long <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pivot_wider</span>(</span>
+<span id="cb10-2"><a href="wrangling-in-the-tidyverse.html#cb10-2"></a>  <span class="dt">id_cols =</span> <span class="kw">c</span>(<span class="st">&quot;Name&quot;</span>, <span class="st">&quot;Gender&quot;</span>),</span>
+<span id="cb10-3"><a href="wrangling-in-the-tidyverse.html#cb10-3"></a>  <span class="dt">names_from =</span> <span class="st">&quot;School_Level&quot;</span>,</span>
+<span id="cb10-4"><a href="wrangling-in-the-tidyverse.html#cb10-4"></a>  <span class="dt">values_from =</span> <span class="st">&quot;Height&quot;</span>)</span></code></pre></div>
 <p>Which gives us:</p>
 <center>
-Quitting from lines 297-310 (02-munging.Rmd)
-Error in pander(df_wide_test1[1:3, ]) : object ‘df_wide_test1’ not found
-Calls: local … inline_exec -&gt; hook_eval -&gt; withVisible -&gt; eval -&gt; eval -&gt; pander
-In addition: Warning messages:
-1: package ‘tibble’ was built under R version 3.6.2
-2: package ‘dplyr’ was built under R version 3.6.2
+<table style="width:50%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Gender</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Angela</td>
+<td align="center">Female</td>
+<td align="center">116</td>
+<td align="center">120</td>
+<td align="center">127</td>
+</tr>
+<tr class="even">
+<td align="center">Brian</td>
+<td align="center">Male</td>
+<td align="center">110</td>
+<td align="center">116</td>
+<td align="center">123</td>
+</tr>
+<tr class="odd">
+<td align="center">Cathy</td>
+<td align="center">Female</td>
+<td align="center">121</td>
+<td align="center">125</td>
+<td align="center">131</td>
+</tr>
+</tbody>
+</table>
 </center>
 <p>Great! We got back a wide-form data frame. But notice how the columns are now labelled <code>1</code>, <code>2</code>, <code>3</code>, and this makes it hard to understand what they mean? We’ll leave it as an exercise to the reader to try to convert these back into something more understandable. (There are several possible solutions!)</p>
 </div>
@@ -579,8 +621,8 @@ In addition: Warning messages:
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>As it behaves similar to other pipe operators in Python, Unix, etc. The creator pronounces <code>%&gt;%</code> as “and then”: Source: <a href="https://community.rstudio.com/t/how-is-pronounced/1783/12" class="uri">https://community.rstudio.com/t/how-is-pronounced/1783/12</a><a href="wrangling-in-the-tidyverse.html#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>That’s why some people call <code>%&gt;%</code> “and then”<a href="wrangling-in-the-tidyverse.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>As it behaves similar to other pipe operators in Python and Unix, the creator pronounces <code>%&gt;%</code> as “and then”: Source: <a href="https://community.rstudio.com/t/how-is-pronounced/1783/12" class="uri">https://community.rstudio.com/t/how-is-pronounced/1783/12</a><a href="wrangling-in-the-tidyverse.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>That’s why some people call <code>%&gt;%</code> “and then”<a href="wrangling-in-the-tidyverse.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -589,7 +631,7 @@ In addition: Warning messages:
         </div>
       </div>
 <a href="basics-of-data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="not-done-a-data-cleaning-pipeline-for-research-projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="a-data-cleaning-pipeline-for-research-projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
