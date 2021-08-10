@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -298,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span>, on the left, in magenta</li>
 <li><span class="math inline">\(X_1 + X_2 \leq 200\)</span>, on the right, in orange</li>
 </ul>
-<p><img src="images/optim/optim-plot-1.png" width="800"></p>
+<p><img src="images/optim/optim-plot-1.png" width="800px" style="display: block; margin: auto;" /></p>
 <p>Since these are linear constraints, we can easily plot them by defining two points for each line, and then connecting them. For example, in the left graph, we need to plot: <span class="math inline">\(0.20X_1 + 0.70 X_2 \leq 100\)</span>. The first point that will be handy is where it crosses the vertical axis; in this case, <span class="math inline">\(X_1 = 0\)</span>, and so we can solve <span class="math inline">\(X_2 \leq (100/0.70)\)</span>, or <span class="math inline">\(X_2 \leq 142\)</span> (rounding down). The second point is where it crosses the horizontal axis. Now, <span class="math inline">\(X_2 = 0\)</span>, and so <span class="math inline">\(X_1 \leq (100/0.20)\)</span> or <span class="math inline">\(X_1 \leq 500\)</span>.</p>
 <p>Thus, we can connect the point <span class="math inline">\(X_1=0, X_2=142\)</span> on the vertical axis, with <span class="math inline">\(X_1=500, X_2=0\)</span> on the horizontal axis with a straight line. Then we just read the constraint direction and reason that it should include the area down and to the left of this line!</p>
 <p>Make sure you understand the right graph as well, and understand how to reproduce it!</p>
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="feasible-regions" class="section level4 unnumbered">
 <h4>Feasible Regions</h4>
 <p>The <strong>Feasible Region</strong> is the intersection of all the constraint regions. So let’s plot those two regions above on the same plot.</p>
-<p><img src="images/optim/optim-plot-2.png" width="500"></p>
+<p><img src="images/optim/optim-plot-2.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>A <strong>feasible solution</strong> is an allocation of decision variables (like <span class="math inline">\(X_1\)</span> = 10, <span class="math inline">\(X_2\)</span> = 10), that satisfies all the constraints.</p>
 <p>It also follows, that <strong>every feasible solution will lie in the feasible region</strong>. That means that every point within the feasible region (shaded in green above) could be a solution to this problem.</p>
 <p>If there is no feasible region, then there is no feasible solution, and we say that the problem is <em>infeasible</em>. In other words, there is no way to solve this problem while satisfying all the constraints.</p>
@@ -315,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Corner Points</h4>
 <p>While any point in the feasible region is a possible solution, it turns out that the optimal solution, if it exists, lies at a “corner” of the feasible region. Indeed, there are mathematical theorems proving this.</p>
 <p>In the plot below we’ve indicated the four corner points for this problem:</p>
-<p><img src="images/optim/optim-plot-3.png" width="500"></p>
+<p><img src="images/optim/optim-plot-3.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>Why must an optimal solution lie at a corner? Imagine that you have a solution in the center of the feasible region, not near a boundary.
 From here, you can still increase or decrease <span class="math inline">\(X_1\)</span>; or you can increase or decrease <span class="math inline">\(X_2\)</span>. These changes would either increase or decrease your profit (“better” or “worse”).</p>
 <p>So the best (and worst) solutions are when you cannot increase or decrease your decision variables any more!</p>
@@ -343,7 +344,7 @@ X_1 &amp;= 80 \\
 </div>
 <div id="level-sets" class="section level4 unnumbered">
 <h4>Level Sets</h4>
-<p><img src="images/optim/optim-plot-4.png" width="500"></p>
+<p><img src="images/optim/optim-plot-4.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>An alternative way to visualise this solution is to draw the level set of the objective function (i.e., profits).</p>
 <p>The level set is the set of all the points that give the same profit. We indicate the direction in which we are optimising (i.e., direction of increasing profit), and we “shift” the level set as we increase profit.</p>
 <p>The optimal solution is the last point before the level set leaves the feasible region as we optimise profits.

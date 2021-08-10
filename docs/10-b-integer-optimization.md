@@ -78,13 +78,14 @@ $$X_1 = 5.93, X_2 = 3.70, X_3 = 0$$
 Let us ignore the beds ($X_3$) for just a second, and plot the 3 constraints onto $X_1$ (tables) on the horizontal axis and $X_2$ (sofas) on the vertical axis (in the plane $X_3=0$).
 
 
-<img src="images/optim/optiminteger-plot-1.png" width="500">
+<img src="images/optim/optiminteger-plot-1.png" width="500px" style="display: block; margin: auto;" />
 
 The optimal solution ($X_1 = 5.93, X_2 = 3.70, X_3 = 0$) is given in pink. 
 
 Now, if we want to impose an integer constraint, such that all our decision variables ($X_1$, $X_2$, $X_3$) must be integer valued, then our feasible solutions change. They cannot take on just any value, but only values indicated by the yellow dots below:
 
-<img src="images/optim/optiminteger-plot-2.png" width="500">
+
+<img src="images/optim/optiminteger-plot-2.png" width="500px" style="display: block; margin: auto;" />
 
 The first question that many people will ask is: 
 
@@ -98,16 +99,17 @@ Then a natural response would be:
 
 Maybe. But the nearest feasible answer is not guaranteed to be optimal! Have a look at the following plot, where the profit at several chosen yellow dots (near the constraint boundaries) are shown:
 
-<img src="images/optim/optiminteger-plot-3.png" width="500">
+
+<img src="images/optim/optiminteger-plot-3.png" width="500px" style="display: block; margin: auto;" />
 
 We can actually see that the nearest feasible answers (e.g., (5,4) and (6,3)) may not produce the optimal solution. In fact, the optimal solution in this plane (keeping $X_3 = 0$) is actually quite far away from ($X_1 = 5.93$, $X_2 = 3.70$). It is ($X_1 = 7$, $X_2 = 2$)! 
 
 
-And actually if we do solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is 
+And actually if we *do* solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is 
 
 $$ X_1 = 6, X_2 = 2, X_3 = 1 $$ 
 
-which has a profit of \$4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make ($X_3=0$). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the "not-so-profitable" Beds become profitable to make!
+which has a profit of \$4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make (optimal $X_3=0$). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the "not-so-profitable" Beds become profitable to make!
 
 
 

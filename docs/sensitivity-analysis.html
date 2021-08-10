@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -270,11 +271,11 @@ and our objective function is:
 <span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.30} X_2 \]</span></p>
 <p>Will that change our optimal solution?</p>
 <p>Turns out, no, it doesn’t. (Try running the code again to verify that the optimal solution is still (80,120)!)</p>
-<p><img src="images/optim/optim-plot-sa-1.png" width="400"></p>
+<p><img src="images/optim/optim-plot-sa-1.png" width="400px" style="display: block; margin: auto;" /></p>
 <p>But now if the price that Farmer Jean can sell Parsnips (<span class="math inline">\(X_1\)</span>) drops from 0.35 to 0.30, i.e., reducing her profits per unit-parsnips from 0.15 to 0.10,</p>
 <p><span class="math display">\[ \text{Profit} = \color{red}{0.10} X_1 + 0.40 X_2 \]</span>
 Then the optimal solution actually changes (to <span class="math inline">\(X_1\)</span> = 0, <span class="math inline">\(X_2\)</span> = 142)! Basically, Parsnips are now not profitable, and Jean should plant plant all Kale.</p>
-<p><img src="images/optim/optim-plot-sa-2.png" width="400"></p>
+<p><img src="images/optim/optim-plot-sa-1.png" width="400px" style="display: block; margin: auto;" /></p>
 <p>Graphically the optimal solution now moves from the blue vertex to the green vertex. The optimal solution is to produce as much Kale as she can afford.</p>
 <p>Indeed in the first case, reducing the price of <span class="math inline">\(X_2\)</span> by 10 cents did not change the solution, but in the second case, reducing the price of <span class="math inline">\(X_1\)</span> by 5 cents did! So this solution is sensitive to some changes but not others.</p>
 <div id="varying-objective-function-coefficients-in-r" class="section level4 unnumbered">
@@ -282,10 +283,10 @@ Then the optimal solution actually changes (to <span class="math inline">\(X_1\)
 <p>R’s <code>lpSolve::lp()</code> function helps you to calculate the <em>range</em> of coefficient values for which the given solution is still optimal. So again, recall that the original objective function is:
 <span class="math display">\[ \text{Profit} = 0.15 X_1 + 0.40 X_2 \]</span></p>
 <p>We use <code>lp.solution$sens.coef.from</code> and <code>lp.solution$sens.coef.to</code> to get the range of coefficients.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="sensitivity-analysis.html#cb71-1"></a><span class="co"># sensitivity analysis on coefficients</span></span>
-<span id="cb71-2"><a href="sensitivity-analysis.html#cb71-2"></a>lp.solution<span class="op">$</span>sens.coef.from </span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="sensitivity-analysis.html#cb87-1"></a><span class="co"># sensitivity analysis on coefficients</span></span>
+<span id="cb87-2"><a href="sensitivity-analysis.html#cb87-2"></a>lp.solution<span class="op">$</span>sens.coef.from </span></code></pre></div>
 <pre><code>## [1] 0.1142857 0.1500000</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="sensitivity-analysis.html#cb73-1"></a>lp.solution<span class="op">$</span>sens.coef.to</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="sensitivity-analysis.html#cb89-1"></a>lp.solution<span class="op">$</span>sens.coef.to</span></code></pre></div>
 <pre><code>## [1] 0.400 0.525</code></pre>
 <p>The way you read this is that “from” is the lower bound of the coefficients (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> respectively), while “to” gives the upper bound of the coefficients.</p>
 <ul>
@@ -307,17 +308,17 @@ But when the coefficient on <span class="math inline">\(X_2\)</span> rises above
 <p>We’ll introduce a new term called <em>shadow prices</em>.
 The <em>Shadow Price</em> of a constraint is the change in the objective function value per unit-increase in the right-hand-side value of that constraint (holding all else equal). Let’s break this down.</p>
 <p>In the Farming example, we have two constraints.</p>
-<p><img src="images/optim/optim-plot-sp-1.png" width="400"></p>
+<p><img src="images/optim/optim-plot-sp-1.png" width="400px" style="display: block; margin: auto;" /></p>
 <p>Let’s consider the first constraint. What if we increased the RHS of the first constraint from 100 to 101?</p>
 <p><span class="math display">\[0.20X_1 + 0.70X_2 \leq 100 \quad \rightarrow \quad 0.20X_1 + 0.70X_2 \leq \color{green}{101}\]</span></p>
-<p><img src="images/optim/optim-plot-sp-2.png" width="400"></p>
+<p><img src="images/optim/optim-plot-sp-2.png" width="400px" style="display: block; margin: auto;" /></p>
 <p>The feasible region was pushed outwards a little, by adding this green segment. Doing this will move the optimal vertex up and to the left.</p>
 <p>The new solution is (<span class="math inline">\(X_1\)</span> = 78, <span class="math inline">\(X_2\)</span> = 122), which gives a profit of $60.50 – an increase of $0.50</p>
 <p>Thus, increasing the budgetary constraint by 1 unit (100 to 101) increases the profit by $0.50 (from $60 to $60.50). Hence, (by definition), <strong>the Shadow Price of the first constraint is $0.50</strong>.</p>
 <p>What this means is that if Farmer Jean increased her operating budget from $100 to $101, then she can increase her profits by $0.50. That’s a pretty good return-on-investment! (Note that the optimal solution also changes, but here the shadow price indicates the effect of changing the constraint value on the <strong>PROFIT</strong>).</p>
 <p>Next, let’s consider the second constraint. What if we increased the RHS of the second constraint from 200 to 201?</p>
 <p><span class="math display">\[X_1 + X_2 \leq 200 \quad \rightarrow \quad X_1 + X_2 \leq \color{cyan}{201}\]</span></p>
-<p><img src="images/optim/optim-plot-sp-3.png" width="400"></p>
+<p><img src="images/optim/optim-plot-sp-3.png" width="400px" style="display: block; margin: auto;" /></p>
 <p>The feasible region was pushed out a little, by adding this cyan segment, which moved the optimal vertex down and to the right.</p>
 <p>The new solution is (<span class="math inline">\(X_1\)</span> = 81.4, <span class="math inline">\(X_2\)</span> = 119.6), which gives a profit of $60.05 – an increase by $0.05</p>
 <p>Thus, increasing the space constraint by 1 unit (200 to 201) increases the profit by $0.05 (from $60 to $60.05).
@@ -326,8 +327,8 @@ The Shadow Price of the space constraint is $0.05.</p>
 <div id="varying-constraint-values-in-r" class="section level4 unnumbered">
 <h4>Varying Constraint Values in R</h4>
 <p>Shadow prices are also known as <code>duals</code> in other fields (e.g. computer science), so we use <code>lp.solution$duals</code> to get them.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="sensitivity-analysis.html#cb75-1"></a><span class="co"># Shadow prices</span></span>
-<span id="cb75-2"><a href="sensitivity-analysis.html#cb75-2"></a>lp.solution<span class="op">$</span>duals</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="sensitivity-analysis.html#cb91-1"></a><span class="co"># Shadow prices</span></span>
+<span id="cb91-2"><a href="sensitivity-analysis.html#cb91-2"></a>lp.solution<span class="op">$</span>duals</span></code></pre></div>
 <pre><code>## [1] 0.50 0.05 0.00 0.00</code></pre>
 <p>Notice that there are four values here. The first two are the two constraints we put in, in the order they were specified in the constraints matrix (so <span class="math inline">\(0.20X_1 + 0.70X_2 \leq 100\)</span> then <span class="math inline">\(X_1 + X_2 \leq 200\)</span>).
 So we can see, as per our calculations above, that the shadow price of the first constraint is $0.50, and that of the second constraint is $0.05.</p>
@@ -342,21 +343,21 @@ So we can see, as per our calculations above, that the shadow price of the first
 <p>In certain cases, we might even have <em>negative</em> shadow prices. Let’s consider a modified objective function in the same Parsnip-Kale example, where the profit of Kale is increased to 0.53.
 <span class="math display">\[ \text{Profit} = 0.15 X_1 + \color{red}{0.53} X_2 \]</span>
 We saw from our earlier sensitivity analysis that this will change the optimal solution to: <span class="math inline">\(X_1 = 0, X_2 = 142\)</span>. Let’s check this by re-running this modified linear optimization problem, saving it as <code>lp.solution2</code>:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="sensitivity-analysis.html#cb77-1"></a><span class="co"># defining parameters</span></span>
-<span id="cb77-2"><a href="sensitivity-analysis.html#cb77-2"></a>objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</span>
-<span id="cb77-3"><a href="sensitivity-analysis.html#cb77-3"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
-<span id="cb77-4"><a href="sensitivity-analysis.html#cb77-4"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
-<span id="cb77-5"><a href="sensitivity-analysis.html#cb77-5"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</span>
-<span id="cb77-6"><a href="sensitivity-analysis.html#cb77-6"></a><span class="co"># solving model</span></span>
-<span id="cb77-7"><a href="sensitivity-analysis.html#cb77-7"></a>lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </span>
-<span id="cb77-8"><a href="sensitivity-analysis.html#cb77-8"></a>                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</span>
-<span id="cb77-9"><a href="sensitivity-analysis.html#cb77-9"></a></span>
-<span id="cb77-10"><a href="sensitivity-analysis.html#cb77-10"></a></span>
-<span id="cb77-11"><a href="sensitivity-analysis.html#cb77-11"></a><span class="co"># check if it was successful; it also prints out the objective fn value</span></span>
-<span id="cb77-12"><a href="sensitivity-analysis.html#cb77-12"></a>lp.solution2</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="sensitivity-analysis.html#cb93-1"></a><span class="co"># defining parameters</span></span>
+<span id="cb93-2"><a href="sensitivity-analysis.html#cb93-2"></a>objective.fn2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.15</span>, <span class="fl">0.53</span>)</span>
+<span id="cb93-3"><a href="sensitivity-analysis.html#cb93-3"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.20</span>, <span class="fl">0.70</span>, <span class="dv">1</span>, <span class="dv">1</span>) , <span class="dt">ncol=</span><span class="dv">2</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
+<span id="cb93-4"><a href="sensitivity-analysis.html#cb93-4"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
+<span id="cb93-5"><a href="sensitivity-analysis.html#cb93-5"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">200</span>)</span>
+<span id="cb93-6"><a href="sensitivity-analysis.html#cb93-6"></a><span class="co"># solving model</span></span>
+<span id="cb93-7"><a href="sensitivity-analysis.html#cb93-7"></a>lp.solution2 &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn2, const.mat, </span>
+<span id="cb93-8"><a href="sensitivity-analysis.html#cb93-8"></a>                   const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</span>
+<span id="cb93-9"><a href="sensitivity-analysis.html#cb93-9"></a></span>
+<span id="cb93-10"><a href="sensitivity-analysis.html#cb93-10"></a></span>
+<span id="cb93-11"><a href="sensitivity-analysis.html#cb93-11"></a><span class="co"># check if it was successful; it also prints out the objective fn value</span></span>
+<span id="cb93-12"><a href="sensitivity-analysis.html#cb93-12"></a>lp.solution2</span></code></pre></div>
 <pre><code>## Success: the objective function is 75.71429</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sensitivity-analysis.html#cb79-1"></a><span class="co"># Printing it out:</span></span>
-<span id="cb79-2"><a href="sensitivity-analysis.html#cb79-2"></a><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution2<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">The optimal objective function value is:&quot;</span>, lp.solution2<span class="op">$</span>objval, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">with the following Shadow Prices&quot;</span>, lp.solution2<span class="op">$</span>duals)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="sensitivity-analysis.html#cb95-1"></a><span class="co"># Printing it out:</span></span>
+<span id="cb95-2"><a href="sensitivity-analysis.html#cb95-2"></a><span class="kw">cat</span>(<span class="st">&quot;The optimal solution is:&quot;</span>, lp.solution2<span class="op">$</span>solution, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">The optimal objective function value is:&quot;</span>, lp.solution2<span class="op">$</span>objval, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">with the following Shadow Prices&quot;</span>, lp.solution2<span class="op">$</span>duals)</span></code></pre></div>
 <pre><code>## The optimal solution is: 0 142.8571 
 ## The optimal objective function value is: 75.71429 
 ## with the following Shadow Prices 0.7571429 0 -0.001428571 0</code></pre>

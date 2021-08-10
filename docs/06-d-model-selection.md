@@ -11,7 +11,7 @@ The learning objectives for this chapter are:
 
 ```r
 # Load the libraries we'll use in this chapter
-library(ggplot2) # for plotting
+library(tidyverse)
 ```
 
 

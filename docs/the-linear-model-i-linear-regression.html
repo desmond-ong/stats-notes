@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -268,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Readers should be able to interpret the meaning of dummy-coded variables used to model categorical independent variables.</p></li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="the-linear-model-i-linear-regression.html#cb12-1"></a><span class="co"># Load the libraries we&#39;ll use in this chapter</span></span>
-<span id="cb12-2"><a href="the-linear-model-i-linear-regression.html#cb12-2"></a><span class="kw">library</span>(ggplot2) <span class="co"># for plotting</span></span></code></pre></div>
+<span id="cb12-2"><a href="the-linear-model-i-linear-regression.html#cb12-2"></a><span class="kw">library</span>(tidyverse) </span></code></pre></div>
 <p>I’ve also made up some simulated data just for the next few sections that we will use to illustrate linear regression. Below is the code I used to generate <code>df1</code>: <span class="math inline">\(X\)</span> is just a vector from 0 to 10, and <span class="math inline">\(Y\)</span> is an affine transformation of <span class="math inline">\(X\)</span> with some random noise added.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-linear-model-i-linear-regression.html#cb13-1"></a><span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb13-2"><a href="the-linear-model-i-linear-regression.html#cb13-2"></a>df1 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">X=</span><span class="kw">c</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>)))</span>

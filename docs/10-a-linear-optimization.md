@@ -203,7 +203,10 @@ Below we've plotted the two constraints:
 
 
 
-<img src="images/optim/optim-plot-1.png" width="800">
+
+
+<img src="images/optim/optim-plot-1.png" width="800px" style="display: block; margin: auto;" />
+
 
 Since these are linear constraints, we can easily plot them by defining two points for each line, and then connecting them. For example, in the left graph, we need to plot: $0.20X_1 + 0.70 X_2 \leq 100$. The first point that will be handy is where it crosses the vertical axis; in this case, $X_1 = 0$, and so we can solve $X_2 \leq (100/0.70)$, or $X_2 \leq 142$ (rounding down). The second point is where it crosses the horizontal axis. Now, $X_2 = 0$, and so $X_1 \leq (100/0.20)$ or $X_1 \leq 500$.
 
@@ -223,7 +226,9 @@ The **Feasible Region** is the intersection of all the constraint regions. So le
 
 
 
-<img src="images/optim/optim-plot-2.png" width="500">
+
+<img src="images/optim/optim-plot-2.png" width="500px" style="display: block; margin: auto;" />
+
 
 A **feasible solution** is an allocation of decision variables (like $X_1$ = 10, $X_2$ = 10), that satisfies all the constraints.
 
@@ -242,7 +247,10 @@ In the plot below we've indicated the four corner points for this problem:
 
 
 
-<img src="images/optim/optim-plot-3.png" width="500">
+
+
+<img src="images/optim/optim-plot-3.png" width="500px" style="display: block; margin: auto;" />
+
 
 Why must an optimal solution lie at a corner? Imagine that you have a solution in the center of the feasible region, not near a boundary. 
 From here, you can still increase or decrease $X_1$; or you can increase or decrease $X_2$. These changes would either increase or decrease your profit ("better" or "worse"). 
@@ -284,7 +292,9 @@ This happens to be the maximum profit, so (80,120) gives us the optimal solution
 
 #### Level Sets {-}
 
-<img src="images/optim/optim-plot-4.png" width="500">
+
+<img src="images/optim/optim-plot-4.png" width="500px" style="display: block; margin: auto;" />
+
 
 An alternative way to visualise this solution is to draw the level set of the objective function (i.e., profits).
 
@@ -447,7 +457,8 @@ Will that change our optimal solution?
 
 Turns out, no, it doesn't. (Try running the code again to verify that the optimal solution is still (80,120)!)
 
-<img src="images/optim/optim-plot-sa-1.png" width="400">
+
+<img src="images/optim/optim-plot-sa-1.png" width="400px" style="display: block; margin: auto;" />
 
 
 
@@ -457,7 +468,9 @@ But now if the price that Farmer Jean can sell Parsnips ($X_1$) drops from 0.35 
 $$ \text{Profit} = \color{red}{0.10} X_1 + 0.40 X_2 $$
 Then the optimal solution actually changes (to $X_1$ = 0, $X_2$ = 142)! Basically, Parsnips are now not profitable, and Jean should plant plant all Kale.
 
-<img src="images/optim/optim-plot-sa-2.png" width="400">
+
+<img src="images/optim/optim-plot-sa-1.png" width="400px" style="display: block; margin: auto;" />
+
 
 Graphically the optimal solution now moves from the blue vertex to the green vertex. The optimal solution is to produce as much Kale as she can afford.
 
@@ -521,13 +534,15 @@ The _Shadow Price_ of a constraint is the change in the objective function value
 
 In the Farming example, we have two constraints.
 
-<img src="images/optim/optim-plot-sp-1.png" width="400">
+<img src="images/optim/optim-plot-sp-1.png" width="400px" style="display: block; margin: auto;" />
 
 Let’s consider the first constraint. What if we increased the RHS of the first constraint from 100 to 101?
 
 $$0.20X_1 + 0.70X_2 \leq 100 \quad \rightarrow \quad 0.20X_1 + 0.70X_2 \leq \color{green}{101}$$ 
 
-<img src="images/optim/optim-plot-sp-2.png" width="400">
+
+<img src="images/optim/optim-plot-sp-2.png" width="400px" style="display: block; margin: auto;" />
+
 
 The feasible region was pushed outwards a little, by adding this green segment. Doing this will move the optimal vertex up and to the left. 
 
@@ -543,7 +558,8 @@ Next, let’s consider the second constraint. What if we increased the RHS of th
 
 $$X_1 + X_2 \leq 200 \quad \rightarrow \quad X_1 + X_2 \leq \color{cyan}{201}$$ 
 
-<img src="images/optim/optim-plot-sp-3.png" width="400">
+
+<img src="images/optim/optim-plot-sp-3.png" width="400px" style="display: block; margin: auto;" />
 
 The feasible region was pushed out a little, by adding this cyan segment, which moved the optimal vertex down and to the right. 
 

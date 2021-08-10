@@ -23,7 +23,7 @@ The learning objectives for this chapter are:
 
 ```r
 # Load the libraries we'll use in this chapter
-library(ggplot2) # for plotting
+library(tidyverse) 
 ```
 
 I've also made up some simulated data just for the next few sections that we will use to illustrate linear regression. Below is the code I used to generate `df1`: $X$ is just a vector from 0 to 10, and $Y$ is an affine transformation of $X$ with some random noise added.

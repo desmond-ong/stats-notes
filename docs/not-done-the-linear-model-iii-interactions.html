@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="not-done-exercises-linear-model-ii.html"/>
+<link rel="prev" href="exercises-linear-model-ii.html"/>
 <link rel="next" href="not-done-the-linear-model-iv-model-selection.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -259,17 +260,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="not-done-the-linear-model-iii-interactions" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> [Not Done:] The Linear Model III: Interactions</h1>
 <p><span class="badge badge-bt"> BT1101 </span></p>
+<p>In the previous two chapters, we have introduced the linear model, and showed how we can model (i) both continuous and categorical independent variables (including the idea of dummy coding), as well as (ii) both continuous and categorical dependent variables, the latter of which requires a generalization of the linear model, and we covered one such model, logistic regression.</p>
+<p>In this chapter we will build on these by introducing the idea of statistical moderation, and how we can model this by adding <strong>interactions</strong> into a linear model.</p>
+<p>The learning objectives for this chapter are:</p>
+<ul>
+<li>Readers should be able to understand the concept of moderation.</li>
+<li>Readers should be able to interpret basic interactions in a regression model, including group-dependent slopes, simple effects vs. main effects.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="not-done-the-linear-model-iii-interactions.html#cb65-1"></a><span class="co"># Load the libraries we&#39;ll use in this chapter</span></span>
+<span id="cb65-2"><a href="not-done-the-linear-model-iii-interactions.html#cb65-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <ul>
 <li>Cover interpretation of interactions.</li>
 <li>Concept of moderation</li>
 <li>simple effect vs main effect</li>
 </ul>
-<p>The learning objectives for this chapter are:</p>
-<ul>
-<li>Readers should be able to interpret basic interactions in a regression model, including different slopes, simple effects vs. main effects.</li>
-</ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="not-done-the-linear-model-iii-interactions.html#cb50-1"></a><span class="co"># Load the libraries we&#39;ll use in this chapter</span></span>
-<span id="cb50-2"><a href="not-done-the-linear-model-iii-interactions.html#cb50-2"></a><span class="kw">library</span>(ggplot2) <span class="co"># for plotting</span></span></code></pre></div>
 
 </div>
             </section>
@@ -277,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="not-done-exercises-linear-model-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises-linear-model-ii.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="not-done-the-linear-model-iv-model-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

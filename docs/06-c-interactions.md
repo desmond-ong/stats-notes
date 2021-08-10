@@ -2,15 +2,15 @@
 
 <span class="badge badge-bt"> BT1101 </span>
 
+In the previous two chapters, we have introduced the linear model, and showed how we can model (i) both continuous and categorical independent variables (including the idea of dummy coding), as well as (ii) both continuous and categorical dependent variables, the latter of which requires a generalization of the linear model, and we covered one such model, logistic regression. 
 
-- Cover interpretation of interactions. 
-- Concept of moderation
-- simple effect vs main effect
-
+In this chapter we will build on these by introducing the idea of statistical moderation, and how we can model this by adding **interactions** into a linear model.
 
 The learning objectives for this chapter are:
 
-- Readers should be able to interpret basic interactions in a regression model, including different slopes, simple effects vs. main effects.
+- Readers should be able to understand the concept of moderation.
+- Readers should be able to interpret basic interactions in a regression model, including group-dependent slopes, simple effects vs. main effects.
+
 
 
 
@@ -18,11 +18,16 @@ The learning objectives for this chapter are:
 
 ```r
 # Load the libraries we'll use in this chapter
-library(ggplot2) # for plotting
+library(tidyverse)
 ```
 
 
 
 
 
+
+
+- Cover interpretation of interactions. 
+- Concept of moderation
+- simple effect vs main effect
 

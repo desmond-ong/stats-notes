@@ -1,7 +1,7 @@
 --- 
 title: "Statistics and Analytics for the Social and Computing Sciences"
 author: "Desmond C. Ong"
-date: "Draft Dated: 2021-08-09"
+date: "Draft Dated: 2021-08-10"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -88,7 +88,7 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 - Introduction to Time Series Data <span class="badge badge-bt"> BT1101 </span>
     a. Time Series Basics
     b. Smoothing-based models
-    c. [In Progress] Time-Series Regression
+    c. Time-Series Regression
 - [In Progress] Data Mining <span class="badge badge-bt"> BT1101 </span>
 - Optimization <span class="badge badge-bt"> BT1101 </span>
     a. Linear Optimization 

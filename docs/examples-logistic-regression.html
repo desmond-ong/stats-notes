@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences" />
+  <title>6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="6.3 [Not Done:] Exercises: Linear Model II | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="6.3 Examples: Logistic Regression | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="running-a-logistic-regression.html"/>
-<link rel="next" href="not-done-the-linear-model-iii-interactions.html"/>
+<link rel="next" href="exercises-linear-model-ii.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -256,19 +257,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="not-done-exercises-linear-model-ii" class="section level2">
-<h2><span class="header-section-number">6.3</span> [Not Done:] Exercises: Linear Model II</h2>
-<p><span class="badge badge-bt"> BT1101 </span></p>
-
+<div id="examples-logistic-regression" class="section level2">
+<h2><span class="header-section-number">6.3</span> Examples: Logistic Regression</h2>
+<p>Let’s consider a classic dataset from the ill-fated maiden voyage of the RMS Titanic in 1912, which is available in <code>R</code>. First let’s load in the <code>R</code> package (<code>library(titanic)</code>, installing it if it doesn’t already exist on your system), and use the data frame called <code>titanic_train</code>. We first inspect the data frame to get a sense of the variables.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="examples-logistic-regression.html#cb50-1"></a><span class="co"># install.packages(&#39;titanic&#39;) ## run if not already installed</span></span>
+<span id="cb50-2"><a href="examples-logistic-regression.html#cb50-2"></a><span class="kw">library</span>(titanic)</span></code></pre></div>
+<pre><code>## Warning: package &#39;titanic&#39; was built under R version 4.0.2</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="examples-logistic-regression.html#cb52-1"></a><span class="co">## let&#39;s use the dataset called titanic_train</span></span>
+<span id="cb52-2"><a href="examples-logistic-regression.html#cb52-2"></a><span class="co"># inspect the first two rows: we see the data frame has variables PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Ticket, Fare, Cabin, and Embarked</span></span>
+<span id="cb52-3"><a href="examples-logistic-regression.html#cb52-3"></a><span class="kw">head</span>(titanic_train, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+##                                                  Name    Sex Age SibSp Parch
+## 1                             Braund, Mr. Owen Harris   male  22     1     0
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1     0
+##      Ticket    Fare Cabin Embarked
+## 1 A/5 21171  7.2500              S
+## 2  PC 17599 71.2833   C85        C</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="examples-logistic-regression.html#cb54-1"></a><span class="co"># check how many rows</span></span>
+<span id="cb54-2"><a href="examples-logistic-regression.html#cb54-2"></a><span class="kw">nrow</span>(titanic_train)</span></code></pre></div>
+<pre><code>## [1] 891</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="examples-logistic-regression.html#cb56-1"></a><span class="co"># check distribution of the Survived and Sex variables</span></span>
+<span id="cb56-2"><a href="examples-logistic-regression.html#cb56-2"></a><span class="kw">table</span>(titanic_train<span class="op">$</span>Survived)</span></code></pre></div>
+<pre><code>## 
+##   0   1 
+## 549 342</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="examples-logistic-regression.html#cb58-1"></a><span class="kw">table</span>(titanic_train<span class="op">$</span>Sex)</span></code></pre></div>
+<pre><code>## 
+## female   male 
+##    314    577</code></pre>
+<p>So we can see that the dataset contains 891 observations (passengers) with 12 variables. We’ll just look at a few of these variables.</p>
+<p>Of these 891 passengers, 342 passengers survived the sinking of the Titanic (<code>Survived=1</code>), while 549 did not (<code>Survived=0</code>). And of these 891 passengers, 314 were female (<code>Sex="female"</code>), while 577 were male (<code>Sex="male"</code>).</p>
+<p>Let’s estimate a model to predict <code>Survived</code> from <code>Sex</code> and <code>Age</code>. That is, can we predict a passenger’s chance of survival given their sex and age?</p>
+<p>First, as usual let’s visualize our data</p>
+<p>How do we visualize <code>Survived</code>, which is a binary variable that takes on values {<code>0</code>, <code>1</code>}, as well as Sex, which is another binary variable that takes on values {<code>male</code>, <code>female</code>}? There are many different types of visualizations, but below we’ll use a stacked bar plot:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="examples-logistic-regression.html#cb60-1"></a><span class="co"># munging, then plotting </span></span>
+<span id="cb60-2"><a href="examples-logistic-regression.html#cb60-2"></a>titanic_table &lt;-<span class="st"> </span>titanic_train <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-3"><a href="examples-logistic-regression.html#cb60-3"></a><span class="st">                  </span><span class="kw">group_by</span>(Survived, Sex) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-4"><a href="examples-logistic-regression.html#cb60-4"></a><span class="st">                  </span><span class="kw">summarize</span>(<span class="dt">number=</span><span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-5"><a href="examples-logistic-regression.html#cb60-5"></a><span class="st">                  </span><span class="kw">mutate</span>(<span class="dt">Survived =</span> <span class="kw">factor</span>(Survived, </span>
+<span id="cb60-6"><a href="examples-logistic-regression.html#cb60-6"></a>                                           <span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>)))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;Survived&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="examples-logistic-regression.html#cb62-1"></a><span class="kw">ggplot</span>(titanic_table, <span class="kw">aes</span>(<span class="dt">x=</span>Sex, <span class="dt">y=</span>number, <span class="dt">fill=</span>Survived)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb62-2"><a href="examples-logistic-regression.html#cb62-2"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Number of passengers&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="06-b-logistic_files/figure-html/lmii-example1b-1.png" width="672" /></p>
+<p>The blue bars show the number of passengers who survived, and red indicates the number of passengers who did not survive. On the left we plot female passengers, and on the right, male passengers.</p>
+<p>So first, we notice (i) there were more male passengers than female passengers, (ii) that of the female passengers, there were more passengers that survived than passengers than did not survive (blue bar is larger than the red bar), and (iii) of the male passengers, there were more passengers that did not survive than those who did (red bar is larger than blue bar).</p>
+<p>Ok on to the actual regression. Let’s estimate the model and inspect the summary of the model:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="examples-logistic-regression.html#cb63-1"></a><span class="co"># running a logistic regression via a general linear model</span></span>
+<span id="cb63-2"><a href="examples-logistic-regression.html#cb63-2"></a>fit_log1 &lt;-<span class="st"> </span><span class="kw">glm</span>(Survived <span class="op">~</span><span class="st"> </span>Sex <span class="op">+</span><span class="st"> </span>Age, <span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>, titanic_train)</span>
+<span id="cb63-3"><a href="examples-logistic-regression.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="examples-logistic-regression.html#cb63-4"></a><span class="kw">summary</span>(fit_log1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Survived ~ Sex + Age, family = &quot;binomial&quot;, data = titanic_train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.7405  -0.6885  -0.6558   0.7533   1.8989  
+## 
+## Coefficients:
+##              Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  1.277273   0.230169   5.549 2.87e-08 ***
+## Sexmale     -2.465920   0.185384 -13.302  &lt; 2e-16 ***
+## Age         -0.005426   0.006310  -0.860     0.39    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 964.52  on 713  degrees of freedom
+## Residual deviance: 749.96  on 711  degrees of freedom
+##   (177 observations deleted due to missingness)
+## AIC: 755.96
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<p>Let’s interpret the coefficients. Let’s write out the equation: <span class="math display">\[\text{logit}( \text{Survived} ) = b_0 + b_\text{Sex} X_\text{Sex} + b_\text{Age} X_\text{Age}\]</span></p>
+<ul>
+<li>where <span class="math inline">\(X_\text{Sex}\)</span> is a binary variable. Recall that <code>R</code> uses dummy coding, and from inspecting the summary we can also see that <code>female</code> is the reference group, so <code>X_\text{Sex} = 1</code> if male and <code>0</code> if female.</li>
+<li>and <span class="math inline">\(X_\text{Age}\)</span> is a real-valued number.</li>
+</ul>
+<p>If we plug the numbers in, we get:</p>
+<p><span class="math display">\[\text{logit}( \text{Survived} ) = 1.2773 - 2.4659 X_\text{Sex} - 0.0054 X_\text{Age}\]</span></p>
+<p>So let’s interpret:</p>
+<ul>
+<li>(intercept, or <span class="math inline">\(b_0\)</span>): Log-odds of <code>Survived</code> when <span class="math inline">\(X_\text{Sex}\)</span> and <span class="math inline">\(X_\text{Age}\)</span> are both zero.
+<ul>
+<li>In English: The predicted odds of survival of a female, 0-year old person = <span class="math inline">\(exp(1.2773) = 3.59\)</span>.</li>
+</ul></li>
+<li>(<span class="math inline">\(b_\text{Sex}\)</span>): Expected increase in log-odds of <code>Survived</code> when <span class="math inline">\(X_\text{Sex}\)</span> becomes 1, holding <span class="math inline">\(X_\text{Age}\)</span> constant.
+<ul>
+<li>In English: A male passenger, compared to a female counterpart of the same age, has a decreased log-odds of survival of 2.466 (<span class="math inline">\(b_\text{Sex}\)</span>)</li>
+<li>Alternatively, being male would multiplies the odds of survival by <span class="math inline">\(exp(-2.466) = 0.085\)</span>. Thus the odds of survival for males decrease to 0.085x that of females.
+<ul>
+<li>i.e., holding age constant, male passengers’ odds of survival are 0.085 times that of female passengers.</li>
+</ul></li>
+<li>Let’s plug some numbers in to check:
+<ul>
+<li>When <span class="math inline">\(X_\text{Sex}\)</span> and <span class="math inline">\(X_\text{Age}\)</span> are 0, the odds are <span class="math inline">\(exp(1.277) = 3.59\)</span></li>
+<li>If we now increase <span class="math inline">\(X_\text{Sex}\)</span> to 1, the odds are now <span class="math inline">\(exp(1.277 -2.466) = 0.305\)</span></li>
+<li>The odds have decreased by <span class="math inline">\((0.305)/3.59 \sim 0.085\)</span> times</li>
+</ul></li>
+<li>Note that we can discuss the coefficient interpretations in terms of log-odds, or odds. But these numbers do not reflect probability!</li>
+</ul></li>
+<li>(<span class="math inline">\(b_\text{Age}\)</span>): Expected increase in log-odds of event per unit-increase of <span class="math inline">\(X_\text{Age}\)</span>, holding <span class="math inline">\(X_\text{Sex}\)</span> constant.
+<ul>
+<li>Try writing this interpretation out in English!</li>
+</ul></li>
+</ul>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="running-a-logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="not-done-the-linear-model-iii-interactions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises-linear-model-ii.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

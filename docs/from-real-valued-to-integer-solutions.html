@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -275,10 +276,10 @@ Storage Space Constraints:
 <p>And, the optimal solution is:
 <span class="math display">\[X_1 = 5.93, X_2 = 3.70, X_3 = 0\]</span>
 Let us ignore the beds (<span class="math inline">\(X_3\)</span>) for just a second, and plot the 3 constraints onto <span class="math inline">\(X_1\)</span> (tables) on the horizontal axis and <span class="math inline">\(X_2\)</span> (sofas) on the vertical axis (in the plane <span class="math inline">\(X_3=0\)</span>).</p>
-<p><img src="images/optim/optiminteger-plot-1.png" width="500"></p>
+<p><img src="images/optim/optiminteger-plot-1.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>The optimal solution (<span class="math inline">\(X_1 = 5.93, X_2 = 3.70, X_3 = 0\)</span>) is given in pink.</p>
 <p>Now, if we want to impose an integer constraint, such that all our decision variables (<span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>) must be integer valued, then our feasible solutions change. They cannot take on just any value, but only values indicated by the yellow dots below:</p>
-<p><img src="images/optim/optiminteger-plot-2.png" width="500"></p>
+<p><img src="images/optim/optiminteger-plot-2.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>The first question that many people will ask is:</p>
 <blockquote>
 <p>Well, can we just round off the real-valued answer to the nearest solution?</p>
@@ -289,11 +290,11 @@ Let us ignore the beds (<span class="math inline">\(X_3\)</span>) for just a sec
 <p>Can we then round down the answer, or round off the answer to the nearest feasible answer?</p>
 </blockquote>
 <p>Maybe. But the nearest feasible answer is not guaranteed to be optimal! Have a look at the following plot, where the profit at several chosen yellow dots (near the constraint boundaries) are shown:</p>
-<p><img src="images/optim/optiminteger-plot-3.png" width="500"></p>
+<p><img src="images/optim/optiminteger-plot-3.png" width="500px" style="display: block; margin: auto;" /></p>
 <p>We can actually see that the nearest feasible answers (e.g., (5,4) and (6,3)) may not produce the optimal solution. In fact, the optimal solution in this plane (keeping <span class="math inline">\(X_3 = 0\)</span>) is actually quite far away from (<span class="math inline">\(X_1 = 5.93\)</span>, <span class="math inline">\(X_2 = 3.70\)</span>). It is (<span class="math inline">\(X_1 = 7\)</span>, <span class="math inline">\(X_2 = 2\)</span>)!</p>
-<p>And actually if we do solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is</p>
+<p>And actually if we <em>do</em> solve the integer-valued optimization problem (see below), we will eventually discover that the proper integer solution to this problem is</p>
 <p><span class="math display">\[ X_1 = 6, X_2 = 2, X_3 = 1 \]</span></p>
-<p>which has a profit of $4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make (<span class="math inline">\(X_3=0\)</span>). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the “not-so-profitable” Beds become profitable to make!</p>
+<p>which has a profit of $4480. Recall that in the real-valued version of this problem, we concluded that beds were not profitable enough to make (optimal <span class="math inline">\(X_3=0\)</span>). But adding the integer constraints may also change which constraints become binding, and which variables become relevant to the problem! Thus, suddenly the “not-so-profitable” Beds become profitable to make!</p>
 <blockquote>
 <p>In reality, solving integer-constrained optimization problems is a hard problem. In fact, in computer science jargon, this is one of a class of NP-Complete problems, which just means there exists no efficient (polynomial-time) method to find solutions to this problem. (Unlike in the simple linear optimization case where such methods do exist). This means that one approach to get the optimal solution is to brute-force search through every solution (the time-complexity of which grows very rapidly with the problem size); another popular approach to use heuristics or approximation algorithms to offer a best-guess at an answer.</p>
 </blockquote>
@@ -312,29 +313,29 @@ Solving the optimisation without the integer constraints is called Linear Progra
 <div id="specifying-integer-constraints" class="section level3">
 <h3><span class="header-section-number">13.2.2</span> Specifying Integer Constraints</h3>
 <p>In order to tell <code>lpSolve</code> that we want to impose integer constraints, we simply add a new option <code>int.vec = c(...)</code>, where we give a <code>vec</code>tor of <code>int</code>egers. For example, if we want to specify in the furnitude example that <span class="math inline">\(X_1, X_2, X_3\)</span> are all integers, we specify <code>int.vec = c(1,2,3)</code>. (conversely, if only <span class="math inline">\(X_2\)</span> was an integer, we would write <code>int.vec=c(2)</code>.)</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="from-real-valued-to-integer-solutions.html#cb93-1"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
-<span id="cb93-2"><a href="from-real-valued-to-integer-solutions.html#cb93-2"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb93-3"><a href="from-real-valued-to-integer-solutions.html#cb93-3"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
-<span id="cb93-4"><a href="from-real-valued-to-integer-solutions.html#cb93-4"></a><span class="co"># note: the sensitivity analysis calculated by lpSolve::lp()</span></span>
-<span id="cb93-5"><a href="from-real-valued-to-integer-solutions.html#cb93-5"></a><span class="co"># is inaccurate for integer-valued problems, so we won&#39;t use them.</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="from-real-valued-to-integer-solutions.html#cb109-1"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
+<span id="cb109-2"><a href="from-real-valued-to-integer-solutions.html#cb109-2"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb109-3"><a href="from-real-valued-to-integer-solutions.html#cb109-3"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
+<span id="cb109-4"><a href="from-real-valued-to-integer-solutions.html#cb109-4"></a><span class="co"># note: the sensitivity analysis calculated by lpSolve::lp()</span></span>
+<span id="cb109-5"><a href="from-real-valued-to-integer-solutions.html#cb109-5"></a><span class="co"># is inaccurate for integer-valued problems, so we won&#39;t use them.</span></span></code></pre></div>
 <p>And that’s it. We can use the same functions <code>lp.solution</code> and <code>lp.solution$solution</code> to read out the optimal objective function value and the optimal values of the decision variables. Thus, for the furniture example above, we have:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="from-real-valued-to-integer-solutions.html#cb94-1"></a>objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">450</span>, <span class="dv">580</span>)</span>
-<span id="cb94-2"><a href="from-real-valued-to-integer-solutions.html#cb94-2"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">8.4</span>,  <span class="dv">6</span>, <span class="fl">9.6</span>, </span>
-<span id="cb94-3"><a href="from-real-valued-to-integer-solutions.html#cb94-3"></a>                        <span class="dv">3</span>,  <span class="dv">6</span>,   <span class="dv">8</span>, </span>
-<span id="cb94-4"><a href="from-real-valued-to-integer-solutions.html#cb94-4"></a>                        <span class="dv">1</span>,  <span class="dv">0</span>,   <span class="dv">0</span>), </span>
-<span id="cb94-5"><a href="from-real-valued-to-integer-solutions.html#cb94-5"></a>                      <span class="dt">ncol=</span><span class="dv">3</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
-<span id="cb94-6"><a href="from-real-valued-to-integer-solutions.html#cb94-6"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
-<span id="cb94-7"><a href="from-real-valued-to-integer-solutions.html#cb94-7"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">72</span>, <span class="dv">40</span>, <span class="dv">8</span>)</span>
-<span id="cb94-8"><a href="from-real-valued-to-integer-solutions.html#cb94-8"></a><span class="co"># solving model</span></span>
-<span id="cb94-9"><a href="from-real-valued-to-integer-solutions.html#cb94-9"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
-<span id="cb94-10"><a href="from-real-valued-to-integer-solutions.html#cb94-10"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb94-11"><a href="from-real-valued-to-integer-solutions.html#cb94-11"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
-<span id="cb94-12"><a href="from-real-valued-to-integer-solutions.html#cb94-12"></a></span>
-<span id="cb94-13"><a href="from-real-valued-to-integer-solutions.html#cb94-13"></a><span class="co"># to print out the optimal objective function value</span></span>
-<span id="cb94-14"><a href="from-real-valued-to-integer-solutions.html#cb94-14"></a>lp.solution</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="from-real-valued-to-integer-solutions.html#cb110-1"></a>objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">450</span>, <span class="dv">580</span>)</span>
+<span id="cb110-2"><a href="from-real-valued-to-integer-solutions.html#cb110-2"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">8.4</span>,  <span class="dv">6</span>, <span class="fl">9.6</span>, </span>
+<span id="cb110-3"><a href="from-real-valued-to-integer-solutions.html#cb110-3"></a>                        <span class="dv">3</span>,  <span class="dv">6</span>,   <span class="dv">8</span>, </span>
+<span id="cb110-4"><a href="from-real-valued-to-integer-solutions.html#cb110-4"></a>                        <span class="dv">1</span>,  <span class="dv">0</span>,   <span class="dv">0</span>), </span>
+<span id="cb110-5"><a href="from-real-valued-to-integer-solutions.html#cb110-5"></a>                      <span class="dt">ncol=</span><span class="dv">3</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
+<span id="cb110-6"><a href="from-real-valued-to-integer-solutions.html#cb110-6"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
+<span id="cb110-7"><a href="from-real-valued-to-integer-solutions.html#cb110-7"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">72</span>, <span class="dv">40</span>, <span class="dv">8</span>)</span>
+<span id="cb110-8"><a href="from-real-valued-to-integer-solutions.html#cb110-8"></a><span class="co"># solving model</span></span>
+<span id="cb110-9"><a href="from-real-valued-to-integer-solutions.html#cb110-9"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
+<span id="cb110-10"><a href="from-real-valued-to-integer-solutions.html#cb110-10"></a>                  const.dir, const.rhs, <span class="dt">int.vec =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb110-11"><a href="from-real-valued-to-integer-solutions.html#cb110-11"></a>                  <span class="dt">compute.sens=</span><span class="ot">FALSE</span>)</span>
+<span id="cb110-12"><a href="from-real-valued-to-integer-solutions.html#cb110-12"></a></span>
+<span id="cb110-13"><a href="from-real-valued-to-integer-solutions.html#cb110-13"></a><span class="co"># to print out the optimal objective function value</span></span>
+<span id="cb110-14"><a href="from-real-valued-to-integer-solutions.html#cb110-14"></a>lp.solution</span></code></pre></div>
 <pre><code>## Success: the objective function is 4480</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="from-real-valued-to-integer-solutions.html#cb96-1"></a><span class="co"># to print out the values of the decision variables (X1, X2, X3)</span></span>
-<span id="cb96-2"><a href="from-real-valued-to-integer-solutions.html#cb96-2"></a>lp.solution<span class="op">$</span>solution</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="from-real-valued-to-integer-solutions.html#cb112-1"></a><span class="co"># to print out the values of the decision variables (X1, X2, X3)</span></span>
+<span id="cb112-2"><a href="from-real-valued-to-integer-solutions.html#cb112-2"></a>lp.solution<span class="op">$</span>solution</span></code></pre></div>
 <pre><code>## [1] 6 2 1</code></pre>
 <p>Lastly, one final point to note is that the sensitivity analyses calculated by <code>lpSolve</code> may not be accurate for integer-valued problems (i.e., the effect of varying the objective function coefficients and shadow prices may not be accurate), so we choose not to have <code>complete.sens</code> in the function call. Of course, since we are already experts in this from last Chapter, we could always change the objective function coefficients or constraint values manually and try to solve it to estimate a sensitivity analysis, but the inbuilt convenience function doesn’t do that for us.</p>
 </div>

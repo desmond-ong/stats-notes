@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="time-series-basics.html"/>
-<link rel="next" href="not-done-regression-based-forecasting-models.html"/>
+<link rel="next" href="regression-based-forecasting-models.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,7 +189,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="the-linear-model-ii-logistic-regression.html"><a href="the-linear-model-ii-logistic-regression.html"><i class="fa fa-check"></i><b>6</b> The Linear Model II: Logistic Regression</a><ul>
 <li class="chapter" data-level="6.1" data-path="basics-of-logistic-regression.html"><a href="basics-of-logistic-regression.html"><i class="fa fa-check"></i><b>6.1</b> Basics of Logistic Regression</a></li>
 <li class="chapter" data-level="6.2" data-path="running-a-logistic-regression.html"><a href="running-a-logistic-regression.html"><i class="fa fa-check"></i><b>6.2</b> Running a Logistic Regression</a></li>
-<li class="chapter" data-level="6.3" data-path="not-done-exercises-linear-model-ii.html"><a href="not-done-exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.3</b> [Not Done:] Exercises: Linear Model II</a></li>
+<li class="chapter" data-level="6.3" data-path="examples-logistic-regression.html"><a href="examples-logistic-regression.html"><i class="fa fa-check"></i><b>6.3</b> Examples: Logistic Regression</a></li>
+<li class="chapter" data-level="6.4" data-path="exercises-linear-model-ii.html"><a href="exercises-linear-model-ii.html"><i class="fa fa-check"></i><b>6.4</b> Exercises: Linear Model II</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="not-done-the-linear-model-iii-interactions.html"><a href="not-done-the-linear-model-iii-interactions.html"><i class="fa fa-check"></i><b>7</b> [Not Done:] The Linear Model III: Interactions</a></li>
 <li class="chapter" data-level="8" data-path="not-done-the-linear-model-iv-model-selection.html"><a href="not-done-the-linear-model-iv-model-selection.html"><i class="fa fa-check"></i><b>8</b> [Not Done:] The Linear Model IV: Model Selection</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.1" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#simple-moving-average-model"><i class="fa fa-check"></i><b>10.2.1</b> Simple Moving Average Model</a></li>
 <li class="chapter" data-level="10.2.2" data-path="smoothing-based-models.html"><a href="smoothing-based-models.html#exponential-smoothing-models"><i class="fa fa-check"></i><b>10.2.2</b> Exponential Smoothing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="not-done-regression-based-forecasting-models.html"><a href="not-done-regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> [Not Done:] Regression-based forecasting models</a></li>
+<li class="chapter" data-level="10.3" data-path="regression-based-forecasting-models.html"><a href="regression-based-forecasting-models.html"><i class="fa fa-check"></i><b>10.3</b> Regression-based forecasting models</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="not-done-data-mining.html"><a href="not-done-data-mining.html"><i class="fa fa-check"></i><b>11</b> [Not Done:] Data Mining</a></li>
 <li class="chapter" data-level="12" data-path="optimization-i-linear-optimization.html"><a href="optimization-i-linear-optimization.html"><i class="fa fa-check"></i><b>12</b> Optimization I: Linear Optimization</a><ul>
@@ -262,11 +263,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First we define a simple moving average window, sometimes called a sliding window: we define a <span class="math inline">\(k\)</span>-period simple moving average window as just the average of the most recent <span class="math inline">\(k\)</span> elements of the time-series:</p>
 <p><span class="math display">\[\text{Window}_t = \frac{1}{k} \left( Y_t + Y_{t-1} + \ldots + Y_{t-(k-1)} \right)\]</span></p>
 <p>Note that the default for early timepoints (when there’s not enough to fit in the window), is undefined, and in R is left as a missing, or NA value. There are several functions you can use to calculate these moving averages, here we use the SMA function from the TTR package:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="smoothing-based-models.html#cb54-1"></a><span class="co"># There are many different ways to calculate simple moving averages. </span></span>
-<span id="cb54-2"><a href="smoothing-based-models.html#cb54-2"></a><span class="co"># Here&#39;s one from the TTR package</span></span>
-<span id="cb54-3"><a href="smoothing-based-models.html#cb54-3"></a><span class="co"># install.packages(&#39;TTR&#39;)</span></span>
-<span id="cb54-4"><a href="smoothing-based-models.html#cb54-4"></a><span class="kw">library</span>(TTR)</span>
-<span id="cb54-5"><a href="smoothing-based-models.html#cb54-5"></a><span class="kw">SMA</span>(df<span class="op">$</span>y, <span class="dt">n=</span><span class="dv">3</span>) <span class="co"># taking window size of 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="smoothing-based-models.html#cb69-1"></a><span class="co"># There are many different ways to calculate simple moving averages. </span></span>
+<span id="cb69-2"><a href="smoothing-based-models.html#cb69-2"></a><span class="co"># Here&#39;s one from the TTR package</span></span>
+<span id="cb69-3"><a href="smoothing-based-models.html#cb69-3"></a><span class="co"># install.packages(&#39;TTR&#39;)</span></span>
+<span id="cb69-4"><a href="smoothing-based-models.html#cb69-4"></a><span class="kw">library</span>(TTR)</span>
+<span id="cb69-5"><a href="smoothing-based-models.html#cb69-5"></a><span class="kw">SMA</span>(df<span class="op">$</span>y, <span class="dt">n=</span><span class="dv">3</span>) <span class="co"># taking window size of 3</span></span></code></pre></div>
 <p><img src="images/time-series/sma-eg1.png" width="400px" style="display: block; margin: auto;" />
 This graph shows a simple time-series (in black), as well as the corresponding simple moving average windows of size 2 (in red) and size 4 (in brown). Take a minute to look at how the windows “smooth” out the variation in the data.</p>
 <p><img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" /></p>
@@ -296,7 +297,7 @@ This graph shows a simple time-series (in black), as well as the corresponding s
 where we update the slope estimate using both (<span class="math inline">\(a_t - a_{t-1}\)</span>), the current slope estimate, and <span class="math inline">\(b_{t-1}\)</span>, the previous slope estimate.</p>
 <p>The basic intuition is that each component is “smoothed” using the same linear combination (<span class="math inline">\(\alpha, (1-\alpha)\)</span>) equation. The slope variable is also smoothed using a (<span class="math inline">\(\beta, (1-\beta)\)</span>) equation. At every timestep we smooth and update our value of <span class="math inline">\(a_t\)</span> and <span class="math inline">\(b_t\)</span>, using these parameters <span class="math inline">\(\alpha, \beta\)</span> and our estimates at the previous timesteps.</p>
 <p>There is a further generalization of this to add a third application of exponential smoothing to model seasonality. This is called the Holt-Winters model. Luckily, R’s HoltWinters() function can do all three types of exponential smoothing. The call is:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="smoothing-based-models.html#cb55-1"></a><span class="kw">HoltWinters</span>(x, alpha, beta, gamma, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="smoothing-based-models.html#cb70-1"></a><span class="kw">HoltWinters</span>(x, alpha, beta, gamma, ...)</span></code></pre></div>
 <p>The <code>R</code> function will allow you to specify <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(\gamma\)</span>, and whichever you do not specify it’ll try to fit.</p>
 <table>
 <thead>
@@ -340,7 +341,7 @@ where we update the slope estimate using both (<span class="math inline">\(a_t -
         </div>
       </div>
 <a href="time-series-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="not-done-regression-based-forecasting-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="regression-based-forecasting-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>
