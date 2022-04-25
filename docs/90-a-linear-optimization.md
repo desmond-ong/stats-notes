@@ -1,7 +1,5 @@
 # Optimization I: Linear Optimization
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In this chapter we will switch gears slightly to start talking about **Prescriptive Analytics**: that is, how to use analytics to make better decisions using data. 
 
 We'll be discussing how to define certain problems as simple linear optimization problems: optimizing a given _objective function_, subject to certain linear _constraints_. We’ll cover how to use graphs to visualise and gain more intuition as to how to solve this problem. And finally, we will cover how to use R to solve the problem, as well as do additional _sensitivity analyses_.
@@ -37,8 +35,6 @@ library(lpSolve) # for solving linear optimization problems ('linear programming
 
 
 ## What is Linear Optimization
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Optimisation is used in every aspect of business: from operations, to finance, to HR, to marketing. Let's imagine that you run a little bakery, and you have to decide how many of each type of product to make. 
 You can, of course, decide your product line by saying "I like making cupcakes", or "People really like my croissants". But if you really want to optimize your sales and scale up product, you would have to do your own research and consider a range of factors, such as: 
@@ -78,8 +74,6 @@ Here are the basic steps in Linear Optimization, which we'll go over in the next
 
 
 ## Objective Functions & Decision Variables
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Your goal (or objective) in linear optimisation is to optimise an objective function. This will be in the form of maximising or minimising some quantity of interest, by choosing the values of $X$, our Decision Variables.
 
@@ -133,8 +127,6 @@ Objective function: Maximize Profits = 0.15 X_1 + 0.40 X_2
 
 ## Constraints
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In Farmer Jean's case, obviously if we just wanted to maximise profits, we should just grow more and more of the profit maximising plant. But this is often not possible because of limited constraints. For example, you may not have unlimited budget, or unlimited time, or you may also need to fulfil certain criteria as part of your contract with your distributor. 
 
 Formally, we represent these constraints as **mathematical inequalities** or equations. The inequalities can be *less than*, *greater than*, or *strictly equal*.
@@ -173,8 +165,6 @@ Non-negativity | $X_1 \geq 0$ <br> $X_2 \geq 0$
 
 
 ## Solving the Optimization Model
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Before we start, it is good practice to formally write down the optimisation model that you want to solve.
 
@@ -342,8 +332,6 @@ For this chapter, we do not cover *how* the Simplex algorithm works, but we just
 
 ## Using R to solve Linear Optimization
 
-<span class="badge badge-bt"> BT1101 </span>
-
 The most difficult part about using R to solve a linear optimization problem is to translate the optimization problem into code. Let's reproduce the table with all the necessary information for the example of Farmer Jean:
 
 Decision Variables: <br> $X_1$ = number of plots of parsnips grown <br> $X_2$ = number of plots of kale grown | Maximize Profits = 0.15 $X_1$ + 0.40 $X_2$
@@ -437,8 +425,6 @@ Thus, the optimal solution is $X_1$ = 80, $X_2$ = 120, and the optimal profit is
 
 
 ## Sensitivity Analysis
-
-<span class="badge badge-bt"> BT1101 </span>
 
 When we get an optimal solution to a linear optimisation problem, oftentimes we may want to ask: what if we change the objective by a little, or what if we change the constraints by a little, what would happen? i.e., how sensitive is the solution to changes in the problem?
 
@@ -810,8 +796,6 @@ Q: Why is the last (the 6th) shadow price non-zero? And why is it negative?
 
 ## Linear Optimization Summary
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In this chapter, we covered the basics of formulating and solving simple linear optimisation problems, which help us "prescribe" the best business choices to make. 
 
 If you can formulate your real-world problem as a linear optimisation problem, then there are very efficient solvers and algorithms that can solve the problem, and to help you gain further insight into your problem (e.g., via sensitivity analyses).
@@ -822,8 +806,6 @@ In the next chapter, we will discuss linear optimisation problems where some of 
 
 
 ## Exercises: Linear Optimization
-
-<span class="badge badge-bt"> BT1101 </span>
 
 
 ##### Q1 {-}

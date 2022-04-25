@@ -1,7 +1,5 @@
 # The Linear Model I: Linear Regression
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In the next few Chapters, we will learning about a workhorse tool of analytics: the linear model, which allows us to run linear regression models that we can use to estimate simple trends and look at how some variables in our data may affect other variables. The linear model is a key tool used in many fields, from psychology, economics, linguistics, business, as well as in some physical sciences like ecology. Thus, it is an essential part of the data scientist's toolkit.
 
 
@@ -36,8 +34,6 @@ df1$Y = -2 + df1$X*2 + rnorm(n=nrow(df1), mean=0, sd=1)
 ```
 
 ## Basics of Linear Regression
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Linear Regression really boils down to this simple equation. 
 
@@ -83,8 +79,6 @@ Similarly, Dependent Variables can either be **continuous** or **categorical**. 
 
 
 ## Running a regression
-
-<span class="badge badge-bt"> BT1101 </span>
 
 
 The first step to running a regression is to be clear about what is your dependent variable of interest, and what are your independent variables. Often, this is clear from the context: As a researcher we have an objective to model or predict a certain variable --- that will be the dependent variable, $Y$. And we have variables that we think would predict that, and those will be our $X$'s. (Later we'll discuss the differences between predictors, covariates, and confounders, which could all statistically affect the depenent variable.)
@@ -237,8 +231,6 @@ There's a lot of information here, which we will break down in the next few sect
 
 ## Ordinary Least Squares Regression
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In this section we'll be taking a quick peek behind what the model is doing, and we'll discuss the formulation of **Ordinary Least Squares** regression. 
 
 
@@ -369,8 +361,6 @@ Again, since $R$ does all the calculations for you, it's not necessary to know h
 
 
 ## Interpreting the output of a regression model
-
-<span class="badge badge-bt"> BT1101 </span>
 
 In this section we'll be going over the different parts of the linear model output. First, we'll talk about the coefficient table, then we'll talk about goodness-of-fit statistics. 
 
@@ -558,8 +548,6 @@ Now, how good is a good $R^2$? Unfortunately there's no good answer, because it 
 
 ## Examples: Simple Regression {#regression_example1}
 
-<span class="badge badge-bt"> BT1101 </span>
-
 Here’s a simple example to illustrate what we've discussed so far, by using a dataset that comes bundled with R, the `mtcars` dataset.  We can load the dataset using `data(mtcars)`.
 
 First, let's see what the data looks like, using `head(mtcars)`, which prints out the first 6 rows of `mtcars`.
@@ -643,8 +631,6 @@ One takeaway from this example is that the linear model just calculates the coef
 
 ## Multiple Linear Regression
 
-<span class="badge badge-bt"> BT1101 </span>
-
 
 
 We’ve covered Simple Linear Regression, whereby "Simple" means just one independent variable. Next we’ll talk about Multiple Linear Regression, where "Multiple" just means multiple independent variables.
@@ -685,8 +671,6 @@ Coefficient | Intepretation:
 
 
 ## Standardized Coefficients
-
-<span class="badge badge-bt"> BT1101 </span>
 
 
 
@@ -737,8 +721,6 @@ lm(Y_standardized ~ X_standardized, df1)
 
 
 ## Categorical Independent Variables
-
-<span class="badge badge-bt"> BT1101 </span>
 
 So far we have been dealing with continuous independent variables ($X$), (e.g. Expenditure, Years, Age, Numbers, ...). In this section, we consider categorical independent variables (e.g., Gender, Ethnicity, MaritalStatus, Color-Of-Search-Button, ...).
 
@@ -908,8 +890,6 @@ Coefficient | Intepretation:
 
 ## Assumptions behind Linear Regression
 
-<span class="badge badge-bt"> BT1101 </span>
-
 
 
 
@@ -1015,18 +995,9 @@ We see what looks like maybe one outlier right on the right edge of the graph, b
 
 
 
-### [Not done:] Multicollinearity
-
-### [Not done:] Autocorrelation
-
-
-
-
 
 
 ## Exercises: Linear Model I
-
-<span class="badge badge-bt"> BT1101 </span>
 
 1a) For this simple linear regression,
 $$ \text{Income} = b_0 + b_1 \text{Years of Education} $$

@@ -25,8 +25,6 @@ library(tidyverse) # for data munging
 
 ## Basics of Data Wrangling
 
-<span class="badge badge-bt"> BT1101 </span>
-
 > Data wrangling, or data munging, is the process of "wrangling" data from one format to another.
 
 
@@ -134,8 +132,6 @@ In the next section we'll learn a little bit about the functions needed to move 
 
 
 ## Wrangling in the tidyverse
-
-<span class="badge badge-bt"> BT1101 </span>
 
 (Here's a great reference, or "cheat sheet", that is very useful to refer to once you have learnt the `tidyverse` functions and want to refer back to it, although it's a little outdated: 
 https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf. Do note that `pivot_longer()`, covered below, is an updated version of `gather()` from the pdf.)

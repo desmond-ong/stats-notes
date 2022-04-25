@@ -1,7 +1,5 @@
 # The Linear Model II: Logistic Regression
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In the previous chapter, we introduced the linear model, and showed how we can use it to model continuous dependent variables ($Y$), using a combination of both continuous and categorical indepdent variables ($X$).
 
 In this chapter we will discuss expanding our toolkit to use a different type of regression, **logistic** regression, to model categorical dependent variables ($Y$). For now, we **only consider binary dependent variables** (such as `Yes`/`No` Decisions, `True`/`False` classifications, etc), although there are also extensions to categorical dependent variable with multiple levels (e.g., multinomial regression).
@@ -22,8 +20,6 @@ library(tidyverse)
 
 
 ## Basics of Logistic Regression
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Let's imagine that we have a dataset with individual yes/no decisions, that we want to predict. For example, we might have a dataset of individual consumer purchases on an e-commerce platform, where we want to predict a consumer’s decision to purchase a product based upon other variables such as how much they spend on the platform, what their demographics are^[Another common example: we might want to predict people's voting behaviour or willingness to support certain policies, based upon certain characteristics.].
 
@@ -63,8 +59,6 @@ In fact, linear regression is a special case of the general linear model with th
 
 
 ## Running a Logistic Regression
-
-<span class="badge badge-bt"> BT1101 </span>
 
 The syntax for running a logistic regression is almost the same as a linear regression, just that the call is `glm()` for **g**eneral **l**inear **m**odel, with an additional specification of `family = binomial`, which tells `glm` to run logistic regression. (Other `family` options produce other types of general linear regression, such as probit regression, etc.)
 
@@ -338,7 +332,7 @@ So let's interpret:
 
 
 ## Exercises: Linear Model II
-<span class="badge badge-bt"> BT1101 </span>
+
 
 For this logistic regression, we want to predict whether a customer made a purchase (binary yes/no):
 

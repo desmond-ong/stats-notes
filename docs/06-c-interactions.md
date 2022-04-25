@@ -1,7 +1,5 @@
 # [Not Done:] The Linear Model III: Interactions
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In the previous two chapters, we have introduced the linear model, and showed how we can model (i) both continuous and categorical independent variables (including the idea of dummy coding), as well as (ii) both continuous and categorical dependent variables, the latter of which requires a generalization of the linear model, and we covered one such model, logistic regression. 
 
 In this chapter we will build on these by introducing the idea of statistical moderation, and how we can model this by adding **interactions** into a linear model.

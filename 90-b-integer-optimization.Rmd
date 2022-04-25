@@ -1,7 +1,5 @@
 # Optimization II: Integer-valued Optimization
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In this chapter we will continue our discussion of linear optimization, but now with the added complexity of considering problems with *integer*-valued decision variables.
 
 The learning objectives for this chapter are:
@@ -22,8 +20,6 @@ library(lpSolve) # for solving linear optimization problems ('linear programming
 
 
 ## Integer-valued decision variables
-
-<span class="badge badge-bt"> BT1101 </span>
 
 In the previous chapter we learnt how to solve optimization problems by finding real-valued solutions to decision problems. Recall that in the Furniture Factory example, we discovered that the optimal solution was to produce 5.93 tables, 3.70 sofas, and 0 beds. But in real-life, we cannot produce fractional tables or sofas, so this becomes a problem, which we will learn to solve in this Chapter. 
 
@@ -49,8 +45,6 @@ And finally, we will also see how we can represent logical constraints using bin
 
 
 ## From real-valued to integer solutions
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Let's revisit the Furniture Factory example from the previous Chapter. Recall that the objective function, constraints, and solution are:
 
@@ -180,8 +174,6 @@ Lastly, one final point to note is that the sensitivity analyses calculated by `
 
 
 ## Logical Constraints
-
-<span class="badge badge-bt"> BT1101 </span>
 
 Logical constraints can also be formalised as integer constraints. For example, let's say that $X_1$ is whether I decide to buy a new house, and $X_2$ is whether I decide to renovate the new house. We restrict both $X_1$, $X_2$ to be either $0$ or $1$. Obviously, I need to purchase the house before I can renovate it, so $X_1$ is a pre-requisite for $X_2$.
 
@@ -358,8 +350,6 @@ In order to maximize her interest while completing the degree, Natalie should ch
 
 ## Integer Optimization Summary
 
-<span class="badge badge-bt"> BT1101 </span>
-
 In this lecture we've covered how to use linear optimisation to solved integer-valued optimisation problems, where some of the decision variables are constrained to be integers, or even constrained to be binary variables (which can be used to model yes/no decisions).
 
 We've also seen how to transform logical constraints into linear constraints using binary variables. And we've also seen worked examples of problems with 10+ decision variables -- these problems scale up very fast!
@@ -369,7 +359,6 @@ The output of these problems can be very useful in helping managers make optimal
 
 ## Exercises: Integer Optimization
 
-<span class="badge badge-bt"> BT1101 </span>
 
 
 

@@ -1,7 +1,5 @@
 # Getting Started {-}
 
-<span class="badge badge-bt"> BT1101 </span>
-
 This course will be taught in `R`, which is a free statistical software environment (/ programming language) that makes it very handy to run data analysis. It is a fully *functional* programming language, and by that I mean two things:
 
 - 1) In my experience, any operation that you want to do to data, you can do it in `R`. There are also many user-contributed libraries (called "packages"), which continually expand the capabilities that you can achieve with `R`.

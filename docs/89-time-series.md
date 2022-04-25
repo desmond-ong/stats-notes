@@ -1,9 +1,6 @@
 # Introduction to Time-Series Data {#time-series}
 
 
-<span class="badge badge-bt"> BT1101 </span>
-
-
 In this chapter we look at time-series data, which is also another fairly common type of data. Time-series data is data for one or more variables that vary across time, which we can denote as $Y_t$ to indicate the $Y$ variable at time $t$. 
 
 In principle, we can use many different predictors in a time-series model:
@@ -50,16 +47,12 @@ First, let’s introduce some useful terminology that we can use to describe tim
 
 Here are some examples to motivate how time-series data is interesting:
 
-```{r, echo=F, eval=T, out.width="400px", fig.align="center"}
-knitr::include_graphics("images/time-series/airPassengers.png")
-```
+<img src="images/time-series/airPassengers.png" width="400px" style="display: block; margin: auto;" />
 
 Here we have a dataset, which is in base R and which shows the monthly total of international airline passengers from 1949 to 1960. You can see that there is a gradual increase, but there is also this very stable pattern, going up and down over a year. Thus, this dataset shows a trend, and an obvious seasonal effect.
 
 
-```{r, echo=F, eval=T, out.width="400px", fig.align="center"}
-knitr::include_graphics("images/time-series/sp500.png")
-```
+<img src="images/time-series/sp500.png" width="400px" style="display: block; margin: auto;" />
 
 This is a graph showing the historical prices of the S&P500, a stock market index listed on the stock exchanges in the US, from 1990 until 2019. There are a lot of things going on, as is the case in real world data: There is a dramatic increase in price in the past 3 decades (trend), but also these large stock market fluctuations, or cycles.
 
@@ -67,9 +60,7 @@ The first of these cycles was the dot-com bubble in the 2000s, when tech compani
 
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/cnn-dec30-2020.png")
-```
+<img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" />
 
 
 
@@ -90,7 +81,8 @@ $$\text{Window}_t = \frac{1}{k} \left( Y_t + Y_{t-1} + \ldots + Y_{t-(k-1)} \rig
 
 Note that the default for early timepoints (when there's not enough to fit in the window), is undefined, and in R is left as a missing, or NA value. There are several functions you can use to calculate these moving averages, here we use the SMA function from the TTR package:
 
-```{r echo=T, eval=F}
+
+```r
 # There are many different ways to calculate simple moving averages. 
 # Here's one from the TTR package
 # install.packages('TTR')
@@ -99,24 +91,17 @@ SMA(df$y, n=3) # taking window size of 3
 ```
 
 
-```{r, echo=F, eval=T, out.width="400px", fig.align="center"}
-knitr::include_graphics("images/time-series/sma-eg1.png")
-```
+<img src="images/time-series/sma-eg1.png" width="400px" style="display: block; margin: auto;" />
 This graph shows a simple time-series (in black), as well as the corresponding simple moving average windows of size 2 (in red) and size 4 (in brown). Take a minute to look at how the windows "smooth" out the variation in the data.
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/cnn-dec30-2020.png")
-```
+<img src="images/time-series/cnn-dec30-2020.png" width="600px" style="display: block; margin: auto;" />
 
 
 The CNN graph of covid cases on the previous page also has a seven-day moving average window overlaid on the raw data (which you can see in the faded bars). Notice how the red line makes it easier to see trends and cycles.
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/temperature-raw.png")
-knitr::include_graphics("images/time-series/temperature-7sma.png")
-```
+<img src="images/time-series/temperature-raw.png" width="600px" style="display: block; margin: auto;" /><img src="images/time-series/temperature-7sma.png" width="600px" style="display: block; margin: auto;" />
 
 Here's another graph that is also related to Covid. This is a real graph of body temperature, taken twice a day. Now you might not be able to see much from this data because it's so noisy. But if we instead took a seven day moving average, we can see that this individual's temperature data seems to follow this repeated pattern. (And indeed, this individual happens to be a female, and this data does follow a repeated, biological seasonality.)
 
@@ -163,24 +148,19 @@ The basic intuition is that each component is "smoothed" using the same linear c
 
 There is a further generalization of this to add a third application of exponential smoothing to model seasonality. This is called the Holt-Winters model. Luckily, R's HoltWinters() function can do all three types of exponential smoothing. The call is:
 
-```{r, echo=T, eval=F}
+
+```r
 HoltWinters(x, alpha, beta, gamma, ...)
 ```
 
 The `R` function will allow you to specify $\alpha$, $\beta$, and $\gamma$, and whichever you do not specify it'll try to fit.
 
-```{r, echo=F, eval=T}
-knitr::kable(data.frame(
-  Method = c("Single Exponential Smoothing", "Double Exponential Smoothing", "Holt-Winters"),
-  Trend = c("No", "Yes", "Yes"),
-  Seasonality = c("No", "No", "Yes"),
-  Parameters = c("alpha", "alpha, beta (trend)", "alpha, beta (trend), gamma (seasonality)"),
-  Call = c("HoltWinters(x, beta=FALSE, gamma=FALSE)", 
-           "HoltWinters(x, gamma=FALSE)",
-           "HoltWinters(x)")
-  
-))
-```
+
+Method                         Trend   Seasonality   Parameters                                 Call                                    
+-----------------------------  ------  ------------  -----------------------------------------  ----------------------------------------
+Single Exponential Smoothing   No      No            alpha                                      HoltWinters(x, beta=FALSE, gamma=FALSE) 
+Double Exponential Smoothing   Yes     No            alpha, beta (trend)                        HoltWinters(x, gamma=FALSE)             
+Holt-Winters                   Yes     Yes           alpha, beta (trend), gamma (seasonality)   HoltWinters(x)                          
 
 
 
@@ -213,9 +193,7 @@ Here are some examples of leading variables, which may occur some $lag$ days bef
 The graph below shows two variables (gold and grey) varying over time. Which variable is the leading variable, and which is the lagging variable? 
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/lead-lag-plot-1.png")
-```
+<img src="images/time-series/lead-lag-plot-1.png" width="600px" style="display: block; margin: auto;" />
 
 
 
@@ -227,9 +205,7 @@ Here's a reasoning "rule" that can help. Draw a vertical line near a "landmark" 
 
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/lead-lag-plot-2.png")
-```
+<img src="images/time-series/lead-lag-plot-2.png" width="600px" style="display: block; margin: auto;" />
 
 Thus, we can infer that as the grey curve reaches the "landmark" first, the grey line is the leading variable, and the gold line is the lagging variable
 
@@ -241,9 +217,7 @@ Which graph do you think corresponds to Cases, and which to Deaths?
 (Hint: First, think about which variable should be leading and why?)
 
 
-```{r, echo=F, eval=T, out.width="600px", fig.align="center"}
-knitr::include_graphics("images/time-series/timeseries-japan-covid.png")
-```
+<img src="images/time-series/timeseries-japan-covid.png" width="600px" style="display: block; margin: auto;" />
 
 
 
@@ -257,7 +231,8 @@ This is called an Autoregressive model (of order 1, or AR(1)). `auto` means self
 
 If $X$ is a leading variable of $Y$ (i.e., we expect $X$'s at previous time points to impact $Y$ at the current time), then we can use lagged values of $X$ (i.e., $X_{t-lag}$) to predict the current $Y_t$. In other words, we need to LAG $X$ to have the $X$ and $Y$ variables be coincident. If you have these variables in a dataset where each row corresponds to values at a particular time, then you can use the `lag` function from the `dplyr` package to make a new lagged variable. 
 
-```{r making-lagged-variables, echo=T, eval=F}
+
+```r
 # you can use dplyr's "lag" function to create these lagged regressors
 df$x_lagged = dplyr::lag(df$x,1) # lagging the x variable by 1 unit of time 
 ```

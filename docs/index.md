@@ -1,7 +1,7 @@
 --- 
 title: "Statistics and Analytics for the Social and Computing Sciences"
 author: "Desmond C. Ong"
-date: "Draft Dated: 2021-08-10"
+date: "Draft Dated: 2022-04-25"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -28,25 +28,17 @@ description: "Statistics and Analytics for the Social and Computing Sciences"
 
 This is a working collection of notes on statistics and data analytics that I am compiling, with two goals:
 
-1) To serve as a supplement to a course that I teach at the National University of Singapore (BT1101: Introduction to Business Analytics), a statistics course in R targeted at first-year undergraduate students and aspiring data scientists. These sections will cover introductory material, and will be marked with <span class="badge badge-bt"> BT1101 </span>. 
+1) To serve as a supplement to the courses I teach. This will be targeted at aspiring data scientists!
 
-2) To discuss material that would be useful for graduate-level researchers in the social and computing sciences. This material will build upon the introductory level, and will be marked with <span class="badge badge-adv"> Advanced </span>
+2) To discuss material that would be useful for graduate-level researchers in the social and computing sciences.
 
-
-I hope to cover quite broadly several important and useful statistical tools (such as multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
+I hope to cover several important and useful statistical tools (such as multivariate regression and simulations), as well as discuss issues like data visualization best practices. I also plan to write several chapters on applying statistics in the computing sciences (for example, proper statistics when analyzing machine learning models). And finally, if I have time, I would like to transition to teaching statistics in a more Bayesian tradition.
 
 
 My philosophy in teaching statistics and analytics is to focus on helping students to achieve a conceptual understanding, and develop their own intuition for data. Yes, students will need some mathematical background to appreciate statistics, and yes, students will need to learn some programming (in R) to actually implement modern statistical calculations, but these are means to an end. The end is an appreciation of data, and especially, how data exists in the real world. Real data rarely conforms to the assumptions we make in our analyses. The job of the analyst is to understand the data, which involves "troubleshooting" confusing statistical output, modifying statistical models and their underlying assumptions, and perhaps even inventing new ones.
 
 
-
-
 As some background, I am a computational cognitive psychologist, with a little training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences. 
-
-
-
-> Disclaimer: For students taking BT1101, please refer to these notes **only if you are taking this course under me**. If you are taking the course under a different instructor, that instructor's lecture notes take precedence as to whether something is in syllabus or not (and hence, testable on assessments/exams). We are always making improvements to the syllabus, and so for different offerings of the course, instructors may cover slightly different material. So if you are taking it under a different instructor, do not assume that concepts covered here will show up on the exam, or assume that concepts not covered here will not show up on the exam. I've indicated sections that were covered the last time I taught BT1101 with a <span class="badge badge-bt"> BT1101 </span> label).
-
 
 
 This is a work-in-progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
@@ -73,31 +65,31 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
     b. Coding Best Practices
 - Introduction
 - Handling Data
-    a. Basics of Data Wrangling <span class="badge badge-bt"> BT1101 </span>
-    b. Wrangling in the tidyverse <span class="badge badge-bt"> BT1101 </span>
-    c. A data cleaning pipeline for research projects <span class="badge badge-adv"> Advanced </span>
-- <i>[In Progress] Descriptive Statistics<!-- -  Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation--></i> 
-<!-- - <i>[In Progress] A discussion on probability ? - Normal distribution?</i> -->
+    a. Basics of Data Wrangling
+    b. Wrangling in the tidyverse
+    c. A data cleaning pipeline for research projects
+- <i>[In Progress] Descriptive Statistics <!-- -  Mean / Median / Mode, Types of Variables, Variance / Covariance / Correlation--></i> 
 - <i>[In Progress] Data Visualization</i>
 - The Linear Model 
-    a. Linear Regression <span class="badge badge-bt"> BT1101 </span>
-    b. Logistic Regression <span class="badge badge-bt"> BT1101 </span>
-    c. [In Progress] Interactions <span class="badge badge-bt"> BT1101 </span>
-    d. [In Progress] Model Selection <span class="badge badge-bt"> BT1101 </span>
-    e. [In Progress] Mixed-effects linear models <span class="badge badge-adv"> Advanced </span>
-- Introduction to Time Series Data <span class="badge badge-bt"> BT1101 </span>
+    a. Linear Regression
+    b. Logistic Regression
+    c. <i>[In Progress] Interactions </i>
+    d. <i>[In Progress] Model Selection </i>
+    e. <i>[In Progress] Mixed-effects linear models </i>
+- <i>[In Progress] A discussion on probabilities and probability distributions </i>
+- <i>[In Progress] Simulations (I) </i>
+    a. <i>Monte Carlo Simulations </i>
+    b. <i>The Bootstrap </i>
+- <i>[In Progress] Simulations (II): Statistics in Machine Learning </i>
+    a. <i>Understanding the statistics of machine learning models </i>
+- <i>[In Progress] Data Mining </i>
+- Older / Introduction to Time Series Data
     a. Time Series Basics
     b. Smoothing-based models
     c. Time-Series Regression
-- [In Progress] Data Mining <span class="badge badge-bt"> BT1101 </span>
-- Optimization <span class="badge badge-bt"> BT1101 </span>
+- Older / Optimization 
     a. Linear Optimization 
     b. Integer-valued Optimization
-<!-- - [In Progress] Simulations (I)  -->
-<!--     a. Monte Carlo Simulations <span class="badge badge-adv"> Advanced </span> -->
-<!--     b. The Bootstrap <span class="badge badge-adv"> Advanced </span> -->
-<!-- - [In Progress] Simulations (II): Statistics in Machine Learning  -->
-<!--     a. Understanding the statistics of machine learning models <span class="badge badge-adv"> Advanced </span> -->
 
 
 ...
