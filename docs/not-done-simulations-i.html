@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences</title>
-  <meta name="description" content="14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <title>Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences</title>
+  <meta name="description" content="Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:title" content="Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta property="og:description" content="Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences" />
   <meta name="github-repo" content="desmond-ong/stats-notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:title" content="Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences" />
   
-  <meta name="twitter:description" content="14.7 Examples: Linear Optimization | Statistics and Analytics for the Social and Computing Sciences" />
+  <meta name="twitter:description" content="Chapter 10 [Not Done:] Simulations (I) | Statistics and Analytics for the Social and Computing Sciences" />
   
 
 <meta name="author" content="Desmond C. Ong" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sensitivity-analysis.html"/>
-<link rel="next" href="linear-optimization-summary.html"/>
+<link rel="prev" href="not-done-the-linear-model-v-mixed-effects-linear-models.html"/>
+<link rel="next" href="not-done-monte-carlo-simulations.html"/>
 <script src="assets/jquery-2.2.3/jquery.min.js"></script>
 <link href="assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="assets/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -260,89 +260,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="examples-linear-optimization" class="section level2">
-<h2><span class="header-section-number">14.7</span> Examples: Linear Optimization</h2>
-<p>In this example, imagine that you operate a furniture company, with the following three products:</p>
-<ul>
-<li>Tables: Each table makes a profit of $500, costs 8.4 production hours to make, and 3<span class="math inline">\(m^3\)</span> of storage to store</li>
-<li>Sofas: Each sofa makes a profit of $450</li>
-<li>Beds: Each bed makes a profit of $580, costs 9.6 production hours to make, and 8</li>
-</ul>
-<p>The profit earned by selling each type of furniture is listed above.
-However, each piece of furniture requires some factory-time to make and requires warehouse space to store.</p>
-<p>Each week you have a budget of only 72 production hours at your factory.
-Additionally, you have enough warehouse storage to store only 40 m3 (cubic-meters).<br />
-Furthermore, from past trends, you can only sell a maximum of 8 tables a week.</p>
-<p>How many of each type of furniture should you make for next week to maximise profit?</p>
-<hr />
-<p>First, we define our decision variables and objective function:</p>
-<p><span class="math display">\[ X_1 = \text{number of tables made} \\
-X_2 = \text{number of sofas made} \\
-X_3 = \text{number of beds made} \\
-\text{Maximize Profit} = 500 X_1 + 450 X_2 + 580 X_3 \]</span></p>
-<p>Next, we define our four constraints:</p>
-<p>Production Hour Budget Constraints:
-<span class="math display">\[  8.4X_1 +   6X_2 + 9.6X_3 \leq 72\]</span>
-Storage Space Constraints:
-<span class="math display">\[      3X_1 +   6X_2 +    8X_3  \leq 40\]</span></p>
-<p>Demand Constraints:
-<span class="math display">\[    X_1 +    \qquad      +   \qquad       \leq 8\]</span></p>
-<p>Non-negativity Constraints:
-<span class="math display">\[ X_1 \geq 0; X_2 \geq 0; X_3 \geq 0 \]</span></p>
-<p>The lp code looks like this:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="examples-linear-optimization.html#cb97-1"></a>objective.fn &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">500</span>, <span class="dv">450</span>, <span class="dv">580</span>)</span>
-<span id="cb97-2"><a href="examples-linear-optimization.html#cb97-2"></a>const.mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">8.4</span>,  <span class="dv">6</span>, <span class="fl">9.6</span>, </span>
-<span id="cb97-3"><a href="examples-linear-optimization.html#cb97-3"></a>                        <span class="dv">3</span>,  <span class="dv">6</span>,   <span class="dv">8</span>, </span>
-<span id="cb97-4"><a href="examples-linear-optimization.html#cb97-4"></a>                        <span class="dv">1</span>,  <span class="dv">0</span>,   <span class="dv">0</span>), </span>
-<span id="cb97-5"><a href="examples-linear-optimization.html#cb97-5"></a>                      <span class="dt">ncol=</span><span class="dv">3</span> , <span class="dt">byrow=</span><span class="ot">TRUE</span>) </span>
-<span id="cb97-6"><a href="examples-linear-optimization.html#cb97-6"></a>const.dir &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>, <span class="st">&quot;&lt;=&quot;</span>)</span>
-<span id="cb97-7"><a href="examples-linear-optimization.html#cb97-7"></a>const.rhs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">72</span>, <span class="dv">40</span>, <span class="dv">8</span>)</span>
-<span id="cb97-8"><a href="examples-linear-optimization.html#cb97-8"></a><span class="co"># solving model</span></span>
-<span id="cb97-9"><a href="examples-linear-optimization.html#cb97-9"></a>lp.solution &lt;-<span class="st"> </span><span class="kw">lp</span>(<span class="st">&quot;max&quot;</span>, objective.fn, const.mat, </span>
-<span id="cb97-10"><a href="examples-linear-optimization.html#cb97-10"></a>                  const.dir, const.rhs, <span class="dt">compute.sens=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p>And we can obtain the solution by running:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="examples-linear-optimization.html#cb98-1"></a><span class="co"># to print out the optimal objective function value</span></span>
-<span id="cb98-2"><a href="examples-linear-optimization.html#cb98-2"></a>lp.solution</span></code></pre></div>
-<pre><code>## Success: the objective function is 4629.63</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="examples-linear-optimization.html#cb100-1"></a><span class="co"># to print out the values of the decision variables (X1, X2, X3)</span></span>
-<span id="cb100-2"><a href="examples-linear-optimization.html#cb100-2"></a>lp.solution<span class="op">$</span>solution</span></code></pre></div>
-<pre><code>## [1] 5.925926 3.703704 0.000000</code></pre>
-<p>Thus, the optimal solution is:
-<span class="math display">\[X_1 = 5.93, X_2 = 3.70, X_3 = 0\]</span></p>
-<p>Hence, the optimal solution, given the constraints, is to produce 5.93 tables, 3.70 sofas, and 0 beds. This will yield a maximum profit of $4629.63</p>
-<p>Note that:</p>
-<ol style="list-style-type: decimal">
-<li>The optimal solution is to not produce any beds at all!</li>
-<li>How do we produce fractional tables?? (We’ll address this in the next chapter!)</li>
-</ol>
-<p>Q: Which constraints are binding? Which constraints are non-binding?</p>
-<p>Now let’s do some sensitivity analyses:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="examples-linear-optimization.html#cb102-1"></a>lp.solution<span class="op">$</span>sens.coef.from </span></code></pre></div>
-<pre><code>## [1]  2.25000e+02  3.64375e+02 -1.00000e+30</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="examples-linear-optimization.html#cb104-1"></a>lp.solution<span class="op">$</span>sens.coef.to</span></code></pre></div>
-<pre><code>## [1]  630.0000 1000.0000  681.4815</code></pre>
-<p>This means that the optimal solution remains the same if:</p>
-<ul>
-<li>The profit from tables (coefficient on <span class="math inline">\(X_1\)</span>) lies between $225 and $630</li>
-<li>The profit from sofas (coefficient on <span class="math inline">\(X_2\)</span>) lies between $364 and $1000</li>
-<li>The profit from beds (coefficient on <span class="math inline">\(X_3\)</span>) lies between $ (-Infinity) and $681.48</li>
-</ul>
-<p>That is, in order for the beds to be profitable, we would need to increase the profit of beds to at least $682 per bed!</p>
-<p>Now, let’s examine the Shadow prices of the solution.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="examples-linear-optimization.html#cb106-1"></a><span class="co"># Shadow prices</span></span>
-<span id="cb106-2"><a href="examples-linear-optimization.html#cb106-2"></a>lp.solution<span class="op">$</span>duals</span></code></pre></div>
-<pre><code>## [1]   50.92593   24.07407    0.00000    0.00000    0.00000 -101.48148</code></pre>
-<p>This returns 6 values. The first three correspond to the constraints in the order we put them in. The last three are the shadow prices of the non-negativity constraints (<span class="math inline">\(X_1 \geq 0\)</span>, <span class="math inline">\(X_2 \geq 0\)</span>, and <span class="math inline">\(X_3 \geq 0\)</span>, respectively)</p>
-<p>Q: How would you interpret each of these values?</p>
-<p>Q: Why is the last (the 6th) shadow price non-zero? And why is it negative?</p>
+<div id="not-done-simulations-i" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> [Not Done:] Simulations (I)</h1>
+<p>Monte Carlo: Intro to simulations, randomness</p>
+<p>Bootstrap</p>
+<p>Permutation Tests</p>
+<p>Simulating p values</p>
+<p>Power analyses</p>
+<p>Central Limit Theorem in simulations</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="sensitivity-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-optimization-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="not-done-the-linear-model-v-mixed-effects-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="not-done-monte-carlo-simulations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="assets/gitbook-2.6.7/js/app.min.js"></script>

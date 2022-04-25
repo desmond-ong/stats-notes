@@ -38,7 +38,7 @@ I hope to cover several important and useful statistical tools (such as multivar
 My philosophy in teaching statistics and analytics is to focus on helping students to achieve a conceptual understanding, and develop their own intuition for data. Yes, students will need some mathematical background to appreciate statistics, and yes, students will need to learn some programming (in R) to actually implement modern statistical calculations, but these are means to an end. The end is an appreciation of data, and especially, how data exists in the real world. Real data rarely conforms to the assumptions we make in our analyses. The job of the analyst is to understand the data, which involves "troubleshooting" confusing statistical output, modifying statistical models and their underlying assumptions, and perhaps even inventing new ones.
 
 
-As some background, I am a computational cognitive psychologist, with a little training in econometrics, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences. 
+As some background, I am a computational cognitive psychologist, so I tend to favor regression and simulation approaches, and my examples may default to examples common in the social sciences. 
 
 
 This is a work-in-progress that is inspired by Russ Poldrack's Psych10 book here: http://statsthinking21.org/, which is another undergraduate Introduction to Statistics course. This set of notes is hosted on [GitHub](https://github.com/desmond-ong/stats-notes) and built using [Bookdown](https://github.com/rstudio/bookdown).
@@ -83,11 +83,11 @@ Professor Ong received his Ph.D. in Psychology and his M.Sc. in Computer Science
 - <i>[In Progress] Simulations (II): Statistics in Machine Learning </i>
     a. <i>Understanding the statistics of machine learning models </i>
 - <i>[In Progress] Data Mining </i>
-- Older / Introduction to Time Series Data
+- Introduction to Time Series Data
     a. Time Series Basics
     b. Smoothing-based models
     c. Time-Series Regression
-- Older / Optimization 
+- Optimization 
     a. Linear Optimization 
     b. Integer-valued Optimization
 
